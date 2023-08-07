@@ -1,9 +1,15 @@
-$black : #333; //深色
-$textColor_m : #555; //文字不深不淺
-$textColor_l : #999; //文字淺色
-$purple : #6E60F6; //版面主要顏色
-$purple_d : #09003E; //版面次要顏色
-$green : #66D5C0; //版面第三顏色
-$lineColor : #E0E0E0; //線框顏色
-$white : #FFF; //白色
-$gray : #F7F7F7; //灰色
+$black: #333; //深色
+$textColor_m: #555; //文字不深不淺
+$textColor_l: #999; //文字淺色
+$purple: #6e60f6; //版面主要顏色
+$purple_d: #09003e; //版面次要顏色
+$green: #66d5c0; //版面第三顏色
+$lineColor: #e0e0e0; //線框顏色
+$white: #fff; //白色
+$gray: #f7f7f7; //灰色
+
+$color: (
+  dark: #333,
+  textColor_m: #555,
+  textColor_l: #999,
+);

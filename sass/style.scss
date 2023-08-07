@@ -1,24 +1,26 @@
 // base
-@import 'base/base';
-@import 'base/color';
-@import 'base/font';
-@import 'base/spacing';
+@import "base/base";
+@import "base/color";
+@import "base/font";
+@import "base/spacing";
 
 // mixin
-@import 'mixin/mixins';
+@import "mixin/mixins";
 
 // component
-@import 'component/btn';
-@import 'component/form';
-@import 'component/table';
-@import 'component/title';
-@import 'component/grid';
+@import "component/btn";
+@import "component/form";
+@import "component/table";
+@import "component/title";
+@import "component/grid";
+@import "component/space";
+@import "component/fontColor";
 
 // layout
-@import 'layout/body';
+@import "layout/body";
 
 // page
-@import 'page/index';
-@import 'page/about';
+@import "page/index";
+@import "page/about";
 
 // plugin

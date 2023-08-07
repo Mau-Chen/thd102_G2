@@ -1,0 +1,9 @@
+@include grid(12);
+
+@include t() {
+  @include grid(12, "lg-");
+}
+
+@include m() {
+  @include grid(12, "sm-");
+}
