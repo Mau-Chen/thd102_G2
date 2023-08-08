@@ -1,2 +1,2 @@
-@include btn(br_8, #999, false, 8px);
-@include btn(br_12, #555, true, 12px);
+@include btn($btn);
+// @include btn($btn, $black, $black, false);

@@ -3,9 +3,6 @@
   @for $j from 1 through $num {
     .col-#{$r}#{$j} {
       width: calc($j / $num) * 100%;
-      height: 100%;
-      background-color: rgba(255, 0, 0, 0.1);
-      @content;
     }
   }
 }
@@ -24,38 +21,24 @@
 }
 
 // btn
-@mixin btn($class, $bgc, $outline, $bdr) {
-  .btn {
-    // padding: 10px 30px;
-    text-align: center;
-    color: $white;
-    cursor: pointer;
-    // transition: all 0.3s ease;
-    &.#{$class} {
-      @if $bdr == 8px {
-        border-radius: $br_8;
-      } @else if $bdr == 12px {
-        border-radius: $br_12;
-      } @else {
-        border-radius: null;
-      }
-
-      background-color: $bgc;
-      //   &:hover {
-      //     background-color: darken($bgc, 20);
-      //     color: $white;
-      //   }
+@mixin btn($btn) {
+  @each $k, $v in $btn {
+    .#{$k} {
+      height: $v;
+      cursor: pointer;
     }
-
-    @if $outline {
-      &.outline {
-        border-width: 1px;
-        border-style: solid;
-        background-color: initial;
-      }
+    .#{$k}.broder {
+      border: 1px solid #333;
     }
   }
 }
+
+// // padding: 10px 30px;
+// text-align: center;
+// color: $white;
+// cursor: pointer;
+// border-radius: 8px;
+// // transition: all 0.3s ease;
 
 // 間距
 @mixin space($spacing) {
@@ -74,6 +57,13 @@
       color: $val;
     }
   }
+}
+// flex
+@mixin flex($d: row, $jc: center, $ai: center) {
+  display: flex;
+  flex-direction: $d;
+  justify-content: $jc;
+  align-items: $ai;
 }
 
 // RWD 手機
