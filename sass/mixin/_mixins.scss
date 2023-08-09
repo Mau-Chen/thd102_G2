@@ -26,6 +26,7 @@
     .#{$k} {
       height: $v;
       cursor: pointer;
+      @include flex();
     }
     .#{$k}.broder {
       border: 1px solid #333;
