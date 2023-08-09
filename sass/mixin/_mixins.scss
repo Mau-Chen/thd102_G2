@@ -25,6 +25,7 @@
   @each $k, $v in $btn {
     .#{$k} {
       height: $v;
+      border-radius: 8px;
       cursor: pointer;
       @include flex();
     }

@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="stylesheet" href="./css/style.css" />
     <title>PetdaGo-GO司機</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper driver">
       @@include('layout/header.html')
+      <img src="./images/driver_bg.png" alt="" />
       <div class="container">
-        <p>driver</p>
-
-
-
-
-
-
-
-
-
-
+        <section class="titlesearchbar">
+          <h2>最安心的寵物接送</h2>
+          <div class="searchbar">
+            <div class="place">
+              <p>出發點</p>
+              <input type="text" placeholder="輸入上車地點" />
+            </div>
+            <div class="place">
+              <p>目的地</p>
+              <input type="text" placeholder="輸入下車地點" />
+            </div>
+            <div class="category">
+              <p>乘車日期&時間</p>
+              <input type="text" placeholder="8月17日 | 16:00" />
+            </div>
+            <div class="category">
+              <p>車種</p>
+              <input type="text" placeholder="轎車" />
+            </div>
+            <div class="category">
+              <p>乘客數量</p>
+              <input type="text" placeholder="1位乘客, 2位毛孩" />
+            </div>
+            <div class="btn_driver btn_7">
+              <p>立即搜尋</p>
+            </div>
+          </div>
+        </section>
+        <!-- <p>driver</p> -->
       </div>
       @@include('layout/footer.html')
     </div>
