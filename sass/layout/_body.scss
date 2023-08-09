@@ -7,5 +7,6 @@
 
 .container {
   // width: 1200px;
-  @include layout(1200);
+  max-width: 1200px;
+
 }

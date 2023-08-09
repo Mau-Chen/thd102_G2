@@ -29,7 +29,7 @@
       cursor: pointer;
       @include flex();
     }
-    .#{$k}.broder {
+    .#{$k}.border {
       border: 1px solid #333;
     }
   }
