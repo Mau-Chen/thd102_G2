@@ -5,5 +5,6 @@
 }
 
 .container {
-  width: 1200px;
+  // width: 1200px;
+  @include layout(1200);
 }
