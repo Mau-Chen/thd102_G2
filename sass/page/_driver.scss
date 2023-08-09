@@ -1,12 +1,100 @@
 //司機
 .driver {
+  .driverbgimg {
+    margin: 0 auto;
+    width: 100%;
+  }
   .container {
+    margin: 0 auto;
     .titlesearchbar {
+      //   outline: 1px solid red;
+      margin-top: -175px;
+      margin-bottom: 100px;
+      position: relative;
+
+      h2 {
+        font-size: $h2;
+        font-weight: 600;
+        color: #126c86;
+        margin-bottom: 24px;
+      }
       .searchbar {
+        width: 100%;
+        padding: 40px 50px;
+        border-radius: 16px;
+        background-color: $white;
+        // outline: 1px solid blue;
+        /* Drop Shadow */
+        box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
+        .upsection {
+          @include flex();
+          gap: 56px;
+          margin-bottom: 16px;
+          input::placeholder {
+            color: $textColor_l;
+          }
+        }
+        input {
+          border: none;
+          outline: none;
+          background-color: transparent;
+          text-indent: 16px;
+        }
+
+        .downsection {
+          @include flex(row, space-between);
+          gap: 16px;
+          margin-bottom: 16px;
+          input::placeholder {
+            color: $black;
+          }
+        }
+
+        .place,
+        .category {
+          height: 76px;
+          background-color: $gray_2;
+          //   margin-right: 56px;
+          @include flex(column, center, null);
+          border-radius: 8px;
+          span {
+            font-size: 14px;
+            margin-left: 16px;
+            color: $textColor_m;
+            margin-bottom: 8px;
+          }
+        }
+
         .btn_driver {
+          font-weight: 700;
           color: $white;
           background-color: $purple;
         }
+        .remind {
+          @include flex(row, null, center);
+          height: 44px;
+          background-color: $gray_2;
+          border-radius: 8px;
+          color: $textColor_m;
+          .remindicon {
+            margin: 14px 8px 14px 20px;
+          }
+        }
+      }
+    }
+
+    .drivercards .leftcard {
+      background-color: rgba(102, 213, 192, 0.1);
+      height: 994px;
+      border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
+      @include flex(row, center, flex-start);
+      span {
+        writing-mode: vertical-rl;
+        padding-left: 5px;
+        font-size: 32px;
+        color: $black;
+        border-left: 1px solid rgb(0, 0, 0);
+        margin-top: -27px;
       }
     }
   }
