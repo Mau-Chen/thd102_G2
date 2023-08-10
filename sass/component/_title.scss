@@ -1,0 +1,8 @@
+@include titleSize($title_size);
+
+@include t() {
+    @include titleSize($title_size_t);
+}
+@include m() {
+    @include titleSize($title_size_m);
+}
