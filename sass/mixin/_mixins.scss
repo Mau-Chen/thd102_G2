@@ -81,3 +81,13 @@
     @content;
   }
 }
+
+//標題大小
+@mixin titleSize($c) {
+  @each $key ,
+  $value in $c {
+      #{$key} {
+          font-size: $value;
+      }
+  }
+}

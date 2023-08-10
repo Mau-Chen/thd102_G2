@@ -7,3 +7,22 @@ $h6 : 20px; //
 $fontsize : 16px; //
 $fontfamily : 'Poppins', 'Noto Sans TC', sans-serif; //英文(先)
 $line_height : 1.6; //
+
+
+$title_size : (
+    h1 : 60px,
+    h2 : 44px,
+    h3 : 40px,
+    h4 : 36px,
+    h5 : 28px,
+    h6 : 20px
+    );
+$title_size_t : (
+    h1 : 40px,
+    h2 : 40px,
+    h4 : 24px,
+    h5 : 24px
+    );
+
+$title_size_m : (
+    h2 : 28px);
