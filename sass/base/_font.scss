@@ -23,6 +23,62 @@ $title_size_t: (
   h5: 24px,
 );
 
-$title_size_m: (
-  h2: 28px,
+
+$title_size_m : (
+    h2 : 28px);
+
+
+
+
+$font_styles: (
+  "h1": (
+    "font-size": 60px,
+    "font-weight": 700
+  ),
+  "h2": (
+    "font-size": 44px,
+    "font-weight": 700
+  ),
+  "h3": (
+    "font-size": 40px,
+    "font-weight": 700
+  ),
+  "h4": (
+    "font-size": 36px,
+    "font-weight": 700
+  ),
+  "h5": (
+    "font-size": 28px,
+    "font-weight": 700
+  ),
+  "h6": (
+    "font-size": 20px,
+    "font-weight": 700
+  )
 );
+
+$font_styles_t: (
+  "h1": (
+    "font-size": 40px,
+    "font-weight": 700
+  ),
+  "h2": (
+    "font-size": 40px,
+    "font-weight": 700
+  ),
+  "h4": (
+    "font-size": 24px,
+    "font-weight": 700
+  ),
+  "h5": (
+    "font-size": 24px,
+    "font-weight": 700
+  )
+);
+$font_styles_m: (
+  "h2": (
+    "font-size": 28px,
+    "font-weight": 700
+  )
+);
+    

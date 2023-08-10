@@ -1,5 +1,9 @@
-@include titleSize($title_size);
 
+//字重&大小
+@include titleStyle($font_styles);
+
+
+//字大小
 @include t() {
     @include titleSize($title_size_t);
 }
