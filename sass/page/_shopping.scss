@@ -1,11 +1,271 @@
-//購物車
-.shopping{
+// 購物車
+.shopping {
+    // color: $black;
+
+    .shopping_container {
+        margin: 0 auto;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 167px;
+
+        .shipping_step_box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .shipping_step {
+
+                p {
+                    text-align: center;
+                    margin: 0;
+                    margin-top: 8px;
+                    line-height: 1.1;
+                    font-size: 18px;
+                }
+                
+                .shipping_step_number {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 11px;
+                    
+                    p {
+                        display: inline-block;
+                        width: 40px;
+                        height: 40px;
+                        background-color: $green;
+                        border-radius: 50%;
+                        line-height: 40px;
+                        color: $white;
+                        
+                    }
+
+                }
+
+
+            }
+
+
+        }
+    }
+
+    .shopping_main_bg {
+        @include layout(100);
+        background-color: $gray_2;
+        padding-top: 80px;
+
+        .shopping_mian_title {
+            @include layout(1200);
+            // font-size: $h5;
+            font-weight: 700;
+            // margin-bottom: $mb_32;
+        }
+        .ad_box{
+            @include layout(1200);
+            // font-size: $h5;
+            font-weight: 700;
+            padding: 48px 0 80px;
+            .ad{
+                height: 168px;
+                background-color: cornsilk
+            }
+        }
+
+        .shopping_main {
+            @include layout(1200);
+            // margin: 0 auto;
+            // background-color: rgb(209, 230, 230);
+            display: flex;
+            justify-content: space-between;
+            // flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 48px;
+
+            .shopping_card {
+                background-color: $white;
+                border-radius: $br_12;
+                padding: 24px;
+                margin-bottom: 27px;
+            }
+
+            .shopping_main_left {
+                // background-color: rgb(155, 217, 217);
+
+                .check {
+                    display: none;
+                }
+
+                .checkedbox {
+                    // display: inline-block;
+                    display: block;
+                    padding-left: 29px;
+                    line-height: 20px;
+                    background: url(https://i.imgur.com/bZM5Itd.png) no-repeat left center;
+                    // background-position: center;
+                    user-select: none;
+                }
+
+                .check:checked+.checkedbox {
+                    background: url(https://i.imgur.com/JWm4WKA.png) no-repeat left center;
+                }
+
+                .shopping_buy_list {
+                    display: flex;
+                    gap: 24px;
+
+                    img {
+                        border-radius: $br_8;
+                    }
+
+                    .shopping_buy_text {
+                        width: 100%;
+                        line-height: 1.6;
+
+                    }
+
+                    .shopping_list {}
+
+                    .shopping_list_n {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 16px;
+                        h6{
+                            font-weight: 700;
+                        }
+
+                        // p {
+                        //     font-size: $h6;
+                        //     font-weight: 700;
+                        // }
+
+
+                    }
+
+                    .shopping_list_d {
+                        margin-bottom: 4px;
+
+                        div {
+                            display: inline-block;
+                        }
+
+                        .driver_date::after {
+                            content: "|";
+                            padding: 0 5px 0 10px;
+                        }
+
+                        .hostel_start::after {
+                            content: "-";
+                            padding-left: 5px;
+                            // padding: 0 0 0 5px;
+                        }
+
+                        .hostel_day {
+                            padding-left: 5px;
+                        }
+                    }
+
+                    .shopping_list_t {
+                        div {
+                            display: inline-block;
+                        }
+
+                        .shopping_list_type2::before {
+                            content: "|";
+                            padding: 0 5px 0 10px;
+                        }
+
+                        //之後要改用ＪＳ判斷
+                        .shopping_list_type2:last-child::before {
+                            content: "";
+                        }
+                    }
+                }
+
+                    .shopping_list_line {
+                        background-color: $gray_1;
+                        height: 1px;
+                        margin: $mb_32 0;
+                    }
+
+                    .shopping_subtotal {
+                        text-align: end;
+                        font-weight: 700;
+                        line-height: 1.25;
+                        font-size: 24px;
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+
+                        .stepper {
+                            background-color: burlywood;
+                            display: flex;
+                            justify-content: space-between;
+
+                            .stepper_button {
+                                border: none;
+                                padding: 0;
+                                width: 32px;
+
+                                img {
+                                    // width: 100%;
+                                }
+                            }
+
+                            .stepper_input {
+                                border: none;
+                                width: 100%;
+                                text-align: center;
+                                outline: none;
+                                font-size: 16px;
+                            }
+                        }
+
+                        .number {}
+                    }
+
+                // }
+
+                .shopping_card:last-child {
+                    margin-bottom: 0;
+                }
+
+                .shopping_driver {}
+
+                .shopping_subtotal {}
+            }
+
+            .shopping_main_right {
+                // background-color: pink;
+                .shopping_order_total{
+                    display: flex;
+                    justify-content: space-between;
+                    // margin-bottom: $mb_32;
+                    .sum_num{
+                        font-size: 18px;
+                    }
+                    .sum_money{
+                        font-size: 28px;
+                        line-height: 30px;
+                        font-weight: 700;
+                    }
+                }
+                .shopping_next{
+                    background-color: $purple;
+                    display: block;
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    color: $white;
+                    padding: 18px 27px;
+                    border-radius: $br_8;
+                }
+            
+            }
 
 
 
-
-
-
-
+        }
+    }
 
 }

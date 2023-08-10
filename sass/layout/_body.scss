@@ -1,3 +1,9 @@
+body{
+  font-family: $fontsize;
+  line-height: $line_height;
+  color: $black;
+  
+}
 .wrapper {
   @include layout(100);
   @import 'header';

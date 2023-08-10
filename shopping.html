@@ -6,6 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
+    @@include('layout/meta.html')
     <link rel="stylesheet" href="./css/style.css" />
     <title>Go結帳 | PetpaGo</title>
     <link href="/images/pgo.ico" rel="icon" />
@@ -14,9 +15,169 @@
   <body>
     <div class="wrapper shopping">
       @@include('layout/header.html')
-      <div class="container">
-        <p>shopping</p>
-      </div>
+      <div class="shopping_container">
+        <div class="shipping_step_box col-8">
+            <div class="shipping_step">
+                <div class="shipping_step_number step01">
+                    <p>1</p>
+                </div>
+                <p>查看購物車</p>
+            </div>
+            <div class="shipping_step">
+                <div class="shipping_step_number step01">
+                    <p>2</p>
+                </div>
+                <p>填寫資料</p>
+            </div>
+            <div class="shipping_step">
+                <div class="shipping_step_number step01">
+                    <p>3</p>
+                </div>
+                <p>完成付款</p>
+            </div>
+        </div>
+    </div>
+    <div class="shopping_main_bg">
+        <!-- <div class="shopping_mian_title col_12">您的購物車</div> -->
+        <h5 class="shopping_mian_title col_12 mb_32">您的購物車</h5>
+        <div class="shopping_main">
+            <div class="shopping_main_left col-7">
+                <div class="shopping_select_all shopping_card">
+                    <label>
+                        <input type="checkbox" checked class="check c_all">
+                        <span class="checkedbox">全選</span>
+                    </label>
+                </div>
+                <div class="shopping_driver shopping_card">
+                    <label>
+                        <input type="checkbox" checked class="check c_d">
+                        <span class="shopping_buy_list checkedbox">
+                            <img src="https://fakeimg.pl/167x120/E0DA70/">
+                            <div class="shopping_buy_text col_12">
+                                <div class="shopping_list_n">
+                                    <p>寵物接送</p>
+                                    <img src="https://fakeimg.pl/30x30/E0DA70/">
+                                </div>
+                                <div class="shopping_list_d">
+                                    <div class="driver_date">8月17日</div>
+                                    <div class="driver_time">16:00</div>
+                                </div>
+                                <div class="shopping_list_t">
+                                    <div class="shopping_list_type1">
+                                        轎車
+                                    </div>
+                                    <div class="shopping_list_type2"></div>
+                                </div>
+                            </div>
+                        </span>
+                    </label>
+                    <div class="shopping_list_line"></div>
+                    <div class="shopping_subtotal">NT$300</div>
+                </div>
+                <div class="shopping_hostel shopping_card">
+                    <label>
+                        <input type="checkbox" checked class="check c_d">
+                        <span class="shopping_buy_list checkedbox">
+                            <img src="https://fakeimg.pl/167x120/E0DA70/">
+                            <div class="shopping_buy_text col_12">
+                                <div class="shopping_list_n">
+                                    <p>快樂寵物旅館</p>
+                                    <img src="https://fakeimg.pl/30x30/E0DA70/">
+                                </div>
+                                <div class="shopping_list_d">
+                                    <div class="hostel_start">8月17日</div>
+                                    <div class="hostel_end">8月19日</div>
+                                    <div class="hostel_day">(2晚)</div>
+                                </div>
+                                <div class="shopping_list_t">
+                                    <div class="shopping_list_type1">
+                                        狗套房
+                                    </div>
+                                    <div class="shopping_list_type2">
+                                        小型犬
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </label>
+                    <div class="shopping_list_line"></div>
+                    <div class="shopping_subtotal">
+                        <div class="stepper col-2">
+                            <button class="stepper_button">
+                                <img src="https://fakeimg.pl/32x32/E0DA70/">
+                            </button>
+                            <input type="text" class="stepper_input" value="1">
+                            <button class="stepper_button">
+                                <img src="https://fakeimg.pl/32x32/E0DA70/">
+                            </button>
+                        </div>
+                        <div class="nunber col-3">NT$2,400</div>
+                    </div>
+                </div>
+                <div class="shopping_hostel shopping_card">
+                    <label>
+                        <input type="checkbox" checked class="check c_d">
+                        <span class="shopping_buy_list checkedbox">
+                            <img src="https://fakeimg.pl/167x120/E0DA70/">
+                            <div class="shopping_buy_text col_12">
+                                <div class="shopping_list_n">
+                                    <p>快樂寵物旅館</p>
+                                    <img src="https://fakeimg.pl/30x30/E0DA70/">
+                                </div>
+                                <div class="shopping_list_d">
+                                    <div class="hostel_start">8月17日</div>
+                                    <div class="hostel_end">8月19日</div>
+                                    <div class="hostel_day">(2晚)</div>
+                                </div>
+                                <div class="shopping_list_t">
+                                    <div class="shopping_list_type1">
+                                        貓套房
+                                    </div>
+                                    <div class="shopping_list_type2">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </label>
+                    <div class="shopping_list_line"></div>
+                    <div class="shopping_subtotal">
+                        <div class="stepper col-2">
+                            <button class="stepper_button">
+                                <img src="https://fakeimg.pl/32x32/E0DA70/">
+                            </button>
+                            <input type="text" class="stepper_input" value="1">
+                            <button class="stepper_button">
+                                <img src="https://fakeimg.pl/32x32/E0DA70/">
+                            </button>
+                        </div>
+                        <div class="nunber col-3">NT$2,400</div>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping_main_right col-5">
+                <div class="shopping_card">
+                    <div class="shopping_order_total mb_32">
+                        <div class="sum_num">
+                            3件總計
+                        </div>
+                        <div class="sum_money">
+                            NT$5,100
+                        </div>     
+                    </div>
+                    <button class="shopping_next">下一步</button>
+                </div>
+                
+
+            </div>
+            
+        </div>
+        <div class="ad_box">
+            <div class="ad">
+                
+            </div>
+        </div>
+    </div>
       @@include('layout/footer.html')
     </div>
   </body>
