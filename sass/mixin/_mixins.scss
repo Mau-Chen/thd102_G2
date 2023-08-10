@@ -91,3 +91,28 @@
       }
   }
 }
+
+
+// @mixin titleSize2($g, $h:null) {
+//   @each $key ,
+//   $value in $g {
+//       #{$key} {
+//           font-size: $value;
+//       }
+//   }
+//   @each $key ,
+//   $value in $h {
+//       #{$key} {
+//         font-weight: $value;
+//       }
+//   }
+// }
+@mixin titleStyle($c) {
+  @each $a, $b in $c {
+    #{$a} {
+      @each $d, $value in $b {
+        #{$d}: $value;
+      }
+    }
+  }
+}
