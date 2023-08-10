@@ -1,6 +1,6 @@
 header {
   @include layout(100);
-  @include flex();
+  @include flex(row, space-between);
   height: 88px;
   .navList {
     @include flex();
