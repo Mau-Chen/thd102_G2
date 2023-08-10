@@ -13,8 +13,6 @@
       position: relative;
 
       h2 {
-        font-size: $h2;
-        font-weight: 600;
         color: #126c86;
         margin-bottom: 24px;
       }
@@ -28,7 +26,7 @@
         box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
         .upsection {
           @include flex();
-          gap: 56px;
+          gap: 12px;
           margin-bottom: 16px;
           input::placeholder {
             color: $textColor_l;
@@ -56,7 +54,7 @@
           background-color: $gray_2;
           //   margin-right: 56px;
           @include flex(column, center, null);
-          border-radius: 8px;
+          border-radius: $br_8;
           span {
             font-size: 14px;
             margin-left: 16px;
@@ -65,19 +63,15 @@
           }
         }
 
-        .btn_driver {
-          font-weight: 700;
-          color: $white;
-          background-color: $purple;
-        }
         .remind {
           @include flex(row, null, center);
-          height: 44px;
+          // height: 44px;
           background-color: $gray_2;
           border-radius: 8px;
           color: $textColor_m;
+          padding: 4px 16px;
           .remindicon {
-            margin: 14px 8px 14px 20px;
+            margin-right: 8px;
           }
         }
       }
@@ -100,8 +94,22 @@
         }
       }
       .rightcard {
-        font-size: $h4;
-        color: #222;
+        h4 {
+          color: #222;
+        }
+        ul {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 34px;
+          li {
+            h6 {
+              margin-bottom: 16px;
+            }
+            .db {
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }
