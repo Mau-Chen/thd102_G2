@@ -82,19 +82,26 @@
         }
       }
     }
-
-    .drivercards .leftcard {
-      background-color: rgba(102, 213, 192, 0.1);
-      height: 994px;
-      border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
-      @include flex(row, center, flex-start);
-      span {
-        writing-mode: vertical-rl;
-        padding-left: 5px;
-        font-size: 32px;
-        color: $black;
-        border-left: 1px solid rgb(0, 0, 0);
-        margin-top: -27px;
+    .drivercards {
+      @include flex(row, center, null);
+      gap: 39px;
+      .leftcard {
+        background-color: rgba(102, 213, 192, 0.1);
+        height: 994px;
+        border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
+        @include flex(row, center, flex-start);
+        span {
+          writing-mode: vertical-rl;
+          padding-left: 5px;
+          font-size: 32px;
+          color: $black;
+          border-left: 1px solid rgb(0, 0, 0);
+          margin-top: -27px;
+        }
+      }
+      .rightcard {
+        font-size: $h4;
+        color: #222;
       }
     }
   }
