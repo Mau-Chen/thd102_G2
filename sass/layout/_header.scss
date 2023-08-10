@@ -1,8 +1,12 @@
 header {
+  //   max-width: 100%;
+  //   padding: 0 120px;
   @include layout(100);
   @include flex(row, space-between);
   height: 88px;
   .navList {
     @include flex();
+    color: $purple_d;
+    font-weight: 700;
   }
 }

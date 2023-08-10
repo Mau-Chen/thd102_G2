@@ -1,19 +1,18 @@
-body{
+body {
   font-family: $fontfamily;
   font-size: $fontsize;
   line-height: $line_height;
   color: $black;
-  
 }
 .wrapper {
   @include layout(100);
-  @import 'header';
-  @import 'footer';
-  @import 'ad';
+  @import "header";
+  @import "footer";
+  @import "ad";
 }
 
 .container {
   // width: 1200px;
   max-width: 1200px;
-
+  margin: 0 auto;
 }
