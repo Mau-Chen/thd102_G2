@@ -47,7 +47,6 @@
   font-weight: 700;
 }
 
-
 // // padding: 10px 30px;
 // text-align: center;
 // color: $white;
@@ -97,14 +96,12 @@
 
 //標題大小
 @mixin titleSize($c) {
-  @each $key ,
-  $value in $c {
-      #{$key} {
-          font-size: $value;
-      }
+  @each $key, $value in $c {
+    #{$key} {
+      font-size: $value;
+    }
   }
 }
-
 
 // @mixin titleSize2($g, $h:null) {
 //   @each $key ,
