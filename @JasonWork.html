@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+    <div id="login">
+        <button type="button" @click="ispop = true" >觸發燈箱</button>
+        <div v-if="ispop === true" class="lightbox">
+
+            <div class="loginpage_base">
+                <div class="close">
+                    <span>X</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const login = Vue.createApp({
+            data(){
+                return {
+                    text : "Hello World!",
+                    ispop: false
+                }
+            },
+            methods: {
+                pop(){
+                    alert(this.text);
+                }
+            }
+        });
+
+        login.mount('#login');
+    </script>
+</body>
+</html>
