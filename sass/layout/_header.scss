@@ -1,12 +1,69 @@
 header {
-  //   max-width: 100%;
-  //   padding: 0 120px;
+  max-width: 100%;
+  padding: 24px 120px;
+  @media (max-width: 1000px) {
+    padding: 20px 32px;
+  }
+  @media (max-width: 375px) {
+    padding: 20px;
+  }
   @include layout(100);
   @include flex(row, space-between);
-  height: 88px;
+  // height: 88px;
   .navList {
-    @include flex();
+    @include flex(row, flex-end);
     color: $purple_d;
     font-weight: 700;
+    gap: 36px;
+    // font-family: "poppins", "Noto Sans TC";
+  }
+  .btn_4 {
+    padding: 0 40px;
+  }
+  .userIcon {
+    display: none;
+  }
+
+  // hamburger
+  .nav-toggler {
+    display: block;
+    width: 36px;
+    height: 36px;
+    background-color: $purple;
+    border-radius: 100%;
+  }
+  .ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .hamRotate.active {
+    transform: rotate(45deg);
+  }
+  .hamRotate180.active {
+    transform: rotate(180deg);
+  }
+  .line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: #333;
+    stroke-width: 5.5;
+    stroke-linecap: round;
+  }
+  .ham4 .top {
+    stroke-dasharray: 40 121;
+  }
+  .ham4 .bottom {
+    stroke-dasharray: 40 121;
+  }
+  .ham4.active .top {
+    stroke-dashoffset: -68px;
+  }
+  .ham4.active .bottom {
+    stroke-dashoffset: 120px;
   }
 }
