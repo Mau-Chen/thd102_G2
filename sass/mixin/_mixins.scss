@@ -25,15 +25,28 @@
   @each $k, $v in $btn {
     .#{$k} {
       height: $v;
-      border-radius: 8px;
-      cursor: pointer;
+      background-color: $purple;
+      color: $white;
+      @include btn_set();
       @include flex();
     }
-    .#{$k}.border {
+    .#{$k}_border {
+      height: $v;
+      color: $black;
+      @include btn_set();
+      @include flex();
       border: 1px solid #333;
     }
   }
 }
+
+// 按鈕基本值
+@mixin btn_set() {
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
 
 // // padding: 10px 30px;
 // text-align: center;

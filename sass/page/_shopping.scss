@@ -5,15 +5,11 @@
     .shopping_container {
         margin: 0 auto;
         max-width: 1200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex();
         height: 167px;
 
         .shipping_step_box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            @include flex(row, space-between);
 
             .shipping_step {
 
@@ -91,21 +87,19 @@
 
             .shopping_main_left {
                 // background-color: rgb(155, 217, 217);
-
+//真多選框
                 .check {
                     display: none;
                 }
-
+//改版多選框
                 .checkedbox {
-                    // display: inline-block;
                     display: block;
                     padding-left: 29px;
                     line-height: 20px;
                     background: url(https://i.imgur.com/bZM5Itd.png) no-repeat left center;
-                    // background-position: center;
                     user-select: none;
                 }
-
+                //改版多選框：被勾選
                 .check:checked+.checkedbox {
                     background: url(https://i.imgur.com/JWm4WKA.png) no-repeat left center;
                 }
@@ -117,7 +111,7 @@
                     img {
                         border-radius: $br_8;
                     }
-
+                }
                     .shopping_buy_text {
                         width: 100%;
                         line-height: 1.6;
@@ -180,7 +174,7 @@
                             content: "";
                         }
                     }
-                }
+                // }
 
                     .shopping_list_line {
                         background-color: $gray_1;
