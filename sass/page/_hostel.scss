@@ -1,12 +1,131 @@
 //旅宿
-.hotel{
+.hostel {
+  .hostelbgimg {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .container {
+    margin: 0 auto;
+    .seach-out {
+      gap: 24px;
+      margin-top: -213px;
+
+      .seach-title {
+        h2 {
+          color: #865214;
+        }
+      }
+
+      .seach-bg {
+        margin-top: 24px;
+        position: relative;
+        padding: 40px;
+        background-color: $white;
+        border-radius: $br_12;
+        .seachbar {
+          background-color: $white;
+          border-radius: $br_12;
+          display: flex;
+          gap: 16px;
+
+          .seachbox {
+            display: flex;
+            height: 76px;
+            padding: 12px 16px;
+            flex-direction: column;
+            background-color: $gray_2;
+            justify-content: center;
+            gap: 8px;
+            flex: 1 0 0;
+            border-radius: $br_8;
+            input {
+              border: none;
+              outline: none;
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .point-hotel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+
+    .cards_item {
+      display: flex;
+      width: 1200px;
+      align-items: flex-start;
+      gap: 33px;
+    }
+    .card {
+      border: 1px solid #e0e0e0;
+      border-radius: $br_12;
+      height: 243px;
+      padding: 1px;
+      flex: 1 0 0;
+      overflow: hidden;
+      .card_content {
+        padding: 19px 17px 20px 12px;
+        .p {
+          font-size: $fontsize;
+          font-weight: 600;
+        }
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  // GO旅宿-hostel-booking
+
+  .hotel-booking {
+    .cards_item {
+      display: flex;
+      gap: 32px;
+
+    .card{}
+
+      .card_image {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .card_content {
+        margin-top: 16px;
+        margin-bottom: 4px;
+        span {
+          background-color: $gray_3;
+          display: flex;
+          border-radius: 4px;
+          padding: 0px 4px;
+          justify-content: center;
+          align-items: center;
+          gap: 2px;
+        }
+        display: flex;
+        justify-content: space-between;
+      }
+      .card_price {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+        .star{
+            gap: 4px;
+            display: flex;
+        }
+      }
+    }
+  }
 
 
 
 
 
 
-
-
-
+  
 }
