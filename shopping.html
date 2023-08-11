@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="wrapper shopping">
+    <div class="wrapper shopping bg_gray">
         @@include('layout/header.html')
         <div class="shopping_container">
             <div class="shipping_step_box col-8 col-lg-12">
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="shoppingMain_bg">
-            <h5 class="shoppingMian_title col_12 mb_32">您的購物車</h5>
+            <h5 class="shoppingMian_title">您的購物車</h5>
             <div class="shoppingMain">
                 <!-- 左內容 -->
                 <div class="shoppingMain_left col-7">
@@ -66,7 +66,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="shopping_subtotal">NT$300</div>
+                        <div class="shoppingSubtotal">
+                            <p class="col-3">NT$2,400</p>
+                        </div>
                     </div>
                     <!-- 購物卡-住狗 -->
                     <div class="shoppingHostel shopping_card">
@@ -89,7 +91,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="shopping_subtotal">NT$2,400</div>
+                        <div class="shoppingSubtotal">
+                            <div class="shoppingStepper">
+                                <div class="shoppingSubtotal_icon minus">
+                                    <img src="images/icon/components-icon/minus.svg">
+                                </div>
+                                <input type="text" class="col-1" value="1">
+                                <div class="shoppingSubtotal_icon add">
+                                    <img src="images/icon/components-icon/add.svg">
+                                </div>
+                            </div>
+                            <p class="col-3">NT$2,400</p>
+                        </div>
                     </div>
                     <!-- 購物卡-住貓 -->
                     <div class="shoppingHostel shopping_card">
@@ -113,17 +126,16 @@
                             </div>
                         </div>
                         <div class="shoppingSubtotal">
-                            <div class="shoppingStepper col-4">
-                                <div class="minus">
+                            <div class="shoppingStepper">
+                                <div class="shoppingSubtotal_icon minus">
                                     <img src="images/icon/components-icon/minus.svg">
                                 </div>
-                                <input type="text">
-                                <div class="add">
+                                <input type="text" class="col-1" value="1">
+                                <div class="shoppingSubtotal_icon add">
                                     <img src="images/icon/components-icon/add.svg">
                                 </div>
                             </div>
                             <p class="col-3">NT$2,400</p>
-
                         </div>
                     </div>
                 </div>
@@ -131,27 +143,24 @@
                 <div class="shoppingMain_right col-5">
                     <div class="shopping_card">
                         <div class="shoppingOrder_total mb_32">
-                            <div class="sum_num">
-                                3件總計
-                            </div>
-                            <div class="sum_money">
-                                NT$5,100
-                            </div>
+                            <p>3件總計</p>
+                            <h5>NT$5,100</h5>
                         </div>
-                        <button class="shopping_next">下一步</button>
+                        <button class="shopping_next btn_5 col-12">下一步</button>
                     </div>
                 </div>
             </div>
 
 
-            <div class="ad_box">
+            <div class="ad_box mb_100">
                 <div class="ad">
-
                 </div>
             </div>
-
-            @@include('layout/footer.html')
         </div>
+
+        @@include('layout/footer.html')
+    </div>
+
 </body>
 
 </html>
