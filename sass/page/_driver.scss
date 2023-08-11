@@ -125,5 +125,19 @@
         border-radius: $br_12;
       }
     }
+    .notice {
+      letter-spacing: 0.6px;
+      span {
+        display: block;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      ul {
+        li {
+          list-style-type: disc;
+        }
+      }
+    }
   }
 }
