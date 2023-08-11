@@ -14,9 +14,18 @@
   <body>
     <div class="wrapper member">
       @@include('layout/header.html')
-      <div class="container">
-        <p>Member</p>
-      </div>
+      <main class="member-main">
+        <div class="container row">
+                @@include("layout/slide-bar.html")
+                <div class="right-container col-10 row align-items-center">
+                    <div class="kite row">
+                        <img src="images/icon/member-icon/nolist.svg" alt="">
+                        <h5>尚無訂單</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
       @@include('layout/footer.html')
     </div>
   </body>
