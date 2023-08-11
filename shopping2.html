@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    @@include('layout/meta.html')
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Go結帳 | PetpaGo</title>
+    <link href="/images/pgo.ico" rel="icon" />
+</head>
+
+<body>
+    <div class="wrapper shopping bg_gray">
+        @@include('layout/header.html')
+        <div class="shopping_container">
+            <div class="shipping_step_box col-8 col-lg-12">
+                <div class="shipping_step">
+                    <div class="shipping_step_number step01">
+                        <p>1</p>
+                    </div>
+                    <p>查看購物車</p>
+                </div>
+                <div class="shipping_step">
+                    <div class="shipping_step_number step01">
+                        <p>2</p>
+                    </div>
+                    <p>填寫資料</p>
+                </div>
+                <div class="shipping_step">
+                    <div class="shipping_step_number step01">
+                        <p>3</p>
+                    </div>
+                    <p>完成付款</p>
+                </div>
+            </div>
+        </div>
+        <div class="shoppingMain_bg">
+            <h5 class="shoppingMian_title">您的購物車</h5>
+        </div>
+        <div class="shoppingMain">
+            <!-- 左內容 -->
+            <div class="shoppingMain_left col-7">
+            </div>
+            <!-- 總計 -->
+            <div class="shoppingMain_right col-5">
+            </div>
+        </div>
+    </div>
+    @@include('layout/footer.html')
+    </div>
+
+</body>
+
+</html>

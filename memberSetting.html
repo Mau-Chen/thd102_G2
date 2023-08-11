@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>setting</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        @@include('layout/meta.html')
+        <link rel="stylesheet" href="./css/style.css" />
+        <title>Go會員 | PetpaGo</title>
+    </head>
 <body>
-    <div class="wrapper">
-        <main class="member-main">
-            <div class="container row">
-                    @@include("layout/slide-bar.html")
-                    <div class="right-container col-10">
-                        <div class="personal-info">
-                            <p>個人資料</p>
-                        </div>
-                        <div class="name-phone row">
-                            <div class="name">
-                                <label for="">姓名</label>
-                                <input type="text" placeholder="請輸入姓名">
+    <div class="wrapper member">
+        @@include('layout/header.html')
+        <div class="wrapper">
+            <main class="member-main">
+                <div class="container row">
+                        @@include("layout/slide-bar.html")
+                        <div class="right-container col-10">
+                            <div class="personal-info">
+                                <p>個人資料</p>
                             </div>
-                            <div class="phone">
-                                <label for="">行動電話</label>
-                                <input type="text" placeholder="請輸入行動電話">
+                            <div class="name-phone row">
+                                <div class="name">
+                                    <label for="">姓名</label>
+                                    <input type="text" placeholder="請輸入姓名">
+                                </div>
+                                <div class="phone">
+                                    <label for="">行動電話</label>
+                                    <input type="text" placeholder="請輸入行動電話">
+                                </div>
+                            </div>
+                            <div class="mail-date row">
+                                <div class="mail">
+                                    <label for="">電子信箱</label>
+                                    <input type="text" placeholder="service@tibame.com">
+                                </div>
+                                <div class="date">
+                                    <label for="">出生日期</label>
+                                    <input type="text" placeholder="請選擇">
+                                </div>
+                            </div>
+                            <div class="address-div">
+                                <div class="address">
+                                    <label for="">地址</label>
+                                    <input type="text" placeholder="請輸入地址">
+                                </div>
+                            </div>
+                            <div class="udate-info">
+                                <button class="btn_5">更新資訊</button>
                             </div>
                         </div>
-                        <div class="mail-date row">
-                            <div class="mail">
-                                <label for="">電子信箱</label>
-                                <input type="text" placeholder="service@tibame.com">
-                            </div>
-                            <div class="date">
-                                <label for="">出生日期</label>
-                                <input type="text" placeholder="請選擇">
-                            </div>
-                        </div>
-                        <div class="address-div">
-                            <div class="address">
-                                <label for="">地址</label>
-                                <input type="text" placeholder="請輸入地址">
-                            </div>
-                        </div>
-                        <div class="udate-info">
-                            <button class="btn_5">更新資訊</button>
-                        </div>
-                    </div>
-            </div>
-        </main>
+                </div>
+            </main>
+        </div>
+        @@include('layout/footer.html')
     </div>
-        
 
 
 </body>
