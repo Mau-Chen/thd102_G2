@@ -3,13 +3,10 @@ body{
     background-color: $gray_4;
 }
 
-.justify-content-center{
-    justify-content: center;
-}
-  
 .align-items-center{
     align-items: center;
 }
+
 .row{
     display: flex;
 }
@@ -173,10 +170,6 @@ body{
             
             }
             
-            
-            
-            
-
             // setting
             .personal-info{
                 font-size: $h5;
@@ -224,15 +217,8 @@ body{
                     border: none;
                 }
             }
-            // points
 
-            .points-container{
-                width: 100%;
-                background-color: #fff;
-                border-radius: $br_12;
-                padding: 24px;
-            }
-            
+            // points
             .points{
                 margin-bottom: $mb_28;
             }
@@ -242,7 +228,7 @@ body{
             }
             
             .points-use{
-                border: 1px solid #E0E0E0;
+                border: 1px solid $gray_1;
                 border-radius: $br_12;
                 padding: 24px;
                 margin-bottom: $mb_32;
@@ -260,58 +246,62 @@ body{
                 overflow:hidden;
                 border-radius: $br_12;
                 border: 1px solid $gray_1;
+                table{
+                    border-collapse:collapse;
+                    width: 100%;
+                    text-align:center;
+                    tr{
+                        th{
+                            background-color: $purple;
+                            color: $white;
+                            padding: 14px 16px;
+                        }
+                        td{
+                            background-color: $white;
+                            padding: 14px 16px;
+                            text-align: center;
+                        }
+                    }
+                }
             }
-              
-            table{
-                border-collapse:collapse;
-                width: 100%;
-                text-align:center;
-            }
-              
-            th{
-                background-color: $purple;
-                color:#ffffff;
-                padding: 14px 16px;
-            }
-              
-            td{
-                background-color: $white;
-                padding: 14px 16px;
-                text-align: center;
-            }
+
             	
             // post
             .my-post{
                 width: 100%;
                 h5{
                     margin-bottom: 24px;
+                } 
+                .post-info{
+                    background-color: $purple;
+                    border-top-left-radius: $br_8;
+                    border-top-right-radius: $br_8;
+                    color: $white;
+                    padding: 14px 16px;
+                    @include flex($ai:null, $jc:null);
+                        .post-post{
+                            p{
+                                font-weight: bold;
+                            }
+                        }
+                        .post-date{
+                            p{
+                                font-weight: bold;
+                            }
+                    }
                 }
-            }
-            .post-info{
-                background-color: $purple;
-                border-top-left-radius: $br_8;
-                border-top-right-radius: $br_8;
-                color: $white;
-                padding: 14px 16px;
-                @include flex($ai:null, $jc:null);
-            }
-
-            .post-detail{
-                padding: 14px 16px;
-                @include flex($ai:null, $jc:null);
-                border-left: 1px solid $gray_1;
-                border-right: 1px solid $gray_1;
-                border-bottom: 1px solid $gray_1;
-            }
-            .post-date-delete{
-                display: flex;
-                justify-content: space-between;
-                .post-date{
-                    align-self: center;
-                }
-                .post-delete{
-                    margin-right: 20px;
-                    align-self: center;
+                .post-detail{
+                    padding: 14px 16px;
+                    @include flex($ai:null, $jc:null);
+                    border-left: 1px solid $gray_1;
+                    border-right: 1px solid $gray_1;
+                    border-bottom: 1px solid $gray_1;
+                    .post-date-delete{
+                        @include flex($jc:space-between);
+                        .post-delete{
+                            margin-right: 20px;
+                        }
+                    }
                 }
             }
         }
