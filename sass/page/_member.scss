@@ -7,7 +7,7 @@
   .slide-bar {
     @include flex(column);
     border-radius: $br_12;
-    // background-color: $white;
+    background-color: $white;
     padding: 20px 0;
     gap: 40px;
     ul {
@@ -40,278 +40,249 @@
       //   預留位置寫變化
       // }
     }
-    // ------ 會員右邊欄設定 -------------------------------
-    // .member-main {
-    //   min-height: 100vh;
-    //   margin: 0 auto;
-    //   width: 1200px;
-    //   @include flex();
-    //   .container {
-    //     gap: 32px;
-    //     width: 100%;
-    //     @include flex($jc: null, $ai: null);
-    //     .slide-bar {
-    //       width: 158px;
-    //       flex-direction: column;
-    //       justify-content: space-between;
-    //       height: 100%;
-    //       border-radius: $br_12;
-    //       background-color: $white;
-    //       padding: 20px 0;
+  }
 
-    //       .member-photo {
-    //         display: block;
-    //         margin: 0 auto;
-    //       }
-    //       .member-system {
-    //         li {
-    //           padding: 20px 0;
-    //           border-bottom: 1px solid $gray_1;
-    //           gap: 12px;
-    //         }
-    //       }
-    //     }
-    .right-container {
-      // width: 100%;
-      // background-color: $white;
-      border-radius: $br_12;
-      padding: 24px;
-      .kite-div {
-        height: 100%;
-        @include flex($ai: center);
-        .kite {
-          margin: 0 auto;
-          @include flex($d: column);
-          gap: 27px;
-        }
+  // ------ 會員右邊欄設定 -------------------------------
+  .right-container {
+    // background-color: $white;
+    border-radius: $br_12;
+    padding: 24px;
+    .kite-div {
+      height: 100%;
+      @include flex($ai: center);
+      .kite {
+        margin: 0 auto;
+        @include flex($d: column);
+        gap: 27px;
       }
+    }
 
-      // ------ 會員訂單記錄 -------------------------------
-      .ol-header {
+    // ------ 會員訂單記錄 -------------------------------
+    .ol-header {
+      @include flex(row, space-between);
+      .ol-headBox {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 400px;
+      }
+    }
+    .ol-container {
+      .ol-textCont {
         @include flex(row, space-between);
-        .ol-headBox {
-          font-size: 18px;
-          font-weight: 700;
+
+        .ol-info {
+        }
+
+        .ol-price {
         }
       }
-      .ol-container {
-        .ol-textCont {
-          @include flex(row, space-between);
 
-          .ol-info {
-          }
+      .price-note {
+        .price-note-total {
+          @include flex($jc: space-between);
+          margin-top: 24px;
+          padding-top: 24px;
+          border-top: 1px solid #e0e0e0;
 
-          .ol-price {
-          }
-        }
-
-        .price-note {
-          .price-note-total {
-            @include flex($jc: space-between);
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid #e0e0e0;
-
-            .bold-price {
-              font-size: 24px;
-              font-weight: bold;
-            }
-          }
-
-          .pet-points {
-            margin-top: 8px;
-            padding-bottom: 8px;
-            @include flex($jc: space-between);
-
-            padding-bottom: 24px;
-            border-bottom: 1px solid #e0e0e0;
-            .bold-price {
-              font-size: 24px;
-              font-weight: bold;
-            }
-            margin-bottom: 24px;
-          }
-        }
-        .price-total {
-          .price-total-total {
-            font-weight: bold;
+          .bold-price {
             font-size: 24px;
-            @include flex($jc: space-between);
-            // margin-top: 24px;
-          }
-          .pet-points-gain {
-            @include flex($jc: end);
-            margin: 24px 0;
-            img {
-              display: block;
-            }
-            .red {
-              color: #d63900;
-            }
-          }
-
-          .cancel-order {
-            @include flex($jc: end);
-            .btn_4_border {
-              padding: 8px 43px;
-              background-color: $white;
-            }
+            font-weight: bold;
           }
         }
 
-        // setting
-        .personal-info {
-          font-size: $h5;
-          font-weight: bold;
-          margin-bottom: $mb_28;
-        }
-
-        .name-phone,
-        .mail-date {
-          justify-content: space-between;
-        }
-
-        .name,
-        .phone,
-        .mail,
-        .date {
-          width: 50%;
-        }
-
-        .name label,
-        .phone label,
-        .mail label,
-        .date label,
-        .address label {
-          display: block; /* 讓label顯示為區塊元素 */
-        }
-
-        .name input,
-        .phone input,
-        .mail input,
-        .date input {
-          width: 98%;
-          height: 48px;
-          border-radius: $br_8;
-          border: 1px solid $gray_1;
+        .pet-points {
           margin-top: 8px;
-          margin-bottom: $mb_28;
-        }
+          padding-bottom: 8px;
+          @include flex($jc: space-between);
 
-        .address input {
-          width: 99%;
-          height: 48px;
-          border-radius: $br_8;
-          border: 1px solid $gray_1;
-          margin-top: 8px;
-          margin-bottom: $mb_28;
+          padding-bottom: 24px;
+          border-bottom: 1px solid #e0e0e0;
+          .bold-price {
+            font-size: 24px;
+            font-weight: bold;
+          }
+          margin-bottom: 24px;
         }
-
-        .udate-info {
-          .btn_5 {
-            margin: 0 auto;
-            width: 144px;
-            color: $white;
-            background-color: $purple;
-            border: none;
+      }
+      .price-total {
+        .price-total-total {
+          font-weight: bold;
+          font-size: 24px;
+          @include flex($jc: space-between);
+          // margin-top: 24px;
+        }
+        .pet-points-gain {
+          @include flex($jc: end);
+          margin: 24px 0;
+          img {
+            display: block;
+          }
+          .red {
+            color: #d63900;
           }
         }
 
-        // points
-        .points {
-          margin-bottom: $mb_28;
-        }
-
-        .points h5 {
-          font-weight: bold;
-        }
-
-        .points-use {
-          border: 1px solid $gray_1;
-          border-radius: $br_12;
-          padding: 24px;
-          margin-bottom: $mb_32;
-        }
-
-        .points-use p {
-          margin-top: 8px;
-        }
-
-        .points-use h2 {
-          font-weight: bold;
-        }
-
-        .wrap {
-          overflow: hidden;
-          border-radius: $br_12;
-          border: 1px solid $gray_1;
-          table {
-            border-collapse: collapse;
-            width: 100%;
-            text-align: center;
-            tr {
-              th {
-                background-color: $purple;
-                color: $white;
-                padding: 14px 16px;
-              }
-              td {
-                background-color: $white;
-                padding: 14px 16px;
-                text-align: center;
-              }
-            }
+        .cancel-order {
+          @include flex($jc: end);
+          .btn_4_border {
+            padding: 8px 43px;
+            background-color: $white;
           }
         }
+      }
 
-        // post
-        .my-post {
+      // setting
+      .personal-info {
+        font-size: $h5;
+        font-weight: bold;
+        margin-bottom: $mb_28;
+      }
+
+      .name-phone,
+      .mail-date {
+        justify-content: space-between;
+      }
+
+      .name,
+      .phone,
+      .mail,
+      .date {
+        width: 50%;
+      }
+
+      .name label,
+      .phone label,
+      .mail label,
+      .date label,
+      .address label {
+        display: block; /* 讓label顯示為區塊元素 */
+      }
+
+      .name input,
+      .phone input,
+      .mail input,
+      .date input {
+        width: 98%;
+        height: 48px;
+        border-radius: $br_8;
+        border: 1px solid $gray_1;
+        margin-top: 8px;
+        margin-bottom: $mb_28;
+      }
+
+      .address input {
+        width: 99%;
+        height: 48px;
+        border-radius: $br_8;
+        border: 1px solid $gray_1;
+        margin-top: 8px;
+        margin-bottom: $mb_28;
+      }
+
+      .udate-info {
+        .btn_5 {
+          margin: 0 auto;
+          width: 144px;
+          color: $white;
+          background-color: $purple;
+          border: none;
+        }
+      }
+
+      // points
+      .points {
+        margin-bottom: $mb_28;
+      }
+
+      .points h5 {
+        font-weight: bold;
+      }
+
+      .points-use {
+        border: 1px solid $gray_1;
+        border-radius: $br_12;
+        padding: 24px;
+        margin-bottom: $mb_32;
+      }
+
+      .points-use p {
+        margin-top: 8px;
+      }
+
+      .points-use h2 {
+        font-weight: bold;
+      }
+
+      .wrap {
+        overflow: hidden;
+        border-radius: $br_12;
+        border: 1px solid $gray_1;
+        table {
+          border-collapse: collapse;
           width: 100%;
-          h5 {
-            margin-bottom: 24px;
-          }
-          .post-info {
-            background-color: $purple;
-            border-top-left-radius: $br_8;
-            border-top-right-radius: $br_8;
-            color: $white;
-            padding: 14px 16px;
-            @include flex($ai: null, $jc: null);
-            .post-post {
-              p {
-                font-weight: bold;
-              }
+          text-align: center;
+          tr {
+            th {
+              background-color: $purple;
+              color: $white;
+              padding: 14px 16px;
             }
-            .post-date {
-              p {
-                font-weight: bold;
-              }
+            td {
+              background-color: $white;
+              padding: 14px 16px;
+              text-align: center;
             }
           }
-          .post-detail {
-            padding: 14px 16px;
-            @include flex($ai: null, $jc: null);
-            border-left: 1px solid $gray_1;
-            border-right: 1px solid $gray_1;
-            border-bottom: 1px solid $gray_1;
-            .post-date-delete {
-              @include flex($jc: space-between);
-              .post-delete {
-                margin-right: 20px;
-              }
+        }
+      }
+
+      // post
+      .my-post {
+        width: 100%;
+        h5 {
+          margin-bottom: 24px;
+        }
+        .post-info {
+          background-color: $purple;
+          border-top-left-radius: $br_8;
+          border-top-right-radius: $br_8;
+          color: $white;
+          padding: 14px 16px;
+          @include flex($ai: null, $jc: null);
+          .post-post {
+            p {
+              font-weight: bold;
+            }
+          }
+          .post-date {
+            p {
+              font-weight: bold;
+            }
+          }
+        }
+        .post-detail {
+          padding: 14px 16px;
+          @include flex($ai: null, $jc: null);
+          border-left: 1px solid $gray_1;
+          border-right: 1px solid $gray_1;
+          border-bottom: 1px solid $gray_1;
+          .post-date-delete {
+            @include flex($jc: space-between);
+            .post-delete {
+              margin-right: 20px;
             }
           }
         }
       }
     }
-    // .logOutBtn {
-    //   @include flex();
-    //   width: 100%;
-    //   .btn_4_border {
-    //     width: 93px;
-    //     background-color: $white;
-    //   }
   }
+  // .logOutBtn {
+  //   @include flex();
+  //   width: 100%;
+  //   .btn_4_border {
+  //     width: 93px;
+  //     background-color: $white;
+  //   }
 }
 .right-container {
   //   width: 100%;

@@ -11,105 +11,112 @@
 <body>
     <div class="wrapper bg_gray">
         @@include('layout/header.html')
-        <main class="member-main container">
-            <!-- <div class="container"> -->
-                    @@include("layout/slide-bar.html")
-                    <div class="right-container col-10 col-lg-9">
 
-                        <!-- 第一項清單 header-->
-                        <div class="ol-header">
-                            <div class="ol-headBox">
-                                <div class="ol-date">
-                                    <p>訂單日期：2023年8月4日</p>
-                                </div>
-                                <div class="ol-number">
-                                    <p>訂單編號：PT0001</p>
-                                </div>
+        <main class="container member-main ">
+            @@include("layout/slide-bar.html")
+
+            <div class="right-container col-10 col-lg-9">
+
+            <!-- 訂單紀錄list-->
+            <!-- <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>    -->
+
+                    <div class="ol-header">
+                        <div class="ol-headBox">
+                            <div class="ol-date">
+                                <p>訂單日期：2023年8月4日</p>
                             </div>
-                            <div class="ol-button">
-                                <img src="images/icon/components-icon/faqbt-circle.svg" alt="">
+                            <div class="ol-number">
+                                <p>訂單編號：PT0001</p>
                             </div>
                         </div>
-
-                        <!-- 第一項清單 container-->
-                        <div class="ol-container">
-                            <img src="/images/pic/shop/goShop01.png" alt=""> 
-
-                            <div class="ol-textCont">
-                                <div class="ol-info">
-                                    <h6>寵物接送</h6>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <p>轎車</p>    
-                                </div>
-
-                                <div class="ol-price">
-                                    <p>NT$ 300</p>
-                                </div>
+                    <div class="ol-button">
+                        <img src="images/icon/components-icon/faqbt-circle.svg" alt="">
+                    </div>
+                
+    
+                    <!-- 第一項清單 container-->
+                    <div class="ol-container">
+                        <img src="/images/pic/shop/goShop01.png" alt=""> 
+    
+                        <div class="ol-textCont">
+                            <div class="ol-info">
+                                <h6>寵物接送</h6>
+                                <p>8月17日 ｜ 16:00</p>
+                                <p>轎車</p>    
                             </div>
-                        </div>
-
-                        <div class="product-container">
-                            <div class="product">
-                                <div class="product-photo">
-                                    <img src="/images/pic/shop/goShop02.png" alt=""> 
-                                </div>
-                                <div class="product-detail">
-                                    <p>寵物接送</p>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <p>轎車</p>    
-                                </div>
-                                <div class="product-price">
-                                    <p>NT$ 300</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-container">
-                            <div class="product">
-                                <div class="product-photo">
-                                    <img src="/images/pic/shop/goShop03.png" alt=""> 
-                                </div>
-                                <div class="product-detail">
-                                    <h6>寵物接送</h6>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <p>轎車</p>    
-                                </div>
-                                <div class="product-price">
-                                    <p>NT$ 300</p>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="price-note">
-                            <div class="price-note-total">
-                                <p>3件合計</p>
-                                <p class="bold-price">NT$ 5,100</p>
-                            </div>
-                            <div class="pet-points">
-                                <p>Pet Points 折抵</p>
-                                <p class="bold-price">-NT$ 30</p>
-                            </div>
-                        </div>
-                        <div class="price-total">
-                            <div class="price-total-total">
-                                <p>總計</p>
-                                <p>NTS 5,070</p>
-                            </div>
-                            <div class="pet-points-gain">
-                                <img src="images/icon/shop-icon/point-black.svg" alt="">
-                                <p>您已獲得 Pet Points <p class="red">50</p> 點</p>
-                            </div>
-                            <div class="cancel-order">
-                                <button class="btn_4_border">取消預約</button>
+    
+                            <div class="ol-price">
+                                <p>NT$ 300</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- <div class="container2">
-                        1223    
-                    </div> -->
-                <!-- </div> -->
-        </main>
-    </div>
+                
+                
+                
 
+                <div class="product-container">
+                    <div class="product">
+                        <div class="product-photo">
+                            <img src="/images/pic/shop/goShop02.png" alt=""> 
+                        </div>
+                        <div class="product-detail">
+                            <p>寵物接送</p>
+                            <p>8月17日 ｜ 16:00</p>
+                            <p>轎車</p>    
+                        </div>
+                        <div class="product-price">
+                            <p>NT$ 300</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-container">
+                    <div class="product">
+                        <div class="product-photo">
+                            <img src="/images/pic/shop/goShop03.png" alt=""> 
+                        </div>
+                        <div class="product-detail">
+                            <h6>寵物接送</h6>
+                            <p>8月17日 ｜ 16:00</p>
+                            <p>轎車</p>    
+                        </div>
+                        <div class="product-price">
+                            <p>NT$ 300</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="price-note">
+                    <div class="price-note-total">
+                        <p>3件合計</p>
+                        <p class="bold-price">NT$ 5,100</p>
+                    </div>
+                    <div class="pet-points">
+                        <p>Pet Points 折抵</p>
+                        <p class="bold-price">-NT$ 30</p>
+                    </div>
+                </div>
+                <div class="price-total">
+                    <div class="price-total-total">
+                        <p>總計</p>
+                        <p>NTS 5,070</p>
+                    </div>
+                    <div class="pet-points-gain">
+                        <img src="images/icon/shop-icon/point-black.svg" alt="">
+                        <p>您已獲得 Pet Points <p class="red">50</p> 點</p>
+                    </div>
+                    <div class="cancel-order">
+                        <button class="btn_4_border">取消預約</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+    </div>
 </body>
 </html>
