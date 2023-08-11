@@ -39,12 +39,12 @@
     }
 
     //購物車內頁（想替換的內容）
-    .shopping_main_bg {
+    .shoppingMain_bg {
         @include layout(100);
         background-color: $gray_2;
-        padding-top: 80px;
+        padding-top: 100px;
 
-        .shopping_mian_title {
+        .shoppingMian_title {
             @include layout(1200);
             font-weight: 700;
         }
@@ -61,9 +61,10 @@
             }
         }
 
-        .shopping_main {
+        .shoppingMain {
             @include layout(1200);
-            @include flex(row, space-between);
+            // @include flex();
+            @include flex(row, center, flex-start);
             gap: 32px;
             margin-bottom: 48px;
 
@@ -74,9 +75,6 @@
                 padding: 24px;
                 margin-bottom: 27px;
                 position: relative;
-                // display: flex;
-                // gap: 20px;
-                // flex-wrap: wrap;
 
                 //所有checkbox
                 input[type="checkbox"] {
@@ -85,7 +83,7 @@
                     top: 0;
                     left: 0;
                     width: 80%;
-                    height: 100%;
+                    height: 80%;
                     margin: 0;
                     display: block;
                     z-index: 5;
@@ -96,10 +94,10 @@
                         display: block;
                         position: absolute;
                         // top: 3px;
-                        left: 7px;
+                        left: 6px;
                         width: 10px;
                         height: 14px;
-                        border: solid #0079bf;
+                        border: solid $purple;
                         border-width: 0 3px 3px 0;
                         transform: rotate(45deg) translateY(-2px);
                     }
@@ -127,7 +125,7 @@
                     }
                 }
 
-                .shopping_card_up {
+                .shoppingCardup {
                     display: flex;
                     gap: 20px;
                     padding-bottom: 32px;
@@ -140,10 +138,8 @@
             }
 
 
-
-
             //左半
-            .shopping_main_left {
+            .shoppingMain_left {
                 .shopping_buy_text {
                     width: 100%;
 
@@ -170,10 +166,14 @@
 
                         }
                     }
+
+
                 }
-                .shopping_driver{
-                    .shopping_list_down{
-                        p{
+
+                //叫車
+                .shoppingDriver {
+                    .shopping_list_down {
+                        p {
                             &:first-child {
                                 &::after {
                                     content: "|";
@@ -184,9 +184,11 @@
                         }
                     }
                 }
-                .shopping_hostel{
-                    .shopping_list_down{
-                        p{
+
+                //旅宿
+                .shoppingHostel {
+                    .shopping_list_down {
+                        p {
                             &:first-child {
                                 &::after {
                                     content: "-";
@@ -194,98 +196,27 @@
                                     transform: translate(8px, -1px);
                                 }
                             }
-                        }
-                    }
-                }
 
-                // .shopping_buy_list {
-                //     display: flex;
-                //     gap: 24px;
-
-                //     img {
-                //         border-radius: $br_8;
-                //     }
-                // }
-
-
-
-
-
-                .shopping_list {}
-
-
-                .shopping_list_d {
-                    margin-bottom: 4px;
-
-                    div {
-                        display: inline-block;
-                    }
-
-                    .driver_date::after {
-                        content: "|";
-                        padding: 0 5px 0 10px;
-                    }
-
-                    .hostel_start::after {
-                        content: "-";
-                        padding-left: 5px;
-                        // padding: 0 0 0 5px;
-                    }
-
-                    .hostel_day {
-                        padding-left: 5px;
-                    }
-                }
-
-                .shopping_list_t {
-                    div {
-                        display: inline-block;
-                    }
-
-                    .shopping_list_type2::before {
-                        content: "|";
-                        padding: 0 5px 0 10px;
-                    }
-
-                    //之後要改用ＪＳ判斷
-                    .shopping_list_type2:last-child::before {
-                        content: "";
-                    }
-                }
-
-                // }
-
-                .shopping_list_line {
-                    background-color: $gray_1;
-                    height: 1px;
-                    margin: $mb_32 0;
-                }
-
-                .shopping_subtotal {
-                    text-align: end;
-                    font-weight: 700;
-                    line-height: 1.25;
-                    font-size: 24px;
-                    display: flex;
-                    justify-content: end;
-                    align-items: center;
-
-                    .stepper {
-                        background-color: burlywood;
-                        display: flex;
-                        justify-content: space-between;
-
-                        .stepper_button {
-                            border: none;
-                            padding: 0;
-                            width: 32px;
-
-                            img {
-                                // width: 100%;
+                            &:last-child {
+                                &::before {
+                                    content: "|";
+                                    position: absolute;
+                                    transform: translate(-17px, -1px);
+                                }
                             }
                         }
-
-                        .stepper_input {
+                    }
+                }
+                //小計
+                .shoppingSubtotal {
+                    text-align: end;
+                    font-weight: 700;
+                    font-size: 24px;
+                    @include flex(row, end);
+                    .shoppingStepper {
+                        @include flex();
+                        input[type="text"]{
+                            background-color: aqua;
                             border: none;
                             width: 100%;
                             text-align: center;
@@ -293,56 +224,44 @@
                             font-size: 16px;
                         }
                     }
-
-                    .number {}
                 }
 
-                // }
 
-                .shopping_card:last-child {
-                    margin-bottom: 0;
-                }
 
-                .shopping_driver {}
+                .shoppingMain_right {
 
-                .shopping_subtotal {}
-            }
+                    .shoppingOrder_total {
+                        display: flex;
+                        justify-content: space-between;
 
-            .shopping_main_right {
+                        .sum_num {
+                            font-size: 18px;
+                        }
 
-                // background-color: pink;
-                .shopping_order_total {
-                    display: flex;
-                    justify-content: space-between;
-
-                    // margin-bottom: $mb_32;
-                    .sum_num {
-                        font-size: 18px;
+                        .sum_money {
+                            font-size: 28px;
+                            line-height: 30px;
+                            font-weight: 700;
+                        }
                     }
 
-                    .sum_money {
-                        font-size: 28px;
-                        line-height: 30px;
-                        font-weight: 700;
+                    .shopping_next {
+                        background-color: $purple;
+                        display: block;
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        color: $white;
+                        padding: 18px 27px;
+                        border-radius: $br_8;
                     }
+
                 }
 
-                .shopping_next {
-                    background-color: $purple;
-                    display: block;
-                    width: 100%;
-                    border: none;
-                    outline: none;
-                    color: $white;
-                    padding: 18px 27px;
-                    border-radius: $br_8;
-                }
+
 
             }
-
-
-
         }
-    }
 
+    }
 }
