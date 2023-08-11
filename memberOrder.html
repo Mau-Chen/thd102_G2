@@ -1,45 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>memberOrder</title>
+    @@include('layout/meta.html')
     <link rel="stylesheet" href="css/style.css">
+    <title>memberOrder</title>
 </head>
+
 <body>
-    <div class="wrapper">
-        <main class="member-main">
-            <div class="container col-2">
+    <div class="wrapper testMe_bgcolor">
+        @@include('layout/header.html')
+        <main class="member-main container">
+            <!-- <div class="container"> -->
                     @@include("layout/slide-bar.html")
-                    <div class="right-container col-10">
-                        <div class="top">
-                            <div class="order">
-                                <div class="order-date">
-                                    <p style="font-size: 18px; font-weight: bold;">訂單日期：2023年8月4日</p>
+                    <div class="right-container col-10 col-lg-9">
+
+                        <!-- 第一項清單 header-->
+                        <div class="ol-header">
+                            <div class="ol-headBox">
+                                <div class="ol-date">
+                                    <p>訂單日期：2023年8月4日</p>
                                 </div>
-                                <div class="order-number">
-                                    <p style="font-size: 18px; font-weight: bold;">訂單編號：PT0001</p>
+                                <div class="ol-number">
+                                    <p>訂單編號：PT0001</p>
                                 </div>
                             </div>
-                            <div class="total-price">
-                                <!-- <p>NT$ 5,070</p> -->
+                            <div class="ol-button">
                                 <img src="images/icon/components-icon/faqbt-circle.svg" alt="">
                             </div>
-                            <div class="slide">
-                                <!-- <img src="images/icon/" alt=""> -->
-                            </div>
                         </div>
-                        <div class="product-container">
-                            <div class="product">
-                                <div class="product-photo">
-                                    <img src="/images/pic/shop/goShop01.png" alt=""> 
-                                </div>
-                                <div class="product-detail">
-                                    <p>寵物接送</p>
+
+                        <!-- 第一項清單 container-->
+                        <div class="ol-container">
+                            <img src="/images/pic/shop/goShop01.png" alt=""> 
+
+                            <div class="ol-textCont">
+                                <div class="ol-info">
+                                    <h6>寵物接送</h6>
                                     <p>8月17日 ｜ 16:00</p>
                                     <p>轎車</p>    
                                 </div>
-                                <div class="product-price">
+
+                                <div class="ol-price">
                                     <p>NT$ 300</p>
                                 </div>
                             </div>
@@ -101,10 +104,10 @@
                         </div>
                     </div>
                     
-                    <div class="container2">
+                    <!-- <div class="container2">
                         1223    
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
         </main>
     </div>
 
