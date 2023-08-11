@@ -4,6 +4,7 @@
     .shopping_container {
         @include flex();
         height: 167px;
+        background-color: $white;
 
         //步驟塊
         .shipping_step_box {
