@@ -9,17 +9,35 @@
 </head>
 
 <body>
+    <!-- #login為Vue掛載的位置，不管用什麼裝置觸發，都必須要有這個ID -->
     <div id="login">
-        <button type="button" @click="ispop = true">觸發燈箱</button>
-        <div v-if="ispop === true" class="lightbox">
-
+        <!-- 此處為用@click綁定事件，用data中的"ispop"資料，來控制燈箱跳出
+        如果要綁定在其它物件上，只要打上@click這條即可觸發。 -->
+        <button 
+            type="button" 
+            @click="ispop = true">
+            觸發燈箱</button>
+        <!-- 用v-if來渲染出燈箱畫面，此處的v-if渲染內容為燈箱主體，不可更動。 -->
+        <div 
+            v-if="ispop === true" 
+            class="lightbox">
+            <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
             <div class="loginpage_base">
+                <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
                 <div class="close">
-                    <div class="icon" @click="ispop = false">
+                    <div 
+                        class="icon" 
+                        @click="ispop = false">
                         <img src="./images/icon/components-icon/close-line.svg" alt="">
                     </div>
                 </div>
-                <div class="loginPage">
+                <!-- 此處為燈箱切換頁面的主體，用v-if渲染出不同的內文，用data:index來控制要渲染的頁面。
+                    同一class但不同 index的div 即為不同的頁面，所有要開發的頁面，都要放在同一層級。 -->
+                
+                <!-- index 0 登入頁面 -->
+                <div
+                    v-if="index === 0"
+                    class="loginPage">
                     <div class="pageIsideContainer">
                         <h4>登入/註冊</h4>
                         <form action="#" method="post">
@@ -53,6 +71,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- index 1 忘記密碼頁面 -->
             </div>
         </div>
     </div>
@@ -63,6 +83,7 @@
             data() {
                 return {
                     text: "Hello World!",
+                    index: 0,
                     ispop: false
                 }
             },
