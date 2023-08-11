@@ -1,125 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        @@include('layout/meta.html')
+        <link rel="stylesheet" href="./css/style.css" />
+        <title>Go會員 | PetpaGo</title>
+    </head>
 <body>
-    <div class="wrapper">
-        <main class="member-main">
-            <div class="container row">
-                @@include("layout/slide-bar.html")
-                <div class="right-container col-10">
-                    <div class="my-post">
-                        <p>我的貼文</p>
-                    </div>
-                    <!-- <div class="wrap">
-                        <table>
-                            <tr>
-                                <th class="post-column">發文</th>
-                                <th class="date-column">日期</th>
-                                <th class="trash-column"></th>
-                            </tr>
-                            <tr>
-                                <td class="post-column"><img src="./images/pic/member/member-post01.png" alt=""></td>
-                                <td class="date-column">2023年8月4日</td>
-                                <td class="trash-column"><img src="images/icon/shop-icon/delete.svg" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td class="post-column"><img src="./images/pic/member/member-post02.png" alt=""></td>
-                                <td class="date-column">2023年8月4日</td>
-                                <td class="trash-column"><img src="images/icon/shop-icon/delete.svg" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td class="post-column"><img src="./images/pic/member/member-post03.png" alt=""></td>
-                                <td class="date-column">2023年8月4日</td>
-                                <td class="trash-column"><img src="images/icon/shop-icon/delete.svg" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td class="post-column"><img src="./images/pic/member/member-post04.png" alt=""></td>
-                                <td class="date-column">2023年8月4日</td>
-                                <td class="trash-column"><img src="images/icon/shop-icon/delete.svg" alt=""></td>
-                            </tr>
-                        </table> -->
-                        <div>
-                            <div class="post-info row">
-                                <div class="post-post col-2">
-                                    <p>發文</p>
-                                </div>
-                                <div class="post-date col-10">
-                                    <p>日期</p>
-                                </div>
-                            </div>
-                            <div class="post-detail row">
-                                <div class="post-photo col-2">
-                                    <img src="images/pic/member/member-post01.png" alt="">
-                                </div>
-                                <div class="post-date-delete col-10">
-                                    <div class="post-date">
-                                        <p>2023年8月4日</p>
+    <div class="wrapper member">
+        @@include('layout/header.html')
+        <div class="wrapper">
+            <main class="member-main">
+                <div class="container">
+                    @@include("layout/slide-bar.html")
+                    <div class="right-container col-10">
+                        <div class="my-post">
+                            <h5>我的貼文</h5>
+                            <div>
+                                <div class="post-info">
+                                    <div class="post-post col-2">
+                                        <p>發文</p>
                                     </div>
-                                    <div class="post-delete">
-                                        <img src="images/icon/shop-icon/delete.svg" alt="">
+                                    <div class="post-date col-10">
+                                        <p>日期</p>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="post-detail row">
-                                <div class="post-photo col-2">
-                                    <img src="images/pic/member/member-post02.png" alt="">
-                                </div>
-                                <div class="post-date-delete col-10">
-                                    <div class="post-date">
-                                        <p>2023年8月4日</p>
+                                <div class="post-detail">
+                                    <div class="post-photo col-2">
+                                        <img src="images/pic/member/member-post01.png" alt="">
                                     </div>
-                                    <div class="post-delete">
-                                        <img src="images/icon/shop-icon/delete.svg" alt="">
+                                    <div class="post-date-delete col-10">
+                                        <div class="post-date">
+                                            <p>2023年8月4日</p>
+                                        </div>
+                                        <div class="post-delete">
+                                            <img src="images/icon/shop-icon/delete.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                
+                                <div class="post-detail">
+                                    <div class="post-photo col-2">
+                                        <img src="images/pic/member/member-post02.png" alt="">
+                                    </div>
+                                    <div class="post-date-delete col-10">
+                                        <div class="post-date">
+                                            <p>2023年8月4日</p>
+                                        </div>
+                                        <div class="post-delete">
+                                            <img src="images/icon/shop-icon/delete.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div class="post-detail row">
-                                <div class="post-photo col-2">
-                                    <img src="images/pic/member/member-post03.png" alt="">
-                                </div>
-                                <div class="post-date-delete col-10">
-                                    <div class="post-date">
-                                        <p>2023年8月4日</p>
+                                <div class="post-detail">
+                                    <div class="post-photo col-2">
+                                        <img src="images/pic/member/member-post03.png" alt="">
                                     </div>
-                                    <div class="post-delete">
-                                        <img src="images/icon/shop-icon/delete.svg" alt="">
+                                    <div class="post-date-delete col-10">
+                                        <div class="post-date">
+                                            <p>2023年8月4日</p>
+                                        </div>
+                                        <div class="post-delete">
+                                            <img src="images/icon/shop-icon/delete.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="post-detail row">
-                                <div class="post-photo col-2">
-                                    <img src="images/pic/member/member-post04.png" alt="">
-                                </div>
-                                <div class="post-date-delete col-10">
-                                    <div class="post-date">
-                                        <p>2023年8月4日</p>
+                                <div class="post-detail">
+                                    <div class="post-photo col-2">
+                                        <img src="images/pic/member/member-post04.png" alt="">
                                     </div>
-                                    <div class="post-delete">
-                                        <img src="images/icon/shop-icon/delete.svg" alt="">
+                                    <div class="post-date-delete col-10">
+                                        <div class="post-date">
+                                            <p>2023年8月4日</p>
+                                        </div>
+                                        <div class="post-delete">
+                                            <img src="images/icon/shop-icon/delete.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-    
-    
                     </div>
                 </div>
-            </div>
-            
-                        
-            </div>
-
-        </main>
+            </main>
+        </div>
+        @@include('layout/footer.html')
     </div>
-
 </body>
 </html>
 
