@@ -46,6 +46,10 @@
           input::placeholder {
             color: $black;
           }
+          .categorycontrol {
+            @include flex(row, space-between);
+            gap: 16px;
+          }
         }
 
         .place,
@@ -125,8 +129,10 @@
         border-radius: $br_12;
       }
     }
-    .notice {
+    .notice,
+    .cancel {
       letter-spacing: 0.6px;
+      padding: 32px 0 64px 0;
       span {
         display: block;
         font-size: 24px;
@@ -136,6 +142,63 @@
       ul {
         li {
           list-style-type: disc;
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 768px) {
+//   .titlesearchbar {
+//     margin-top: -150px;
+//   }
+// }
+
+@media screen and (max-width: 768px) {
+  .driver {
+    .driverbgimg {
+      // background-position: right 35% bottom;
+    }
+    .container {
+      .titlesearchbar {
+        margin: -161px 32px 60px 32px;
+        .searchbar {
+          .upsection {
+            outline: 1px solid palegreen;
+          }
+          padding: 32px;
+          .downsection {
+            outline: 1px solid blue;
+            flex-wrap: wrap;
+            input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+              display: none;
+              text-indent: 10px;
+              padding-inline-start: 0;
+            }
+
+            // outline: 1px solid blue;
+            // display: grid;
+            // grid-template-columns: 1fr 1fr 1fr;
+            // grid-template-areas:
+            //   "g1 g2 g3"
+            //   "g4 g4 g4";
+            // .g1 {
+            //   width: 100%;
+            //   grid-area: g1;
+            // }
+            // .g2 {
+            //   width: 100%;
+            //   grid-area: g2;
+            // }
+            // .g3 {
+            //   width: 100%;
+            //   grid-area: g3;
+            // }
+            // .g4 {
+            //   width: 100%;
+            //   grid-area: g4;
+            // }
+          }
         }
       }
     }
