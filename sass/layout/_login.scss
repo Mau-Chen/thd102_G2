@@ -26,7 +26,6 @@
 
     .loginPage {
         width: 100%;
-        height: 615px;
         background-color: white;
         border-radius: 12px;
         padding: 40px;
@@ -38,9 +37,13 @@
             align-items: center;
             gap: 24px;
 
+            .btn_5 {
+                width: 100%;
+                border: 0;
+            }
+
             form {
                 width: 100%;
-
                 label {
                     margin-bottom: 4px;
                     font-weight: 500;
