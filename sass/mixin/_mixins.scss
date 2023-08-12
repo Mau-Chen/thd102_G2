@@ -47,13 +47,6 @@
   font-weight: 700;
 }
 
-// // padding: 10px 30px;
-// text-align: center;
-// color: $white;
-// cursor: pointer;
-// border-radius: 8px;
-// // transition: all 0.3s ease;
-
 // 間距
 @mixin space($spacing) {
   @each $k, $v in $spacing {
@@ -103,20 +96,6 @@
   }
 }
 
-// @mixin titleSize2($g, $h:null) {
-//   @each $key ,
-//   $value in $g {
-//       #{$key} {
-//           font-size: $value;
-//       }
-//   }
-//   @each $key ,
-//   $value in $h {
-//       #{$key} {
-//         font-weight: $value;
-//       }
-//   }
-// }
 @mixin titleStyle($c) {
   @each $a, $b in $c {
     #{$a} {
