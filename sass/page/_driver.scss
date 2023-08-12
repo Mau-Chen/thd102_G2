@@ -1,8 +1,10 @@
 //司機
 .driver {
-  .driverbgimg {
+  picture {
     margin: 0 auto;
-    width: 100%;
+    img {
+      width: 100%;
+    }
   }
   .container {
     margin: 0 auto;
@@ -156,7 +158,8 @@
 
 @media screen and (max-width: 768px) {
   .driver {
-    .driverbgimg {
+    picture {
+      width: 100%;
       // background-position: right 35% bottom;
     }
     .container {
@@ -175,32 +178,17 @@
               text-indent: 10px;
               padding-inline-start: 0;
             }
-
-            // outline: 1px solid blue;
-            // display: grid;
-            // grid-template-columns: 1fr 1fr 1fr;
-            // grid-template-areas:
-            //   "g1 g2 g3"
-            //   "g4 g4 g4";
-            // .g1 {
-            //   width: 100%;
-            //   grid-area: g1;
-            // }
-            // .g2 {
-            //   width: 100%;
-            //   grid-area: g2;
-            // }
-            // .g3 {
-            //   width: 100%;
-            //   grid-area: g3;
-            // }
-            // .g4 {
-            //   width: 100%;
-            //   grid-area: g4;
-            // }
           }
         }
       }
+
+      // .drivercards {
+      //   .leftcard {
+      //     span {
+      //       display: none;
+      //     }
+      //   }
+      // }
     }
   }
 }
