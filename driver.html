@@ -15,6 +15,13 @@
       @@include('layout/header.html')
       <img
         src="./images/banner/drive/big_drive_banner.svg"
+        srcset="
+          ./images/banner/drive/m375-drive.svg 100%,
+          ./images/banner/drive/m768-drive.svg 100%
+          ./images/banner/drive/big_drive_banner.svg 100%
+        "
+        sizes="(max-width: 375px) 100%,
+               (max-width: 768px) 100%"
         alt=""
         class="driverbgimg"
       />
