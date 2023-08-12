@@ -1,72 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Go會員 | PetpaGo</title>
   </head>
-<body>
-  <div class="wrapper member">
-    @@include('layout/header.html')
-    <div class="wrapper">
-      <main class="member-main">
+
+  <body>
+    <div class="wrapper bg_gray member">
+      @@include('layout/header.html')
+      <div class="wrapper">
+        <main class="member-main">
           <div class="container col-10">
-                  @@include("layout/slide-bar.html")
-                  <div class="right-container col-10">
-                      <div class="points">
-                          <h5>我的點數</h5>
-                      </div>
-                      <div class="points-use">
-                          <h2>會員點數如何用?</h2>
-                          <p>於PetpaGo進行消費，每100元將回饋1點 Pet Point可於下次預訂時折抵訂單總金額，1點可折抵新台幣1元每筆訂單最多可折抵總金額的20% </p>
-                      </div>
-                        <div class="wrap">
-                          <table>
-                            <tr>
-                              <th>訂單編號</th>
-                              <th>日期</th>
-                              <th>總金額</th>
-                              <th>獲得點數</th>
-                            </tr>
-                            <tr>
-                              <td>PT0001</td>
-                              <td>2023年8月4日</td>
-                              <td>NT$5,070</td>
-                              <td>50</td>
-                            </tr>
-                              <tr>
-                              <td>PT0002</td>
-                              <td>2023年8月4日</td>
-                              <td>NT$5,070</td>
-                              <td>30</td>
-                            </tr>
-                              <tr>
-                              <td>PT0003</td>
-                              <td>2023年8月4日</td>
-                              <td>NT$5,070</td>
-                              <td>20</td>
-                            </tr>
-                              <tr>
-                              <td>PT0004</td>
-                              <td>2023年8月4日</td>
-                              <td>NT$5,070</td>
-                              <td>10</td>
-                            </tr>
-                          </table>
-                      </div>
-                  </div>
+            @@include("layout/member-sideBar.html")
+            <div class="right-container col-10">
+              <div class="points">
+                <h5>我的點數</h5>
+              </div>
+              <div class="points-use">
+                <h2>會員點數如何用?</h2>
+                <p>
+                  於PetpaGo進行消費，每100元將回饋1點 Pet
+                  Point可於下次預訂時折抵訂單總金額，1點可折抵新台幣1元每筆訂單最多可折抵總金額的20%
+                </p>
+              </div>
+              <div class="wrap">
+                <table>
+                  <tr>
+                    <th>訂單編號</th>
+                    <th>日期</th>
+                    <th>總金額</th>
+                    <th>獲得點數</th>
+                  </tr>
+                  <tr>
+                    <td>PT0001</td>
+                    <td>2023年8月4日</td>
+                    <td>NT$5,070</td>
+                    <td>50</td>
+                  </tr>
+                  <tr>
+                    <td>PT0002</td>
+                    <td>2023年8月4日</td>
+                    <td>NT$5,070</td>
+                    <td>30</td>
+                  </tr>
+                  <tr>
+                    <td>PT0003</td>
+                    <td>2023年8月4日</td>
+                    <td>NT$5,070</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>PT0004</td>
+                    <td>2023年8月4日</td>
+                    <td>NT$5,070</td>
+                    <td>10</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
-      </main>
+        </main>
+      </div>
+      @@include('layout/footer.html')
     </div>
-    @@include('layout/footer.html')
-  </div>
-</body>
+  </body>
 </html>
-
-
-

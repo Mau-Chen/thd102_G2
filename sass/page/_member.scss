@@ -1,8 +1,14 @@
 //會員
 .member-main {
-  padding: 100px 0;
+  padding: 100px 32px;
   @include flex(row, center, flex-start);
   gap: 32px;
+
+  @media (max-width: 414px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
   // ------ 會員左邊欄設定 -------------------------------
   .slide-bar {
     @include flex(column);
@@ -43,10 +49,12 @@
   }
 
   // ------ 會員右邊欄設定 -------------------------------
-  .right-container {
+  .member-right-bg {
     background-color: $white;
     border-radius: $br_12;
     padding: 24px;
+  }
+  .right-container {
     .kite-div {
       height: 100%;
       @include flex($ai: center);
@@ -57,100 +65,75 @@
       }
     }
     // ------ 會員訂單記錄 ---------------------------
+    // 共用flex設定
+    .jcSb {
+      @include flex(row, space-between);
+    }
     ul li {
+      background-color: $white;
+      border-radius: $br_12;
+      padding: 24px;
+      margin-bottom: 24px;
       font-size: 18px;
+      font-weight: 500;
     }
     .ol-header {
-      @include flex(row, space-between);
       font-weight: bold;
+      img {
+        transform: rotate(180deg);
+      }
     }
     .ol-content {
       .ol-contentBox {
         @include flex();
         gap: 24px;
-        // padding-bottom: 24px;
-
         .ol-ContText {
           width: 100%;
         }
         .ol-info {
-          @include flex(row, space-between);
           margin-top: 4px;
         }
       }
     }
-    .ol-count {
+    .ol-money {
       border-top: 1px solid $gray_1;
       border-bottom: 1px solid $gray_1;
-      @include flex(row, space-between);
       padding: 24px 0;
     }
-
-    // .ol-header {
-    //   @include flex(row, space-between);
-    //   .ol-headBox {
-    //     font-size: 18px;
-    //     font-weight: 700;
-    //     margin-bottom: 400px;
-    //   }
-    // }
-    // .ol-container {
-    //   .ol-textCont {
-    //     @include flex(row, space-between);
-    //     .ol-info {
-    //     }
-    //     .ol-price {
-    //     }
-    //   }
-    //   .price-note {
-    //     .price-note-total {
-    //       @include flex($jc: space-between);
-    //       margin-top: 24px;
-    //       padding-top: 24px;
-    //       border-top: 1px solid #e0e0e0;
-    //       .bold-price {
-    //         font-size: 24px;
-    //         font-weight: bold;
-    //       }
-    //     }
-    //     .pet-points {
-    //       margin-top: 8px;
-    //       padding-bottom: 8px;
-    //       @include flex($jc: space-between);
-    //       padding-bottom: 24px;
-    //       border-bottom: 1px solid #e0e0e0;
-    //       .bold-price {
-    //         font-size: 24px;
-    //         font-weight: bold;
-    //       }
-    //       margin-bottom: 24px;
-    //     }
-    //   }
-    //   .price-total {
-    //     .price-total-total {
-    //       font-weight: bold;
-    //       font-size: 24px;
-    //       @include flex($jc: space-between);
-    //       // margin-top: 24px;
-    //     }
-    //     .pet-points-gain {
-    //       @include flex($jc: end);
-    //       margin: 24px 0;
-    //       img {
-    //         display: block;
-    //       }
-    //       .red {
-    //         color: #d63900;
-    //       }
-    //     }
-    //     .cancel-order {
-    //       @include flex($jc: end);
-    //       .btn_4_border {
-    //         padding: 8px 43px;
-    //         background-color: $white;
-    //       }
-    //     }
-    //   }
+    .ol-count {
+      span {
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+    .ol-total {
+      .ol-count span {
+        font-size: 28px;
+      }
+      p:nth-child(2) {
+        // text-align: right;
+        margin: 24px 0;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        span {
+          color: #d63900;
+        }
+      }
+    }
+    .btn_4_border {
+      // padding: 0 40px;
+      width: 144px;
+      background: none;
+      margin-left: auto;
+    }
+    .ol-button {
+      display: flex;
+      gap: 24px;
+      span {
+        font-size: 28px;
+      }
+    }
 
     // setting
     .personal-info {

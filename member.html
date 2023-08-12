@@ -2,29 +2,26 @@
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Go會員 | PetpaGo</title>
   </head>
 
   <body>
-    <div class="wrapper member">
+    <div class="wrapper bg_gray member">
       @@include('layout/header.html')
-      <main class="member-main">
-        <div class="container">
-                @@include("layout/slide-bar.html")
-                <div class="right-container">
-                  <div class="kite-div">
-                    <div class="kite">
-                      <img src="images/icon/member-icon/nolist.svg" alt="">
-                      <h5>尚無訂單</h5>
-                    </div>
-                  </div>
-                </div>
+
+      <main class="container member-main">
+        @@include("layout/member-sideBar.html")
+
+        <div class="right-container member-right-bg col-10 col-lg-9 col-sm-12">
+          <div class="kite-div">
+            <div class="kite">
+              <img src="images/icon/member-icon/nolist.svg" alt="" />
+              <h5>尚無訂單</h5>
+            </div>
+          </div>
         </div>
       </main>
       @@include('layout/footer.html')
