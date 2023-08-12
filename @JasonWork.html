@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <!-- #login為Vue掛載的位置，不管用什麼裝置觸發，都必須要有這個ID -->
-    <div id="login">
+    <!-- #ModalPage為Vue掛載的位置，不管用什麼裝置觸發，都必須要有這個ID -->
+    <div id="ModalPage">
         <!-- 此處為用@click綁定事件，用data中的"ispop"資料，來控制燈箱跳出
         如果要綁定在其它物件上，只要打上@click這條即可觸發。 -->
         <button type="button" @click="ispop = true; changePage(0)">
@@ -32,22 +32,23 @@
                 <div v-if="index === 0" class="loginPage">
                     <div class="pageIsideContainer">
                         <h4>登入/註冊</h4>
-                        <form action="#" method="post">
+                        <!-- 此處綁定了自行寫入的post事件 -->
+                        <form @submit.prevent="handleSubmit">
                             <!-- sectionHead本身不包含任何屬性，為了要完全貼齊form的上轅。 -->
                             <div class="sectionHead">
                                 <label for="account">帳號</label>
                                 <input type="email" id="account" name="account" placeholder="請輸入E-MAIL"
-                                    class="loginType">
+                                    class="loginType" v-model="account">
                             </div>
                             <!-- sectionBody包含了向上與向下的間距，要調整的方向在這裡。 -->
                             <div class="sectionBody">
                                 <label for="password">密碼</label>
                                 <input type="password" id="password" name="password" placeholder="請輸入密碼"
-                                    class="loginType">
+                                    class="loginType" v-model="password">
                                 <a @click="changePage(1)">忘記密碼?</a>
                             </div>
                             <div class="submit">
-                                <input type="button" class="btn_5" value="登入">
+                                <input type="submit" class="btn_5" value="登入">
                             </div>
                         </form>
                         <div class="register">
@@ -153,23 +154,50 @@
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-        const login = Vue.createApp({
+        const ModalPage = Vue.createApp({
             data() {
                 return {
                     text: "Hello World!",
-                    returnStatus,
+                    returnStatus: "",
                     index: 0,
-                    ispop: false
+                    ispop: false,
+                    account: '',
+                    password: ''
                 }
             },
             methods: {
                 changePage(newIndex) {
                     this.index = newIndex;
-                }
+                },
+                handleSubmit() {
+                    // 執行表單提交的處理
+                    fetch('/php/login.php', {
+                        method: 'POST',
+                        mode: 'cors',
+                        body: new URLSearchParams({
+                            account: this.account,
+                            password: this.password,
+                        }),
+                    })
+                        .then(response => response.json()) // 解析 JSON 回應
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // 如果回應為成功，執行頁面跳轉
+                                window.open('member.html', '_self');
+                            } else if (data.status === 'error') {
+                                // 如果回應為錯誤，處理無效認證的情況
+                                console.log(data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                },
+
             }
         });
 
-        login.mount('#login');
+        ModalPage.mount('#ModalPage');
     </script>
 </body>
 
