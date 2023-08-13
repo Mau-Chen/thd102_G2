@@ -240,61 +240,6 @@
         }
       }
     }
-<<<<<<< HEAD
-  }
-
-  // setting
-  .personal-info {
-    font-size: $h5;
-    font-weight: bold;
-    margin-bottom: $mb_28;
-  }
-
-  .name-phone,
-  .mail-date {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .name,
-  .phone,
-  .mail,
-  .date {
-    width: 50%;
-  }
-
-  .name label,
-  .phone label,
-  .mail label,
-  .date label,
-  .address label {
-    display: block; /* 讓label顯示為區塊元素 */
-  }
-
-  .name input,
-  .phone input,
-  .mail input,
-  .date input {
-    width: 98%;
-    height: 48px;
-    border-radius: $br_8;
-    border: 1px solid $gray_1;
-    margin-top: 8px;
-    margin-bottom: $mb_28;
-  }
-
-  .address input {
-    width: 99%;
-    height: 48px;
-    border-radius: $br_8;
-    border: 1px solid $gray_1;
-    margin-top: 8px;
-    margin-bottom: $mb_28;
-  }
-
-  .udate-info {
-=======
->>>>>>> dev
     .btn_5 {
       width: 144px;
       border: none;
