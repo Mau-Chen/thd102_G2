@@ -51,7 +51,6 @@
     @media (max-width: 414px) {
       ul{
         width: 100%;
-        border: 1px solid red;
         @include flex(row,space-around,center);
         li{
           border-right: 1px solid $gray_1;
