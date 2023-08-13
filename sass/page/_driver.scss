@@ -181,14 +181,24 @@
           }
         }
       }
+      .drivercards {
+        display: block;
+        position: relative;
 
-      // .drivercards {
-      //   .leftcard {
-      //     span {
-      //       display: none;
-      //     }
-      //   }
-      // }
+        .leftcard {
+          .filter {
+            z-index: -1;
+          }
+          height: 343px;
+          span {
+            display: none;
+          }
+        }
+        .rightcard {
+          position: absolute;
+          top: 0;
+        }
+      }
     }
   }
 }
