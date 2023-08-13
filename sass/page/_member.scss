@@ -2,7 +2,6 @@
 .member-main {
   // padding: 100px 32px;
   padding: 100px 0;
-  margin: 0 32px;
   @include flex(row, center, flex-start);
   gap: 32px;
   @media (max-width: 768px) {
@@ -240,7 +239,10 @@
         }
       }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 48e1b5481e390c26b0d89b371a1a1ed42dc4a203
     .btn_5 {
       width: 144px;
       border: none;
