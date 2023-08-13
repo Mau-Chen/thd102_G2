@@ -8,22 +8,25 @@
   }
   .container {
     margin: 0 auto;
+
     .titlesearchbar {
       //   outline: 1px solid red;
-      margin-top: -175px;
+      margin-top: -161px;
       margin-bottom: 100px;
-      position: relative;
-
       h2 {
         color: #126c86;
-        margin-bottom: 24px;
       }
+
+      // h2 {
+      //   color: #126c86;
+      //   margin-bottom: 24px;
+      // }
       .searchbar {
         width: 100%;
         padding: 40px 50px;
         border-radius: 16px;
         background-color: $white;
-        // outline: 1px solid blue;
+        position: relative;
         /* Drop Shadow */
         box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
         .upsection {
@@ -86,17 +89,22 @@
       @include flex(row, center, null);
       gap: 39px;
       .leftcard {
-        background-color: rgba(102, 213, 192, 0.1);
         height: 994px;
-        border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
         @include flex(row, center, flex-start);
-        span {
-          writing-mode: vertical-rl;
-          padding-left: 5px;
-          font-size: 32px;
-          color: $black;
-          border-left: 1px solid rgb(0, 0, 0);
-          margin-top: -27px;
+        .filter {
+          width: 100%;
+          height: 100%;
+          background-color: rgba(102, 213, 192, 0.1);
+          border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
+          span {
+            writing-mode: vertical-rl;
+            padding-left: 5px;
+            font-size: 32px;
+            color: $black;
+            border-left: 1px solid rgb(0, 0, 0);
+            margin-top: -27px;
+            margin-left: 44%;
+          }
         }
       }
       .rightcard {
@@ -135,6 +143,7 @@
     .cancel {
       letter-spacing: 0.6px;
       padding: 32px 0 64px 0;
+      border-top: 1px solid #e0e0e0;
       span {
         display: block;
         font-size: 24px;
@@ -142,6 +151,7 @@
         margin-bottom: 20px;
       }
       ul {
+        padding-left: 20px;
         li {
           list-style-type: disc;
         }
@@ -167,21 +177,108 @@
         margin: -161px 32px 60px 32px;
         .searchbar {
           padding: 32px;
+
+          .upsection {
+            gap: 16px;
+          }
           .downsection {
-            .categorycontrol {
-              .category {
-                display: inline-block;
-                gap: 16px;
-              }
-            }
             flex-wrap: wrap;
-            input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+          }
+        }
+      }
+      .drivercards {
+        padding: 0 28px;
+
+        .leftcard {
+          display: none;
+        }
+        .rightcard {
+          position: relative;
+          margin-top: 110px;
+          margin-bottom: 90px;
+          &::before {
+            content: "";
+            background-color: rgba(102, 213, 192, 0.1);
+            position: absolute;
+            width: 51%;
+            height: 33%;
+            top: -50px;
+            left: -60px;
+            border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
+            z-index: -1;
+          }
+        }
+      }
+      .notice,
+      .cancel {
+        margin: 0 32px;
+      }
+    }
+  }
+} // rwd 768 end
+
+@media screen and (max-width: 414px) {
+  .driver {
+    .container {
+      .titlesearchbar {
+        margin-left: 16px;
+        margin-right: 16px;
+        h2 {
+          text-align: center;
+        }
+        .searchbar {
+          .upsection {
+            display: block;
+            img {
               display: none;
-              text-indent: 10px;
-              padding-inline-start: 0;
+            }
+            .place {
+              margin-bottom: 8px;
+            }
+          }
+          .downsection {
+            display: block;
+            .categorycontrol {
+              display: block;
+              margin-bottom: 12px;
+              .category {
+                margin-bottom: 8px;
+              }
             }
           }
         }
+      }
+      .drivercards {
+        .leftcard {
+        }
+        .rightcard {
+          &::before {
+            content: "";
+            width: 74%;
+            height: 18%;
+          }
+          .card {
+            ul {
+              display: block;
+              li {
+                margin-bottom: 60px;
+              }
+            }
+          }
+        }
+      }
+
+      .drivermap {
+        margin-left: 16px;
+        margin-right: 16px;
+        iframe {
+          height: 249px;
+        }
+      }
+
+      .notice,
+      .cancel {
+        margin: 0 16px;
       }
     }
   }

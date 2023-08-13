@@ -13,11 +13,17 @@
   <body>
     <div class="wrapper driver">
       @@include('layout/header.html')
-      <img
-        src="./images/banner/drive/big_drive_banner.svg"
-        alt=""
-        class="driverbgimg"
-      />
+      <picture>
+        <source
+          media="(max-width:414px )"
+          srcset="images/banner/drive/m375-drive.svg"
+        />
+        <source
+          media="(max-width:768px )"
+          srcset="images/banner/drive/m768-drive.svg"
+        />
+        <img src="images/banner/drive/big_drive_banner.svg" alt="" />
+      </picture>
       <div class="container">
         @@include('layout/driverbanner.html')
         <!-- <p>driver</p> -->
