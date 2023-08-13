@@ -49,7 +49,25 @@
       // }
     }
     @media (max-width: 414px) {
-    
+      ul{
+        width: 100%;
+        @include flex(row,space-around,center);
+        li{
+          border-right: 1px solid $gray_1;
+          border-bottom: none;
+          padding: 0 12px;
+          a,svg{
+            display: block;
+            margin: 0 auto;
+          }
+        }
+        li:last-child{
+          border:none;
+        }
+      }
+      .btn_4_border{
+        width: 95%;
+      }
     }
 }
   // ------ 會員右邊欄設定 -------------------------------
