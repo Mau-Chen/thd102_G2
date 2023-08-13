@@ -2,7 +2,6 @@
 .member-main {
   // padding: 100px 32px;
   padding: 100px 0;
-  margin: 0 32px;
   @include flex(row, center, flex-start);
   gap: 32px;
   @media (max-width: 768px) {
