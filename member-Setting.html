@@ -9,8 +9,9 @@
   </head>
 
   <body>
-    <div class="wrapper bg_gray member">
+    <div class="wrapper bg_gray">
       @@include('layout/header.html')
+<<<<<<< HEAD:member-Setting.html
       <div class="wrapper">
         <main class="member-main">
           <!-- <div class="container row"> -->
@@ -18,40 +19,63 @@
             <div class="member-box col-10">
               <div class="personal-info">
                 <p>個人資料</p>
+=======
+
+      <main class="container member-main">
+        @@include("layout/member-sideBar.html")
+
+        <div class="member-box mr-bg col-10 col-lg-9 col-sm-12">
+          <h5 class="">個人資料</h5>
+
+          <!-- 個人資料帶入 -->
+          <form action="" class="personal-info">
+            <div class="pi-box">
+              <div class="pi-box-half">
+                <label for="">姓名</label>
+                <input type="text" placeholder="請輸入姓名" />
+>>>>>>> dev:memberSetting.html
               </div>
-              <div class="name-phone row">
-                <div class="name">
-                  <label for="">姓名</label>
-                  <input type="text" placeholder="請輸入姓名" />
-                </div>
-                <div class="phone">
-                  <label for="">行動電話</label>
-                  <input type="text" placeholder="請輸入行動電話" />
-                </div>
-              </div>
-              <div class="mail-date row">
-                <div class="mail">
-                  <label for="">電子信箱</label>
-                  <input type="text" placeholder="service@tibame.com" />
-                </div>
-                <div class="date">
-                  <label for="">出生日期</label>
-                  <input type="text" placeholder="請選擇" />
-                </div>
-              </div>
-              <div class="address-div">
-                <div class="address">
-                  <label for="">地址</label>
-                  <input type="text" placeholder="請輸入地址" />
-                </div>
-              </div>
-              <div class="udate-info">
-                <button class="btn_5">更新資訊</button>
+              <div class="pi-box-half">
+                <label for="">行動電話</label>
+                <input type="text" placeholder="請輸入行動電話" />
               </div>
             </div>
+<<<<<<< HEAD:member-Setting.html
           <!-- </div> -->
         </main>
       </div>
+=======
+
+            <div class="pi-box">
+              <div class="pi-box-half">
+                <label for="">電子信箱</label>
+                <input
+                  class="email-bg"
+                  type="text"
+                  placeholder="service@tibame.com"
+                />
+              </div>
+              <div class="pi-box-half">
+                <label for="">出生日期</label>
+                <input type="text" placeholder="請選擇" />
+              </div>
+            </div>
+
+            <div class="pi-box">
+              <div class="pi-box-half col-12">
+                <label for="">地址</label>
+                <input type="text" placeholder="請輸入地址" />
+              </div>
+            </div>
+          </form>
+
+          <!-- <div class="udate-info"> -->
+          <button class="btn_5">更新資訊</button>
+          <!-- </div> -->
+        </div>
+      </main>
+
+>>>>>>> dev:memberSetting.html
       @@include('layout/footer.html')
     </div>
   </body>

@@ -1,13 +1,19 @@
 //會員
 .member-main {
-  padding: 100px 32px;
+  // padding: 100px 32px;
+  padding: 100px 0;
+  margin: 0 32px;
   @include flex(row, center, flex-start);
   gap: 32px;
-
+  @media (max-width: 768px) {
+    // padding: 60px 32px;
+    padding: 60px 0;
+    margin: 0 32px;
+  }
   @media (max-width: 414px) {
     flex-direction: column;
     align-items: center;
-    padding: 16px;
+    margin: 0 16px;
   }
   // ------ 會員左邊欄設定 -------------------------------
   .slide-bar {
@@ -78,7 +84,7 @@
     }
     .ol-header {
       font-weight: bold;
-      img {
+      .rotateBtn {
         transform: rotate(180deg);
       }
     }
@@ -86,6 +92,11 @@
       .ol-contentBox {
         @include flex();
         gap: 24px;
+        @media (max-width: 414px) {
+          img {
+            display: none;
+          }
+        }
         .ol-ContText {
           width: 100%;
         }
@@ -175,24 +186,61 @@
       border-top-right-radius: $br_8;
       background-color: $purple;
       color: $white;
-      @include flex();
-      gap: 20px;
+      @include flex($jc: flex-start);
+      gap: 24px;
       padding: 14px 20px;
       p {
         font-weight: bold;
+        width: 100px;
       }
     }
     .post-detail {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       padding: 14px 20px;
       border-left: 1px solid $gray_1;
       border-right: 1px solid $gray_1;
       border-bottom: 1px solid $gray_1;
       .post-date-delete {
         @include flex($jc: space-between);
+        width: 100%;
       }
     }
+    // ------ 個人資料 ------
+    .personal-info {
+      @include flex(column, normal, normal);
+      gap: 24px;
+      margin: 36px 0;
+      .pi-box {
+        display: flex;
+        gap: 24px;
+        @media (max-width: 414px) {
+          flex-direction: column;
+        }
+        .pi-box-half {
+          width: 100%;
+          label {
+            display: block; /* 讓label顯示為區塊元素 */
+            margin-bottom: 4px;
+            font-weight: 500;
+          }
+          input {
+            width: 100%;
+            height: 48px;
+            padding: 0 12px;
+            border-radius: $br_8;
+            border: 1px solid $gray_1;
+          }
+          ::placeholder {
+            color: $textColor_l;
+          }
+          .email-bg {
+            background: $gray_4;
+          }
+        }
+      }
+    }
+<<<<<<< HEAD
   }
 
   // setting
@@ -245,12 +293,15 @@
   }
 
   .udate-info {
+=======
+>>>>>>> dev
     .btn_5 {
-      margin: 0 auto;
       width: 144px;
-      color: $white;
-      background-color: $purple;
       border: none;
+      margin: auto;
+      @media (max-width: 414px) {
+        width: 100%;
+      }
     }
   }
 }
