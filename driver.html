@@ -13,18 +13,29 @@
   <body>
     <div class="wrapper driver">
       @@include('layout/header.html')
-      <img
+      <picture>
+        <source
+          media="(max-width:414px )"
+          srcset="images/banner/drive/m375-drive.svg"
+        />
+        <source
+          media="(max-width:768px )"
+          srcset="images/banner/drive/m768-drive.svg"
+        />
+        <img src="images/banner/drive/big_drive_banner.svg" alt="" />
+      </picture>
+      <!-- <img
         src="./images/banner/drive/big_drive_banner.svg"
         srcset="
-          images/banner/drive/m375-drive.svg 100%,
-          images/banner/drive/m768-drive.svg 100%
-          images/banner/drive/big_drive_banner.svg 100%
+          ./images/banner/drive/m375-drive.svg 100%,
+          ./images/banner/drive/m768-drive.svg 100%
+          ./images/banner/drive/big_drive_banner.svg 100%
         "
         sizes="(max-width: 375px) 100%,
                (max-width: 768px) 100%"
         alt=""
         class="driverbgimg"
-      />
+      /> -->
       <div class="container">
         @@include('layout/driverbanner.html')
         <!-- <p>driver</p> -->

@@ -1,18 +1,15 @@
 //會員
 .member-main {
-  // padding: 100px 32px;
-  padding: 100px 0;
+  padding: 100px 32px;
   @include flex(row, center, flex-start);
   gap: 32px;
   @media (max-width: 768px) {
-    // padding: 60px 32px;
-    padding: 60px 0;
-    margin: 0 32px;
+    padding: 60px 32px;
   }
   @media (max-width: 414px) {
     flex-direction: column;
     align-items: center;
-    margin: 0 16px;
+    padding: 60px 16px;
   }
   // ------ 會員左邊欄設定 -------------------------------
   .slide-bar {

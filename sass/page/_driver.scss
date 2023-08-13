@@ -166,12 +166,14 @@
       .titlesearchbar {
         margin: -161px 32px 60px 32px;
         .searchbar {
-          .upsection {
-            outline: 1px solid palegreen;
-          }
           padding: 32px;
           .downsection {
-            outline: 1px solid blue;
+            .categorycontrol {
+              .category {
+                display: inline-block;
+                gap: 16px;
+              }
+            }
             flex-wrap: wrap;
             input[type="datetime-local"]::-webkit-calendar-picker-indicator {
               display: none;
@@ -179,24 +181,6 @@
               padding-inline-start: 0;
             }
           }
-        }
-      }
-      .drivercards {
-        display: block;
-        position: relative;
-
-        .leftcard {
-          .filter {
-            z-index: -1;
-          }
-          height: 343px;
-          span {
-            display: none;
-          }
-        }
-        .rightcard {
-          position: absolute;
-          top: 0;
         }
       }
     }
