@@ -1,16 +1,16 @@
 // 購物車
 .shopping {
 
-    .shopping_container {
+    //步驟區塊
+    .spStep_bg {
         @include flex();
-        height: 167px;
+        height: 169px;
         background-color: $white;
 
-        //步驟塊
-        .shipping_step_box {
+        .spStep_box {
             @include flex(row, space-between);
 
-            .shipping_step {
+            .spStep {
                 p {
                     text-align: center;
                     margin: 0;
@@ -19,7 +19,7 @@
                     font-size: 18px;
                 }
 
-                .shipping_step_number {
+                .spStep_number {
                     @include flex();
                     margin-bottom: 11px;
 
@@ -35,15 +35,15 @@
                 }
             }
         }
+
+        //步驟區塊END
     }
 
     //購物車內頁（想替換的內容）
-    .shoppingMain_bg {
-        // @include layout(100);
-        // background-color: $gray_2;
+    .spMain_bg {
         padding-top: 100px;
 
-        .shoppingMian_title {
+        .spMian_title {
             @include layout(1200);
             font-weight: 700;
             padding-bottom: 32px;
@@ -57,14 +57,15 @@
             }
         }
 
-        .shoppingMain {
+        .spMain {
             @include layout(1200);
             @include flex(row, center, flex-start);
             gap: 32px;
             margin-bottom: 48px;
 
+            //===共用區域===
             //白底區塊
-            .shopping_card {
+            .spCard {
                 background-color: $white;
                 border-radius: $br_12;
                 padding: 24px;
@@ -91,9 +92,14 @@
                         left: 6px;
                         width: 8px;
                         height: 14px;
-                        border: solid $black;
+                        border: solid $white;
                         border-width: 0 2px 2px 0;
                         transform: rotate(45deg) translateY(-3px);
+                    }
+
+                    &:checked+label::before {
+                        background-color: $purple;
+                        border: none;
                     }
                 }
 
@@ -111,13 +117,13 @@
                         width: 24px;
                         height: 24px;
                         cursor: pointer;
-                        border-radius: 2px;
-                        margin-right: 12px;
-                        flex-shrink: 0;
+                        border-radius: 3px;
+                        margin-right: 24px;
+                        // flex-shrink: 0;
                     }
                 }
 
-                .shoppingCardup {
+                .spCard_up {
                     display: flex;
                     gap: 20px;
                     padding-bottom: 32px;
@@ -130,14 +136,13 @@
             }
 
             //左半
-            .shoppingMain_left {
-                .shopping_buy_text {
+            .spMain_left {
+                .spBuy_text {
                     width: 100%;
+                    margin-left: 48px;
 
-                    .shopping_list_up {
+                    .spList_up {
                         @include flex(row, space-between);
-                        // display: flex;
-                        // justify-content: space-between;
                         margin-bottom: 16px;
 
                         h6 {
@@ -145,65 +150,23 @@
                         }
                     }
 
-                    .shopping_list_down {
-                        display: flex;
-                        gap: 10px;
-                        text-align: center;
-                        align-items: center;
-                        flex-wrap: wrap;
+                    .spList_down {
+                        display: block;
 
                         p {
                             text-align: left;
+                            margin-bottom: 4px;
                         }
                     }
                 }
 
-                //叫車
-                .shoppingDriver {
-                    .shopping_list_down {
-                        p {
-                            &:first-child {
-                                &::after {
-                                    content: "|";
-                                    position: absolute;
-                                    transform: translate(10px, -1px);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //旅宿
-                .shoppingHostel {
-                    .shopping_list_down {
-                        p {
-                            &:first-child {
-                                &::after {
-                                    content: "-";
-                                    position: absolute;
-                                    transform: translate(8px, -1px);
-                                }
-                            }
-
-                            &:last-child {
-                                &::before {
-                                    content: "|";
-                                    position: absolute;
-                                    transform: translate(-17px, -1px);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //小計
-                .shoppingSubtotal {
+                //小計區塊
+                .spSubtotal {
                     padding-top: 32px;
                     text-align: end;
-
                     @include flex(row, end);
 
-                    .shoppingStepper {
+                    .spStepper {
                         @include flex();
                         gap: 4px;
 
@@ -215,7 +178,8 @@
                             width: 32px;
                         }
 
-                        .shoppingSubtotal_icon {
+                        //數量增減
+                        .spSubtotal_icon {
                             border: 1px solid $black;
                             width: 32px;
                             height: 32px;
@@ -230,20 +194,67 @@
                                 height: 10px;
                                 transform: translate(10px, 10px);
                             }
-
                         }
                     }
 
+                    //小計金額
                     p {
                         font-weight: 700;
                         font-size: 24px;
+                        margin-left: 32px;
+                    }
+                }
+                //小計區塊結束
+
+
+                //訂購人資料頁共用checkbox
+                .spOrder_check {
+                    label {
+                        &::before {
+                            margin-right: 12px;
+                        }
+                    }
+                }
+
+                //訂購人資料
+                .spOrderman {
+                    p {
+                        display: block;
+                        margin-bottom: 4px;
+
+                        span {
+                            color: #D63900;
+                        }
+                    }
+
+                    input[type="text"],
+                    textarea {
+                        width: 100%;
+                        outline: none;
+                        border: 1px solid $gray_1;
+                        border-radius: $br_8;
+                        padding: 6px 12px;
+                        margin-bottom: 24px;
+                        resize: none;
+                    }
+
+                    .sameMember {
+                        margin-bottom: 24px;
+                        position: relative;
+
+                        input[type="checkbox"] {
+                            height: 16px;
+                            width: 20%;
+                        }
                     }
                 }
             }
 
+            //左半結束
+
             //總計
-            .shoppingMain_right {
-                .shoppingOrder_total {
+            .spMain_right {
+                .spTotal {
                     @include flex(row, space-between);
 
                     p {
@@ -251,9 +262,10 @@
                     }
                 }
 
-                .shopping_next {
+                .spNext {
                     border: none;
                     outline: none;
+                    width: 100%;
                 }
             }
         }
