@@ -2,8 +2,8 @@
 <div id="ModalPage">
     <!-- 此處為用@click綁定事件，用data中的"ispop"資料，來控制燈箱跳出
         如果要綁定在其它物件上，只要打上@click這條即可觸發。 -->
-    <button type="button" @click="ispop = true; changePage(0)">
-        觸發燈箱</button>
+    <div type="button" @click="ispop = true; changePage(0)" class="btn_4">
+        登入</div>
     <!-- 用v-if來渲染出燈箱畫面，此處的v-if渲染內容為燈箱主體，不可更動。 -->
     <div v-if="ispop === true" class="lightbox">
         <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
