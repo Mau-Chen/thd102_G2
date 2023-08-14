@@ -48,40 +48,39 @@
         }
       }
     }
-  }
 
-  .point-hotel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-
-    .cards_item {
+    .point-hotel {
       display: flex;
-      width: 1200px;
+      flex-direction: column;
       align-items: flex-start;
-      gap: 33px;
-    }
-    .card {
-      border: 1px solid #e0e0e0;
-      border-radius: $br_12;
-      height: 243px;
-      padding: 1px;
-      flex: 1 0 0;
-      overflow: hidden;
-      .card_content {
-        padding: 19px 17px 20px 12px;
-        .p {
-          font-size: $fontsize;
-          font-weight: 600;
-        }
-        span {
-          font-size: 14px;
+      gap: 40px;
+
+      .cards_item {
+        display: flex;
+        width: 1200px;
+        align-items: flex-start;
+        gap: 33px;
+      }
+      .card {
+        border: 1px solid #e0e0e0;
+        border-radius: $br_12;
+        height: 243px;
+        padding: 1px;
+        flex: 1 0 0;
+        overflow: hidden;
+        .card_content {
+          padding: 19px 17px 20px 12px;
+          .p {
+            font-size: $fontsize;
+            font-weight: 600;
+          }
+          span {
+            font-size: 14px;
+          }
         }
       }
     }
   }
-
   // GO旅宿-hostel-booking
 
   .hotel-booking {
@@ -120,7 +119,7 @@
     }
   }
 
-  // GO旅宿-hostel-booking_Detail
+  // GO旅宿-hostel-booking_detail
 
   .d_seach-out {
     background-color: $purple_d;
@@ -168,43 +167,120 @@
 
   .container {
     overflow: hidden;
-
     .carousel {
-      background-color: #e0891f;
       flex-shrink: 0;
       margin: 0 auto;
       .pic {
+        gap: 20px;
         display: flex;
         justify-content: center;
       }
     }
-    .name{
+    .name {
       display: flex;
-      .star{
+      .star {
         display: flex;
       }
     }
-    .address{
+    .address {
       display: flex;
       font-size: 20px;
-      gap:4px;
+      gap: 4px;
       margin-bottom: 12px;
-      color:#333;
+      color: #333;
     }
-    .info{
-      color:#555;
+    .info {
+      color: #555;
     }
-  }
 
-  .system{
-    .sys_txt{
-      margin-bottom: 20px;
-    }
-    .outline{
-      .icon_out{
-        display: flex;
+    .system {
+      .sys_txt {
+        margin-bottom: 20px;
+      }
+      .outline {
+        padding: 24px 20px;
+        border-radius: 12px;
+        border: 1px solid $gray_1;
+        .icon_out {
+          display: flex;
+          justify-content: space-evenly;
+          .icon {
+            width: 94px;
+            height: 94px;
+            border-radius: $br_12;
+            padding: 30px 20px;
+            background: rgba(110, 96, 246, 0.12);
+          }
+        }
       }
     }
+    .allroom {
+      .dog-room {
+        border-radius: $br_12;
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        font-size: 30px;
+        h5 {
+          margin-bottom: 14px;
+        }
+      }
+      .detail {
+        display: flex;
+        .leftimg {
+          border-radius: $br_12;
+        }
+        .d_info {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          .info-left {
+            width: 327px;
+            font-size: $fontsize;
+            margin-bottom: 24px;
+            .i-title p {
+              color: $black;
+              padding: 8px 16px;
+              background-color: $gray_2;
+            }
+            .i-text p {
+              padding: 20px 16px;
+            }
+            .i-memo {
+              padding: 0 20px;
+              gap: 8px;
+              color: $black;
+              display: flex;
+            }
+          }
+          // 右邊狗狗體型
+          .info-right {
+            width: 327px;
+            font-size: $fontsize;
+            margin-bottom: 24px;
+            .i-title p {
+              color: $black;
+              padding: 8px 16px;
+              background-color: $gray_2;
+            }
+            .i-text p {
+              padding: 20px 16px;
+            }
+            .i-memo {
+              padding: 0 20px;
+              gap: 8px;
+              color: $black;
+              display: flex;
+            }
+          }
+          .addproduct {
+            width: 666px;
+            border-top: 1px solid $gray_1
+          }
+        }
 
+        // 貓套房
+      }
+    }
   }
 }
