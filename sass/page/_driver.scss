@@ -10,11 +10,15 @@
     margin: 0 auto;
 
     .titlesearchbar {
+      position: relative;
       //   outline: 1px solid red;
+      @include flex(column, space-around, null);
       margin-top: -161px;
       margin-bottom: 100px;
-      h2 {
-        color: #126c86;
+      .drivertitle {
+        h2 {
+          color: #126c86;
+        }
       }
 
       // h2 {
@@ -26,7 +30,7 @@
         padding: 40px 50px;
         border-radius: 16px;
         background-color: $white;
-        position: relative;
+        // position: relative;
         /* Drop Shadow */
         box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
         .upsection {
@@ -220,11 +224,17 @@
 @media screen and (max-width: 414px) {
   .driver {
     .container {
+      position: relative;
       .titlesearchbar {
         margin-left: 16px;
         margin-right: 16px;
-        h2 {
-          text-align: center;
+        .drivertitle {
+          position: absolute;
+          top: -240px;
+          left: 80px;
+          h2 {
+            text-align: center;
+          }
         }
         .searchbar {
           .upsection {
