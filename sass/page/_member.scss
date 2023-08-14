@@ -106,6 +106,7 @@
       }
     }
     .ol-content {
+      display: none;
       .ol-contentBox {
         @include flex();
         gap: 24px;
@@ -126,6 +127,7 @@
       border-top: 1px solid $gray_1;
       border-bottom: 1px solid $gray_1;
       padding: 24px 0;
+      display: none;
     }
     .ol-count {
       span {
@@ -134,6 +136,7 @@
       }
     }
     .ol-total {
+      display: none;
       .ol-count span {
         font-size: 28px;
       }
@@ -145,6 +148,11 @@
           color: #d63900;
         }
       }
+    }
+    .active > .ol-content, 
+    .active > .ol-money, 
+    .active > .ol-total {
+        display: block;
     }
     .btn_4_border {
       width: 144px;
