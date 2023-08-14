@@ -35,11 +35,17 @@ footer {
       p {
         width: auto;
         text-align: center;
+        font-size: 14px;
       }
     }
   }
   .boxLine {
     padding-top: 32px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    @media (max-width: 414px) {
+      p {
+        order: 2;
+      }
+    }
   }
 }
