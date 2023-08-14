@@ -22,6 +22,7 @@
 // layout
 @import "layout/body";
 @import "layout/login";
+@import "layout/doing"; ///開發中使用
 
 // page
 @import "page/index";
@@ -33,9 +34,7 @@
 @import "page/faq";
 @import "page/about";
 
-
-
 // plugin
-.bg_gray{
-    background-color: $gray_4;
+.bg_gray {
+  background-color: $gray_4;
 }
