@@ -1,5 +1,45 @@
 footer {
   @include layout(100);
-  background: #bab3ff;
-  height: 340px;
+  background: $purple;
+  color: $white;
+  padding: 64px 120px;
+  @media (max-width: 1000px) {
+    padding: 64px 32px;
+  }
+  @media (max-width: 414px) {
+    padding: 64px 20px;
+  }
+  .footer_container {
+    @include flex(column, center, stretch);
+    gap: 32px;
+  }
+  .f_box {
+    @include flex(row, space-between);
+    ul {
+      @include flex(row, space-between);
+      gap: 28px;
+      a {
+        font-weight: bold;
+        color: $white;
+      }
+    }
+    p {
+      width: 360px;
+    }
+    @media (max-width: 414px) {
+      flex-direction: column;
+      gap: 24px;
+      ul {
+        gap: 20px;
+      }
+      p {
+        width: auto;
+        text-align: center;
+      }
+    }
+  }
+  .boxLine {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
 }

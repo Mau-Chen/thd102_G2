@@ -5,7 +5,7 @@ header {
   @media (max-width: 1000px) {
     padding: 20px 32px;
   }
-  @media (max-width: 375px) {
+  @media (max-width: 414px) {
     padding: 20px;
   }
   @include layout(100);
@@ -17,6 +17,9 @@ header {
     font-weight: 700;
     gap: 36px;
     // font-family: "poppins", "Noto Sans TC";
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   .btn_4 {
     padding: 0 40px;
@@ -25,46 +28,165 @@ header {
     display: none;
   }
 
-  // hamburger
-  .nav-toggler {
-    display: block;
-    width: 36px;
-    height: 36px;
-    background-color: $purple;
-    border-radius: 100%;
-  }
-  .ham {
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 400ms;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  .hamRotate.active {
-    transform: rotate(45deg);
-  }
-  .hamRotate180.active {
-    transform: rotate(180deg);
-  }
-  .line {
-    fill: none;
-    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-    stroke: #333;
-    stroke-width: 5.5;
-    stroke-linecap: round;
-  }
-  .ham4 .top {
-    stroke-dasharray: 40 121;
-  }
-  .ham4 .bottom {
-    stroke-dasharray: 40 121;
-  }
-  .ham4.active .top {
-    stroke-dashoffset: -68px;
-  }
-  .ham4.active .bottom {
-    stroke-dashoffset: 120px;
+  // --------------------- hamburger ---------------------
+  .hamburgerList {
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+      justify-content: flex-end;
+      gap: 60px;
+    }
+    .l-header {
+      .l-header__hambuger {
+        position: absolute; /* 將漢堡選單設置為絕對定位，以相對於 l-header 位置 */
+        top: 0;
+        right: 0;
+        z-index: 2;
+
+        .hambuger {
+          position: absolute;
+          width: 100%;
+
+          .hambuger__icon {
+            position: absolute;
+            top: 20px;
+            right: 32px;
+            width: 36px;
+            height: 36px;
+            // background: #eee;
+            border-radius: 50%;
+            z-index: 2;
+            transition: 0.8s ease;
+            @media (max-width: 414px) {
+              top: 17.5px;
+              right: 30px;
+            }
+            @media (max-width: 375px) {
+              right: 20px;
+            }
+            // ---------------- 漢堡打開後的樣式       ----------------
+            &.is-open {
+              background: #fafafa;
+            }
+            &:hover {
+              transition: 0.4s ease-out;
+              transform: scale(0.85);
+            }
+            // ---------------- 漢堡打開後的樣式  結束線 ----------------
+            .lines {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              left: 0;
+              margin: auto;
+              width: 30px;
+              height: 25px;
+
+              .line {
+                position: absolute;
+                width: 12px;
+                height: 1.8px;
+                border-radius: 3px;
+                background: #fff;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+
+                &.line--top {
+                  top: 10px;
+                }
+
+                &.line--bottom {
+                  bottom: 9px;
+                }
+              }
+            }
+          }
+          .hambuger__icon.is-open {
+            .lines .line {
+              background: #333; /* 當展開時，將線的顏色設為黑色 */
+            }
+          }
+
+          .hambuger__body {
+            position: absolute;
+            width: 100%;
+            // z-index: 1;
+            .bg {
+              top: 38px;
+              right: 50px;
+              position: absolute;
+              z-index: 1;
+              @media (max-width: 414px) {
+                top: 36px;
+                right: 48px;
+              }
+              @media (max-width: 375px) {
+                right: 38px;
+              }
+            }
+
+            .body {
+              position: absolute;
+              z-index: 2;
+              display: none;
+              position: absolute;
+              top: calc(50vh - 292px);
+              right: calc(50vw - 125px);
+              color: $gray_4;
+              @media (max-width: 375px) {
+                top: calc(50vh - 230px);
+              }
+
+              .menu-list {
+                width: 250px;
+
+                .item {
+                  opacity: 0;
+                  transform: translateY(40px);
+                  position: relative;
+                  margin-top: 28px;
+                  transition: 0.4s ease-out;
+                  &:first-child {
+                    margin-top: 0;
+                  }
+                  &:hover {
+                    opacity: 0.4 !important;
+                  }
+
+                  .title {
+                    .en {
+                      font-size: 28px;
+                      display: block;
+                      margin-bottom: 10px;
+                      font-weight: 500;
+                      @media (max-width: 414px) {
+                        font-size: 24px;
+                      }
+                    }
+
+                    .ja {
+                      font-size: 12px;
+                      display: block;
+                      letter-spacing: 0.05em;
+                      opacity: 0.6;
+                    }
+                  }
+
+                  .link {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

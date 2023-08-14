@@ -2,32 +2,10 @@
   <a href="index.html">
     <img src="/images/logo/PetpaGo-logo.svg" alt="PetpaGo logo" />
   </a>
-
-  <!-- hamburger nav-toggler -->
-  <!-- <div class="nav-toggler">
-    <svg
-      class="ham hamRotate ham4"
-      viewBox="0 0 100 100"
-      width="36"
-      onclick="this.classList.toggle('active')"
-    >
-      <path
-        class="line top"
-        d="m 70,40 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"
-      />
-      <path class="line middle" d="m 70,50 h -40" />
-      <path
-        class="line bottom"
-        d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"
-      />
-    </svg>
-  </div> -->
-  <!-- hamburger end -->
-
   <ul class="navList col-10">
-    <li>GO旅宿</li>
-    <li>GO司機</li>
-    <li>GO有料</li>
+    <li><a href="hostel.html">GO旅宿</a></li>
+    <li><a href="driver.html">GO司機</a></li>
+    <li><a href="#">GO有料</a></li>
     <li><img src="/images/icon/header-icon/shoop.svg" alt="shopCar" /></li>
     <li>@@include('login.html')</li>
     <li class="userIcon">
@@ -46,4 +24,203 @@
       <!-- <img src="/images/icon/header-icon/user-icon.svg" alt="" /> -->
     </li>
   </ul>
+
+  <!-- hamburger -->
+  <div class="hamburgerList col-10">
+    <img src="/images/icon/header-icon/shoop.svg" alt="shopCar" />
+
+    <div class="l-header">
+      <div class="l-header__hambuger">
+        <div class="hambuger js-click">
+          <div class="hambuger__icon">
+            <div class="lines">
+              <div class="line line--top"></div>
+              <div class="line line--bottom"></div>
+            </div>
+          </div>
+
+          <div class="hambuger__body">
+            <div class="bg" id="hambugerBg"></div>
+            <div class="body" id="hambugerBody">
+              <ul class="menu-list">
+                <li class="item">
+                  <p class="title">
+                    <img
+                      src="/images/logo/PetpaGo-whiteLogo.svg"
+                      alt="logo"
+                      width="150px"
+                    />
+                    <!-- <span class="en">Top</span>
+                    <span class="ja">回首頁</span> -->
+                  </p>
+                  <a class="link" href="/"></a>
+                </li>
+
+                <li class="item">
+                  <p class="title">
+                    <span class="en">Go旅宿</span>
+                    <span class="ja">你出國 毛小孩也度假去</span>
+                  </p>
+                  <a class="link" href="hostel.html"></a>
+                </li>
+
+                <li class="item">
+                  <p class="title">
+                    <span class="en">Go司機</span>
+                    <span class="ja">無縫接送毛小孩</span>
+                  </p>
+                  <a class="link" href="driver.html"></a>
+                </li>
+
+                <li class="item">
+                  <p class="title">
+                    <span class="en">Go有料</span>
+                    <span class="ja">hiHi 我們一家毛</span>
+                  </p>
+                  <a class="link" href="#"></a>
+                </li>
+
+                <li class="item">
+                  <p class="title">
+                    <span class="en">會員中心</span>
+                    <span class="ja">累計點數 賺回饋goGo</span>
+                  </p>
+                  <a class="link" href="member.html"></a>
+                </li>
+                <!-- <li class="item">
+                  <p class="title">
+                    <span class="en">Login</span
+                    ><span class="ja">ニュース</span>
+                  </p>
+                  <a class="link" href="/#news"></a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js"></script>
+<script>
+  class Hambuger {
+    constructor() {
+      window.pc = true;
+
+      let shapePhilosophy = new mojs.Shape({
+        parent: document.getElementById("hambugerBg"),
+        shape: "circle",
+        radius: window.pc ? 20 : 20,
+        // angle: 30,
+        fill: "#6e60f6",
+        opacity: 1,
+        isShowStart: true,
+      });
+
+      let hambugerIcon = document.getElementsByClassName("hambuger__icon")[0];
+      let lineTop = document.getElementsByClassName("line--top")[0];
+      let lineBottom = document.getElementsByClassName("line--bottom")[0];
+      let menuBody = document.getElementById("hambugerBody");
+      let items = menuBody.querySelectorAll(".item");
+
+      hambugerIcon.addEventListener("click", () => {
+        hambugerIcon.classList.toggle("is-open");
+        if (hambugerIcon.classList.contains("is-open")) {
+          shapePhilosophy.then({
+            scale: window.pc ? 80 : 40,
+            duration: 600,
+            // opacity: 1,
+            easing: "expo.out",
+          });
+          menuBody.style.display = "block";
+          TweenMax.staggerTo(
+            items,
+            0.3,
+            {
+              opacity: 1,
+              y: 0,
+              delay: 0.2,
+              ease: Power2.easeOut,
+            },
+            0.075
+          );
+          TweenMax.to(lineTop, 0.4, {
+            y: 2,
+            ease: Power4.easeOut,
+            onComplete: () => {
+              TweenMax.to(lineTop, 0.4, {
+                rotation: 45,
+                transformOrigin: "center center",
+                ease: Power4.easeOut,
+              });
+            },
+          });
+          TweenMax.to(lineBottom, 0.4, {
+            y: -2,
+            transformOrigin: "left top",
+            ease: Power4.easeOut,
+            onComplete: () => {
+              TweenMax.to(lineBottom, 0.4, {
+                rotation: -45,
+                transformOrigin: "center center",
+                ease: Power4.easeOut,
+              });
+            },
+          });
+          // 禁用捲軸
+          document.body.style.overflow = "hidden";
+        } else {
+          shapePhilosophy.then({
+            scale: 1,
+            duration: 400,
+            delay: 300,
+            easing: "expo.out",
+          });
+          TweenMax.staggerTo(
+            items,
+            0.2,
+            {
+              opacity: 0,
+              y: "20px",
+              onComplete: () => {
+                menuBody.style.display = "none";
+              },
+            },
+            0.01
+          );
+          TweenMax.to(lineTop, 0.4, {
+            rotation: 0,
+            transformOrigin: "center center",
+            ease: Power4.easeOut,
+            onComplete: () => {
+              TweenMax.to(lineTop, 0.4, {
+                y: 0,
+                ease: Power4.easeOut,
+              });
+            },
+          });
+          TweenMax.to(lineBottom, 0.4, {
+            rotation: 0,
+            transformOrigin: "center center",
+            ease: Power4.easeOut,
+            onComplete: () => {
+              TweenMax.to(lineBottom, 0.4, {
+                y: 0,
+                transformOrigin: "left top",
+                ease: Power4.easeOut,
+              });
+            },
+          });
+          // 啟用捲軸
+          document.body.style.overflow = "auto";
+        }
+        shapePhilosophy.play();
+      });
+    }
+  }
+
+  new Hambuger();
+</script>
