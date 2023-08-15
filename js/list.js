@@ -69,7 +69,7 @@ export default{
     `,
     data(){
         return {
-            isOpen: new Array(this.tasks.length).fill(false)
+            isOpen: [true].concat(new Array(this.tasks.length - 1).fill(false))
         }
     },
     methods : {
