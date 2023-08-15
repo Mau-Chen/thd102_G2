@@ -12,12 +12,57 @@
   </head>
 
   <body>
-    <div class="wrapper index noSave404">
+    <div class="wrapper index">
       @@include('layout/header.html')
-      <div class="container">
-        @@include('layout/doing.html') @@include('layout/ad.html')
+
+      <div class="banner">
+        <div class="banner_text col-3">
+          <h1>
+            PetpaGO <br />
+            安心出門GO
+          </h1>
+          <p>
+            PetpaGo精心挑選的寄宿場所，提供舒適安心的住宿環境，且擁有寵物友善司機團隊，為您的寵物提供安全又便利的接送服務。
+          </p>
+        </div>
+        <img src="/images/banner/index_banner.svg" alt="happyBanner" />
       </div>
-      @@include('layout/footer.html')
+
+      <section class="container">
+        <div class="entrance">
+          <div class="ent_box">
+            <img src="/images/illustration/goHostel.svg" alt="Go旅宿" />
+            <h3>GO旅宿</h3>
+            <p>全方位寵物旅宿服務 讓您出門旅行無憂</p>
+            <a href="">Let’s Go</a
+            ><img
+              src="/images/icon/components-icon/arrow-right-purple.svg"
+              alt="arrow"
+            />
+          </div>
+          <div class="ent_box col-sm-12">
+            <img src="images/illustration/goDrive.svg" alt="GO司機" />
+            <h3>GO司機</h3>
+            <p>帶著牠，說走就走 一起暢遊城市！</p>
+            <a href="">Let’s Go</a
+            ><img
+              src="/images/icon/components-icon/arrow-right-purple.svg"
+              alt="arrow"
+            />
+          </div>
+          <div class="ent_box col-sm-12">
+            <img src="/images/illustration/goWrapper.svg" alt="GO有料" />
+            <h3>GO有料</h3>
+            <p>在社群中分享寵物的照片 紀錄美好時刻</p>
+            <a href="">Let’s Go</a
+            ><img
+              src="/images/icon/components-icon/arrow-right-purple.svg"
+              alt="arrow"
+            />
+          </div>
+        </div>
+      </section>
+      @@include('layout/ad.html') @@include('layout/footer.html')
     </div>
   </body>
 </html>

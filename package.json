@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sexfat/thd102.git"
+    "url": "git+https://github.com/Mau-Chen/THD102_git.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sexfat/thd102/issues"
+    "url": "https://github.com/Mau-Chen/THD102_git/issues"
   },
-  "homepage": "https://github.com/sexfat/thd102#readme",
+  "homepage": "https://github.com/Mau-Chen/THD102_git#readme",
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",

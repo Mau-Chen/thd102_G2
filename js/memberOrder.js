@@ -39,8 +39,6 @@ const app = Vue.createApp({
                 OrderDate: '2023年5月31日',
                 reduce: 30,
                 OrderList: [{
-                    price: '900'
-                },{
                     price: '1200'
                 }]
             }]
