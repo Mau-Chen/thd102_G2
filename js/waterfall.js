@@ -6,7 +6,18 @@ export default {
     <div v-for="item in column" :key="item.id" class="waterfall-item">
       <img :src="item.image" @load="onImageLoad(item)" alt="Item Image">
       <div class="fallBottom">
-        <p>{{ item.text }}</p>
+        <div class="postIcon">
+          <img :src="item.icon">
+        </div>
+        <div class="function_btn_group">
+          <div class="more">
+            <img src="../images/icon/photowall-icon/love-circle.svg">
+          </div>
+          <div class="more">
+            <img src="../images/icon/photowall-icon/bb-circle.svg">
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
