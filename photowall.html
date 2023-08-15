@@ -39,6 +39,7 @@
       background: rgba(51, 51, 51, 0.40);
       height: 76px;
       width: 100%;
+      padding: 20px;
     }
   </style>
 </head>
@@ -47,7 +48,8 @@
   <div class="wrapper photowall">
     @@include('layout/header.html')
     <div class="container" id="photofall">
-      <photo-fall></photo-fall>
+      <photo-fall
+        :items="items"></photo-fall>
     </div>
     @@include('layout/footer.html')
   </div>
