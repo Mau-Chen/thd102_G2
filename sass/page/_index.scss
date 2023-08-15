@@ -1,3 +1,17 @@
 //首頁
 .index {
+  .banner {
+    padding-top: 20px;
+    background: #955ffd;
+    @include flex(row, space-between);
+    .banner_text {
+      color: $white;
+      margin-left: 7.5em;
+    }
+  }
+
+  .entrance {
+    @include flex();
+    gap: 40px;
+  }
 }

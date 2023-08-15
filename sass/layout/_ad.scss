@@ -8,6 +8,22 @@
     background: $gray_4;
     border-radius: $br_12;
     padding: 32px;
+    h6 {
+      margin-bottom: 4px;
+    }
+    .blockOn414 {
+      display: none;
+    }
+    @media (max-width: 414px) {
+      flex-direction: column;
+      text-align: center;
+      .nonekOn414 {
+        display: none;
+      }
+      .blockOn414 {
+        display: block;
+      }
+    }
   }
   @media (max-width: 768px) {
     flex-direction: column;
