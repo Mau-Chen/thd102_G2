@@ -6,8 +6,8 @@ export default{
         v-for="(task, index) in tasks"
         :key="index">
                         <div>
-                            <div class="listHead">
-                                <div>
+                            <div class="listHead ol-header mb_24 jcSb">
+                                <div class="ol-headText">
                                     <p>訂單日期：{{ task.OrderDate }}</p>
                                     <p>訂單編號：{{ task.OrderId }}</p>
                                 </div>
