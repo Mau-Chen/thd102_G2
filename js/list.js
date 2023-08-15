@@ -12,8 +12,8 @@ export default{
                                     <p>訂單編號：{{ task.OrderId }}</p>
                                 </div>
                                 <div class="listHead2">
-                                    <div v-if="isOpen == false">
-                                        <p>NT$<span>3700</span></p>
+                                    <div v-if="!isOpen[index]">
+                                        <p>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c) }}</p>
                                     </div>
                                     <div class="arrowIcon" @click="open(index)" :class="{ active: isOpen[index] }">
                                         <img src="images/icon/components-icon/faqbt-circle.svg" alt="">
@@ -23,7 +23,9 @@ export default{
                             <div v-if="isOpen[index]">
                                 <!-- 清單部分 -->
                                 <ul>
-                                    <li class="listContent">
+                                    <li 
+                                        v-for="(Order, index) in task.OrderList"
+                                        class="listContent">
                                         <div class="col-2">
                                             <img src="./images/pic/shop/goShop01.png" alt="">
                                         </div>
@@ -34,7 +36,7 @@ export default{
                                             </div>
                                             <div class="listBottom">
                                                 <p>轎車</p>
-                                                <p>NT$<span>300</span></p>
+                                                <p>NT$<span>{{ Order.price }}</span></p>
                                             </div>
                                         </div>
                                     </li>
@@ -42,16 +44,16 @@ export default{
                                 <!-- 折扣部分 -->
                                 <div class="count">
                                     <p><span>3</span>件合計</p>
-                                    <p>NT$<span>5,100</span></p>
+                                    <p>NT$<span>{{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c) }}</span></p>
                                 </div>
                                 <div class="count">
                                     <p>Pet Points 折抵</p>
-                                    <p>-NT$ <span>30</span></p>
+                                    <p>-NT$ {{ task.reduce }}</p>
                                 </div>
                                 <br>
                                 <div class="count">
                                     <p>總計</p>
-                                    <p>NT$ <span>5,070</span></p>
+                                    <p>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce }}</p>
                                 </div>
                                 <div class="count2">
                                     <img src="images/icon/member-icon/black-points.svg" alt="">

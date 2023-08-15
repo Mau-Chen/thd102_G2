@@ -4,17 +4,45 @@ const app = Vue.createApp({
     data(){
         return {
             tasks: [{
-                OrderId: 'PT0001',
-                OrderDate: '2023年7月30日'
-            },{
-                OrderId: 'PT0002',
-                OrderDate: '2023年7月31日'
+                OrderId: 'PT0004',
+                OrderDate: '2023年8月4日',
+                reduce: 30,
+                OrderList: [{
+                    price: '300'
+                },{
+                    price: '800'
+                }]
             },{
                 OrderId: 'PT0003',
-                OrderDate: '2023年8月1日'
+                OrderDate: '2023年7月30日',
+                reduce: 30,
+                OrderList: [{
+                    price: '1200'
+                },{
+                    price: '800'
+                },{
+                    price: '800'
+                }]
             },{
-                OrderId: 'PT0004',
-                OrderDate: '2023年8月2日'
+                OrderId: 'PT0002',
+                OrderDate: '2023年7月24日',
+                reduce: 30,
+                OrderList: [{
+                    price: '1200'
+                },{
+                    price: '600'
+                },{
+                    price: '1800'
+                }]
+            },{
+                OrderId: 'PT0001',
+                OrderDate: '2023年5月31日',
+                reduce: 30,
+                OrderList: [{
+                    price: '900'
+                },{
+                    price: '1200'
+                }]
             }]
         }
     }
