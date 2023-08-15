@@ -1,16 +1,15 @@
 export default {
   template: `
-    <div class="waterfall-container">
-      <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="waterfall-column">
-        <div v-for="item in column" :key="item.id" class="waterfall-item">
-          <img :src="item.image" alt="Item Image">
-          <div class="fallBottom">
-            <p>{{ item.text }}</p>
-          </div>
-          
-        </div>
+  <div class="waterfall-container">
+  <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="waterfall-column">
+    <div v-for="item in column" :key="item.id" class="waterfall-item">
+      <img :src="item.image" @load="onImageLoad(item)" alt="Item Image">
+      <div class="fallBottom">
+        <p>{{ item.text }}</p>
       </div>
     </div>
+  </div>
+</div>
     `,
   data() {
     return {
@@ -36,19 +35,18 @@ export default {
     };
   },
   mounted() {
-    this.loadItems();
+    window.addEventListener('resize', this.updateColumns);
     window.addEventListener('scroll', this.handleScroll);
     this.updateColumns();
-    window.addEventListener('resize', this.updateColumns);
+    
   },
   methods: {
-    loadItems() {
-      this.items.forEach(item => {
-        const shortestColumn = this.columns.reduce((acc, column) => {
-          return column.length < acc.length ? column : acc;
-        }, this.columns[0]);
+    async loadItems() {
+      for (const item of this.items) {
+        await this.loadImage(item);
+        const shortestColumn = this.getShortestColumn();
         shortestColumn.push(item);
-      });
+      }
     },
     handleScroll() {
       const distanceToBottom = document.documentElement.scrollHeight - (window.innerHeight + window.scrollY);
@@ -64,6 +62,27 @@ export default {
         this.columns = [[], [], []];
       }
       this.loadItems(); // Reload items into columns
+    },
+    async loadImage(item) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.src = item.image;
+
+        img.onload = () => {
+          item.height = img.height; // 設置項目的高度
+          resolve();
+        };
+      });
+    },
+    onImageLoad(item) {
+      const img = event.target;
+      item.height = img.height; // 設置項目的實際高度
+    },
+    getShortestColumn() {
+      return this.columns.reduce((acc, column) => {
+        return column.reduce((sum, currItem) => sum + currItem.height, 0) <
+          acc.reduce((sum, currItem) => sum + currItem.height, 0) ? column : acc;
+      }, this.columns[0]);
     }
-  }
-}
+  },
+};
