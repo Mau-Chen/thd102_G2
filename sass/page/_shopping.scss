@@ -47,7 +47,7 @@
 
     //購物車內頁（想替換的內容）
     .spMain_bg {
-        padding-top: 100px;
+        padding: 0 32px;
 
         //內頁標題
         .spMian_title {
@@ -66,6 +66,7 @@
 
         .spMain {
             // @include layout(1200);
+            margin: 0 auto;
             max-width: 1200px;
             @include flex(row, center, flex-start);
             gap: 32px;
@@ -86,7 +87,7 @@
                     top: 0;
                     left: 0;
                     width: 80%;
-                    height: 80%;
+                    height: 65%;
                     margin: 0;
                     display: block;
                     z-index: 5;
@@ -113,9 +114,10 @@
                 //產生新checkbox（共）
                 label {
                     position: relative;
-                    line-height: 22px;
+                    // line-height: 22px;
                     display: inline-flex;
                     align-items: center;
+                    width: 368px;
 
                     &::before {
                         content: "";
@@ -128,6 +130,10 @@
                         border-radius: 3px;
                         margin-right: 24px;
                         flex-shrink: 0;
+                    }
+
+                    picture {
+                        width: 100%;
                     }
                 }
 
@@ -146,7 +152,7 @@
 
                     .spBuy_text {
                         width: 100%;
-                        margin-left: 48px;
+                        // margin-left: 28px;
 
                         .spList_up {
                             @include flex(row, space-between);
@@ -233,8 +239,14 @@
                         border-radius: $br_8;
                         padding: 6px 12px;
                         margin-bottom: 24px;
+                    }
+
+                    textarea {
+                        margin-bottom: 0;
+                        outline: none;
                         resize: none;
                     }
+
 
                     .sameMember {
                         margin-bottom: 24px;
@@ -260,6 +272,15 @@
                     border: none;
                     outline: none;
                     width: 100%;
+                    ~div{
+                        margin-top: 16px;
+                        @include flex(row, flex-end);
+                        gap: 8px;
+                        
+                        span{
+                            color: #D63900
+                        }
+                    }
                 }
             }
         }
@@ -268,17 +289,27 @@
     //sp2覆蓋共用
     .sp2 {
         .spMain {
+
+            // margin: 0 auto;
             .spMain_left {
-                h5 {
+                .spPay {
+
                     @include flex(row, flex-start);
 
                     span {
                         margin-left: 32px;
                         @include flex(row, flex-start);
                         gap: 12px;
+
+                        image {
+                            display: inline-block;
+                        }
+
                     }
 
                     // @include flex();
+                    // }
+
                 }
 
                 //白底卡區塊(sp2共）
@@ -446,20 +477,185 @@
     }
 
     @media screen and (max-width: 768px) {
+        //全sp共用
+        .spStep_bg {
+            height: 93px;
+            padding: 16px 0;
+
+
+            .spStep_box .spStep {
+                .spStep_number {
+                    margin-bottom: 8px;
+
+                    P {
+                        width: 32px;
+                        height: 32px;
+                        line-height: 32px;
+                        // font-size: 14px;
+                    }
+                }
+
+                p {
+                    font-size: 14px;
+                }
+
+
+            }
+        }
+
         .spMain_bg {
-            padding-left: 32px;
-            padding-right: 32px;
+            padding: 0 32px;
+
+            .spMian_title {
+                padding-bottom: 24px;
+            }
+
             .spMain {
                 gap: 0;
                 flex-wrap: wrap;
             }
+        }
 
+        //sp2
+        .sp2 .spMain {
+            .spMain_left {
+                h5 {
+                    margin-bottom: 24px;
+                }
+
+                .spCard {
+                    margin-bottom: 32px;
+
+                    form {
+                        input[type="text"] {
+                            margin-bottom: 16px;
+
+                        }
+
+                        .spOrder_check {
+                            margin-bottom: 16px;
+
+                            label {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                    .spCard .spOrder_check {
+                        // margin-bottom: 16px;
+
+                        label {
+                            // margin-bottom: 0;
+                        }
+                    }
+                    .creditCard{
+                        flex-direction: column;
+                        >div{
+                            width: 100%;
+                            input[type="text"]{
+                                // display: block;
+                                // width: 100%;
+                                margin-bottom: 0;
+                            }
+                        }
+
+                    }
+
+                }
+
+                .spPay {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    
+                    span {
+                        // display: block;
+                        margin-left: 0;
+                    }
+
+                    // display: flex;
+                    // flex-direction: column;
+
+                }
+            }
         }
 
 
 
 
 
+    }
+
+    @media screen and (max-width: 414px) {
+        .spStep_bg {
+            padding: 16px;
+        }
+
+        .spMain_bg {
+            padding: 0 16px;
+
+            .spMain {
+                // .spCard {
+
+                .spDriver,
+                .spHostel {
+                    .spCard_up {
+                        flex-wrap: wrap;
+                        gap: 16px;
+                        padding-bottom: 24px;
+
+                        input[type=checkbox] {
+                            width: 100%;
+
+                            &:checked+label::after {
+                                top: 5px;
+                            }
+
+                            &:checked+label::before {}
+                        }
+
+                        label {
+                            display: block;
+                            // display: flex;
+                            // flex-wrap: wrap;
+                            width: 100%;
+                            margin: 0 auto;
+
+                            &::before {
+                                margin-bottom: 16px;
+                            }
+                        }
+
+                        .spBuy_text {
+                            width: 100%;
+                            margin-left: 0;
+
+                            .spList_up {
+                                margin-bottom: 8px;
+                            }
+
+                            .spList_down {
+                                p {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    .spSubtotal {
+                        padding-top: 16px;
+                    }
+
+                }
+
+                .spHostel {
+                    .spSubtotal {
+                        justify-content: space-between;
+
+                    }
+
+                }
+
+            }
+        }
     }
 
 
