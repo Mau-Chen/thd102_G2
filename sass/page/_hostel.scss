@@ -23,6 +23,8 @@
         padding: 40px;
         background-color: $white;
         border-radius: $br_12;
+        /* Drop Shadow */
+        box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
         .seachbar {
           background-color: $white;
           border-radius: $br_12;
@@ -37,7 +39,7 @@
             background-color: $gray_2;
             justify-content: center;
             gap: 8px;
-            flex: 1 0 0;
+
             border-radius: $br_8;
             input {
               border: none;
@@ -64,14 +66,10 @@
       .card {
         border: 1px solid #e0e0e0;
         border-radius: $br_12;
-        height: 243px;
-        padding: 1px;
-        flex: 1 0 0;
         overflow: hidden;
         .card_content {
-          padding: 19px 17px 20px 12px;
-          .p {
-            font-size: $fontsize;
+          padding: 20px;
+          p {
             font-weight: 600;
           }
           span {
@@ -80,44 +78,45 @@
         }
       }
     }
-  }
-  // GO旅宿-hostel-booking
+    // GO旅宿-hostel-booking
 
-  .hotel-booking {
-    .cards_item {
-      display: flex;
-      gap: 32px;
+    .hotel-booking {
+      .cards_item {
+        display: flex;
+        gap: 32px;
 
-      .card_image {
-        border-radius: 12px;
-        overflow: hidden;
-      }
-      .card_content {
-        margin-top: 16px;
-        margin-bottom: 4px;
-        span {
-          background-color: $gray_3;
-          display: flex;
-          border-radius: 4px;
-          padding: 0px 4px;
-          justify-content: center;
-          align-items: center;
-          gap: 2px;
+        .card_image {
+          border-radius: 12px;
+          overflow: hidden;
         }
-        display: flex;
-        justify-content: space-between;
-      }
-      .card_price {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 4px;
-        .star {
-          gap: 4px;
+        .card_content {
+          margin-top: 16px;
+          margin-bottom: 4px;
+          span {
+            background-color: $gray_3;
+            display: flex;
+            border-radius: 4px;
+            padding: 0px 4px;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+          }
           display: flex;
+          justify-content: space-between;
+        }
+        .card_price {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 4px;
+          .star {
+            gap: 4px;
+            display: flex;
+          }
         }
       }
     }
   }
+  // container end
 
   // GO旅宿-hostel-booking_detail
 
@@ -166,9 +165,8 @@
   //   輪播圖
 
   .container {
-    overflow: hidden;
     .carousel {
-      flex-shrink: 0;
+      // overflow: hidden;
       margin: 0 auto;
       .pic {
         gap: 20px;
@@ -215,6 +213,58 @@
       }
     }
     .allroom {
+      // total 共用區
+      .spSubtotal {
+        display: flex;
+        text-align: end;
+        margin-top: 24px;
+        padding-top: 24px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid $gray_1;
+        > .btn_7 {
+          border: none;
+          width: 170px;
+          padding: 16px 28px;
+          font-size: $fontsize;
+        }
+        > .btn_7_border {
+          border: none;
+          width: 170px;
+          padding: 16px 28px;
+          font-size: $fontsize;
+        }
+        .spStepper {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          input[type="text"] {
+            outline: none;
+            border: none;
+            text-align: center;
+            width: 32px;
+          }
+          .spSubtotal_icon {
+            border: 1px solid #333;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            > img {
+              width: 10px;
+              height: 10px;
+              transform: translate(10px, 10px);
+            }
+            &:first-child {
+              border: 1px solid #e0e0e0;
+            }
+          }
+        }
+      }
+
+      // 狗套房
       .dog-room {
         border-radius: $br_12;
         border: 1px solid #e0e0e0;
@@ -223,63 +273,119 @@
         h5 {
           margin-bottom: 14px;
         }
-      }
-      .detail {
-        display: flex;
-        .leftimg {
-          border-radius: $br_12;
-        }
-        .d_info {
+        .detail {
           display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
-          justify-content: flex-end;
-          .info-left {
-            width: 327px;
-            font-size: $fontsize;
-            margin-bottom: 24px;
-            .i-title p {
-              color: $black;
-              padding: 8px 16px;
-              background-color: $gray_2;
-            }
-            .i-text p {
-              padding: 20px 16px;
-            }
-            .i-memo {
-              padding: 0 20px;
-              gap: 8px;
-              color: $black;
-              display: flex;
-            }
+          justify-content: space-between;
+          .leftimg {
+            border-radius: $br_12;
           }
-          // 右邊狗狗體型
-          .info-right {
-            width: 327px;
-            font-size: $fontsize;
-            margin-bottom: 24px;
-            .i-title p {
-              color: $black;
-              padding: 8px 16px;
-              background-color: $gray_2;
-            }
-            .i-text p {
-              padding: 20px 16px;
-            }
-            .i-memo {
-              padding: 0 20px;
-              gap: 8px;
-              color: $black;
+          .d_info {
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            .info-top {
               display: flex;
+              gap: 12px;
+              .info-left {
+                width: 327px;
+                font-size: $fontsize;
+                margin-bottom: 24px;
+                .i-title p {
+                  color: $black;
+                  padding: 8px 16px;
+                  background-color: $gray_2;
+                }
+                .i-text p {
+                  padding: 20px 16px;
+                }
+                .i-memo {
+                  padding: 0 20px;
+                  gap: 8px;
+                  color: $black;
+                  display: flex;
+                }
+              }
+              // 右邊狗狗體型
+              .info-right {
+                width: 327px;
+                font-size: $fontsize;
+
+                .i-title {
+                  color: $black;
+                  padding: 8px 16px;
+                  margin-bottom: 24px;
+                  background-color: $gray_2;
+                  margin-bottom: 24px;
+                }
+                .i-text p {
+                  margin-top: 24px;
+                  padding: 20px 16px;
+                }
+              }
             }
-          }
-          .addproduct {
-            width: 666px;
-            border-top: 1px solid $gray_1;
+
+            .addproduct {
+              width: 666px;
+              border-top: 1px solid $gray_1;
+            }
           }
         }
+      }
 
-        // 貓套房
+      // 貓套房
+      .cat-room {
+        border-radius: $br_12;
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        font-size: 30px;
+        > h5 {
+          margin-bottom: 14px;
+        }
+        .c-detail {
+          display: flex;
+          justify-content: space-between;
+          .c_info {
+            width: 666px;
+            .c-title {
+              padding: 8px 16px;
+              background-color: $gray_2;
+              margin-bottom: 20px;
+              h5 {
+                display: block;
+                font-size: $fontsize;
+              }
+            }
+            .c-text {
+              font-size: $fontsize;
+              padding: 0px 16px;
+              margin-bottom: 20px;
+            }
+            .c-memo {
+              display: flex;
+              padding: 0px 20px;
+
+              p {
+                gap: 8px;
+                font-size: $fontsize;
+                color: $black;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //入住須知
+    .notice {
+      padding: 32px 0px;
+      h5 {
+        margin-bottom: 20px;
+      }
+      ul {
+        padding-left: 20px;
+        li {
+          list-style-type: disc;
+        }
       }
     }
   }
