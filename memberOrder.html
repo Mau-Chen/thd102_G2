@@ -28,7 +28,17 @@
         }
         .listContent{
             display: flex;
-            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .money{
+            border-top: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 24px 0;
+        }
+        .total p:last-child{
+            font-size: 24px;
+            font-weight: bold;
         }
         .listBottom{
             display: flex;
@@ -38,9 +48,18 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .count p:last-child{
+            font-weight: bold;
+            font-size: 24px;
+        }
         .count2{
             display: flex;
             justify-content: end;
+            gap: 8px
+        }
+        .count2 span{
+            color: #d63900;
         }
         
     </style>
@@ -54,7 +73,7 @@
 
             <div class="member-box col-10 col-lg-9 col-sm-12">
                 <!------------ 訂單紀錄 listBody ------------>
-                <ul id="order">
+                <ul id="order" class="member-order">
                     <!-- first list -->
                     <!-- second list -->
                     <list 

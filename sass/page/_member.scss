@@ -91,14 +91,15 @@
       height: 100%;
     }
     // -- 有訂單記錄
-    ul li {
+    .member-order li{
       background-color: $white;
       border-radius: $br_12;
       padding: 24px;
       margin-bottom: 24px;
       font-size: 18px;
       font-weight: 500;
-    }
+    } // 我這裡用壞了ＱＱＱＱ 吃不到東西
+    
     .ol-header {
       font-weight: bold;
       .rotateBtn {

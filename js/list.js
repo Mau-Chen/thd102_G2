@@ -26,13 +26,13 @@ export default{
                                     <li 
                                         v-for="(Order, index) in task.OrderList"
                                         class="listContent">
-                                        <div class="col-2">
+                                        <div class="ol-content">
                                             <img src="./images/pic/shop/goShop01.png" alt="">
                                         </div>
                                         <div class="col-10">
                                             <div>
                                                 <h6 class="mb_16">寵物接送</h6>
-                                                <p><span>8月17日</span>|<span>16:00</span></p>
+                                                <p><span>8月17日 </span>|<span> 16:00</span></p>
                                             </div>
                                             <div class="listBottom">
                                                 <p>轎車</p>
@@ -42,22 +42,24 @@ export default{
                                     </li>
                                 </ul>
                                 <!-- 折扣部分 -->
-                                <div class="count">
-                                    <p><span>3</span>件合計</p>
-                                    <p>NT$<span>{{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c).toLocaleString('en-US') }}</span></p>
-                                </div>
-                                <div class="count">
-                                    <p>Pet Points 折抵</p>
-                                    <p>-NT$ {{ task.reduce.toLocaleString('en-US') }}</p>
+                                <div class="money">
+                                    <div class="count mb_16">
+                                        <p><span>3</span>件合計</p>
+                                        <p>NT$<span>{{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c).toLocaleString('en-US') }}</span></p>
+                                    </div>
+                                    <div class="count">
+                                        <p>Pet Points 折抵</p>
+                                        <p>-NT$ {{ task.reduce.toLocaleString('en-US') }}</p>
+                                    </div>
                                 </div>
                                 <br>
-                                <div class="count">
+                                <div class="count total mb_24">
                                     <p>總計</p>
                                     <p>NT$ {{ (task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce).toLocaleString('en-US') }}</p>
                                 </div>
-                                <div class="count2">
+                                <div class="count2 mb_24">
                                     <img src="images/icon/member-icon/black-points.svg" alt="">
-                                    <p>已獲得 Pet Points<span>50</span>點</p>
+                                    <p>您已獲得 Pet Points<span>50</span>點</p>
                                 </div>
                                 <div class="count2">
                                     <button class="btn_4_border">取消預約</button>
@@ -69,7 +71,7 @@ export default{
     `,
     data(){
         return {
-            isOpen: new Array(this.tasks.length).fill(false)
+            isOpen: [true].concat(new Array(this.tasks.length - 1).fill(false))
         }
     },
     methods : {
