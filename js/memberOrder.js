@@ -10,6 +10,12 @@ const app = Vue.createApp({
           reduce: 30,
           OrderList: [
             {
+              price: "300",
+            },
+            {
+              price: "3300",
+            },
+            {
               price: "3300",
             },
           ],
