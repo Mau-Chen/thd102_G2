@@ -1,22 +1,26 @@
 export default{
+    props: ["tasks"] ,
     template : `
-    <li class="accordion">
+    <li 
+        class="accordion"
+        v-for="(task, index) in tasks"
+        :key="index">
                         <div>
                             <div class="listHead">
                                 <div>
-                                    <p>訂單日期：<span>2023年7月30日</span></p>
-                                    <p>訂單編號：<span>PT0003</span></p>
+                                    <p>訂單日期：{{ task.OrderDate }}</p>
+                                    <p>訂單編號：{{ task.OrderId }}</p>
                                 </div>
                                 <div class="listHead2">
                                     <div v-if="isOpen == false">
                                         <p>NT$<span>3700</span></p>
                                     </div>
-                                    <div class="arrowIcon" @click="open" :class="{ active: isOpen }">
+                                    <div class="arrowIcon" @click="open(index)" :class="{ active: isOpen[index] }">
                                         <img src="images/icon/components-icon/faqbt-circle.svg" alt="">
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="isOpen">
+                            <div v-if="isOpen[index]">
                                 <!-- 清單部分 -->
                                 <ul>
                                     <li class="listContent">
@@ -63,12 +67,12 @@ export default{
     `,
     data(){
         return {
-            isOpen: false
+            isOpen: new Array(this.tasks.length).fill(false)
         }
     },
     methods : {
-        open(){
-            this.isOpen = !this.isOpen;
+        open(index) {
+            this.isOpen[index] = !this.isOpen[index];
         }
     }
 }
