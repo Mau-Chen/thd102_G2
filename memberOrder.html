@@ -7,6 +7,40 @@
     @@include('layout/meta.html')
     <link rel="stylesheet" href="css/style.css">
     <title>Go會員 | PetpaGo</title>
+    <style>
+        .listHead {
+            display: flex;
+            justify-content: space-between;
+        }
+        .listHead2 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .arrowIcon{
+            transform: rotate(180deg);
+        }
+        .active{
+            transform: rotate(0deg);
+        }
+        .listContent{
+            display: flex;
+            align-items: center;
+        }
+        .listBottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .count{
+            display: flex;
+            justify-content: space-between;
+        }
+        .count2{
+            display: flex;
+            justify-content: end;
+        }
+        
+    </style>
 </head>
 
 <body>
@@ -17,429 +51,15 @@
 
             <div class="member-box col-10 col-lg-9 col-sm-12">
                 <!------------ 訂單紀錄 listBody ------------>
-                <ul>
+                <ul id="order">
                     <!-- first list -->
-                    <li class="accordion active">
-                        <!-- first list box1 -->
-                        <div class="ol-header mb_24 jcSb">
-                            <div class="ol-headText">
-                                <p>訂單日期：2023年8月4日</p>
-                                <p>訂單編號：PT0004</p>
-                            </div>
-                            <div class="ol-button" id="ol-button-1">
-                                <img src="images/icon/components-icon/faqbt-circle.svg" alt="button">
-                            </div>
-                        </div>
-                        <!-- first list box2 -->
-                        <div class="ol-content">
-                            <!-- box2-1 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop01.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">寵物接送</h6>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <div class="ol-info jcSb">
-                                        <p>轎車</p>
-                                        <p>NT$ 300</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-2 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop02.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>狗套房X1 ｜ 小型犬</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-3 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop03.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>貓套房X1 ｜ 貓咪</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- first list box3 -->
-                        <div class="ol-money mb_24">
-                            <div class="ol-count mb_16 jcSb">
-                                <p>3件合計</p>
-                                <span>NT$ 5,100</span>
-                            </div>
-                            <div class="ol-count jcSb">
-                                <p>Pet Points 折抵</p>
-                                <span>-NT$ 30</span>
-                            </div>
-                        </div>
-                        <!-- first list box4 -->
-                        <div class="ol-total">
-                            <div class="ol-count jcSb">
-                                <p>總計</p>
-                                <span>NT$ 5,070</span>
-                            </div>
-                            <p><img src="/images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points
-                                <span>50</span> 點</p>
-                            <button class="btn_4_border">取消預約</button>
-                        </div>
-                    </li>
                     <!-- second list -->
-                    <li class="accordion">
-                        <div class="ol-header jcSb mb_24">
-                            <div class="ol-headText">
-                                <p>訂單日期：2023年7月30日</p>
-                                <p>訂單編號：PT0003</p>
-                            </div>
-                            <div class="ol-button" id="ol-button-2">
-                                <span>NT$ 3,070</span>
-                                <img src="images/icon/components-icon/faqbt-circle.svg" alt="button">
-                            </div>
-                        </div>
-                        <!-- first list box2 -->
-                        <div class="ol-content">
-                            <!-- box2-1 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop01.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">寵物接送</h6>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <div class="ol-info jcSb">
-                                        <p>轎車</p>
-                                        <p>NT$ 300</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-2 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop02.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>狗套房X1 ｜ 小型犬</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-3 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop03.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>貓套房X1 ｜ 貓咪</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- first list box3 -->
-                        <div class="ol-money mb_24">
-                            <div class="ol-count mb_16 jcSb">
-                                <p>3件合計</p>
-                                <span>NT$ 5,100</span>
-                            </div>
-                            <div class="ol-count jcSb">
-                                <p>Pet Points 折抵</p>
-                                <span>-NT$ 30</span>
-                            </div>
-                        </div>
-                        <!-- first list box4 -->
-                        <div class="ol-total">
-                            <div class="ol-count jcSb">
-                                <p>總計</p>
-                                <span>NT$ 5,070</span>
-                            </div>
-                            <p><img src="/images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points
-                                <span>50</span> 點</p>
-                            <button class="btn_4_border">取消預約</button>
-                        </div>
-                    </li>
-                    <li class="accordion">
-                        <div class="ol-header jcSb mb_24">
-                            <div class="ol-headText">
-                                <p>訂單日期：2023年7月24日</p>
-                                <p>訂單編號：PT0002</p>
-                            </div>
-                            <div class="ol-button" id="ol-button-3">
-                                <span>NT$ 500</span>
-                                <img src="images/icon/components-icon/faqbt-circle.svg" alt="button">
-                            </div>
-                        </div>
-
-                        <!-- first list box2 -->
-                        <div class="ol-content">
-                            <!-- box2-1 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop01.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">寵物接送</h6>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <div class="ol-info jcSb">
-                                        <p>轎車</p>
-                                        <p>NT$ 300</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-2 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop02.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>狗套房X1 ｜ 小型犬</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-3 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop03.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>貓套房X1 ｜ 貓咪</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- first list box3 -->
-                        <div class="ol-money mb_24">
-                            <div class="ol-count mb_16 jcSb">
-                                <p>3件合計</p>
-                                <span>NT$ 5,100</span>
-                            </div>
-                            <div class="ol-count jcSb">
-                                <p>Pet Points 折抵</p>
-                                <span>-NT$ 30</span>
-                            </div>
-                        </div>
-                        <!-- first list box4 -->
-                        <div class="ol-total">
-                            <div class="ol-count jcSb">
-                                <p>總計</p>
-                                <span>NT$ 5,070</span>
-                            </div>
-                            <p><img src="/images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points
-                                <span>50</span> 點</p>
-                            <button class="btn_4_border">取消預約</button>
-                        </div>
-                    </li>
-                    <li class="accordion">
-                        <div class="ol-header jcSb mb_24">
-                            <div class="ol-headText">
-                                <p>訂單日期：2023年5月31日</p>
-                                <p>訂單編號：PT0001</p>
-                            </div>
-                            <div class="ol-button" id="ol-button-4">
-                                <span>NT$ 470</span>
-                                <img src="images/icon/components-icon/faqbt-circle.svg" alt="button">
-                            </div>
-                        </div>
-                        <!-- first list box2 -->
-                        <div class="ol-content">
-                            <!-- box2-1 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop01.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">寵物接送</h6>
-                                    <p>8月17日 ｜ 16:00</p>
-                                    <div class="ol-info jcSb">
-                                        <p>轎車</p>
-                                        <p>NT$ 300</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-2 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop02.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>狗套房X1 ｜ 小型犬</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- box2-3 -->
-                            <div class="ol-contentBox mb_24">
-                                <img src="/images/pic/shop/goShop03.png" alt="driveDog">
-                                <div class="ol-ContText">
-                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                    <p>8月17日-8月19日 (3晚)</p>
-                                    <div class="ol-info jcSb">
-                                        <p>貓套房X1 ｜ 貓咪</p>
-                                        <p>NT$ 2,400</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- first list box3 -->
-                        <div class="ol-money mb_24">
-                            <div class="ol-count mb_16 jcSb">
-                                <p>3件合計</p>
-                                <span>NT$ 5,100</span>
-                            </div>
-                            <div class="ol-count jcSb">
-                                <p>Pet Points 折抵</p>
-                                <span>-NT$ 30</span>
-                            </div>
-                        </div>
-                        <!-- first list box4 -->
-                        <div class="ol-total">
-                            <div class="ol-count jcSb">
-                                <p>總計</p>
-                                <span>NT$ 5,070</span>
-                            </div>
-                            <p><img src="/images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points
-                                <span>50</span> 點</p>
-                            <button class="btn_4_border">取消預約</button>
-                        </div>
-                    </li>
+                    <list></list>
                 </ul>
             </div>
         </main>
-        @@include('layout/footer.html')
     </div>
-    <script>
-
-//     document.addEventListener("DOMContentLoaded", function() {
-//     // 取得所有的 ol-button 元素
-//     let buttons = document.querySelectorAll('.ol-button');
-    
-
-        
-
-//     buttons.forEach(button => {
-//         button.addEventListener('click', function() {
-//             let content = this.parentElement.nextElementSibling;
-//             let money = content.nextElementSibling;
-//             let total = money.nextElementSibling;
-
-//             toggleDisplay(content);
-//             toggleDisplay(money);
-//             toggleDisplay(total);
-
-//             // 同時只能打開一個
-//             // buttons.forEach(innerButton => {
-//             //     if (innerButton !== button) {
-//             //         hideElement(innerButton.parentElement.nextElementSibling);
-//             //         hideElement(innerButton.parentElement.nextElementSibling.nextElementSibling);
-//             //         hideElement(innerButton.parentElement.nextElementSibling.nextElementSibling.nextElementSibling);
-//             //     }
-//             // });
-            
-//         });
-//     });
-    
-//     function toggleDisplay(element) {
-//         if (element.style.display === 'none' || element.style.display === '') {
-//             element.style.display = 'block';
-//         } else {
-//             element.style.display = 'none';
-//         }
-//     }
-
-//     // 同時只能打開一個
-//     // function hideElement(element) {
-//     //     element.style.display = 'none';
-//     // }
-    
-// });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     let accordions = document.querySelectorAll('.accordion');
-
-//     accordions.forEach(function(accordion) {
-//         let btn = accordion.querySelector('.ol-button');
-
-//         btn.addEventListener('click', function() {
-//             // 刪除所有accordion的active class
-//             accordions.forEach(function(innerAccordion) {
-//                 innerAccordion.classList.remove('active');
-//             });
-
-//             // 如果點擊的accordion原本沒有active class，則給它添加
-//             if(!accordion.classList.contains('active')) {
-//                 accordion.classList.add('active');
-//             }
-//         });
-//     });
-// });
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     let accordions = document.querySelectorAll('.accordion');
-
-//     accordions.forEach(function(accordion) {
-//         let btn = accordion.querySelector('.ol-button');
-
-//         btn.addEventListener('click', function() {
-//             accordion.classList.toggle('active');
-
-//             let contentSections = ['.ol-content', '.ol-money', '.ol-total'];
-//             contentSections.forEach(section => {
-//                 let element = accordion.querySelector(section);
-//                 if (element) {
-//                     element.style.display = (element.style.display === 'none' || element.style.display === '') ? 'block' : 'none';
-//                 }
-//             });
-
-//             let img = btn.querySelector('img');
-//             let span = btn.querySelector('span');
-
-//             if (accordion.classList.contains('active')) {
-//                 img.style.transform = 'rotate(0deg)';
-//                 span.style.display = 'none';
-//             } else {
-//                 img.style.transform = 'rotate(180deg)';
-//                 span.style.display = 'block';
-//             }
-//         });
-//     });
-// });
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        let accordions = document.querySelectorAll('.accordion');
-
-        accordions.forEach(function(accordion) {
-            let btn = accordion.querySelector('.ol-button');
-
-            btn.addEventListener('click', function() {
-                
-                accordion.classList.toggle('active');
-
-                const isActive = accordion.classList.contains('active');
-                let img = btn.querySelector('img');
-                let span = btn.querySelector('span');
-
-                
-                if (isActive) {
-                    img.style.transform = 'rotate(0deg)';
-                    span.style.display = 'none';
-                } else {
-                    img.style.transform = 'rotate(180deg)';
-                    span.style.display = 'block';
-                }
-            });
-        });
-    });
-
-    </script>
+    <script type="module" src="js/memberOrder.js"></script>
 </body>
 
 </html>
