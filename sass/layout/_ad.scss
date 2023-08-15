@@ -1,0 +1,16 @@
+.ad_box {
+  @include flex();
+  gap: 32px;
+  margin: 0 32px;
+  .ad_box_incon {
+    @include flex();
+    gap: 32px;
+    background: $gray_4;
+    border-radius: $br_12;
+    padding: 32px;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
