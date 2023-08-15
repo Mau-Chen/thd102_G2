@@ -329,7 +329,6 @@
 //             let money = content.nextElementSibling;
 //             let total = money.nextElementSibling;
 
-//             // 切換內容的可見性
 //             toggleDisplay(content);
 //             toggleDisplay(money);
 //             toggleDisplay(total);
@@ -414,39 +413,31 @@
 // });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    let accordions = document.querySelectorAll('.accordion');
+    document.addEventListener('DOMContentLoaded', function() {
+        let accordions = document.querySelectorAll('.accordion');
 
-    accordions.forEach(function(accordion) {
-        let btn = accordion.querySelector('.ol-button');
+        accordions.forEach(function(accordion) {
+            let btn = accordion.querySelector('.ol-button');
 
-        btn.addEventListener('click', function() {
-            // Toggle the active status of the accordion
-            accordion.classList.toggle('active');
+            btn.addEventListener('click', function() {
+                
+                accordion.classList.toggle('active');
 
-            const isActive = accordion.classList.contains('active');
-            let img = btn.querySelector('img');
-            let span = btn.querySelector('span');
+                const isActive = accordion.classList.contains('active');
+                let img = btn.querySelector('img');
+                let span = btn.querySelector('span');
 
-            // If accordion is now active after the toggle, rotate the image and hide the span. If not, set them to their default states.
-            if (isActive) {
-                img.style.transform = 'rotate(0deg)';
-                span.style.display = 'none';
-            } else {
-                img.style.transform = 'rotate(180deg)';
-                span.style.display = 'block';
-            }
+                
+                if (isActive) {
+                    img.style.transform = 'rotate(0deg)';
+                    span.style.display = 'none';
+                } else {
+                    img.style.transform = 'rotate(180deg)';
+                    span.style.display = 'block';
+                }
+            });
         });
     });
-});
-
-
-
-
-
-
-
-
 
     </script>
 </body>
