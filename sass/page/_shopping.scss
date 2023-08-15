@@ -5,6 +5,7 @@
     input[type="text"] {
         border: none;
         outline: none;
+        height: 48px;
     }
 
     //步驟區塊
@@ -17,27 +18,23 @@
             @include flex(row, space-between);
 
             .spStep {
+
+                @include flex(column);
                 p {
                     text-align: center;
                     margin: 0;
-                    margin-top: 8px;
-                    line-height: 1.1;
                     font-size: 18px;
                 }
 
                 .spStep_number {
                     @include flex();
                     margin-bottom: 11px;
-
-                    p {
-                        display: inline-block;
-                        width: 40px;
-                        height: 40px;
-                        background-color: $green;
-                        border-radius: 50%;
-                        line-height: 40px;
-                        color: $white;
-                    }
+                    width: 40px;
+                    height: 40px;
+                    background-color: $green;
+                    border-radius: 50%;
+                    line-height: 40px;
+                    color: $white;
                 }
             }
         }
@@ -65,19 +62,23 @@
         }
 
         .spMain {
-            // @include layout(1200);
             margin: 0 auto;
             max-width: 1200px;
             @include flex(row, center, flex-start);
             gap: 32px;
             margin-bottom: 48px;
 
+            button {
+                outline: none;
+                border: none;
+            }
+
             //白底卡區塊(共）
             .spCard {
                 background-color: $white;
                 border-radius: $br_12;
                 padding: 24px;
-                margin-bottom: 27px;
+                margin-bottom: 28px;
                 position: relative;
 
                 //原checkbox隱藏（共）
@@ -237,7 +238,7 @@
                         width: 100%;
                         border: 1px solid $gray_1;
                         border-radius: $br_8;
-                        padding: 6px 12px;
+                        padding: 0 12px;
                         margin-bottom: 24px;
                     }
 
@@ -245,6 +246,7 @@
                         margin-bottom: 0;
                         outline: none;
                         resize: none;
+                        padding: 6px;
                     }
 
 
@@ -269,15 +271,16 @@
                 }
 
                 .spNext {
-                    border: none;
-                    outline: none;
+                    // border: none;
+                    // outline: none;
                     width: 100%;
-                    ~div{
+
+                    ~div {
                         margin-top: 16px;
                         @include flex(row, flex-end);
                         gap: 8px;
-                        
-                        span{
+
+                        span {
                             color: #D63900
                         }
                     }
@@ -340,7 +343,7 @@
                         >input[type="text"] {
                             border: 1px solid $gray_1;
                             border-radius: $br_8;
-                            padding: 3px 12px;
+                            padding: 4px 8px;
                             margin: auto 8px;
                             text-align: center;
                             color: #D63900;
@@ -363,7 +366,7 @@
 
                             // width: 100%;
                             &::before {
-                                margin-right: 24px;
+                                margin-right: 12px;
                             }
 
                         }
@@ -378,20 +381,21 @@
                         >div {
                             width: 192px;
 
+                            //所有input
                             input {
                                 margin: 0;
                             }
 
+                            //輸入區塊
                             >div {
                                 color: $textColor_l;
                                 @include flex();
                                 border: 1px solid $gray_1;
                                 border-radius: $br_8;
-                                padding: 6px 12px;
+                                padding: 0 5px;
 
                                 input {
                                     border: none;
-                                    width: 43px;
                                     padding: 0;
                                     text-align: center;
                                 }
@@ -400,8 +404,6 @@
                             &:nth-child(2) {
                                 input {
                                     width: 27px;
-                                    // text-align: left;
-                                    padding: 0;
                                 }
 
                             }
@@ -476,12 +478,168 @@
         }
     }
 
+    //sp3覆蓋共用
+    .sp3 {
+        .spMain {
+            // max-width: 790px;
+            // flex-direction: column;
+            // align-items: center;
+            // gap: 0;
+
+            >div {
+                // @include flex(column);
+
+                // img {
+                //     margin-bottom: 16px;
+                // }
+
+                // >p {
+                //     display: block;
+                //     padding: 32px 0;
+                // }
+            }
+
+            // >.spCard {
+            //     margin-bottom: 32px;
+
+            //     >div {
+            //         width: 100%;
+            //         @include flex(row, space-between);
+
+            //         p {
+            //             // display: block;
+            //         }
+            //     }
+            // }
+
+            button {
+                width: 375px;
+            }
+
+        }
+    }
+
+    //=============sp3
+    .sp3 {
+        .spMain {
+            max-width: 790px;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+
+            >div {
+                @include flex(column);
+
+                >p {
+                    display: block;
+                    padding: 32px 0;
+                }
+            }
+
+            >.spCard {
+                margin-bottom: 32px;
+                width: 100%;
+
+                ul {
+                    width: 100%;
+
+                    li {
+                        background-color: $white;
+                        border-radius: $br_12;
+                        font-size: 18px;
+                        font-weight: 500;
+                        // width: 100%;
+                    }
+
+                }
+
+                >div {
+                    width: 100%;
+                    @include flex(row, space-between);
+
+                    p {
+                        // display: block;
+                    }
+                }
+
+                .ol-header {
+                    font-weight: bold;
+                    width: 100%;
+
+                }
+
+                .ol-content {
+
+                    // display: none;
+                    .ol-contentBox {
+                        @include flex();
+                        gap: 24px;
+
+                        @media (max-width: 414px) {
+                            img {
+                                display: none;
+                            }
+                        }
+
+                        .ol-ContText {
+                            width: 100%;
+                        }
+
+                        .ol-info {
+                            margin-top: 4px;
+                            @include flex(row, space-between);
+
+                        }
+                    }
+                }
+
+                .ol-money {
+                    border-top: 1px solid $gray_1;
+                    border-bottom: 1px solid $gray_1;
+                    padding: 24px 0;
+                    text-align: end;
+                }
+
+                .ol-count {
+                    @include flex(row, space-between);
+
+                    span {
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                }
+
+                .ol-total {
+
+                    .ol-count span {
+                        font-size: 28px;
+                    }
+
+                    p:nth-child(2) {
+                        @include flex(row, flex-end);
+                        gap: 8px;
+
+                        span {
+                            color: #d63900;
+                        }
+
+                        img {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
     @media screen and (max-width: 768px) {
+
         //全sp共用
         .spStep_bg {
             height: 93px;
             padding: 16px 0;
-
 
             .spStep_box .spStep {
                 .spStep_number {
@@ -491,15 +649,12 @@
                         width: 32px;
                         height: 32px;
                         line-height: 32px;
-                        // font-size: 14px;
                     }
                 }
 
                 p {
                     font-size: 14px;
                 }
-
-
             }
         }
 
@@ -529,7 +684,6 @@
                     form {
                         input[type="text"] {
                             margin-bottom: 16px;
-
                         }
 
                         .spOrder_check {
@@ -540,20 +694,14 @@
                             }
                         }
                     }
-                    .spCard .spOrder_check {
-                        // margin-bottom: 16px;
 
-                        label {
-                            // margin-bottom: 0;
-                        }
-                    }
-                    .creditCard{
+                    .creditCard {
                         flex-direction: column;
-                        >div{
+
+                        >div {
                             width: 100%;
-                            input[type="text"]{
-                                // display: block;
-                                // width: 100%;
+
+                            input[type="text"] {
                                 margin-bottom: 0;
                             }
                         }
@@ -565,23 +713,14 @@
                 .spPay {
                     flex-direction: column;
                     align-items: flex-start;
-                    
+
                     span {
-                        // display: block;
                         margin-left: 0;
                     }
-
-                    // display: flex;
-                    // flex-direction: column;
 
                 }
             }
         }
-
-
-
-
-
     }
 
     @media screen and (max-width: 414px) {
@@ -593,7 +732,6 @@
             padding: 0 16px;
 
             .spMain {
-                // .spCard {
 
                 .spDriver,
                 .spHostel {
@@ -608,14 +746,10 @@
                             &:checked+label::after {
                                 top: 5px;
                             }
-
-                            &:checked+label::before {}
                         }
 
                         label {
                             display: block;
-                            // display: flex;
-                            // flex-wrap: wrap;
                             width: 100%;
                             margin: 0 auto;
 
@@ -643,17 +777,13 @@
                     .spSubtotal {
                         padding-top: 16px;
                     }
-
                 }
 
                 .spHostel {
                     .spSubtotal {
                         justify-content: space-between;
-
                     }
-
                 }
-
             }
         }
     }

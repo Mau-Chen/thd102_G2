@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    @@include('layout/meta.html')
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Go結帳 | PetpaGo</title>
+    <link href="/images/pgo.ico" rel="icon" />
+</head>
+
+<body>
+    <div class="wrapper shopping bg_gray">
+        @@include('layout/header.html')
+        <div class="spStep_bg mb_100">
+            <div class="spStep_box col-8 col-lg-9 col-sm-12">
+                <div class="spStep">
+                    <div class="spStep_number step01">
+                        <p>1</p>
+                    </div>
+                    <p>查看購物車</p>
+                </div>
+                <div class="spStep">
+                    <div class="spStep_number step01">
+                        <p>2</p>
+                    </div>
+                    <p>填寫資料</p>
+                </div>
+                <div class="spStep">
+                    <div class="spStep_number step01">
+                        <p>3</p>
+                    </div>
+                    <p>完成付款</p>
+                </div>
+            </div>
+        </div>
+        <div class="spMain_bg sp3">
+            <div class="spMain">
+                <div class="mb_32">
+                    <img src="images/icon/components-icon/success.svg" alt="">
+                    <h5>訂單完成</h5>
+                    <p>訂單資料將寄送至：service@tibame.com</p>
+                </div>
+                <div class="spCard">
+                    <ul>
+                        <li class="accordion">
+                            <!-- first list box1 -->
+                            <div class="ol-header mb_24">
+                                <div class="ol-headText">
+                                    <p>訂單日期：2023年8月4日</p>
+                                    <p>訂單編號：PT0004</p>
+                                </div>
+                            </div>
+                            <!-- first list box2 -->
+                            <div class="ol-content mb_24">
+                                <!-- box2-1 -->
+                                <div class="ol-contentBox mb_24">
+                                    <img src="/images/pic/shop/goShop01.png" alt="driveDog">
+                                    <div class="ol-ContText">
+                                        <h6 class="mb_16">寵物接送</h6>
+                                        <p>8月17日 ｜ 16:00</p>
+                                        <div class="ol-info">
+                                            <p>轎車</p>
+                                            <p>NT$ 300</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- box2-2 -->
+                                <div class="ol-contentBox mb_24">
+                                    <img src="/images/pic/shop/goShop02.png" alt="driveDog">
+                                    <div class="ol-ContText">
+                                        <h6 class="mb_16">快樂寵物旅館</h6>
+                                        <p>8月17日-8月19日 (3晚)</p>
+                                        <div class="ol-info">
+                                            <p>狗套房X1 ｜ 小型犬</p>
+                                            <p>NT$ 2,400</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- box2-3 -->
+                                <div class="ol-contentBox mb_24">
+                                    <img src="/images/pic/shop/goShop03.png" alt="driveDog">
+                                    <div class="ol-ContText">
+                                        <h6 class="mb_16">快樂寵物旅館</h6>
+                                        <p>8月17日-8月19日 (3晚)</p>
+                                        <div class="ol-info">
+                                            <p>貓套房X1 ｜ 貓咪</p>
+                                            <p>NT$ 2,400</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- first list box3 -->
+                            <div class="ol-money mb_24">
+                                <div class="ol-count mb_16">
+                                    <p>3件合計</p>
+                                    <span>NT$ 5,100</span>
+                                </div>
+                                <div class="ol-count">
+                                    <p>Pet Points 折抵</p>
+                                    <span>-NT$ 30</span>
+                                </div>
+                            </div>
+                            <!-- first list box4 -->
+                            <div class="ol-total">
+                                <div class="ol-count mb_24">
+                                    <p>總計</p>
+                                    <span>NT$ 5,070</span>
+                                </div>
+                                <p><img src="/images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points
+                                    <span>50</span> 點
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="spCard">
+                    <div>
+                        <p>姓名</p>
+                        <p>王緯育</p>
+                    </div>
+                    <div>
+                        <p>電子信箱</p>
+                        <p>service@tibame.com</p>
+                    </div>
+                    <div>
+                        <p>行動電話</p>
+                        <p>0912-345-678</p>
+                    </div>
+                </div>
+                <button class="btn_5" id="Goindex">回首頁</button>
+            </div>
+        </div>
+        @@include('layout/footer.html')
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                var nextButton=document.getElementById('Goindex');
+
+                nextButton.addEventListener('click', function () {
+                        window.location.href='index.html';
+                    });
+            });
+    </script>
+</body>
+
+</html>

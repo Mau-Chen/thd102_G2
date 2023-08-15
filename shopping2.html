@@ -139,9 +139,9 @@
                             <p>3件總計</p>
                             <h5>NT$5,100</h5>
                         </div>
-                        <button class="spNext btn_5">下一步</button>
+                        <button class="spNext btn_5" id="Go_sp3">下一步</button>
                         <div>
-                            <img src="images/icon/member-icon/point.svg" alt=""><p>可獲得 Pet Points <span>50</span> 點</p>
+                            <img src="images/icon/member-icon/black-points.svg" alt=""><p>可獲得 Pet Points <span>50</span> 點</p>
                         </div>
                     </div>
 
@@ -160,6 +160,14 @@
 
             usePointInput.addEventListener('keyup', function () {
                 this.size = this.value.length;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var nextButton = document.getElementById('Go_sp3');
+
+            nextButton.addEventListener('click', function () {
+                window.location.href = 'shopping3.html';
             });
         });
     </script>
