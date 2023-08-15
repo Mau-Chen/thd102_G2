@@ -1,88 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @@include('layout/meta.html')
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <title>Go會員 | PetpaGo</title>
-    <style>
-        .listHead {
-            display: flex;
-            justify-content: space-between;
-        }
-        .listHead2 {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .arrowIcon{
-            transform: rotate(0deg);
-        }
-        .listHead2{
-            font-size: 28px;
-        }
-        .active{
-            transform: rotate(180deg);
-        }
-        .listContent{
-            display: flex;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-        .money{
-            border-top: 1px solid #E0E0E0;
-            border-bottom: 1px solid #E0E0E0;
-            padding: 24px 0;
-        }
-        .total p:last-child{
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .listBottom{
-            display: flex;
-            justify-content: space-between;
-        }
-        .count{
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .count p:last-child{
-            font-weight: bold;
-            font-size: 24px;
-        }
-        .count2{
-            display: flex;
-            justify-content: end;
-            gap: 8px
-        }
-        .count2 span{
-            color: #d63900;
-        }
-        
-    </style>
-</head>
-
-<body>
+  </head>
+  <style>
+    .arrowIcon {
+      transform: rotate(0deg);
+    }
+    .active {
+      transform: rotate(180deg);
+    }
+  </style>
+  <body>
     <div class="wrapper bg_gray">
-        @@include('layout/header.html')
-        <main class="container member-main ">
-            @@include("layout/member-sideBar.html")
+      @@include('layout/header.html')
+      <main class="container member-main">
+        @@include("layout/member-sideBar.html")
 
-            <div class="member-box col-10 col-lg-9 col-sm-12">
-                <!------------ 訂單紀錄 listBody ------------>
-                <ul id="order" class="member-order">
-                    <!-- first list -->
-                    <!-- second list -->
-                    <list 
-                        :tasks="tasks"></list>
-                </ul>
-            </div>
-        </main>
+        <div class="member-box col-10 col-lg-9 col-sm-12">
+          <!------------ 訂單紀錄 listBody ------------>
+          <ul id="order">
+            <!-- first list -->
+            <!-- second list -->
+            <list :tasks="tasks"></list>
+          </ul>
+        </div>
+      </main>
+      @@include('layout/footer.html')
     </div>
     <script type="module" src="js/memberOrder.js"></script>
-</body>
-
+  </body>
 </html>
