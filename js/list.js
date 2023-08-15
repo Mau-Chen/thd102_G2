@@ -13,7 +13,7 @@ export default{
                                 </div>
                                 <div class="listHead2">
                                     <div v-if="!isOpen[index]">
-                                        <p>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c) }}</p>
+                                        <p>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c).toLocaleString('en-US') }}</p>
                                     </div>
                                     <div class="arrowIcon" @click="open(index)" :class="{ active: isOpen[index] }">
                                         <img src="images/icon/components-icon/faqbt-circle.svg" alt="">
@@ -36,7 +36,7 @@ export default{
                                             </div>
                                             <div class="listBottom">
                                                 <p>轎車</p>
-                                                <p>NT$<span>{{ Order.price }}</span></p>
+                                                <p>NT$<span>{{ Order.price.toLocaleString('en-US') }}</span></p>
                                             </div>
                                         </div>
                                     </li>
@@ -44,16 +44,16 @@ export default{
                                 <!-- 折扣部分 -->
                                 <div class="count">
                                     <p><span>3</span>件合計</p>
-                                    <p>NT$<span>{{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c) }}</span></p>
+                                    <p>NT$<span>{{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c).toLocaleString('en-US') }}</span></p>
                                 </div>
                                 <div class="count">
                                     <p>Pet Points 折抵</p>
-                                    <p>-NT$ {{ task.reduce }}</p>
+                                    <p>-NT$ {{ task.reduce.toLocaleString('en-US') }}</p>
                                 </div>
                                 <br>
                                 <div class="count">
                                     <p>總計</p>
-                                    <p>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce }}</p>
+                                    <p>NT$ {{ (task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce).toLocaleString('en-US') }}</p>
                                 </div>
                                 <div class="count2">
                                     <img src="images/icon/member-icon/black-points.svg" alt="">
