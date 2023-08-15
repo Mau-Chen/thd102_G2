@@ -106,7 +106,7 @@
       }
     }
     .ol-content {
-      display: none;
+      // display: none;
       .ol-contentBox {
         @include flex();
         gap: 24px;
