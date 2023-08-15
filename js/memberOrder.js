@@ -1,4 +1,4 @@
-import list from '../components/list.js'
+import list from './list.js'
 
 const app = Vue.createApp({
 });
