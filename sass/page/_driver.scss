@@ -142,6 +142,52 @@
       iframe {
         border-radius: $br_12;
       }
+      .journey {
+        @include flex(row, space-between, null);
+        flex-wrap: wrap;
+        outline: 1px solid $gray_1;
+        background-color: $white;
+        border-radius: $br_12;
+        padding: 40px;
+        .juorneydetail {
+          @include flex(row, space-between, null);
+          .embark_datetime {
+            p {
+              margin-bottom: 8px;
+              color: $textColor_m;
+            }
+            span {
+              color: $black;
+              font-size: 20px;
+            }
+            &:nth-child(2) {
+              border-left: 1px solid $gray_1;
+              border-right: 1px solid $gray_1;
+              padding-left: 16px;
+            }
+            &:nth-child(3) {
+              padding-left: 16px;
+            }
+          }
+        }
+        .journeybtn {
+          @include flex();
+          gap: 0 12px;
+        }
+
+        .remind {
+          @include flex(row, null, center);
+          // height: 44px;
+          background-color: $gray_2;
+          border-radius: 8px;
+          color: $textColor_m;
+          padding: 4px 16px;
+          margin-top: 20px;
+          .remindicon {
+            margin-right: 8px;
+          }
+        }
+      }
     }
     .notice,
     .cancel {
@@ -213,6 +259,14 @@
           }
         }
       }
+      .drivermap {
+        .journey {
+          padding: 16px;
+          .juorneydetail {
+            margin-bottom: 24px;
+          }
+        }
+      }
       .notice,
       .cancel {
         margin: 0 32px;
@@ -279,8 +333,30 @@
       .drivermap {
         margin-left: 16px;
         margin-right: 16px;
+        padding: 16px;
         iframe {
           height: 249px;
+        }
+        .journey {
+          .juorneydetail {
+            display: block;
+            .embark_datetime {
+              border-bottom: 1px solid $gray_1;
+              margin-bottom: 8px;
+              &:nth-child(2) {
+                border-left: none;
+                border-right: none;
+              }
+              &:nth-child(2),
+              &:nth-child(3) {
+                padding-left: 0;
+              }
+              span {
+                display: block;
+                margin-bottom: 8px;
+              }
+            }
+          }
         }
       }
 
