@@ -1,8 +1,10 @@
+.ad_section {
+  padding: 0 32px;
+}
 .ad_box {
   @include flex();
   gap: 32px;
-  margin: 0 32px;
-  .ad_box_incon {
+  .ad_box_icon {
     @include flex();
     gap: 32px;
     background: $gray_4;
