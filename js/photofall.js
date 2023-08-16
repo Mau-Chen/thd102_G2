@@ -4,6 +4,7 @@ const app2 = Vue.createApp({
     data(){
         return {
             show: false,
+            previewImage: null,
             items: [
                 { 
                   image: '../images/pic/photoWall/photoWall01.png',
@@ -47,6 +48,26 @@ const app2 = Vue.createApp({
                 }
               ]
         }
+    },
+    methods: {
+      handleDrop(event){
+        event.preventDefault(); //用來防止圖片拖進瀏覽器的預設事件
+
+        const file = event.dataTransfer.files[0];
+        if(file && file.type.startsWith('image/')){
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.previewImage = reader.result;
+          }
+          reader.readAsDataURL(file);
+        };
+      },
+      triggerFileInput() {
+        this.$refs.fileInput.click();
+      },
+      uploadImage(){
+        console.log("上傳圖片:",this.previewImage);
+      }
     }
 });
 app2.component("PhotoFall", photofall);

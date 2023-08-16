@@ -89,6 +89,14 @@
     }
 
     /* 用戶上傳圖片Module用CSS */
+    /* 拖曳上傳圖片用CSS */
+    .dragArea {
+      background-image: url('./images/icon/photowall-icon/photoUpload.svg');
+      width: 100%;
+      height: 300px;
+    }
+
+    /* 拖曳上傳圖片用CSS */
   </style>
 </head>
 
@@ -112,8 +120,17 @@
             </div>
           </div>
           <div class="loginPage">
-            <input type="file">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quia eius rem itaque amet ipsa consequatur quasi aliquam qui totam officia odio excepturi illum facere quas, quo ullam quam perferendis.</p>
+            <h4>建立新貼文</h4>
+            <form action="#">
+              <div class="dragArea" @dragover.prevent @drop="handleDrop" @click="triggerFileInput">
+
+                <div>
+                  <img v-if="previewImage" :src="previewImage" alt="Preview">
+                </div>
+                <input ref="fileInput" type="file" style="display: none" @change="handleFileSelect" />
+              </div>
+              <button type="button" class="btn_5">發布</button>
+            </form>
           </div>
         </div>
       </div>
