@@ -1,3 +1,5 @@
+
+
 //會員
 .member-main {
   padding: 100px 32px;
@@ -91,15 +93,14 @@
       height: 100%;
     }
     // -- 有訂單記錄
-    .member-order li{
+    ul li {
       background-color: $white;
       border-radius: $br_12;
       padding: 24px;
       margin-bottom: 24px;
       font-size: 18px;
       font-weight: 500;
-    } // 我這裡用壞了ＱＱＱＱ 吃不到東西
-    
+    }
     .ol-header {
       font-weight: bold;
       .rotateBtn {
@@ -107,7 +108,8 @@
       }
     }
     .ol-content {
-      // display: none;
+      margin-top: 24px;
+      display: none;
       .ol-contentBox {
         @include flex();
         gap: 24px;
