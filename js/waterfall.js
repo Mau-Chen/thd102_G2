@@ -4,7 +4,7 @@ export default {
   <div class="waterfall-container">
   <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="waterfall-column">
     <div v-for="item in column" :key="item.id" class="waterfall-item">
-      <img :src="item.image" @load="onImageLoad(item)" alt="Item Image">
+      <img :src="item.image" @load="onImageLoad(item)" @click="toggleLightbox(item)" alt="Item Image">
       <div class="fallBottom">
         <div class="postIcon">
           <img :src="item.icon">
@@ -18,6 +18,33 @@ export default {
           </div>
         </div>
         
+        <div v-if="lightboxOpen === true" class="lightbox">
+          <div class="loginpage_base">
+            <div class="close">
+              <div class="icon" @click="lightboxOpen = false">
+                <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+              </div>
+            </div>
+            <div class="loginPage waterFallStyle">
+              <div>
+                <img :src="activeItem.image" alt="Item Image">
+              </div>
+              <div class="fallBottom">
+                <div class="postIcon">
+                  <img :src="item.icon">
+                </div>
+                <div class="function_btn_group">
+                  <div class="more">
+                    <img src="../images/icon/photowall-icon/love-circle.svg">
+                  </div>
+                  <div class="more">
+                    <img src="../images/icon/photowall-icon/bb-circle.svg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>   
+        </div>
       </div>
     </div>
   </div>
@@ -25,7 +52,10 @@ export default {
     `,
   data() {
     return {
-      columns: [[], [], []]
+      columns: [[], [], []],
+      lightboxOpen: false,
+      lightboxImage: '',
+      activeItem:null
     };
   },
   mounted() {
@@ -77,6 +107,11 @@ export default {
         return column.reduce((sum, currItem) => sum + currItem.height, 0) <
           acc.reduce((sum, currItem) => sum + currItem.height, 0) ? column : acc;
       }, this.columns[0]);
-    }
+    },
+    toggleLightbox(item) {
+      this.lightboxOpen = !this.lightboxOpen;
+      this.lightboxImage = item.image;
+      this.activeItem = this.lightboxOpen ? item : null;
+    },
   },
 };
