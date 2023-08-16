@@ -51,27 +51,28 @@
       // }
     }
     @media (max-width: 414px) {
-      ul{
+      ul {
         width: 100%;
-        @include flex(row,space-around,center);
-        li{
+        @include flex(row, space-around, center);
+        li {
           border-right: 1px solid $gray_1;
           border-bottom: none;
           padding: 0 12px;
-          a,svg{
+          a,
+          svg {
             display: block;
             margin: 0 auto;
           }
         }
-        li:last-child{
-          border:none;
+        li:last-child {
+          border: none;
         }
       }
-      .btn_4_border{
+      .btn_4_border {
         width: 95%;
       }
     }
-}
+  }
   // ------ 會員右邊欄設定 -------------------------------
   .mr-bg {
     background-color: $white;
@@ -130,7 +131,6 @@
       border-top: 1px solid $gray_1;
       border-bottom: 1px solid $gray_1;
       padding: 24px 0;
-      display: none;
     }
     .ol-count {
       span {
@@ -139,7 +139,6 @@
       }
     }
     .ol-total {
-      display: none;
       .ol-count span {
         font-size: 28px;
       }
@@ -152,18 +151,13 @@
         }
       }
     }
-    .active > .ol-content, 
-    .active > .ol-money, 
-    .active > .ol-total {
-        display: block;
-    }
     .btn_4_border {
       width: 144px;
       background: none;
       margin-left: auto;
     }
     .ol-button {
-      display: flex;
+      @include flex();
       gap: 24px;
       span {
         font-size: 28px;

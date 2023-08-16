@@ -1,24 +1,129 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>GO有料 | PetpaGo</title>
-  </head>
 
-  <body>
-    <div class="wrapper photowall">
-      @@include('layout/header.html')
-      <div class="container">
-        <p>photoWall</p>
-        @@include('layout/doing.html')
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  @@include('layout/meta.html')
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>GO有料 | PetpaGo</title>
+  <style>
+    /* 瀑布流(waterfall)用CSS */
+    .waterfall-container {
+      display: flex;
+      justify-content: center;
+      max-width: 1440px;
+      padding: 0 10px;
+      margin: 0 auto;
+      gap: 10px;
+    }
+
+    .waterfall-column {
+      width: 100%;
+    }
+
+    .waterfall-item {
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .waterfall-item>img {
+      width: 100%;
+    }
+
+    .fallBottom {
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      background: rgba(51, 51, 51, 0.40);
+      height: 76px;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .postIcon {
+      width: 37px;
+      height: 37px;
+    }
+
+    .function_btn_group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .more {
+      cursor: pointer;
+    }
+
+    .more>img {
+      display: block;
+      width: 37px;
+      height: 37px;
+    }
+
+    /* 瀑布流(waterfall)用CSS */
+    /* 用戶上傳圖片Module用CSS */
+    .postYourImage {
+      position: fixed;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: blueviolet;
+      border-radius: 50%;
+      box-sizing: content-box;
+      padding: 10px;
+      z-index: 2;
+      transition: all .3s ease-in-out;
+    }
+
+    .postYourImage:hover {
+      right: 10px;
+    }
+
+    /* 用戶上傳圖片Module用CSS */
+  </style>
+</head>
+
+<body>
+  <div class="wrapper photowall">
+    @@include('layout/header.html')
+    <div class="container" id="photofall">
+      <!-- 瀑布流組件 Please 別碰 這是magic -->
+      <photo-fall :items="items"></photo-fall>
+      <!-- 瀑布流元件 Please 別碰 這是magic -->
+
+      <div class="postYourImage" @click="show = true">
+        <img src="./images/icon/photowall-icon/plus.svg" alt="">
       </div>
-      @@include('layout/footer.html')
+      <div v-if="show === true" class="lightbox">
+        <div class="loginpage_base">
+          <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
+          <div class="close">
+            <div class="icon" @click="show = false">
+              <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+            </div>
+          </div>
+          <div class="loginPage">
+            <input type="file">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quia eius rem itaque amet ipsa consequatur quasi aliquam qui totam officia odio excepturi illum facere quas, quo ullam quam perferendis.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </body>
+  </div>
+  <!-- @@include('layout/footer.html') -->
+  </div>
+
+  <script src="./js/photofall.js" type="module"></script>
+</body>
+
 </html>
