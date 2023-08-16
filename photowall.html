@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/style.css" />
   <title>GO有料 | PetpaGo</title>
   <style>
+    /* 瀑布流(waterfall)用CSS */
     .waterfall-container {
       display: flex;
       justify-content: center;
@@ -45,24 +46,49 @@
       justify-content: space-between;
       align-items: center;
     }
-    .postIcon{
+
+    .postIcon {
       width: 37px;
       height: 37px;
     }
-    .function_btn_group{
+
+    .function_btn_group {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 16px;
     }
+
     .more {
       cursor: pointer;
     }
-    .more > img{
+
+    .more>img {
       display: block;
       width: 37px;
       height: 37px;
     }
+
+    /* 瀑布流(waterfall)用CSS */
+    /* 用戶上傳圖片Module用CSS */
+    .postYourImage {
+      position: fixed;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: blueviolet;
+      border-radius: 50%;
+      box-sizing: content-box;
+      padding: 10px;
+      z-index: 2;
+      transition: all .3s ease-in-out;
+    }
+
+    .postYourImage:hover {
+      right: 10px;
+    }
+
+    /* 用戶上傳圖片Module用CSS */
   </style>
 </head>
 
@@ -70,10 +96,31 @@
   <div class="wrapper photowall">
     @@include('layout/header.html')
     <div class="container" id="photofall">
-      <photo-fall
-        :items="items"></photo-fall>
+      <!-- 瀑布流組件 Please 別碰 這是magic -->
+      <photo-fall :items="items"></photo-fall>
+      <!-- 瀑布流元件 Please 別碰 這是magic -->
+
+      <div class="postYourImage" @click="show = true">
+        <img src="./images/icon/photowall-icon/plus.svg" alt="">
+      </div>
+      <div v-if="show === true" class="lightbox">
+        <div class="loginpage_base">
+          <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
+          <div class="close">
+            <div class="icon" @click="show = false">
+              <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+            </div>
+          </div>
+          <div class="loginPage">
+            <input type="file">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quia eius rem itaque amet ipsa consequatur quasi aliquam qui totam officia odio excepturi illum facere quas, quo ullam quam perferendis.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-    @@include('layout/footer.html')
+  </div>
+  <!-- @@include('layout/footer.html') -->
   </div>
 
   <script src="./js/photofall.js" type="module"></script>
