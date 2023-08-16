@@ -3,6 +3,7 @@ import photofall from './waterfall.js';
 const app2 = Vue.createApp({
     data(){
         return {
+            show: false,
             items: [
                 { 
                   image: '../images/pic/photoWall/photoWall01.png',
