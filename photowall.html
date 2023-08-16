@@ -92,9 +92,10 @@
 
     /* 用戶上傳圖片Module用CSS */
     /* 拖曳上傳圖片用CSS */
-    .photoTitle{
+    .photoTitle {
       text-align: center;
     }
+
     .dragArea {
       background-image: url('./images/icon/photowall-icon/photoUpload.svg');
       background-position: center center;
@@ -102,12 +103,14 @@
       height: 300px;
       margin: 24px 0;
     }
-    .preViewSide{
+
+    .preViewSide {
       border-radius: 8px;
       height: 100%;
       overflow: hidden;
     }
-    .preViewSide > img{
+
+    .preViewSide>img {
       margin: 0 auto;
       height: 100%;
     }
@@ -145,20 +148,17 @@
                 </div>
                 <input ref="fileInput" type="file" style="display: none" @change="handleFileSelect" />
               </div>
-              <button 
-                type="button" 
-                class="btn_5"
-                @click="uploadImage" 
-                :disabled="!previewImage">發布</button>
+              <button type="button" class="btn_5" @click="uploadImage" :disabled="!previewImage">發布</button>
             </form>
           </div>
         </div>
       </div>
 
     </div>
+
+    @@include('layout/footer.html')
   </div>
-  <!-- @@include('layout/footer.html') -->
-  </div>
+  
 
   <script src="./js/photofall.js" type="module"></script>
 </body>

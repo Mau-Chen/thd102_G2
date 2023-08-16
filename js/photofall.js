@@ -45,6 +45,30 @@ const app2 = Vue.createApp({
                 { 
                   image: '../images/pic/photoWall/photoWall10.png',
                   icon: '../images/pic/user6.png', 
+                },
+                { 
+                  image: '../images/pic/photoWall/photoWall11.png',
+                  icon: '../images/pic/user2.png', 
+                },
+                { 
+                  image: '../images/pic/photoWall/photoWall12.png',
+                  icon: '../images/pic/user3.png', 
+                },
+                { 
+                  image: '../images/pic/photoWall/photoWall13.png',
+                  icon: '../images/pic/user4.png', 
+                },
+                { 
+                  image: '../images/pic/photoWall/photoWall14.png',
+                  icon: '../images/pic/user2.png', 
+                },
+                { 
+                  image: '../images/pic/photoWall/photoWall15.png',
+                  icon: '../images/pic/user4.png', 
+                },
+                { 
+                  image: '../images/pic/photoWall/photoWall16.png',
+                  icon: '../images/pic/user3.png', 
                 }
               ]
         }

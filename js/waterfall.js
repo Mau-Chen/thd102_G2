@@ -59,8 +59,10 @@ export default {
     };
   },
   mounted() {
+    //RWD監聽
     window.addEventListener('resize', this.updateColumns);
-    window.addEventListener('scroll', this.handleScroll);
+    //滾動監聽
+    // window.addEventListener('scroll', this.handleScroll);
     this.updateColumns();
     
   },
