@@ -65,6 +65,16 @@ const app2 = Vue.createApp({
       triggerFileInput() {
         this.$refs.fileInput.click();
       },
+      handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.previewImage = reader.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      },
       uploadImage(){
         console.log("上傳圖片:",this.previewImage);
       }

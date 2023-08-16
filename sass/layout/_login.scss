@@ -5,7 +5,7 @@
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
-  z-index: 999; //別拿掉 driver會爆
+  z-index: 10; //別拿掉 driver會爆
   @include flex();
   font-weight: normal;
   font-family: "Noto Sans TC", "poppins";
@@ -14,7 +14,14 @@
 .loginpage_base {
   width: 500px;
   position: fixed;
-  top: 160px;
+  top: 160px; 
+  z-index: 11;
+  transform: translateY(-20%);
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    padding: 0 10px;
+  }
+    
   .close {
     width: 100%;
     height: 40px;
@@ -120,4 +127,19 @@
   .succPag {
     padding: 60px 40px;
   }
+}
+
+.waterFallStyle{
+  padding: 0 !important;
+  overflow: hidden;
+  max-height: 700px;
+  div{
+    img{
+      width: 100%;
+    }
+  }
+}
+
+.d-none{
+  display: none;
 }
