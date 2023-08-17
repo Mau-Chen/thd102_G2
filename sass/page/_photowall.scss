@@ -9,9 +9,12 @@
     display: flex;
     justify-content: center;
     max-width: 1440px;
-    padding: 0 10px;
+    padding: 0 12px;
     margin: 0 auto;
     gap: 16px;
+    @media screen and (max-width: 500px) {
+        gap: 8px;
+    }
 }
 
 .waterfall-column {
@@ -21,9 +24,12 @@
 .waterfall-item {
     margin-bottom: 16px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
+    @media screen and (max-width: 500px) {
+        margin-bottom: 8px;
+    }
 }
 
 .waterfall-item>img {
@@ -46,12 +52,14 @@
     left: 0;
     right: 0;
     background: rgba(51, 51, 51, 0.40);
-    height: 76px;
     width: 100%;
-    padding: 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 768px) {
+        padding: 8px 20px;
+    }
 }
 
 .postIcon {
@@ -63,7 +71,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
 }
 
 .more {
@@ -80,19 +88,27 @@
 /* 用戶上傳圖片Module用CSS */
 .postYourImage {
     position: fixed;
-    right: -40px;
-    top: 50%;
+    right: 3%;
+    top: 85%;
     transform: translateY(-50%);
     background-color: $purple;
     border-radius: 50%;
     box-sizing: content-box;
-    padding: 10px;
+    padding: 20px;
     z-index: 2;
     transition: all .3s ease-in-out;
-}
-
-.postYourImage:hover {
-    right: 10px;
+    box-shadow: 0 10px 15px rgba(113,24,239,.15);
+    @media screen and (max-width: 500px) {
+        padding: 15px;
+    }
+    img{
+        width: 30px;
+        height: 30px;
+        @media screen and (max-width: 500px) {
+            width: 20px;
+            height: 20px;            
+        }
+    }
 }
 
 /* 用戶上傳圖片Module用CSS */
