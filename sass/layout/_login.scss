@@ -13,15 +13,15 @@
 
 .loginpage_base {
   width: 500px;
-  // position: fixed;
-  // top: 160px; 
+  position: fixed;
+  top: 160px;
   z-index: 11;
   // transform: translateY(-20%);
   @media screen and (max-width: 500px) {
     width: 100%;
     padding: 0 10px;
   }
-    
+
   .close {
     width: 100%;
     height: 40px;
@@ -82,7 +82,7 @@
     @include flex();
     gap: 12px;
     font-weight: 500;
-    a {
+    span {
       cursor: pointer;
       box-shadow: 0 1px;
     }
@@ -130,17 +130,17 @@
 }
 /* 照片牆的燈箱 */
 
-.waterFallStyle{
+.waterFallStyle {
   padding: 0 !important;
   overflow: hidden;
   max-height: 700px;
-  div{
-    img{
+  div {
+    img {
       width: 100%;
     }
   }
 }
 
-.login123{
+.login123 {
   display: none;
 }
