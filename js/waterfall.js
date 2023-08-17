@@ -3,9 +3,9 @@ export default {
   props: ["items"],
   template: `
   <div class="waterfall-container">
-      <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="waterfall-column">
-        <div v-for="item in column" :key="item.id" class="waterfall-item">
-
+      <div v-for="(column, columnIndex) in columns" :key="column.id" class="waterfall-column">
+        <div v-for="item in column" :key="item.id" class="waterfall-item" >
+          <template v-if="!ignoreList.includes(item.id)" >
           <!-- 圖片本體 -->
 
           <img :src="item.image" @load="onImageLoad(item)" @click="toggleLightbox(item)" alt="Item Image">
@@ -101,28 +101,35 @@ export default {
                       <label for="report7">侵權</label>
                     </div>
                   </form>
-                  <button class="btn_5">送出</button>
+                  <button class="btn_5" @click="ignore_list(item.id),toggleLightbox2(item)">送出</button>
                 </div>
               </div>
             </div> 
-
           </div>
+          </template>
         </div>
       </div>
     </div>
     `,
   data() {
     return {
+      ignoreList: [],
       columns: [[], [], []],
     };
+  },
+  created(){
+    let my_tasks = JSON.parse(localStorage.getItem("ignoreList"));
+    if(my_tasks){
+        this.ignoreList = my_tasks;
+    }
   },
   mounted() {
     this.updateColumns();
     const self = this
     //RWD監聽
-    window.addEventListener('resize', window._.debounce(()=>{
+    window.addEventListener('resize', window._.debounce(() => {
       self.updateColumns()
-    },150));
+    }, 150));
     //滾動監聽
     // window.addEventListener('scroll', this.handleScroll);
   },
@@ -178,6 +185,17 @@ export default {
     toggleLightbox2(item) {
       // 在點擊時設定當前項目lightboxReport的狀態
       item.lightboxReport = !item.lightboxReport;
+    },
+    ignore_list(item) {
+      console.log(item);
+
+      const storedIgnoreList = localStorage.getItem('ignoreList');
+
+      this.ignoreList = storedIgnoreList ? JSON.parse(storedIgnoreList) : [];
+      if (!this.ignoreList.includes(item)) {
+        this.ignoreList.push(item);
+        localStorage.setItem('ignoreList', JSON.stringify(this.ignoreList));
+      }
     }
   },
 };
