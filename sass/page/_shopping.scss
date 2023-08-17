@@ -715,36 +715,36 @@
 
     //全sp共用
     .spStep_bg {
-        height: 93px;
-        padding: 16px 0;
+        // height: 93px;
+        // padding: 16px 0;
 
         .spStep_box .spStep {
             .spStep_number {
-                margin-bottom: 8px;
+                // margin-bottom: 8px;
 
                 P {
-                    width: 32px;
-                    height: 32px;
-                    line-height: 32px;
+                    // width: 32px;
+                    // height: 32px;
+                    // line-height: 32px;
                 }
             }
 
             p {
-                font-size: 14px;
+                // font-size: 14px;
             }
         }
     }
 
     .spMain_bg {
-        padding: 0 32px;
+        // padding: 0 32px;
 
         .spMian_title {
-            padding-bottom: 24px;
+            // padding-bottom: 24px;
         }
 
         .spMain {
-            gap: 0;
-            flex-wrap: wrap;
+            // gap: 0;
+            // flex-wrap: wrap;
         }
     }
 
@@ -752,34 +752,34 @@
     .sp2 .spMain {
         .spMain_left {
             h5 {
-                margin-bottom: 24px;
+                // margin-bottom: 24px;
             }
 
             .spCard {
-                margin-bottom: 32px;
+                // margin-bottom: 32px;
 
                 form {
                     input[type="text"] {
-                        margin-bottom: 16px;
+                        // margin-bottom: 16px;
                     }
 
                     .spOrder_check {
-                        margin-bottom: 16px;
+                        // margin-bottom: 16px;
 
                         label {
-                            margin-bottom: 0;
+                            // margin-bottom: 0;
                         }
                     }
                 }
 
                 .creditCard {
-                    flex-direction: column;
+                    // flex-direction: column;
 
                     >div {
-                        width: 100%;
+                        // width: 100%;
 
                         input[type="text"] {
-                            margin-bottom: 0;
+                            // margin-bottom: 0;
                         }
                     }
 
@@ -788,11 +788,11 @@
             }
 
             .spPay {
-                flex-direction: column;
-                align-items: flex-start;
+                // flex-direction: column;
+                // align-items: flex-start;
 
                 span {
-                    margin-left: 0;
+                    // margin-left: 0;
                 }
 
             }
@@ -802,63 +802,63 @@
 
 @media screen and (max-width: 414px) {
     .spStep_bg {
-        padding: 16px;
+        // padding: 16px;
     }
 
     .spMain_bg {
-        padding: 0 16px;
+        // padding: 0 16px;
 
         .spMain {
 
             .spDriver,
             .spHostel {
                 .spCard_up {
-                    flex-wrap: wrap;
-                    gap: 16px;
-                    padding-bottom: 24px;
+                    // flex-wrap: wrap;
+                    // gap: 16px;
+                    // padding-bottom: 24px;
 
                     input[type=checkbox] {
-                        width: 100%;
+                        // width: 100%;
 
                         &:checked+label::after {
-                            top: 5px;
+                            // top: 5px;
                         }
                     }
 
                     label {
-                        display: block;
-                        width: 100%;
-                        margin: 0 auto;
+                        // display: block;
+                        // width: 100%;
+                        // margin: 0 auto;
 
                         &::before {
-                            margin-bottom: 16px;
+                            // margin-bottom: 16px;
                         }
                     }
 
                     .spBuy_text {
-                        width: 100%;
-                        margin-left: 0;
+                        // width: 100%;
+                        // margin-left: 0;
 
                         .spList_up {
-                            margin-bottom: 8px;
+                            // margin-bottom: 8px;
                         }
 
                         .spList_down {
                             p {
-                                margin-bottom: 0;
+                                // margin-bottom: 0;
                             }
                         }
                     }
                 }
 
                 .spSubtotal {
-                    padding-top: 16px;
+                    // padding-top: 16px;
                 }
             }
 
             .spHostel {
                 .spSubtotal {
-                    justify-content: space-between;
+                    // justify-content: space-between;
                 }
             }
         }
@@ -914,11 +914,12 @@
         transition-timing-function: linear;
         transition-delay: 0s;
         position: relative;
-        padding-top: 50px;
+        padding-top: 51px;
         color: $gray_1;
-        text-indent: -9999px;
+        // text-indent: -9999px;
         background-color: transparent;
         // cursor: pointer;
+        text-indent: 0;
 
         &::before {
             content: "";
@@ -1229,9 +1230,6 @@
 
         //sp2覆蓋共用
         .sp2 {
-            .spCard {
-                // position: static;
-            }
 
             //付款人資料
             .spOrderMan {
@@ -1261,7 +1259,8 @@
 
                     label {
                         width: auto;
-                        &::before{
+
+                        &::before {
                             margin-right: 12px;
                         }
                     }
@@ -1295,8 +1294,9 @@
                     top: 24px;
                     height: 25px;
                 }
+
                 label {
-                    &::before{
+                    &::before {
                         margin-right: 12px;
                     }
                 }
@@ -1339,10 +1339,12 @@
                 .creditCard {
                     @include flex(row, space-between);
                     margin-bottom: 24px;
+                    gap: 32px;
 
                     //信用卡資訊細項
                     >div {
-                        width: 192px;
+                        // width: 192px;
+                        // @include flex(row, space-between);
 
                         >div {
                             border: 1px solid $gray_1;
@@ -1556,13 +1558,157 @@
     }
 
     // @include flex();
-    // }
-    @media (min-width: 500px) {
-        .spStep {
-            text-indent: 0;
+
+
+    @media screen and (max-width: 768px) {
+        .spStep_bg {
+            height: 93px;
+
+            .spStep {
+                padding-top: 40px;
+
+                &::before {
+                    width: 32px;
+                    height: 32px;
+                    line-height: 32px;
+                    font-size: 14px;
+                }
+
+                &::after {
+                    top: 14px;
+                }
+            }
         }
+
+        .spMain_bg {
+
+            .spMian_title {
+                padding-bottom: 24px;
+            }
+
+            .spMain {
+                gap: 0;
+                flex-direction: column;
+
+                // flex-wrap: wrap;
+                .spCard {
+                    label {
+                        picture {
+                            // margin: 0 auto;
+                            @include flex();
+
+                            // width: 100%;
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        //sp2覆蓋共用
+        .sp2 {
+            .spMain_left {
+                .spOrderMan {
+                    .spSame_member {
+                        margin-bottom: 16px;
+                    }
+
+                    input[type="text"],
+                    textarea {
+                        margin-bottom: 16px;
+                    }
+
+                    textarea {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .spCard {
+                    margin-bottom: 32px;
+
+                    .creditCard {
+                        flex-direction: column;
+
+                        >div{
+                            &:first-child>div {
+                                justify-content: flex-start;
+                            }
+                            &:last-child>input{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
 
-    @media screen and (max-width: 768px) {}
+    @media screen and (max-width: 414px) {
+        .spMain_bg {
+            padding: 0 16px;
+
+            .spMain {
+
+                .spDriver,
+                .spHostel {
+                    .spCard_up {
+                        flex-wrap: wrap;
+                        gap: 16px;
+                        padding-bottom: 16px;
+
+                        input[type=checkbox] {
+                            width: 100%;
+
+                            &:checked+label::after {
+                                top: 5px;
+                            }
+                        }
+
+                        label {
+                            display: block;
+                            width: 100%;
+                            margin: 0 auto;
+
+                            &::before {
+                                margin-bottom: 16px;
+                            }
+                        }
+
+                        .spBuy_text {
+                            width: 100%;
+                            margin-left: 0;
+
+                            .spList_up {
+                                margin-bottom: 8px;
+                            }
+
+                            .spList_down {
+                                p {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    .spSubtotal {
+                        padding-top: 16px;
+                    }
+                }
+
+                .spHostel {
+                    .spSubtotal {
+                        justify-content: space-between;
+                    }
+                }
+            }
+        }
+
+
+    }
 
 }
