@@ -43,14 +43,14 @@
               </div>
               <div class="pi-box-half">
                 <label for="">出生日期</label>
-                <input type="date" placeholder="請選擇" />
+                <input type="date" placeholder="請選擇" id="myDateInput"/>
               </div>
             </div>
 
             <div class="pi-box">
               <div class="pi-box-half col-12">
                 <label for="">地址</label>
-                <input type="text" placeholder="請輸入地址" />
+                <input type="text" placeholder="請輸入地址"/>
               </div>
             </div>
           </form>
@@ -64,4 +64,13 @@
       @@include('layout/footer.html')
     </div>
   </body>
+  <script>
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("myDateInput").setAttribute("max", today);
+  </script>
 </html>
