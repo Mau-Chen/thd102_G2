@@ -16,7 +16,7 @@
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 100%;
   font-size: var(--dp-font-size);
-  line-height: calc(var(--dp-font-size) * 1.5);
+  // line-height: calc(var(--dp-font-size) * 1.5);
   // padding: var(--dp-input-padding);
   color: var(--dp-text-color);
   box-sizing: border-box;
@@ -67,9 +67,9 @@
   cursor: pointer;
   color: var(--dp-icon-color);
 }
-.dp__input_icon_pad {
-  // padding-left: var(--dp-input-icon-padding);
-}
+// .dp__input_icon_pad {
+//   // padding-left: var(--dp-input-icon-padding);
+// }
 .dp__input_valid {
   box-shadow: 0 0 var(--dp-border-radius) var(--dp-success-color);
   border-color: var(--dp-success-color);
@@ -688,16 +688,16 @@
   gap: 16px;
   margin: auto;
 }
-.dp__action_button {
-  // background: rgba(0, 0, 0, 0);
-  // border: 1px solid rgba(0, 0, 0, 0);
-  // padding: var(--dp-action-buttons-padding);
-  // line-height: initial;
-  // margin-left: 3px;
-  // height: var(--dp-action-button-height);
-  // cursor: pointer;
-  // border-radius: var(--dp-border-radius);
-}
+// .dp__action_button {
+//   // background: rgba(0, 0, 0, 0);
+//   // border: 1px solid rgba(0, 0, 0, 0);
+//   // padding: var(--dp-action-buttons-padding);
+//   // line-height: initial;
+//   // margin-left: 3px;
+//   // height: var(--dp-action-button-height);
+//   // cursor: pointer;
+//   // border-radius: var(--dp-border-radius);
+// }
 .dp__action_select {
   width: 50%;
   height: 40px;
@@ -750,8 +750,8 @@
   --dp-menu-appear-transition-timing: cubic-bezier(0.4, 0, 1, 1);
   --dp-transition-timing: ease-out;
   --dp-action-row-transtion: all 0.2s ease-in;
-  --dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
-    oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  // --dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
+  //   oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --dp-border-radius: 4px;
   --dp-cell-border-radius: 4px;
   --dp-transition-length: 22px;
