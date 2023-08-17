@@ -1,10 +1,14 @@
 <!-- #ModalPage為Vue掛載的位置，不管用什麼裝置觸發，都必須要有這個ID -->
-<div id="ModalPage">
+<div type="button" id="btn_log" class="btn_4">
+  登入
+</div>
+
+<div id="ModalPage" class="login123">
   <!-- 此處為用@click綁定事件，用data中的"ispop"資料，來控制燈箱跳出
         如果要綁定在其它物件上，只要打上@click這條即可觸發。 -->
-  <div type="button" @click="ispop = true; changePage(0)" class="btn_4">
+  <!-- <div type="button" @click="ispop = true; changePage(0)" class="btn_4">
     登入
-  </div>
+  </div> -->
   <!-- 用v-if來渲染出燈箱畫面，此處的v-if渲染內容為燈箱主體，不可更動。 -->
   <div v-if="ispop === true" class="lightbox">
     <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
@@ -213,6 +217,14 @@
 </div>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
+  const click_el = document.getElementById("btn_log");
+  click_el.addEventListener('click', function(){
+    const ModalPage_el = document.getElementById("ModalPage");
+    ModalPage_el.classList.remove("login123");
+    vm.ispop = true;
+    vm.changePage(0);
+  })
+
   const ModalPage = Vue.createApp({
     data() {
       return {
@@ -255,5 +267,6 @@
     },
   });
 
-  ModalPage.mount("#ModalPage");
+  const vm = ModalPage.mount("#ModalPage");
+
 </script>
