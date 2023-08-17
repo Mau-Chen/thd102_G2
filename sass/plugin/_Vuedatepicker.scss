@@ -17,7 +17,7 @@
   width: 100%;
   font-size: var(--dp-font-size);
   line-height: calc(var(--dp-font-size) * 1.5);
-  padding: var(--dp-input-padding);
+  // padding: var(--dp-input-padding);
   color: var(--dp-text-color);
   box-sizing: border-box;
 }
@@ -52,6 +52,7 @@
 }
 .dp__input_icon {
   cursor: pointer;
+  display: none;
   position: absolute;
   top: 50%;
   left: 0;
@@ -67,7 +68,7 @@
   color: var(--dp-icon-color);
 }
 .dp__input_icon_pad {
-  padding-left: var(--dp-input-icon-padding);
+  // padding-left: var(--dp-input-icon-padding);
 }
 .dp__input_valid {
   box-shadow: 0 0 var(--dp-border-radius) var(--dp-success-color);
@@ -93,6 +94,8 @@
   user-select: none;
   border: 1px solid var(--dp-menu-border-color);
   box-sizing: border-box;
+  width: 100%;
+  border-radius: $br_8;
 }
 .dp__menu::after {
   box-sizing: border-box;
@@ -686,17 +689,28 @@
   margin: auto;
 }
 .dp__action_button {
-  background: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(0, 0, 0, 0);
-  padding: var(--dp-action-buttons-padding);
-  line-height: initial;
-  margin-left: 3px;
-  height: var(--dp-action-button-height);
-  cursor: pointer;
-  border-radius: var(--dp-border-radius);
+  // background: rgba(0, 0, 0, 0);
+  // border: 1px solid rgba(0, 0, 0, 0);
+  // padding: var(--dp-action-buttons-padding);
+  // line-height: initial;
+  // margin-left: 3px;
+  // height: var(--dp-action-button-height);
+  // cursor: pointer;
+  // border-radius: var(--dp-border-radius);
 }
 .dp__action_select {
   width: 50%;
+  height: 40px;
+  background-color: #6e60f6;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
 
   background: var(--dp-primary-color);
   color: var(--dp-primary-text-color);
@@ -706,13 +720,24 @@
   transition: var(--dp-action-row-transtion);
 }
 .dp__action_select:disabled {
-  background: var(--dp-primary-disabled-color);
+  background: rgba(110, 96, 246, 0.4);
   cursor: not-allowed;
 }
 .dp__action_cancel {
   width: 50%;
   color: var(--dp-text-color);
-  border: 1px solid var(--dp-border-color);
+  // border: 1px solid var(--dp-border-color);
+  height: 40px;
+  color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $black;
+  background-color: $white;
 }
 .dp__action_cancel:hover {
   border-color: var(--dp-primary-color);
