@@ -1,5 +1,8 @@
 //相片牆
-.photowall {}
+.photoWallMain {
+    margin-top: 68px;
+    margin-bottom: 68px;
+}
 
 /* 瀑布流(waterfall)用CSS */
 .waterfall-container {
@@ -8,7 +11,7 @@
     max-width: 1440px;
     padding: 0 10px;
     margin: 0 auto;
-    gap: 10px;
+    gap: 16px;
 }
 
 .waterfall-column {
@@ -16,7 +19,7 @@
 }
 
 .waterfall-item {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     box-sizing: border-box;
     border-radius: 20px;
     overflow: hidden;
@@ -55,12 +58,12 @@
 
 .more {
     cursor: pointer;
-}
 
-.more>img {
-    display: block;
-    width: 37px;
-    height: 37px;
+    img {
+        display: block;
+        width: 37px;
+        height: 37px;
+    }
 }
 
 /* 瀑布流(waterfall)用CSS */
@@ -70,7 +73,7 @@
     right: -40px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: blueviolet;
+    background-color: $purple;
     border-radius: 50%;
     box-sizing: content-box;
     padding: 10px;
@@ -106,7 +109,22 @@
         height: 100%;
     }
 }
-
-
-
 /* 拖曳上傳圖片用CSS */
+
+/* 檢舉表格用 */
+.pwReport{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 21px 12px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    gap: 8px;
+
+    .pwCb_group{
+        display: flex;
+        gap: 8px;
+    }
+}

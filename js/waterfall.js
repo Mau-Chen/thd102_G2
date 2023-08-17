@@ -4,7 +4,13 @@ export default {
   <div class="waterfall-container">
       <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="waterfall-column">
         <div v-for="item in column" :key="item.id" class="waterfall-item">
+
+          <!-- 圖片本體 -->
+
           <img :src="item.image" @load="onImageLoad(item)" @click="toggleLightbox(item)" alt="Item Image">
+
+          <!-- 圖片底部用戶頭像與功能區塊 -->
+
           <div class="fallBottom">
             <div class="postIcon">
               <img :src="item.icon">
@@ -13,12 +19,16 @@ export default {
               <div class="more">
                 <img src="../images/icon/photowall-icon/love-circle.svg">
               </div>
-              <div class="more">
+              <div class="more"  @click="toggleLightbox2(item)">
                 <img src="../images/icon/photowall-icon/bb-circle.svg">
               </div>
             </div>
-            
+
+            <!-- 功能區塊 -->
             <!-- 使用 item.lightboxOpen 屬性來控制每個項的 Lightbox 狀態 -->
+            <!-- 燈箱 放大圖片 -->
+            
+
             <div v-if="item.lightboxOpen === true" class="lightbox">
               <div class="loginpage_base">
                 <div class="close">
@@ -38,14 +48,63 @@ export default {
                       <div class="more">
                         <img src="../images/icon/photowall-icon/love-circle.svg">
                       </div>
-                      <div class="more">
+                      <div class="more" @click="toggleLightbox2(item)">
                         <img src="../images/icon/photowall-icon/bb-circle.svg">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> 
+
+            <!-- 燈箱 檢舉貼文 -->
+
+            <div v-if="item.lightboxReport === true" class="lightbox">
+              <div class="loginpage_base">
+                <div class="close">
+                  <div class="icon" @click="toggleLightbox2(item)">
+                    <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+                  </div>
+                </div>
+                <div class="loginPage">
+                  <div class="pageIsideContainer">
+                    <h5>檢舉貼文</h5>
+                  </div>
+                  <form action="#" class="pwReport">
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report1" id="report1">
+                      <label for="report1">裸露、色情或性相關內容</label>
+                    </div>
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report2" id="report2">
+                      <label for="report2">虐待動物</label>
+                    </div>
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report3" id="report3">
+                      <label for="report3">自殘</label>
+                    </div>
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report4" id="report4">
+                      <label for="report4">仇恨活動</label>
+                    </div>
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report5" id="report5">
+                      <label for="report5">危險物品</label>
+                    </div>
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report6" id="report6">
+                      <label for="report6">侵犯隱私</label>
+                    </div>
+                    <div class="pwCb_group">
+                      <input type="checkbox" name="report7" id="report7">
+                      <label for="report7">侵權</label>
+                    </div>
+                  </form>
+                  <button class="btn_5">送出</button>
+                </div>
+              </div>
+            </div> 
+
           </div>
         </div>
       </div>
@@ -112,5 +171,9 @@ export default {
       // 在點擊時設定當前項目lightbox的狀態
       item.lightboxOpen = !item.lightboxOpen;
     },
+    toggleLightbox2(item) {
+      // 在點擊時設定當前項目lightboxReport的狀態
+      item.lightboxReport = !item.lightboxReport;
+    }
   },
 };

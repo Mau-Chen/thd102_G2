@@ -13,10 +13,10 @@
 
 .loginpage_base {
   width: 500px;
-  position: fixed;
-  top: 160px; 
+  // position: fixed;
+  // top: 160px; 
   z-index: 11;
-  transform: translateY(-20%);
+  // transform: translateY(-20%);
   @media screen and (max-width: 500px) {
     width: 100%;
     padding: 0 10px;
