@@ -168,7 +168,11 @@
       gap: 24px;
       span {
         font-size: 28px;
+        @media screen and (max-width: 414px){
+          display: none;
+        }
       }
+
     }
     // ------ 我的點數 ------
     // points
