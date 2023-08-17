@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>Go會員 | PetpaGo</title>
   </head>
-
+  
   <body>
     <div class="wrapper bg_gray">
       @@include('layout/header.html')
@@ -31,7 +31,7 @@
                 <p>2023年8月4日</p>
               </div>
               <div class="post-delete">
-                <img src="images/icon/shop-icon/delete.svg" alt="delete" />
+                <img src="images/icon/shop-icon/delete.svg" alt="delete"/>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                 <p>2023年8月4日</p>
               </div>
               <div class="post-delete">
-                <img src="images/icon/shop-icon/delete.svg" alt="delete" />
+                <img src="images/icon/shop-icon/delete.svg" alt="delete"/>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
                 <p>2023年8月4日</p>
               </div>
               <div class="post-delete">
-                <img src="images/icon/shop-icon/delete.svg" alt="delete" />
+                <img src="images/icon/shop-icon/delete.svg" alt="delete"/>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
                 <p>2023年8月4日</p>
               </div>
               <div class="post-delete">
-                <img src="images/icon/shop-icon/delete.svg" alt="delete" />
+                <img src="images/icon/shop-icon/delete.svg" alt="delete"/>
               </div>
             </div>
           </div>
@@ -77,4 +77,19 @@
       @@include('layout/footer.html')
     </div>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded",function(){
+      let postDetail = document.querySelectorAll(".post-detail");
+
+      postDetail.forEach(function(post_detail){
+        let postDelete = post_detail.querySelector(".post-delete");
+
+        postDelete.addEventListener("click",function(){
+          console.log("Hello, it's me");
+          post_detail.style.display = 'none';
+        });
+      });
+    });
+
+  </script>
 </html>

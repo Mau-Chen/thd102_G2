@@ -114,9 +114,9 @@
         @include flex();
         gap: 24px;
         @media (max-width: 414px) {
-          img {
-            // display: none;
-          }
+          // img {
+             // display: none;
+          // }
         }
         .ol-ContText {
           width: 100%;
