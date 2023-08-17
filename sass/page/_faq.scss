@@ -3,36 +3,50 @@
   .banner {
     background: $purple_d;
     color: $white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex();
     height: 315px;
   }
   .faq_head {
     display: flex;
-    li {
+    .faq_list {
       width: 25%;
       padding-bottom: 12px;
       text-align: center;
+      // font-weight: 700;
       font-size: 20px;
-      font-weight: 700;
+      cursor: pointer;
+      position: relative;
+      a {
+        color: $textColor_m;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: $purple;
+        bottom: 0;
+        transform: scaleX(0); /* 初始縮放為0，不可見 */
+        transform-origin: left; /* 變換的起始點在左邊 */
+        transition: transform -10s ease, width 1.5s ease; /* 同時動畫 transform 和 width */
+      }
     }
-    .alive {
+    // 點擊後的文字變化
+    .active {
       text-align: left;
-      border-bottom: 2px solid $purple;
       a {
         color: $purple;
+        font-weight: 700;
+      }
+      &::before {
+        width: 100%; /* 線的寬度變為100% */
+        transform: scaleX(0.5); /* 線的寬度由0慢慢變為1，從左至右展開 */
       }
     }
   }
 
-  .accordion {
-    .accordion-item {
-      //   display: flex;
-      //   justify-content: space-between;
-    }
-  }
-
+  // codepen
   $bg: #fff;
   $text: #7288a2;
   $gray: #4d5974;
@@ -41,9 +55,9 @@
 
   .accordion {
     .accordion-item {
-      border-bottom: 1px solid $lightgray;
+      border-bottom: 1px solid $gray_1;
       button[aria-expanded="true"] {
-        border-bottom: 1px solid $blue;
+        // border-bottom: 1px solid $blue;
       }
     }
     button {
@@ -52,20 +66,20 @@
       text-align: left;
       width: 100%;
       padding: 1em 0;
-      color: $text;
-      font-size: 1.15rem;
-      font-weight: 400;
+      color: $textColor_m;
+      font-size: 18px;
+      font-weight: 500;
       border: none;
       background: none;
       outline: none;
       &:hover,
       &:focus {
         cursor: pointer;
-        color: $blue;
+        color: $purple;
         &::after {
           cursor: pointer;
-          color: $blue;
-          border: 1px solid $blue;
+          color: red;
+          border: 1px solid red;
         }
       }
       .accordion-title {
@@ -103,7 +117,7 @@
       }
     }
     button[aria-expanded="true"] {
-      color: $blue;
+      color: $purple;
       .icon {
         &::after {
           width: 0;
@@ -111,7 +125,7 @@
       }
       + .accordion-content {
         opacity: 1;
-        max-height: 9em;
+        max-height: 10em;
         transition: all 200ms linear;
         will-change: opacity, max-height;
       }
@@ -119,13 +133,16 @@
     .accordion-content {
       opacity: 0;
       max-height: 0;
-      overflow: hidden;
+      // overflow: hidden;
       transition: opacity 200ms linear, max-height 200ms linear;
       will-change: opacity, max-height;
       p {
         font-size: 1rem;
         font-weight: 300;
         margin: 2em 0;
+      }
+      ol li {
+        list-style-type: circle;
       }
     }
   }

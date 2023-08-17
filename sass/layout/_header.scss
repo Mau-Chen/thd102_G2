@@ -13,10 +13,12 @@ header {
   // height: 88px;
   .navList {
     @include flex(row, flex-end);
-    color: $purple_d;
     font-weight: 700;
     gap: 36px;
-    // font-family: "poppins", "Noto Sans TC";
+    // font-family: "Noto Sans TC", "poppins";
+    a {
+      color: $purple_d;
+    }
     @media (max-width: 768px) {
       display: none;
     }

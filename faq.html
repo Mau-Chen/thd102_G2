@@ -18,23 +18,24 @@
         <h2>常見問題</h2>
       </div>
 
-      <div class="container col-7">
-        <ul class="faq_head">
-          <li class="alive">
+      <div class="container col-10">
+        <ul class="faq_head mb_100">
+          <li class="faq_list active">
             <a href="#">預訂詳情</a>
           </li>
-          <li>
+          <li class="faq_list">
             <a href="#">取消預訂</a>
           </li>
-          <li>
+          <li class="faq_list">
             <a href="#">特殊需求</a>
           </li>
-          <li>
+          <li class="faq_list">
             <a href="#">更改預訂</a>
           </li>
         </ul>
 
-      <div class="accordion">
+
+      <div class="accordion mb_100">
         <div class="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
             <span class="accordion-title"
@@ -42,13 +43,13 @@
             ><img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
           </button>
           <div class="accordion-content">
-            <p>
-              對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。
-若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。
-為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。
-詢問職業駕駛有否於車內設置毛孩指定座位。
-你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。
-            </p>
+              <ol>
+                <li>對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。</li>
+                <li>若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。</li>
+                <li>為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。</li>
+                <li>詢問職業駕駛有否於車內設置毛孩指定座位。</li>
+                <li>你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。</li>
+              </ol>
           </div>
         </div>
         <div class="accordion-item">
@@ -110,10 +111,23 @@
       </div>
     </div>
     @@include('layout/footer.html')
+    
     <script>
-      https://code.jquery.com/jquery-3.2.1.min.js
-    </script>
-    <script>
+      //頭部篩選
+      const faqItems = document.querySelectorAll('.faq_list');
+
+      faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // 移除所有項目的 active 類
+          faqItems.forEach(item => {
+            item.classList.remove('active');
+          });
+          // 將點擊的項目添加 active 類
+          this.classList.add('active');
+        });
+      });
+
+      //手風琴效果
       const items = document.querySelectorAll(".accordion button");
 
       function toggleAccordion() {
