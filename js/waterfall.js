@@ -5,7 +5,6 @@ export default {
   <div class="waterfall-container">
       <div v-for="(column, columnIndex) in columns" :key="column.id" class="waterfall-column">
         <div v-for="item in column" :key="item.id" class="waterfall-item" >
-          <template v-if="!ignoreList.includes(item.id)" >
           <!-- 圖片本體 -->
 
           <img :src="item.image" @load="onImageLoad(item)" @click="toggleLightbox(item)" alt="Item Image">
@@ -106,47 +105,46 @@ export default {
               </div>
             </div> 
           </div>
-          </template>
         </div>
       </div>
     </div>
     `,
   data() {
     return {
-      ignoreList: [],
+      // ignoreList: [],
       columns: [[], [], []],
     };
   },
-  created(){
-    let my_tasks = JSON.parse(localStorage.getItem("ignoreList"));
-    if(my_tasks){
-        this.ignoreList = my_tasks;
-    }
-  },
   mounted() {
-    this.updateColumns();
-    const self = this
+    this.updateColumns(); 
+    setTimeout(() => {
+      this.updateColumns();
+  }, 1);
+    
     //RWD監聽
+    const self = this;
+  
     window.addEventListener('resize', window._.debounce(() => {
       self.updateColumns()
     }, 150));
-    //滾動監聽
+    // 滾動監聽
     // window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
     async loadItems() {
+      console.log(this.items);
       for (const item of this.items) {
         await this.loadImage(item);
         const shortestColumn = this.getShortestColumn();
         shortestColumn.push(item);
       }
     },
-    handleScroll() {
-      const distanceToBottom = document.documentElement.scrollHeight - (window.innerHeight + window.scrollY);
-      if (distanceToBottom < 500) {
-        this.loadItems();
-      }
-    },
+    // handleScroll() {
+    //   const distanceToBottom = document.documentElement.scrollHeight - (window.innerHeight + window.scrollY);
+    //   if (distanceToBottom < 500) {
+    //     this.loadItems();
+    //   }
+    // },
     updateColumns() {
       // Update columns based on screen width
       if (window.innerWidth < 700) {
@@ -163,6 +161,7 @@ export default {
         img.src = item.image;
 
         img.onload = () => {
+          console.log("11");
           item.height = img.height; // 設置項目的高度
           resolve();
         };

@@ -3,9 +3,11 @@ import photofall from './waterfall.js';
 const app2 = Vue.createApp({
     data(){
         return {
+            ignoreList:[],
             show: false,
+            items:[],
             previewImage: null,
-            items: [
+            db_items: [
                 { 
                   id: "a_1",
                   image: '../images/pic/photoWall/photoWall01.png',
@@ -89,6 +91,13 @@ const app2 = Vue.createApp({
               ]
         }
     },
+    mounted(){
+      let my_tasks = JSON.parse(localStorage.getItem("ignoreList"));
+      if(my_tasks){
+          this.ignoreList = my_tasks;
+      }
+      this.items = this.ignore(this.db_items,this.ignoreList);
+    },
     methods: {
       handleDrop(event){
         event.preventDefault(); //用來防止圖片拖進瀏覽器的預設事件
@@ -101,6 +110,11 @@ const app2 = Vue.createApp({
           }
           reader.readAsDataURL(file);
         };
+      },
+      ignore(input,ignore){
+        const output = input.filter(item => !ignore.includes(item.id));
+        // console.log(output);
+        return output;
       },
       triggerFileInput() {
         this.$refs.fileInput.click();
