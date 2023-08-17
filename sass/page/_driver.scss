@@ -58,27 +58,10 @@
           input::placeholder {
             color: $black;
           }
-          .categoryset {
-            position: relative;
-            border: 10px solid red;
-          }
+
           .categorycontrol {
             @include flex(row, space-between);
             gap: 16px;
-            .category_kind {
-              .catagory_top {
-                left: 50%;
-                top: -1px;
-                height: 12px;
-                width: 12px;
-                background-color: var(--dp-background-color);
-                position: absolute;
-                border-left: 1px solid var(--dp-menu-border-color);
-                border-top: 1px solid var(--dp-menu-border-color);
-                transform: translate(-50%, -50%) rotate(45deg);
-                border: 4px solid green;
-              }
-            }
           }
         }
 
