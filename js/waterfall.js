@@ -1,3 +1,4 @@
+
 export default {
   props: ["items"],
   template: `
@@ -116,12 +117,14 @@ export default {
     };
   },
   mounted() {
+    this.updateColumns();
+    const self = this
     //RWD監聽
-    window.addEventListener('resize', this.updateColumns);
+    window.addEventListener('resize', window._.debounce(()=>{
+      self.updateColumns()
+    },150));
     //滾動監聽
     // window.addEventListener('scroll', this.handleScroll);
-    this.updateColumns();
-
   },
   methods: {
     async loadItems() {
@@ -144,6 +147,7 @@ export default {
       } else {
         this.columns = [[], [], []];
       }
+      console.log(this.columns);
       this.loadItems(); // Reload items into columns
     },
     async loadImage(item) {

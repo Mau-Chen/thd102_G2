@@ -35,5 +35,8 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "sass": "^1.64.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
