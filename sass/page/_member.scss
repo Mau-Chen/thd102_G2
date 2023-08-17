@@ -109,13 +109,13 @@
     }
     .ol-content {
       margin-top: 24px;
-      display: none;
+      // display: none;
       .ol-contentBox {
         @include flex();
         gap: 24px;
         @media (max-width: 414px) {
           img {
-            display: none;
+            // display: none;
           }
         }
         .ol-ContText {
@@ -130,7 +130,7 @@
       border-top: 1px solid $gray_1;
       border-bottom: 1px solid $gray_1;
       padding: 24px 0;
-      display: none;
+      // display: none;
     }
     .ol-count {
       span {
@@ -139,7 +139,7 @@
       }
     }
     .ol-total {
-      display: none;
+      // display: none;
       .ol-count span {
         font-size: 28px;
       }
@@ -164,6 +164,7 @@
     }
     .ol-button {
       display: flex;
+      align-items: center;
       gap: 24px;
       span {
         font-size: 28px;

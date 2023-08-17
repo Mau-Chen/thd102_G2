@@ -9,11 +9,11 @@
   </head>
   <style>
     .arrowIcon {
+      transform: rotate(180deg);
+    }
+    .active_arrow{
       transform: rotate(0deg);
     }
-    /* .active-arrow{
-      transform: rotate(180deg);
-    } */
   </style>
   <body>
     <div class="wrapper bg_gray">
@@ -25,7 +25,7 @@
           <!------------ 訂單紀錄 listBody ------------>
           <ul id="order">
             <!-- 使用 vue 渲染 -->
-            <!-- <list :tasks="tasks"></list> -->
+            <list :tasks="tasks"></list>
             <!--   vue end   -->
 
             <!-------------------- 原本的 list 樣式 -------------------------->
@@ -358,48 +358,48 @@
       </main>
       @@include('layout/footer.html')
     </div>
-    <!-- <script type="module" src="js/memberOrder.js"></script> -->
+    <script type="module" src="js/memberOrder.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let accordions = document.querySelectorAll('.accordion');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     let accordions = document.querySelectorAll('.accordion');
 
-            accordions.forEach(function(accordion) {
-                let btn = accordion.querySelector('.ol-button');
-                // let btn = document.querySelectorAll('.ol-button');
+        //     accordions.forEach(function(accordion) {
+        //         let btn = accordion.querySelector('.ol-button');
+        //         // let btn = document.querySelectorAll('.ol-button');
 
-                btn.addEventListener('click', function() {
+        //         btn.addEventListener('click', function() {
                     
-                    accordion.classList.toggle('active');
-                    accordion.classList.toggle('active2');
+        //             accordion.classList.toggle('active');
+        //             accordion.classList.toggle('active2');
 
-                    const isActive = accordion.classList.contains('active');
+        //             const isActive = accordion.classList.contains('active');
 
-                    const isActive2 = accordion.classList.contains('active2');
-                    let img = btn.querySelector('img');
-                    let span = btn.querySelector('span');
+        //             const isActive2 = accordion.classList.contains('active2');
+        //             let img = btn.querySelector('img');
+        //             let span = btn.querySelector('span');
 
 
-                    if (isActive2) {
-                        img.style.transform = 'rotate(0deg)';
-                        span.style.display = 'none';
-                    } else {
-                        img.style.transform = 'rotate(180deg)';
-                        span.style.display = 'block';
-                    }
+        //             if (isActive2) {
+        //                 img.style.transform = 'rotate(0deg)';
+        //                 span.style.display = 'none';
+        //             } else {
+        //                 img.style.transform = 'rotate(180deg)';
+        //                 span.style.display = 'block';
+        //             }
 
                     
-                    if (isActive) {
-                        img.style.transform = 'rotate(0deg)';
-                        span.style.display = 'none';
-                    } else {
-                        img.style.transform = 'rotate(180deg)';
-                        span.style.display = 'block';
-                    }
+        //             if (isActive) {
+        //                 img.style.transform = 'rotate(0deg)';
+        //                 span.style.display = 'none';
+        //             } else {
+        //                 img.style.transform = 'rotate(180deg)';
+        //                 span.style.display = 'block';
+        //             }
 
 
-                });
-            });
-        });
+        //         });
+        //     });
+        // });
     </script>
 
   </body>
