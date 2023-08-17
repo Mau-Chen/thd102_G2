@@ -89,5 +89,47 @@
       </div>
       @@include('layout/footer.html')
     </div>
+    <!-- <script src="./vue.global.js"></script> -->
+    <script src="/js/vue-datepicker.iife.js"></script>
+    <script>
+      const app = Vue.createApp({
+        // components: { Datepicker: VueDatePicker },
+        // props: ["calendarCellClassName", "timePickerInline", "weekStart"],
+        data() {
+          return {
+            date: "",
+            format: `MM月 dd日 ｜HH ：mm`,
+            msg_start: "",
+            msg_end: "",
+          };
+        },
+        computed: {
+          disabledDates() {
+            let today = new Date();
+            let disabledtoday = new Date(today);
+            disabledtoday.setDate(disabledtoday.getDate() + 1);
+
+            return disabledtoday;
+          },
+        },
+        methods: {
+          change() {
+            let msg_start = this.msg_start;
+            let msg_end = this.msg_end;
+            this.msg_start = msg_end;
+            this.msg_end = msg_start;
+          },
+        },
+        mounted() {
+          const startDate = new Date();
+          // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
+          // this.date = [startDate, endDate];
+          this.date = startDate;
+          // this.date = [startDate];
+        },
+      });
+      app.component("Datepicker", VueDatePicker);
+      app.mount("#app");
+    </script>
   </body>
 </html>

@@ -2,27 +2,54 @@
   <div class="drivertitle">
     <h2 class="mb_24">最安心的寵物接送</h2>
   </div>
-  <div class="searchbar">
+  <div class="searchbar" id="app">
     <div class="upsection">
       <div class="place col-6 col-lg-6 col-sm-12">
         <span>出發點</span>
-        <input type="text" placeholder="輸入上車地點" />
+        <input type="text" placeholder="輸入上車地點" v-model="msg_start" />
       </div>
-      <img src="../images/icon/drive-icon/change-bt.svg" alt="" />
+      <img
+        src="../images/icon/drive-icon/change-bt.svg"
+        alt=""
+        @click="change"
+      />
       <div class="place col-6 col-lg-6 col-sm-12">
         <span>目的地</span>
-        <input type="text" placeholder="輸入下車地點" />
+        <input type="text" placeholder="輸入下車地點" v-model="msg_end" />
       </div>
     </div>
     <div class="downsection">
       <div class="categorycontrol col-12">
         <div class="category col-4 col-sm-12">
           <span>乘車日期&時間</span>
-          <input type="text" placeholder="8月17日｜16:00" />
+          <DatePicker
+            v-model="date"
+            :format="format"
+            calendar-cell-class-name="dp-custom-cell"
+            time-picker-inline
+            week-start="0"
+            :is-24="true"
+            :min-date="disabledDates"
+          />
         </div>
-        <div class="category col-4 col-sm-12">
+        <div class="category col-4 col-sm-12 categoryset">
           <span>車種</span>
           <input type="text" placeholder="轎車" />
+          <div class="category_kind">
+            <div class="catagory_top"></div>
+            <div class="category_bottom">
+              <ul>
+                <li>
+                  <p>轎車</p>
+                  <span>乘客＋毛孩共3位</span>
+                </li>
+                <li>
+                  <p>休旅車</p>
+                  <span>乘客＋毛孩共4位</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="category col-4 col-sm-12">
           <span>乘客數量</span>
