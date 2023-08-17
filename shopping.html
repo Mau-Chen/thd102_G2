@@ -13,20 +13,20 @@
 <body>
     <div class="wrapper shopping bg_gray">
         @@include('layout/header.html')
-        <div class="sp_container mb_100">
+        <div class="sp_container">
             <!--進度條-->
             <div class="spStep_bg mb_100">
-                <div class="spStep_box col-8">
+                <div class="spStep_box col-10 col-sm-12">
                     <button class="spStep jsNow" type="button">查看購物車</button>
                     <button class="spStep" type="button">填寫資料</button>
                     <button class="spStep" type="button">完成付款</button>
                 </div>
             </div>
             <div class="spMain_bg">
-                <form class="multisteps-form__form">
+                <form class="sp_form">
                     <!--步驟一內容-->
                     <div class="spPage jsNow" data-animation="scaleIn">
-                        <div class="spMain_bg">
+                        <div class="spMain_wrapper">
                             <h5 class="spMian_title">您的購物車</h5>
                             <div class="spMain">
                                 <!-- 左內容 -->
@@ -145,16 +145,12 @@
                                             <p>3件總計</p>
                                             <h5>NT$5,100</h5>
                                         </div>
-                                        <button class="spNext btn_5 js-btn-next" type="button">下一步</button>
+                                        <button class="spNext btn_5 jsNext" type="button">下一步</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="ad_box">
-                            <div class="ad">
-                                AAA
-                            </div>
-                        </div>
+                        @@include('layout/ad.html')
                     </div>
                     <!--步驟二內容-->
                     <div class="spPage sp2 mb_100" data-animation="scaleIn">
@@ -195,7 +191,7 @@
                                 </div>
                                 <div class="spCard">
                                     <div class="creditCard">
-                                        <div>
+                                        <div class="col-4 col-lg-12">
                                             <p>信用卡號碼<span>*</span></p>
                                             <div>
                                                 <input type="text" placeholder="0000" maxlength="4">
@@ -204,14 +200,14 @@
                                                 <input type="text" placeholder="0000" maxlength="4">
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="col-4 col-lg-12">
                                             <p>有效期限<span>*</span></p>
                                             <div>
                                                 <input type="text" placeholder="MM" maxlength="2">/<input type="text"
                                                     placeholder="YY" maxlength="2">
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="col-4 col-lg-12">
                                             <p>背面後3碼<span>*</span></p>
                                             <input type="text" placeholder="CVC/CVV" maxlength="3" minlength="3">
                                         </div>
@@ -264,7 +260,7 @@
                                         <p>3件總計</p>
                                         <h5>NT$5,100</h5>
                                     </div>
-                                    <button class="spNext btn_5 js-btn-next" type="button">下一步</button>
+                                    <button class="spNext btn_5 jsNext" type="button">下一步</button>
                                     <div>
                                         <img src="images/icon/member-icon/black-points.svg" alt="">
                                         <p>可獲得 Pet Points <span>50</span> 點</p>
@@ -376,20 +372,13 @@
                 </form>
             </div>
         </div>
-
-
-
-
-
-
-
-
         @@include('layout/footer.html')
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var nextButton = document.getElementById('Go_index');
 
+        //第三頁按鈕回到首頁
+        document.addEventListener('DOMContentLoaded', function () {
+            let nextButton = document.getElementById('Go_index');
             nextButton.addEventListener('click', function () {
                 window.location.href = 'index.html';
             });
@@ -397,57 +386,60 @@
 
         // DOM 元素
         const DOMstrings = {
+            //辨識步驟按鈕
             stepsBtnClass: 'spStep',
-            stepsBtns: document.querySelectorAll(`.spStep`),
-            stepsBar: document.querySelector('.spStep_box'),
-            stepsForm: document.querySelector('.multisteps-form__form'),
-            stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
-            stepFormPanelClass: 'spPage',
+            //取得所有.spStep
+            stepsBtns: document.querySelectorAll('.spStep'),
+            //辨識進度條區塊
+            stepsBox: document.querySelector('.spStep_box'),
+            //辨識表單容器
+            stepsForm: document.querySelector('.sp_form'),
+            //辨識頁面
+            stepFormPageClass: 'spPage',
             stepFormPanels: document.querySelectorAll('.spPage'),
-            // stepPrevBtnClass: 'js-btn-prev',
-            stepNextBtnClass: 'js-btn-next'
+            stepNextBtnClass: 'jsNext'
         };
 
-        // 從一組元素中移除類別
-        const removeClasses = (elemSet, className) => {
-            elemSet.forEach(elem => {
-                elem.classList.remove(className);
+        // 定意函式（從一組元素中移除class）
+        const removeClasses = (arraySet, className) => {
+            arraySet.forEach(e => {
+                e.classList.remove(className);
             });
         };
 
-        // 找到元素的父節點
-        const findParent = (elem, parentClass) => {
-            let currentNode = elem;
-            while (!(currentNode.classList.contains(parentClass))) {
-                currentNode = currentNode.parentNode;
+        // 找到指定class的父層
+        const findParent = (e1, parentClass) => {
+            let nowNode = e1;
+            while (!(nowNode.classList.contains(parentClass))) {
+                nowNode = nowNode.parentNode;
             }
-            return currentNode;
+            return nowNode;
         };
 
-        // 獲取活動的步驟按鈕的序號
-        const getActiveStep = elem => {
-            return Array.from(DOMstrings.stepsBtns).indexOf(elem);
+        // 得到當前的步驟按鈕索引
+        const getNowStep = e2 => {
+            return Array.from(DOMstrings.stepsBtns).indexOf(e2);
         };
 
         // 設置所有被點擊之前（包括被點擊的）的步驟按鈕為活動狀態
         const setActiveStep = (activeStepNum) => {
-            // 移除所有的活動狀態
+            // 移除所有class=jsNow
             removeClasses(DOMstrings.stepsBtns, 'jsNow');
 
-            // 設置被選取的項目為活動狀態
-            DOMstrings.stepsBtns.forEach((elem, index) => {
+            // 被選取的項目加上class=jsNow
+            DOMstrings.stepsBtns.forEach((e3, index) => {
                 if (index <= activeStepNum) {
-                    elem.classList.add('jsNow');
+                    e3.classList.add('jsNow');
                 }
             });
         };
 
-        // 獲取活動的面板
-        const getActivePanel = () => {
+        // 找到有jsNow，交給activePanel
+        const getActivePage = () => {
             let activePanel;
-            DOMstrings.stepFormPanels.forEach(elem => {
+            DOMstrings.stepFormPanels.forEach(e4 => {
                 if (elem.classList.contains('jsNow')) {
-                    activePanel = elem;
+                    activePanel = e4;
                 }
             });
             return activePanel;
@@ -474,19 +466,19 @@
         };
 
         const setFormHeight = () => {
-            const activePanel = getActivePanel();
+            const activePanel = getActivePage();
             formHeight(activePanel);
         };
 
         // 點擊步驟進度條的功能
-        DOMstrings.stepsBar.addEventListener('click', e => {
+        DOMstrings.stepsBox.addEventListener('click', e => {
             // 檢查點擊目標是否為步驟按鈕
             const eventTarget = e.target;
             if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
                 return;
             }
             // 獲取活動的步驟按鈕的序號
-            const activeStep = getActiveStep(eventTarget);
+            const activeStep = getNowStep(eventTarget);
             // 設置所有被點擊之前（包括被點擊的）的步驟按鈕為活動狀態
             setActiveStep(activeStep);
             // 打開活動的面板
@@ -501,7 +493,7 @@
                 return;
             }
             // 找到活動的面板
-            const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+            const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPageClass}`);
             let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
 
             // 根據點擊的按鈕設置活動步驟和活動面板
@@ -520,19 +512,7 @@
         // 在窗口大小調整時設置正確的表單高度
         window.addEventListener('resize', setFormHeight, false);
 
-        // 通過選擇不同的動畫類型來改變動畫
-        // const setAnimationType = (newType) => {
-        //     DOMstrings.stepFormPanels.forEach(elem => {
-        //         elem.dataset.animation = newType;
-        //     });
-        // };
 
-        // 選擇框選擇變更動畫
-        // const animationSelect = document.querySelector('.pick-animation__select');
-        // animationSelect.addEventListener('change', () => {
-        //     const newAnimationType = animationSelect.value;
-        //     setAnimationType(newAnimationType);
-        // });
 
     </script>
 
