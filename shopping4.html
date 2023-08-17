@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    @@include('layout/meta.html')
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Go結帳 | PetpaGo</title>
+    <link href="/images/pgo.ico" rel="icon" />
+</head>
+
+<body>
+    <div class="wrapper shopping bg_gray">
+        @@include('layout/header.html')
+        <div class="sp_container mb_100">
+            <!--進度條-->
+            <div class="spStep_bg mb_100">
+                <div class="spStep_box col-8">
+                    <button class="spStep jsNow" type="button">查看購物車</button>
+                    <button class="spStep" type="button">填寫資料</button>
+                    <button class="spStep" type="button">完成付款</button>
+                </div>
+            </div>
+            <div class="spMain_bg">
+                <form class="multisteps-form__form">
+                    <!--步驟一內容-->
+                    <div class="spPage jsNow" data-animation="scaleIn">
+                        <div class="spMain_bg">
+                            <h5 class="spMian_title">您的購物車</h5>
+                            <div class="spMain">
+                                <!-- 左內容 -->
+                                <div class="spMain_left col-7 col-lg-12">
+                                    <!-- 全選卡 -->
+                                    <div class="spCard">
+                                        <input type="checkbox" checked>
+                                        <label>
+                                            <div>全選</div>
+                                        </label>
+                                    </div>
+                                    <!-- 購物卡-車 -->
+                                    <div class="spDriver spCard">
+                                        <div class="spCard_up">
+                                            <input type="checkbox" checked>
+                                            <label>
+                                                <picture>
+                                                    <source srcset="images/pic/shop/goShop01_m.png"
+                                                        media="(max-width: 414px)">
+                                                    <img src="images/pic/shop/goShop01.png" alt="">
+                                                </picture>
+                                                <!-- <img src="images/pic/shop/goShop01.png" alt=""> -->
+                                            </label>
+                                            <div class="spBuy_text">
+                                                <div class="spList_up">
+                                                    <h6>寵物接送</h6>
+                                                    <img src="images/icon/shop-icon/delete.svg" alt="">
+                                                </div>
+                                                <div class="spList_down">
+                                                    <p>8月17日 ｜16:00 </p>
+                                                    <p>轎車</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="spSubtotal">
+                                            <p>NT$2,400</p>
+                                        </div>
+                                    </div>
+                                    <!-- 購物卡-住狗 -->
+                                    <div class="spHostel spCard">
+                                        <div class="spCard_up">
+                                            <input type="checkbox" checked>
+                                            <label>
+                                                <picture>
+                                                    <source srcset="images/pic/shop/goShop02_m.png"
+                                                        media="(max-width: 414px)">
+                                                    <img src="images/pic/shop/goShop02.png" alt="">
+                                                </picture>
+                                                <!-- <img src="images/pic/shop/goShop02.png" alt=""> -->
+                                            </label>
+                                            <div class="spBuy_text">
+                                                <div class="spList_up">
+                                                    <h6>快樂寵物旅館</h6>
+                                                    <img src="images/icon/shop-icon/delete.svg" alt="">
+                                                </div>
+                                                <div class="spList_down">
+                                                    <p>8月17日 - 8月19日 (2晚)</p>
+                                                    <p>狗套房 ｜ 小型犬</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="spSubtotal">
+                                            <div class="spStepper">
+                                                <div class="spSubtotal_icon">
+                                                    <img src="images/icon/components-icon/minus.svg">
+                                                </div>
+                                                <input type="text" value="1">
+                                                <div class="spSubtotal_icon">
+                                                    <img src="images/icon/components-icon/add.svg">
+                                                </div>
+                                            </div>
+                                            <p>NT$2,400</p>
+                                        </div>
+                                    </div>
+                                    <!-- 購物卡-住貓 -->
+                                    <div class="spHostel spCard">
+                                        <div class="spCard_up">
+                                            <input type="checkbox" checked>
+                                            <label>
+                                                <picture>
+                                                    <source srcset="images/pic/shop/goShop03_m.png"
+                                                        media="(max-width: 414px)">
+                                                    <img src="images/pic/shop/goShop03.png" alt="">
+                                                </picture>
+                                                <!-- <img src="images/pic/shop/goShop03.png" alt=""> -->
+                                            </label>
+                                            <div class="spBuy_text">
+                                                <div class="spList_up">
+                                                    <h6>快樂寵物旅館</h6>
+                                                    <img src="images/icon/shop-icon/delete.svg" alt="">
+                                                </div>
+                                                <div class="spList_down">
+                                                    <p>8月17日 - 8月19日 (2晚)</p>
+                                                    <p>貓套房</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="spSubtotal">
+                                            <div class="spStepper">
+                                                <div class="spSubtotal_icon">
+                                                    <img src="images/icon/components-icon/minus.svg">
+                                                </div>
+                                                <input type="text" value="1">
+                                                <div class="spSubtotal_icon">
+                                                    <img src="images/icon/components-icon/add.svg">
+                                                </div>
+                                            </div>
+                                            <p>NT$2,400</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 右內容-總計 -->
+                                <div class="spMain_right col-5 col-lg-12">
+                                    <div class="spCard">
+                                        <div class="spTotal mb_32">
+                                            <p>3件總計</p>
+                                            <h5>NT$5,100</h5>
+                                        </div>
+                                        <button class="spNext btn_5 js-btn-next" type="button">下一步</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ad_box">
+                            <div class="ad">
+                                AAA
+                            </div>
+                        </div>
+                    </div>
+                    <!--步驟二內容-->
+                    <div class="spPage sp2 mb_100" data-animation="scaleIn">
+                        <h5 class="spMian_title">聯絡資料</h5>
+                        <div class="spMain">
+                            <!-- 左內容 -->
+                            <div class="spMain_left col-7 col-lg-12">
+                                <div class="spCard spOrderMan">
+                                    <p>姓名：<span>*</span></p>
+                                    <input type="text" placeholder="請輸入姓名">
+                                    <p>電子信箱：<span>*</span></p>
+                                    <input type="text" placeholder="請輸入Email">
+                                    <p>行動電話：<span>*</span></p>
+                                    <input type="text" placeholder="請輸入行動電話">
+                                    <div class="spSame_member">
+                                        <input type="checkbox">
+                                        <label>同會員資料</label>
+                                    </div>
+                                    <p>備註：</p>
+                                    <textarea rows="3" placeholder="請輸入寵物品種/須注意事項/特殊需求"></textarea>
+                                </div>
+                                <h5 class="mb_32">優惠折扣</h5>
+                                <div class="spCard">
+                                    <div class="spOrder_check">
+                                        <input type="checkbox" checked>
+                                        <label>我要使用 Pet Points</label>
+                                    </div>
+                                    <p>可用 Pet Points <span>30</span> 點，最多使用<input type="text" value="30" id="usePoint"
+                                            size="2">點
+                                    </p>
+                                </div>
+                                <div class="spPay mb_32">
+                                    <h5>信用卡/簽帳金融卡付款</h5>
+                                    <span><img src="images/icon/shop-icon/mastercard.svg" alt=""><img
+                                            src="images/icon/shop-icon/visa.svg" alt=""><img
+                                            src="images/icon/shop-icon/ae.svg" alt=""><img
+                                            src="images/icon/shop-icon/jcb.svg" alt=""></span>
+                                </div>
+                                <div class="spCard">
+                                    <div class="creditCard">
+                                        <div>
+                                            <p>信用卡號碼<span>*</span></p>
+                                            <div>
+                                                <input type="text" placeholder="0000" maxlength="4">
+                                                <input type="text" placeholder="0000" maxlength="4">
+                                                <input type="text" placeholder="0000" maxlength="4">
+                                                <input type="text" placeholder="0000" maxlength="4">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p>有效期限<span>*</span></p>
+                                            <div>
+                                                <input type="text" placeholder="MM" maxlength="2">/<input type="text"
+                                                    placeholder="YY" maxlength="2">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p>背面後3碼<span>*</span></p>
+                                            <input type="text" placeholder="CVC/CVV" maxlength="3" minlength="3">
+                                        </div>
+                                    </div>
+                                    <p>請注意本平台不會向您收取任何平台交易手續費，但你下單時使用的信用卡可能會向您收取相關手續費， 請參考其相關服務政策和規定，並向你所選的交易服務商取得更多資訊。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 總計 -->
+                            <div class="spMain_right col-5  col-lg-12">
+                                <div class="spCard">
+                                    <div class="spBuy_text">
+                                        <div class="spList_up">
+                                            <h6>寵物接送</h6>
+                                        </div>
+                                        <div class="spList_down">
+                                            <p>8月17日 ｜16:00 </p>
+                                            <p>轎車</p>
+                                        </div>
+                                    </div>
+                                    <div class="spBuy_text">
+                                        <div class="spList_up">
+                                            <h6>快樂寵物旅館</h6>
+                                        </div>
+                                        <div class="spList_down">
+                                            <p>8月17日 - 8月19日 (2晚)</p>
+                                            <p>狗套房X1 ｜ 小型犬</p>
+                                        </div>
+                                    </div>
+                                    <div class="spBuy_text">
+                                        <div class="spList_up">
+                                            <h6>快樂寵物旅館</h6>
+                                        </div>
+                                        <div class="spList_down">
+                                            <p>8月17日 - 8月19日 (2晚)</p>
+                                            <p>貓套房X1</p>
+                                        </div>
+                                    </div>
+                                    <div class="spBuy_text spCount">
+                                        <div>
+                                            <p>3件合計</p>
+                                            <p>NT$ 5,100</p>
+                                        </div>
+                                        <div>
+                                            <p>Pet Points 折抵</p>
+                                            <p>-NT$ 30</p>
+                                        </div>
+                                    </div>
+                                    <div class="spTotal">
+                                        <p>3件總計</p>
+                                        <h5>NT$5,100</h5>
+                                    </div>
+                                    <button class="spNext btn_5 js-btn-next" type="button">下一步</button>
+                                    <div>
+                                        <img src="images/icon/member-icon/black-points.svg" alt="">
+                                        <p>可獲得 Pet Points <span>50</span> 點</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--步驟三內容-->
+                    <div class="spPage p-4" data-animation="scaleIn">
+                        <!-- CCC -->
+                        <div class="spMain sp3">
+                            <div class="mb_32">
+                                <img src="images/icon/components-icon/success.svg" alt="">
+                                <h5>訂單完成</h5>
+                                <p>訂單資料將寄送至：service@tibame.com</p>
+                            </div>
+                            <div class="spCard">
+                                <ul>
+                                    <li class="accordion">
+                                        <!-- first list box1 -->
+                                        <div class="ol-header mb_24">
+                                            <div class="ol-headText">
+                                                <p>訂單日期：2023年8月4日</p>
+                                                <p>訂單編號：PT0004</p>
+                                            </div>
+                                        </div>
+                                        <!-- first list box2 -->
+                                        <div class="ol-content mb_24">
+                                            <!-- box2-1 -->
+                                            <div class="ol-contentBox mb_24">
+                                                <img src="/images/pic/shop/goShop01.png" alt="driveDog">
+                                                <div class="ol-ContText">
+                                                    <h6 class="mb_16">寵物接送</h6>
+                                                    <p>8月17日 ｜ 16:00</p>
+                                                    <div class="ol-info">
+                                                        <p>轎車</p>
+                                                        <p>NT$ 300</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- box2-2 -->
+                                            <div class="ol-contentBox mb_24">
+                                                <img src="/images/pic/shop/goShop02.png" alt="driveDog">
+                                                <div class="ol-ContText">
+                                                    <h6 class="mb_16">快樂寵物旅館</h6>
+                                                    <p>8月17日-8月19日 (3晚)</p>
+                                                    <div class="ol-info">
+                                                        <p>狗套房X1 ｜ 小型犬</p>
+                                                        <p>NT$ 2,400</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- box2-3 -->
+                                            <div class="ol-contentBox mb_24">
+                                                <img src="/images/pic/shop/goShop03.png" alt="driveDog">
+                                                <div class="ol-ContText">
+                                                    <h6 class="mb_16">快樂寵物旅館</h6>
+                                                    <p>8月17日-8月19日 (3晚)</p>
+                                                    <div class="ol-info">
+                                                        <p>貓套房X1 ｜ 貓咪</p>
+                                                        <p>NT$ 2,400</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- first list box3 -->
+                                        <div class="ol-money mb_24">
+                                            <div class="ol-count mb_16">
+                                                <p>3件合計</p>
+                                                <span>NT$ 5,100</span>
+                                            </div>
+                                            <div class="ol-count">
+                                                <p>Pet Points 折抵</p>
+                                                <span>-NT$ 30</span>
+                                            </div>
+                                        </div>
+                                        <!-- first list box4 -->
+                                        <div class="ol-total">
+                                            <div class="ol-count mb_24">
+                                                <p>總計</p>
+                                                <span>NT$ 5,070</span>
+                                            </div>
+                                            <p><img src="/images/icon/member-icon/black-points.svg"
+                                                    alt="points-icon">已獲得 Pet Points
+                                                <span>50</span> 點
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="spCard">
+                                <div>
+                                    <p>姓名</p>
+                                    <p>王緯育</p>
+                                </div>
+                                <div>
+                                    <p>電子信箱</p>
+                                    <p>service@tibame.com</p>
+                                </div>
+                                <div>
+                                    <p>行動電話</p>
+                                    <p>0912-345-678</p>
+                                </div>
+                            </div>
+                            <button class="btn_5 btn-success mb_100" type="button" id="Go_index">回首頁</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        @@include('layout/footer.html')
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var nextButton = document.getElementById('Go_index');
+
+            nextButton.addEventListener('click', function () {
+                window.location.href = 'index.html';
+            });
+        });
+
+        // DOM 元素
+        const DOMstrings = {
+            stepsBtnClass: 'spStep',
+            stepsBtns: document.querySelectorAll(`.spStep`),
+            stepsBar: document.querySelector('.spStep_box'),
+            stepsForm: document.querySelector('.multisteps-form__form'),
+            stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
+            stepFormPanelClass: 'spPage',
+            stepFormPanels: document.querySelectorAll('.spPage'),
+            // stepPrevBtnClass: 'js-btn-prev',
+            stepNextBtnClass: 'js-btn-next'
+        };
+
+        // 從一組元素中移除類別
+        const removeClasses = (elemSet, className) => {
+            elemSet.forEach(elem => {
+                elem.classList.remove(className);
+            });
+        };
+
+        // 找到元素的父節點
+        const findParent = (elem, parentClass) => {
+            let currentNode = elem;
+            while (!(currentNode.classList.contains(parentClass))) {
+                currentNode = currentNode.parentNode;
+            }
+            return currentNode;
+        };
+
+        // 獲取活動的步驟按鈕的序號
+        const getActiveStep = elem => {
+            return Array.from(DOMstrings.stepsBtns).indexOf(elem);
+        };
+
+        // 設置所有被點擊之前（包括被點擊的）的步驟按鈕為活動狀態
+        const setActiveStep = (activeStepNum) => {
+            // 移除所有的活動狀態
+            removeClasses(DOMstrings.stepsBtns, 'jsNow');
+
+            // 設置被選取的項目為活動狀態
+            DOMstrings.stepsBtns.forEach((elem, index) => {
+                if (index <= activeStepNum) {
+                    elem.classList.add('jsNow');
+                }
+            });
+        };
+
+        // 獲取活動的面板
+        const getActivePanel = () => {
+            let activePanel;
+            DOMstrings.stepFormPanels.forEach(elem => {
+                if (elem.classList.contains('jsNow')) {
+                    activePanel = elem;
+                }
+            });
+            return activePanel;
+        };
+
+        // 打開活動的面板（並關閉非活動的面板）
+        const setActivePanel = activePanelNum => {
+            // 移除所有面板的活動類別
+            removeClasses(DOMstrings.stepFormPanels, 'jsNow');
+
+            // 顯示活動的面板
+            DOMstrings.stepFormPanels.forEach((elem, index) => {
+                if (index === activePanelNum) {
+                    elem.classList.add('jsNow');
+                    setFormHeight(elem);
+                }
+            });
+        };
+
+        // 將表單高度設置為當前面板的高度
+        const formHeight = (activePanel) => {
+            const activePanelHeight = activePanel.offsetHeight;
+            DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+        };
+
+        const setFormHeight = () => {
+            const activePanel = getActivePanel();
+            formHeight(activePanel);
+        };
+
+        // 點擊步驟進度條的功能
+        DOMstrings.stepsBar.addEventListener('click', e => {
+            // 檢查點擊目標是否為步驟按鈕
+            const eventTarget = e.target;
+            if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
+                return;
+            }
+            // 獲取活動的步驟按鈕的序號
+            const activeStep = getActiveStep(eventTarget);
+            // 設置所有被點擊之前（包括被點擊的）的步驟按鈕為活動狀態
+            setActiveStep(activeStep);
+            // 打開活動的面板
+            setActivePanel(activeStep);
+        });
+
+        // 點擊“上一步”和“下一步”按鈕的功能
+        DOMstrings.stepsForm.addEventListener('click', e => {
+            const eventTarget = e.target;
+            // 檢查是否點擊了“上一步”或“下一步”按鈕
+            if (!((eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) || (eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`)))) {
+                return;
+            }
+            // 找到活動的面板
+            const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+            let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+            // 根據點擊的按鈕設置活動步驟和活動面板
+            if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+                activePanelNum--;
+            } else {
+                activePanelNum++;
+            }
+            setActiveStep(activePanelNum);
+            setActivePanel(activePanelNum);
+        });
+
+        // 在頁面載入時設置正確的表單高度
+        window.addEventListener('load', setFormHeight, false);
+
+        // 在窗口大小調整時設置正確的表單高度
+        window.addEventListener('resize', setFormHeight, false);
+
+        // 通過選擇不同的動畫類型來改變動畫
+        // const setAnimationType = (newType) => {
+        //     DOMstrings.stepFormPanels.forEach(elem => {
+        //         elem.dataset.animation = newType;
+        //     });
+        // };
+
+        // 選擇框選擇變更動畫
+        // const animationSelect = document.querySelector('.pick-animation__select');
+        // animationSelect.addEventListener('change', () => {
+        //     const newAnimationType = animationSelect.value;
+        //     setAnimationType(newAnimationType);
+        // });
+
+    </script>
+
+</body>
+
+</html>
