@@ -30,6 +30,16 @@
     width: 100%;
 }
 
+.fallTop {
+    position: absolute;
+    top: 10px;
+    left: -10px;
+}
+
+.fallBody{
+    border-radius: 0 !important;
+}
+
 .fallBottom {
     position: absolute;
     bottom: 0;
@@ -128,3 +138,4 @@
         gap: 8px;
     }
 }
+/* 檢舉表格用 */

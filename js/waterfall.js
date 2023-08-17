@@ -31,12 +31,12 @@ export default {
 
             <div v-if="item.lightboxOpen === true" class="lightbox">
               <div class="loginpage_base">
-                <div class="close">
+                <div class="close fallTop">
                   <div class="icon" @click="toggleLightbox(item)">
                     <img src="./images/icon/components-icon/close-line.svg" alt="close" />
                   </div>
                 </div>
-                <div class="loginPage waterFallStyle">
+                <div class="loginPage waterFallStyle fallBody">
                   <div>
                     <img :src="item.image" alt="Item Image">
                   </div>
