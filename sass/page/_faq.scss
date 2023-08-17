@@ -1,5 +1,38 @@
 //FAQ
 .faq {
+  .banner {
+    background: $purple_d;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 315px;
+  }
+  .faq_head {
+    display: flex;
+    li {
+      width: 25%;
+      padding-bottom: 12px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .alive {
+      text-align: left;
+      border-bottom: 2px solid $purple;
+      a {
+        color: $purple;
+      }
+    }
+  }
+
+  .accordion {
+    .accordion-item {
+      //   display: flex;
+      //   justify-content: space-between;
+    }
+  }
+
   $bg: #fff;
   $text: #7288a2;
   $gray: #4d5974;
