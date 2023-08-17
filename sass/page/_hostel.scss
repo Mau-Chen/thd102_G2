@@ -63,15 +63,18 @@
       display: flex;
       flex-direction: column;
 
+      .cards {
+        display: flex;
+        gap: 40px;
+        flex-direction: column;
+      }
 
       .cards_item {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 40px 33px;
+        justify-content: space-between;
+        // gap: 40px;
       }
       .card {
-        width: 273px;
         border: 1px solid #e0e0e0;
         border-radius: $br_12;
         overflow: hidden;
@@ -88,17 +91,16 @@
           }
         }
       }
-    }// GO旅宿-hostel-booking
-    
+    } // GO旅宿-hostel-booking
 
     .hotel-booking {
       .cards_item {
         display: flex;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
         justify-content: space-between;
         gap: 32px;
         .card {
-          width: 378px;
+          // width: 378px;
         }
 
         .card_image {
@@ -133,8 +135,6 @@
       }
     }
   } // page1&2 container end
-
- 
 
   // *****GO旅宿-hostel-booking_detail******
 
@@ -193,6 +193,7 @@
     }
     .name {
       display: flex;
+      margin-bottom: 16px;
       .star {
         display: flex;
       }
@@ -304,7 +305,6 @@
               display: flex;
               gap: 12px;
               .info-left {
-                width: 327px;
                 font-size: $fontsize;
                 margin-bottom: 24px;
                 .i-title p {
@@ -324,7 +324,6 @@
               }
               // 右邊狗狗體型
               .info-right {
-                width: 327px;
                 font-size: $fontsize;
 
                 .i-title {
@@ -342,7 +341,6 @@
             }
 
             .addproduct {
-              width: 666px;
               border-top: 1px solid $gray_1;
             }
           }
@@ -427,10 +425,11 @@
         .seach-bg {
           flex-wrap: wrap;
           gap: 12px;
+          padding: 32px;
           .seachbar {
             gap: 16px;
             justify-content: space-between;
-            .seachbox{
+            .seachbox {
               padding: 8px 16px;
             }
           }
@@ -441,9 +440,15 @@
       }
       .point-hotel {
         display: flex;
-        justify-content: space-between;
-        .mb_40{
-          // margin: 0 auto;
+        flex-direction: column;
+        gap: 40px;
+        margin: 0 auto;
+        .cards {
+          gap: 32px;
+          .cards_item {
+            flex-wrap: wrap;
+            gap: 32px;
+          }
         }
       }
 
@@ -455,7 +460,7 @@
           display: flex;
           gap: 32px;
 
-          .card{
+          .card {
             width: 336px;
           }
           .card_image {
@@ -492,40 +497,29 @@
   } //wrapper end
 } //RWD end
 
-
-
-
-@media screen and (max-width: 414px){
-  .hostel{
-
+@media screen and (max-width: 414px) {
+  .hostel {
     .hostel-page1,
-    .hostel-page2{
+    .hostel-page2 {
       padding: 0px 16px;
       position: relative;
-      .seach-out{
-        .seach-title{
+      .seach-out {
+        .seach-title {
           position: absolute;
           top: -240px;
           left: 80px;
-          h2{
+          h2 {
             text-align: center;
           }
         }
 
-        .seach-bg{
-          padding: 20px
-          ;
-          .seachbar{
+        .seach-bg {
+          padding: 20px;
+          .seachbar {
             flex-direction: column;
           }
-
         }
       }
-
     }
-    
-
-
-
   } //wrapper end
-}// RWD 414 end
+} // RWD 414 end
