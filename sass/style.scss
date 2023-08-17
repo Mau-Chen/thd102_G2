@@ -2,39 +2,16 @@
 @import "reset/reset";
 
 // base
-@import "base/base";
-@import "base/color";
-@import "base/font";
-@import "base/spacing";
+@import "base/index";
 
 // mixin
 @import "mixin/mixins";
 
 // component
-@import "component/btn";
-@import "component/form";
-@import "component/table";
-@import "component/title";
-@import "component/grid";
-@import "component/space";
-@import "component/fontColor";
+@import "component/index";
 
 // layout
-@import "layout/body";
-@import "layout/login";
-@import "layout/doing"; ///開發中使用
+@import "layout/index";
 
 // page
-@import "page/index";
-@import "page/hostel";
-@import "page/driver";
-@import "page/photowall";
-@import "page/member";
-@import "page/shopping";
-@import "page/faq";
-@import "page/about";
-
-// plugin
-.bg_gray {
-  background-color: $gray_4;
-}
+@import "page/page";
