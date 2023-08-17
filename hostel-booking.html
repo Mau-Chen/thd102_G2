@@ -14,12 +14,19 @@
   <body>
     <div class="wrapper hostel">
       @@include('layout/header.html')
-      <img
-        src="./images/banner/hostel/big_hostel_banner.svg"
-        alt=""
-        class="hostelbgimg"
-      />
-      <div class="container">
+      <!-- Banner -->
+      <picture>
+        <source
+          media="(max-width:414px )"
+          srcset="images/banner/hostel/m375-hostel.svg"
+        />
+        <source
+          media="(max-width:768px )"
+          srcset="images/banner/hostel/p768-hostel.svg"
+        />
+        <img src="images/banner/hostel/big_hostel_banner.svg" alt="" />
+      </picture>
+      <div class="container hostel-page2">
         <div class="seach-out mb_60">
           <div class="seach-title">
             <h2>最貼心的寵物住宿</h2>
@@ -27,37 +34,39 @@
           <div class="seach-bg">
             <div class="seachbar">
               <!-- 搜尋框 -->
-              <div class="seachbox col-4">
+              <div class="seachbox col-4 col-lg-4 col-sm-12">
                 <span>住宿地點或住宿名稱</span>
                 <input type="date" placeholder="城市／地區／住宿名稱" />
               </div>
 
-              <div class="seachbox col-4">
+              <div class="seachbox col-4 col-lg-4 col-sm-12">
                 <span>入住＆退房日期</span>
                 <span>8月17日 - 8月19日</span>
               </div>
-              <div class="seachbox col-4">
+              <div class="seachbox col-4 col-lg-4 col-sm-12">
                 <span>寵物類型</span>
                 <span>1隻狗,1隻貓</span>
               </div>
-              <div class="btn_7 col-2">
-                <p>立即搜尋</p>
-              </div>
             </div>
+            <div class="btn_7 col-2 col-lg-12">
+              <p>立即搜尋</p>
+            </div>
+            
+            
           </div>
         </div>
 
         <!-- 精選寵物旅宿 -->
 
         <div class="hotel-booking mb_60">
-          <div class="hotel-booking mb_40">
+          <div class="mb_40">
             <h5>12間狗貓共住旅館在台北</h5>
           </div>
-          <div class="cards">
+          <div class="cards col-sm-12">
             <!-- 精選第一排 -->
-            <div class="cards_item mb_32">
-              <!-- 快樂寵物旅館 -->
-              <div class="card">
+            <div class="cards_item mb_32 col-12 col-lg-12 col-sm-12">
+              <!-- 第一排 快樂寵物旅館 -->
+              <div class="card col-4 col-lg-6 col-sm-12">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic1.png"
@@ -86,7 +95,7 @@
                 </div>
               </div>
               <!-- 毛起來住 -->
-              <div class="card">
+              <div class="card col-4 col-lg-6 col-sm-12">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic2.png"
@@ -115,7 +124,7 @@
                 </div>
               </div>
               <!-- 汪堡 -->
-              <div class="card">
+              <div class="card col-4 col-lg-6 col-sm-12">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic3.png"
@@ -143,12 +152,9 @@
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- 精選第二排 -->
-            <div class="cards_item mb_32">
-              <!-- 快樂寵物旅館 -->
-              <div class="card">
+              <!-- 第二排 快樂寵物旅館 -->
+              <div class="card col-4 col-lg-6 col-sm-12">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic4.png"
@@ -177,7 +183,7 @@
                 </div>
               </div>
               <!-- 毛起來住 -->
-              <div class="card">
+              <div class="card col-4 col-lg-6 col-sm-12">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic5.png"
@@ -206,7 +212,7 @@
                 </div>
               </div>
               <!-- 汪堡 -->
-              <div class="card">
+              <div class="card col-4 col-lg-6">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic6.png"
@@ -234,12 +240,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- 精選第三排 -->
-            <div class="cards_item mb_32">
-              <!-- 快樂寵物旅館 -->
-              <div class="card">
+               <!-- 第三排 快樂寵物旅館 -->
+               <div class="card col-4 col-lg-6">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic7.png"
@@ -268,7 +270,7 @@
                 </div>
               </div>
               <!-- 毛起來住 -->
-              <div class="card">
+              <div class="card col-4 col-lg-6">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic8.png"
@@ -297,7 +299,7 @@
                 </div>
               </div>
               <!-- 汪堡 -->
-              <div class="card">
+              <div class="card col-4 col-lg-6">
                 <div class="card_image">
                   <img
                     src="./images/pic/hostel/hostel page2/hostel-pic9.png"
@@ -325,6 +327,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
 
 
