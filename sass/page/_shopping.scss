@@ -916,9 +916,7 @@
         position: relative;
         padding-top: 51px;
         color: $gray_1;
-        // text-indent: -9999px;
         background-color: transparent;
-        // cursor: pointer;
         text-indent: 0;
 
         &::before {
@@ -969,7 +967,7 @@
             width: 100%;
             height: 2px;
             // background-color: $gray_1;
-            border-bottom: 5px dotted $gray_1;
+            border-bottom: 4px dotted $gray_1;
             z-index: 1;
         }
 
@@ -984,27 +982,22 @@
 
             &::after {
                 // background-color: $green;
-                border-bottom: 5px dotted $green;
+                border-bottom: 4px dotted $green;
             }
         }
     }
 
     //廣告區（待套）
-    .ad_box {
-
-        // margin-bottom: 100px;
-        .ad {
-            width: 100%;
-            height: 168px;
-            background-color: cornsilk;
-        }
+    .ad_section {
+        margin-bottom: 0;
+        margin-top: 48px;
     }
 
     //內容(共用）
     .spMain_bg {
         margin: 0 auto;
         max-width: 1200px;
-        padding: 0 32px;
+        padding: 100px 32px;
 
         .multisteps-form__form {
             // position: relative;
@@ -1018,26 +1011,17 @@
             width: 100%;
             height: 0;
             opacity: 0;
-            visibility: hidden;
+            // visibility: hidden;
+            display: none;
         }
 
         .spPage.jsNow {
             height: auto;
             opacity: 1;
-            visibility: visible;
+            // visibility: visible;
+            display: block;
         }
 
-        .spPage[data-animation=scaleIn] {
-            transform: scale(0.9);
-        }
-
-        .spPage[data-animation=scaleIn].jsNow {
-            transition-property: all;
-            transition-duration: 0.2s;
-            transition-timing-function: linear;
-            transition-delay: 0s;
-            transform: scale(1);
-        }
 
         //內頁標題
         .spMian_title {
@@ -1048,9 +1032,8 @@
         .spMain {
             margin: 0 auto;
             @include flex(row, center, flex-start);
-            // @include flex();
             gap: 32px;
-            margin-bottom: 48px;
+            // margin-bottom: 48px;
 
 
             //白底卡區塊(共）
@@ -1058,8 +1041,10 @@
                 background-color: $white;
                 border-radius: $br_12;
                 padding: 24px;
-                margin-bottom: 24px;
                 position: relative;
+                &:nth-last-child(n+2){
+                    margin-bottom: 24px;
+                }
 
                 //原checkbox隱藏（共）
                 input[type="checkbox"] {
@@ -1334,8 +1319,6 @@
             }
 
             .spCard {
-
-                // margin-bottom: 48px;
                 .creditCard {
                     @include flex(row, space-between);
                     margin-bottom: 24px;
@@ -1343,8 +1326,6 @@
 
                     //信用卡資訊細項
                     >div {
-                        // width: 192px;
-                        // @include flex(row, space-between);
 
                         >div {
                             border: 1px solid $gray_1;
@@ -1395,8 +1376,9 @@
                 padding-bottom: 16px;
                 margin-bottom: 16px;
 
-                &:nth-last-child(-n+2) {
+                &:nth-last-child(5) {
                     padding-bottom: 24px;
+                    margin-bottom: 0px;
                 }
 
                 .spList_up {
@@ -1408,12 +1390,12 @@
                         margin-bottom: 4px;
                     }
                 }
-
             }
 
             //計算
             .spCount {
                 padding: 24px 0;
+                margin-bottom: 0;
 
                 div {
                     @include flex(row, space-between);
@@ -1435,7 +1417,8 @@
                 }
 
                 ~.spTotal {
-                    margin-bottom: 24px;
+                    padding: 24px 0;
+                    // margin-bottom: 24px;
                 }
             }
         }
@@ -1447,12 +1430,17 @@
             align-items: center;
             gap: 0;
 
+            //訂單成立
             >div {
                 @include flex(column);
 
+                >h5 {
+                    padding-top: 16px;
+                }
+
                 >p {
                     display: block;
-                    padding: 32px 0;
+                    padding: 32px 0 0;
                 }
             }
 
@@ -1464,24 +1452,25 @@
                     width: 100%;
 
                     li {
-                        background-color: $white;
-                        border-radius: $br_12;
                         font-size: 18px;
                         font-weight: 500;
-                        // width: 100%;
+
+                        p:first-child {
+                            // margin-bottom: 8px;
+                        }
                     }
 
                 }
 
+                //訂購人
                 >div {
                     width: 100%;
                     @include flex(row, space-between);
-                    margin-bottom: 24px;
                     border-bottom: 1px solid $gray_1;
                     padding: 12px 0;
 
-                    p {
-                        // display: block;
+                    &:nth-child(-n+2) {
+                        margin-bottom: 24px;
                     }
                 }
 
@@ -1550,6 +1539,10 @@
                     }
                 }
 
+                &.OrderMan {
+                    margin-bottom: 64px;
+                }
+
                 +button {
                     width: 378px;
                 }
@@ -1581,6 +1574,7 @@
         }
 
         .spMain_bg {
+            padding-top: 60px;
 
             .spMian_title {
                 padding-bottom: 24px;
@@ -1631,12 +1625,14 @@
 
                     .creditCard {
                         flex-direction: column;
+                        gap: 16px;
 
-                        >div{
+                        >div {
                             &:first-child>div {
                                 justify-content: flex-start;
                             }
-                            &:last-child>input{
+
+                            &:last-child>input {
                                 width: 100%;
                             }
                         }
@@ -1644,14 +1640,63 @@
                 }
 
             }
+
+            .spMain_right {
+                .spCard {
+                    .spBuy_text {
+                        .spList_up {
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+            }
+        }
+
+        //sp3覆蓋共用
+        .sp3 {
+            >.spCard {
+                .accordion {
+                    .ol-content {
+                        margin: 0;
+
+                        .ol-contentBox {
+                            margin-bottom: 16px;
+
+                            // &:nth-last-child(n+2){
+                            //     margin-bottom: 16px;
+                            // }
+                            .ol-ContText {
+                                h6 {
+                                    margin-bottom: 8px;
+
+                                }
+
+                                .ol-info {
+                                    margin-top: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    >.ol-money {
+                        padding: 16px 0;
+                        margin: 0;
+                    }
+
+                    >.ol-total {
+                        padding-top: 16px;
+                    }
+                }
+            }
         }
 
     }
 
     @media screen and (max-width: 414px) {
         .spMain_bg {
-            padding: 0 16px;
+            padding: 60px 16px;
 
+            //sp
             .spMain {
 
                 .spDriver,
@@ -1706,7 +1751,39 @@
                     }
                 }
             }
+
+            .sp2 {
+                .spPay {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 24px;
+
+                    span {
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            .sp3 {
+                .spCard {
+                    .accordion {
+                        .ol-header {
+                            margin-bottom: 16px;
+
+                            .ol-headText {
+                                p {
+                                    &:first-child {
+                                        margin-bottom: 8px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
         }
+
 
 
     }
