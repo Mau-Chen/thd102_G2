@@ -49,6 +49,7 @@
           outline: none;
           background-color: transparent;
           text-indent: 16px;
+          cursor: pointer;
         }
 
         .downsection {
@@ -62,9 +63,80 @@
           .categorycontrol {
             @include flex(row, space-between);
             gap: 16px;
+
+            // .catagory_kind.active {
+            //   // display: block;
+            // }
+            .category_kind {
+              position: absolute;
+              left: 0;
+              top: calc(100% + 1px);
+              width: 100%;
+              padding: 16px;
+              background-color: $white;
+              border-radius: $br_8;
+              border: 1px solid #e6e6e6;
+              opacity: 0;
+              // transition: opicity 1s ease 1s, transform 1s ease-out,
+              //   translateY 1s ease-out;
+              // transform: scaleY(0);
+              transform: translateY(-20px);
+              // transform: sacle(0);
+              transition: all 0.1s ease;
+              &.active {
+                opacity: 1;
+                transform: translateY(0);
+                // transform: scaleY(1);
+                // translatey: 50px;
+                // transform: translateY(1px);
+              }
+              .catagory_top {
+                left: 50%;
+                top: 0;
+                height: 12px;
+                width: 12px;
+                position: absolute;
+                border-left: 1px solid var(--dp-menu-border-color);
+                border-top: 1px solid var(--dp-menu-border-color);
+                transform: translate(-50%, -50%) rotate(45deg);
+                background-color: $white;
+                border-top: 1px solid #e6e6e6;
+                border-left: 1px solid #e6e6e6;
+              }
+              .category_bottom {
+                .car {
+                  @include flex(column, center, start);
+                  .carList {
+                    position: relative;
+                    width: 100%;
+                    box-sizing: content-box;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #e2e2e2;
+                    cursor: pointer;
+                    span {
+                      margin-left: 0;
+                    }
+                    &::after {
+                      content: "";
+                      display: block;
+                      position: absolute;
+                      right: 16px;
+                      bottom: 40%;
+                      width: 8px;
+                      height: 14px;
+                      border: solid #000000;
+                      border-width: 0 2px 2px 0;
+                      transform: rotate(45deg) translateY(-3px);
+                    }
+                  }
+                  .carListEnd {
+                    border: 0;
+                  }
+                }
+              }
+            }
           }
         }
-
         .place,
         .category {
           height: 76px;
@@ -72,6 +144,7 @@
           //   margin-right: 56px;
           @include flex(column, center, null);
           border-radius: $br_8;
+          position: relative;
           span {
             font-size: 14px;
             margin-left: 16px;
