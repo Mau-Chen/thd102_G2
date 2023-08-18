@@ -35,23 +35,24 @@
         </div>
         <div class="category col-4 col-sm-12 categoryset">
           <span>車種</span>
-          <input type="text" placeholder="轎車" />
-          <!-- <div class="category_kind">
+          <input type="text" value="轎車" @click="category_kind_display" />
+          <div class="category_kind" ref="category_kind_active">
+            <div class="catagory_top"></div>
             <div class="category_bottom">
-              <div class="catagory_top"></div>
-              <ul>
-                <li>
+              <ul class="car">
+                <li class="carList">
                   <p>轎車</p>
                   <span>乘客＋毛孩共3位</span>
                 </li>
-                <li>
+                <li class="carList carListEnd">
                   <p>休旅車</p>
                   <span>乘客＋毛孩共4位</span>
                 </li>
               </ul>
             </div>
-          </div> -->
+          </div>
         </div>
+
         <div class="category col-4 col-sm-12">
           <span>乘客數量</span>
           <input type="text" placeholder="1位乘客, 2位毛孩" />

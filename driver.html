@@ -92,6 +92,10 @@
     <!-- <script src="./vue.global.js"></script> -->
     <script src="/js/vue-datepicker.iife.js"></script>
     <script>
+      // let category_set = document.getElementById("dropmenu");
+      // category_set.addEventListener("click", function () {
+      //   console.log("eee");
+      // });
       const app = Vue.createApp({
         // components: { Datepicker: VueDatePicker },
         // props: ["calendarCellClassName", "timePickerInline", "weekStart"],
@@ -118,6 +122,13 @@
             let msg_end = this.msg_end;
             this.msg_start = msg_end;
             this.msg_end = msg_start;
+          },
+          category_kind_display() {
+            // let category_kind = document.querySelector(".category_kind");
+            // console.log(category_kind);
+            // category_kind.classList.toggle("active");
+            let category_kind_active = this.$refs.category_kind_active;
+            category_kind_active.classList.toggle("active");
           },
         },
         mounted() {
