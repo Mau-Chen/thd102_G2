@@ -308,17 +308,47 @@
         data() {
           return {
             faq_index: 1,
-            qAnda:[{
+            qAnda: [{
               name: 11,
               answer: 11,
             }]
           }
         },
+        watch: {
+          faq_index(newValue) {
+            this.setupAccordion();
+          },
+        },
+        mounted() {
+          this.setupAccordion();
+        },
         methods: {
           faq_changePage(index) {
             this.faq_index = index;
           },
+          setupAccordion() {
+            const items = document.querySelectorAll(".accordion button");
 
+            function toggleAccordion() {
+              const itemToggle = this.getAttribute("aria-expanded");
+
+              for (let i = 0; i < items.length; i++) {
+                items[i].setAttribute("aria-expanded", "false");
+              }
+
+              if (itemToggle == "false") {
+                this.setAttribute("aria-expanded", "true");
+              }
+            }
+
+            items.forEach((item) => item.addEventListener("click", toggleAccordion));
+          }
+
+        },
+        watch: {
+          faq_index(newValue) {
+            setupAccordion();
+          },
         }
       })
 
@@ -338,21 +368,11 @@
       });
 
       //手風琴效果
-      const items = document.querySelectorAll(".accordion button");
 
-      function toggleAccordion() {
-        const itemToggle = this.getAttribute("aria-expanded");
 
-        for (i = 0; i < items.length; i++) {
-          items[i].setAttribute("aria-expanded", "false");
-        }
 
-        if (itemToggle == "false") {
-          this.setAttribute("aria-expanded", "true");
-        }
-      }
-
-      items.forEach((item) => item.addEventListener("click", toggleAccordion));
+      // 預設開頁面執行一次
+      setupAccordion();
 
 
     </script>
