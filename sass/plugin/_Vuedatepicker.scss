@@ -127,17 +127,17 @@
   background: rgba(0, 0, 0, 0);
   cursor: default;
 }
-.dp__arrow_top {
-  left: 50%;
-  top: -1px;
-  height: 12px;
-  width: 12px;
-  background-color: var(--dp-background-color);
-  position: absolute;
-  border-left: 1px solid var(--dp-menu-border-color);
-  border-top: 1px solid var(--dp-menu-border-color);
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+// .dp__arrow_top {
+//   left: 50%;
+//   top: -1px;
+//   height: 12px;
+//   width: 12px;
+//   background-color: var(--dp-background-color);
+//   position: absolute;
+//   border-left: 1px solid var(--dp-menu-border-color);
+//   border-top: 1px solid var(--dp-menu-border-color);
+//   transform: translate(-50%, -50%) rotate(45deg);
+// }
 .dp__arrow_bottom {
   left: 50%;
   bottom: -1px;
