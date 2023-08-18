@@ -77,19 +77,17 @@
       @@include('layout/footer.html')
     </div>
   </body>
-  <script>
-    document.addEventListener("DOMContentLoaded",function(){
-      let postDetail = document.querySelectorAll(".post-detail");
+    <script>
+      document.addEventListener("DOMContentLoaded",function(){
+        let postDetail = document.querySelectorAll(".post-detail");
 
-      postDetail.forEach(function(post_detail){
-        let postDelete = post_detail.querySelector(".post-delete");
-
-        postDelete.addEventListener("click",function(){
-          console.log("Hello, it's me");
-          post_detail.style.display = 'none';
+        postDetail.forEach(function(post_detail){
+          let postDelete = post_detail.querySelector(".post-delete");
+          postDelete.addEventListener("click",function(){
+            // console.log("Hello, it's me");
+            post_detail.style.display = 'none';
+          });
         });
       });
-    });
-
-  </script>
+    </script>
 </html>
