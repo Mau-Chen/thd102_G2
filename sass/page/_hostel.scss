@@ -68,7 +68,7 @@
     }
   }
 
-   // GO旅宿-hostel
+  // ------------ GO旅宿-hostel ------------
   .container {
     .seach-out {
       // gap: 24px;
@@ -153,7 +153,7 @@
     }
   }
 
-  // ***** GO旅宿-hostel-booking *****
+  // ------------ GO旅宿-hostel-booking ------------
   .container {
     .hotel-booking {
       .booking_list {
@@ -206,7 +206,7 @@
     }
   }
 
-  // GO旅宿-hostel-booking_detail
+  // ------------ GO旅宿-hostel-booking_detail ------------
   .container {
     .carousel {
       overflow: hidden;
@@ -217,97 +217,230 @@
         justify-content: center;
       }
     }
-    .name {
+  }
+
+  .hostel_content {
+    padding: 0 32px;
+    .container {
       display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
-      .star {
+      flex-direction: column;
+      gap: 60px;
+    }
+    // ------ 旅宿名 section ------ //
+    .hostel-info {
+      .name {
         display: flex;
+        gap: 12px;
+        .star {
+          display: flex;
+          gap: 4px;
+        }
+      }
+      .address {
+        display: flex;
+        font-size: 20px;
         gap: 4px;
+        margin-bottom: 12px;
+      }
+      .info {
+        color: $textColor_m;
       }
     }
-    @media (max-width: 768px) {
-      .hostel-info {
-        padding: 0 32px;
-      }
-    }
-    .address {
-      display: flex;
-      font-size: 20px;
-      gap: 4px;
-      margin-bottom: 12px;
-      color: #333;
-    }
-    .info {
-      color: #555;
-    }
-    .system {
-      .sys_txt {
+
+    // ------ 重點設施 section ------ //
+    .hostel-system {
+      .system_txt {
         margin-bottom: 20px;
       }
-      .outline {
+      .system_outline {
         padding: 24px 20px;
-        border-radius: 12px;
+        border-radius: $br_12;
         border: 1px solid $gray_1;
-        .icon_out {
-          display: flex;
-          justify-content: space-evenly;
+        @include flex();
+        flex-wrap: wrap;
+        gap: 16px;
+        .system_icon {
+          flex-basis: calc(20% - 13px); // 20% for 5 columns
+          @include flex(column);
+          gap: 12px;
+
+          @media (max-width: 768px) {
+            flex-basis: calc(33.33% - 10px); // 33.33% for 3 columns
+          }
+
+          @media (max-width: 480px) {
+            flex-basis: calc(50% - 10px); // 50% for 2 columns
+          }
           .icon {
             width: 94px;
             height: 94px;
             border-radius: $br_12;
-            padding: 30px 20px;
-            background: rgba(110, 96, 246, 0.12);
+            background-color: #edecfe;
+            img {
+              transform: translate(22%, 36%);
+            }
+          }
+          p {
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
           }
         }
-      }
-    }
-    @media (max-width: 768px) {
-      .system {
-        padding: 0 32px;
-        .icon_out {
-          display: flex;
-          justify-content: space-between;
+        @media (max-width: 1000px) {
+          // padding: 24px 100px;
+        }
+        @media (max-width: 500px) {
+          justify-content: flex-start;
+          gap: 20px;
         }
       }
     }
-    .allroom {
-      // total 共用區
-      .spSubtotal {
-        display: flex;
-        padding-top: 24px;
-        gap: 20px;
-        justify-content: flex-end;
-        border-top: 1px solid $gray_1;
-        .spStepper {
+
+    // ------ 住宿選擇 section ------ //
+    .allRoom {
+      display: flex;
+      gap: 32px;
+      border: 1px solid $gray_1;
+      border-radius: 12px;
+      padding: 20px;
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
+      .room-left img {
+        border-radius: 12px;
+      }
+      .room-right {
+        .info-top {
           display: flex;
-          gap: 32px;
-          align-items: center;
-          .add {
+          gap: 12px;
+          width: 100%;
+          .it-left,
+          .it-right {
             display: flex;
-            gap: 4px;
-            .spSubtotal_icon {
-              border: 1px solid #333;
-              width: 32px;
-              height: 32px;
-              border-radius: 50%;
-              > img {
-                width: 10px;
-                height: 10px;
-                transform: translate(10px, 10px);
+            flex-direction: column;
+            gap: 20px;
+          }
+          .i-title {
+            font-weight: 500;
+            padding: 8px 16px;
+            background-color: $gray_2;
+          }
+          .i-memo {
+            display: flex;
+            gap: 8px;
+          }
+          p {
+            padding: 0 16px;
+            text-align: justify;
+          }
+          @media (max-width: 900px) {
+            flex-direction: column;
+            gap: 32px;
+            .it-left,
+            .it-right {
+              width: 100%;
+            }
+          }
+          .it-right {
+            .checkBox {
+              padding: 0 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            }
+            .radio-input {
+              display: none;
+            }
+            .radioBox {
+              .radio-label {
+                cursor: pointer;
+                padding-left: 2.5em;
+                position: relative;
               }
-              &:first-child {
-                border: 1px solid #e0e0e0;
+              .radio-button {
+                width: 24px;
+                height: 24px;
+                border: 1px solid #b3b3b3;
+                border-radius: 50%;
+                position: absolute;
+                left: 0;
+                transition: border-color 0.2s; /* 添加過渡效果 */
+                &::after {
+                  content: "";
+                  width: 12px;
+                  height: 12px;
+                  background: $black;
+                  border-radius: 50%;
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                  left: 0;
+                  bottom: 0;
+                  margin: auto;
+                  opacity: 0;
+                  transition: opacity 0.2s;
+                }
+              }
+              .radio-input:checked + .radio-label .radio-button {
+                border-color: $black;
+              }
+              .radio-input:checked + .radio-label .radio-button::after {
+                opacity: 1;
+              }
+              .radio-label:hover .radio-button {
+                border-color: $black;
               }
             }
-            // h5{
-            //   margin-left: 32px;
-            // }
-            input[type="text"] {
-              outline: none;
-              border: none;
-              text-align: center;
-              width: 32px;
+          }
+        }
+        .info_bottom {
+          .spSubtotal {
+            @include flex(row, flex-end);
+            gap: 32px;
+            border-top: 1px solid $gray_1;
+            padding-top: 24px;
+            margin-top: 24px;
+            .spStepper {
+              @include flex();
+              gap: 32px;
+              .add {
+                display: flex;
+                gap: 4px;
+                input {
+                  font-weight: 700;
+                  font-size: 20px;
+                }
+                .spSubtotal_icon {
+                  border: 1px solid #b3b3b3;
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  > img {
+                    width: 10px;
+                    height: 10px;
+                    transform: translate(10px, 10px);
+                  }
+                  &:first-child {
+                    border: 1px solid $gray_1;
+                  }
+                }
+                input[type="text"] {
+                  outline: none;
+                  border: none;
+                  text-align: center;
+                  width: 32px;
+                }
+              }
+            }
+            @media (max-width: 900px) {
+              flex-direction: column;
+              .spStepper {
+                width: 100%;
+                justify-content: space-between;
+              }
+              .suButtom {
+                width: 100%;
+              }
             }
           }
         }
@@ -316,127 +449,27 @@
           gap: 12px;
           .btn_5 {
             border: none;
-            width: 170px;
-            padding: 16px 28px;
-            font-size: $fontsize;
           }
           .btn_5_border {
-            border: none;
-            width: 170px;
-            padding: 16px 28px;
-            font-size: $fontsize;
-          }
-        }
-        @media (max-width: 768px) {
-          display: flex;
-          flex-direction: column;
-          .spStepper {
-            justify-content: space-between;
-          }
-        }
-      }
-
-      // 貓狗套房
-      .room {
-        border-radius: $br_12;
-        border: 1px solid #e0e0e0;
-        padding: 20px;
-
-        .detail {
-          display: flex;
-          justify-content: space-between;
-          gap: 32px;
-          .leftimg {
-            overflow: hidden;
-            border-radius: $br_12;
-          }
-          .info {
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            .info-top {
-              display: flex;
-              margin-bottom: 24px;
-              gap: 12px;
-              // 右邊狗狗體型
-              .info-right {
-                font-size: $fontsize;
-
-                .i-title {
-                  color: $black;
-                  padding: 8px 16px;
-                  margin-bottom: 24px;
-                  background-color: $gray_2;
-                  margin-bottom: 24px;
-                }
-                .i-text p {
-                  margin-top: 24px;
-                  padding: 20px 16px;
-                }
-              }
-            }
-            // 文字共用
-            .i-title p {
-              color: $black;
-              padding: 8px 16px;
-              background-color: $gray_2;
-            }
-            .i-text p {
-              padding: 20px 16px;
-            }
-            .i-memo {
-              padding: 0 20px;
-              gap: 8px;
-              color: $black;
-              display: flex;
-            }
-
-            .addproduct {
-              border-top: 1px solid $gray_1;
-            }
+            background: none;
           }
         }
       }
     }
-    //入住須知
+    // ------ 入住須知 section ------ //
     .notice {
-      padding: 32px 0px;
+      border-top: 1px solid $gray_1;
+      padding-top: 32px;
       h5 {
+        font-size: 24px;
         margin-bottom: 20px;
       }
       ul {
         padding-left: 20px;
         li {
           list-style-type: disc;
-        }
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hostel-list {
-        padding: 0 32px;
-        .dog-room {
-          padding: 32px;
-          .detail {
-            display: flex;
-            gap: 32px;
-            .info-top {
-              flex-direction: column;
-              .info-left {
-              }
-              .info-right {
-                .i-title {
-                  margin-bottom: 20px;
-                }
-                .i-text {
-                  padding: 0px 16px;
-                  line-height: 12px;
-                }
-              }
-            }
-            .info-bottom {
-            }
-          }
+          line-height: 2;
+          text-align: justify;
         }
       }
     }
