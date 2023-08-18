@@ -90,19 +90,7 @@
                 // translatey: 50px;
                 // transform: translateY(1px);
               }
-              .catagory_top {
-                left: 50%;
-                top: 0;
-                height: 12px;
-                width: 12px;
-                position: absolute;
-                border-left: 1px solid var(--dp-menu-border-color);
-                border-top: 1px solid var(--dp-menu-border-color);
-                transform: translate(-50%, -50%) rotate(45deg);
-                background-color: $white;
-                border-top: 1px solid #e6e6e6;
-                border-left: 1px solid #e6e6e6;
-              }
+
               .category_bottom {
                 .car {
                   @include flex(column, center, start);
@@ -116,9 +104,7 @@
                     span {
                       margin-left: 0;
                     }
-                    &::after {
-                      content: "";
-                      display: block;
+                    .smooth {
                       position: absolute;
                       right: 16px;
                       bottom: 40%;
@@ -128,9 +114,9 @@
                       border-width: 0 2px 2px 0;
                       transform: rotate(45deg) translateY(-3px);
                     }
-                  }
-                  .carListEnd {
-                    border: 0;
+                    &:last-child {
+                      border: 0;
+                    }
                   }
                 }
               }

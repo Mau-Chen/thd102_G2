@@ -37,17 +37,22 @@
           <span>車種</span>
           <input type="text" value="轎車" @click="category_kind_display" />
           <div class="category_kind" ref="category_kind_active">
-            <div class="catagory_top"></div>
             <div class="category_bottom">
               <ul class="car">
-                <li class="carList">
-                  <p>轎車</p>
-                  <span>乘客＋毛孩共3位</span>
+                <li
+                  class="carList"
+                  v-for="item in cars"
+                  :key="item.id"
+                  @click="smooth"
+                >
+                  <p>{{item.cars_type}}</p>
+                  <span>{{item.cars_text}}</span>
+                  <div></div>
                 </li>
-                <li class="carList carListEnd">
+                <!-- <li class="carList carListEnd">
                   <p>休旅車</p>
                   <span>乘客＋毛孩共4位</span>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>

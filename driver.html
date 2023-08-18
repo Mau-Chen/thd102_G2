@@ -105,6 +105,18 @@
             format: `MM月 dd日 ｜HH ：mm`,
             msg_start: "",
             msg_end: "",
+            cars: [
+              {
+                id: "a",
+                cars_type: "轎車",
+                cars_text: "乘客＋毛還共3位",
+              },
+              {
+                id: "b",
+                cars_type: "休旅車",
+                cars_text: "乘客＋毛孩共4位",
+              },
+            ],
           };
         },
         computed: {
@@ -123,12 +135,19 @@
             this.msg_start = msg_end;
             this.msg_end = msg_start;
           },
-          category_kind_display() {
+          category_kind_display(e) {
             // let category_kind = document.querySelector(".category_kind");
             // console.log(category_kind);
             // category_kind.classList.toggle("active");
+            // console.log(e.target);
             let category_kind_active = this.$refs.category_kind_active;
             category_kind_active.classList.toggle("active");
+          },
+          smooth(e) {
+            let clickLi = e.currentTarget;
+            let liDiv = clickLi.querySelector("div");
+            liDiv.classList.toggle("smooth");
+            // console.log(e.target.closest(cars_type));
           },
         },
         mounted() {
