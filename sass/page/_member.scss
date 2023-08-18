@@ -39,7 +39,14 @@
           display: flex;
           gap: 8px;
         }
+        a.on_page{
+          color:#6e60f6;
+          svg{
+            color:#6e60f6;
+          }
+        }
       }
+      
     }
     .btn_4_border {
       width: 96px;
@@ -73,6 +80,7 @@
           width: 95%;
         }
   }
+  
 }
   // ------ 會員右邊欄設定 -------------------------------
   .mr-bg {
@@ -84,6 +92,14 @@
 
   .member-box {
     // 共用flex設定
+    .order2{
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      font-size: 18px;
+      font-weight: 500;
+    }
     .jcSb {
       @include flex(row, space-between);
     }
@@ -173,6 +189,12 @@
         @media screen and (max-width: 414px){
           display: none;
         }
+      }
+      .arrowIcon {
+        transform: rotate(180deg);
+      }
+      .active_arrow{
+        transform: rotate(0deg);
       }
 
     }
