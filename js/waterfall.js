@@ -1,4 +1,3 @@
-
 export default {
   props: ["items"],
   template: `
@@ -132,7 +131,6 @@ export default {
   },
   methods: {
     async loadItems() {
-      console.log(this.items);
       for (const item of this.items) {
         await this.loadImage(item);
         const shortestColumn = this.getShortestColumn();
@@ -152,7 +150,6 @@ export default {
       } else {
         this.columns = [[], [], []];
       }
-      console.log(this.columns);
       this.loadItems(); // Reload items into columns
     },
     async loadImage(item) {
@@ -161,7 +158,6 @@ export default {
         img.src = item.image;
 
         img.onload = () => {
-          console.log("11");
           item.height = img.height; // 設置項目的高度
           resolve();
         };
@@ -186,8 +182,6 @@ export default {
       item.lightboxReport = !item.lightboxReport;
     },
     ignore_list(item) {
-      console.log(item);
-
       const storedIgnoreList = localStorage.getItem('ignoreList');
 
       this.ignoreList = storedIgnoreList ? JSON.parse(storedIgnoreList) : [];
