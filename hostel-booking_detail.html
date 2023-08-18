@@ -15,26 +15,26 @@
     <div class="wrapper hostel">
       @@include('layout/header.html')
 
-      <div class="d_seach-out mb_60">
-        <div class="seach-bg">
-          <div class="d_seachbar">
+      <div class="d_search-out mb_60">
+        <div class="search-bg">
+          <div class="d_searchbar col-lg-12">
             <!-- 搜尋框 -->
-            <div class="d_seachbox col-4">
+            <div class="d_searchbox col-4 t_dis">
               <span>住宿地點或住宿名稱</span>
               <p>台北市</p>
             </div>
 
-            <div class="d_seachbox col-4 col-lg-6">
+            <div class="d_searchbox col-4 col-lg-6">
               <span>入住＆退房日期</span>
               <div class="text">
                 <p>8月17日 - 8月19日<span>3晚</span></p>
               </div>
             </div>
-            <div class="d_seachbox col-4 col-lg-6">
+            <div class="d_searchbox col-4 col-lg-6">
               <span>寵物類型</span>
               <p>1隻狗,1隻貓</p>
             </div>
-            <div class="btn_7 col-2">
+            <div class="btn_7 t_dis col-2">
               <p>更新</p>
             </div>
           </div>
@@ -115,14 +115,14 @@
                 <div class="icon">
                   <img src="./images/icon/hostel icon/room-wet.svg" alt="" />
                 </div>
-                <p>溼度控制</p>
+                <h6>溼度控制</h6>
               </div>
               <!-- 05 -->
               <div class="sys_icons">
                 <div class="icon">
                   <img src="./images/icon/hostel icon/room-3m.svg" alt="" />
                 </div>
-                <p>3M濾水器</p>
+                <h6>3M濾水器</h6>
               </div>
             </div>
           </div>
@@ -138,15 +138,17 @@
             <div class="dog-room mb_32">
               <h5>狗套房</h5>
               <div class="detail">
-                <img
-                  class="leftimg"
-                  src="./images/pic/hostel/hostel page3/dog-room.png"
-                  alt=""
-                />
-                <div class="d_info">
+                <div class="leftimg col-8 col-lg-7">
+                  <img
+                    src="./images/pic/hostel/hostel page3/dog-room.png"
+                    alt=""
+                  />
+                </div>
+
+                <div class="d_info col-lg-6">
                   <!-- 房型介紹 -->
                   <div class="info-top">
-                    <div class="info-left">
+                    <div class="info-left col-6 col-lg-12">
                       <div class="i-title">
                         <p>房型介紹</p>
                       </div>
@@ -161,16 +163,20 @@
                       </div>
                     </div>
                     <!-- 狗狗體型 -->
-                    <div class="info-right">
+                    <div class="info-right col-6 col-lg-12">
                       <div class="i-title">
                         <p>狗狗體型</p>
                       </div>
                       <div class="i-text">
-                        <label><input type="radio" />小型犬 (＜10kg) </label
+                        <label
+                          ><input type="radio" name="dog" />小型犬 (<10kg) </label
                         ><br />
-                        <label><input type="radio" />中型犬 (10kg-20kg) </label
+                        <label
+                          ><input type="radio" name="dog" />中型犬 (10kg-20kg) </label
                         ><br />
-                        <label><input type="radio" />大型犬 (＞20kg) </label>
+                        <label
+                          ><input type="radio" name="dog" />大型犬 (>20kg)
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -178,21 +184,26 @@
                     <!-- 加入訂單&立即預定 -->
                     <div class="spSubtotal">
                       <div class="spStepper">
-                        <div class="spSubtotal_icon">
-                          <img src="images/icon/components-icon/minus.svg" />
+                        <div class="add">
+                          <div class="spSubtotal_icon">
+                            <img src="images/icon/components-icon/minus.svg" />
+                          </div>
+                          <input type="text" value="1" />
+                          <div class="spSubtotal_icon">
+                            <img src="images/icon/components-icon/add.svg" />
+                          </div>
                         </div>
-                        <input type="text" value="1" />
-                        <div class="spSubtotal_icon">
-                          <img src="images/icon/components-icon/add.svg" />
-                        </div>
+
+                        <h5>NT$800</h5>
                       </div>
-                      <h5>NT$800</h5>
-                      <input
-                        class="btn_7_border"
-                        type="submit"
-                        value="加入購物車"
-                      />
-                      <input class="btn_7" type="submit" value="立即預定" />
+                      <div class="suButtom">
+                        <input
+                          class="btn_5_border"
+                          type="submit"
+                          value="加入購物車"
+                        />
+                        <input class="btn_5" type="submit" value="立即預定" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -202,44 +213,53 @@
             <!-- 貓套房 -->
             <div class="cat-room mb_60">
               <h5>貓套房</h5>
-              <div class="c-detail">
-                <img
-                  class="leftimg"
-                  src="./images/pic/hostel/hostel page3/cat-room.png"
-                  alt=""
-                />
-                <div class="c_info">
+              <div class="detail">
+                <div class="leftimg col-8 col-lg-7">
+                  <img
+                    src="./images/pic/hostel/hostel page3/cat-room.png"
+                    alt=""
+                  />
+                </div>
+
+                <div class="d_info col-lg-6">
                   <!-- 房型介紹 -->
-                  <div class="c-title">
-                    <h6>房型介紹</h6>
+                  <div class="i-title">
+                    <p>房型介紹</p>
                   </div>
-                  <div class="c-text">
+                  <div class="i-text">
                     <p>
                       寬150cm X 高100cm X 深90cm<br />為了充份保護每個狗寶貝，採用「單一放風」制度，讓每個毛小孩都能安全、盡興地玩耍，不用擔心被其他狗寶貝欺負。
                     </p>
                   </div>
-                  <div class="c-memo mb_40">
+                  <div class="i-memo mb_40">
                     <img src="./images/icon/drive-icon/notes.svg" alt="" />
                     <p>僅可1隻貓入住。</p>
                   </div>
-                  <!-- 加入訂單&立即預定 -->
-                  <div class="spSubtotal">
-                    <div class="spStepper">
-                      <div class="spSubtotal_icon">
-                        <img src="images/icon/components-icon/minus.svg" />
+                  <div class="info-bottom">
+                    <!-- 加入訂單&立即預定 -->
+                    <div class="spSubtotal">
+                      <div class="spStepper">
+                        <div class="add">
+                          <div class="spSubtotal_icon">
+                            <img src="images/icon/components-icon/minus.svg" />
+                          </div>
+                          <input type="text" value="1" />
+                          <div class="spSubtotal_icon">
+                            <img src="images/icon/components-icon/add.svg" />
+                          </div>
+                        </div>
+
+                        <h5>NT$800</h5>
                       </div>
-                      <input type="text" value="1" />
-                      <div class="spSubtotal_icon">
-                        <img src="images/icon/components-icon/add.svg" />
+                      <div class="suButtom">
+                        <input
+                          class="btn_5_border"
+                          type="submit"
+                          value="加入購物車"
+                        />
+                        <input class="btn_5" type="submit" value="立即預定" />
                       </div>
                     </div>
-                    <h5>NT$800</h5>
-                    <input
-                      class="btn_7_border"
-                      type="submit"
-                      value="加入購物車"
-                    />
-                    <input class="btn_7" type="submit" value="立即預定" />
                   </div>
                 </div>
               </div>

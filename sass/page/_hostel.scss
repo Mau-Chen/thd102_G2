@@ -1,14 +1,78 @@
 //旅宿
 .hostel {
+  //滿版
+
+  // Banner
   picture {
     margin: 0 auto;
     img {
       width: 100%;
     }
   }
+  //Page-3 滿版搜尋欄位
+
+  .d_search-out {
+    background-color: $purple_d;
+    padding: 32px 120px;
+    @media (max-width: 768px) {
+      margin-bottom: 0;
+      padding: 16px 32px;
+    }
+    .search-bg {
+      width: 100%;
+    }
+    .d_searchbar {
+      display: flex;
+      gap: 16px;
+      .d_searchbox {
+        display: flex;
+        padding: 12px 16px;
+        flex-direction: column;
+        background-color: $gray_2;
+        gap: 8px;
+        border-radius: $br_8;
+      }
+      @media (max-width: 768px) {
+        .t_dis {
+          display: none;
+        }
+        .d_searchbox {
+          padding: 6px 16px;
+        }
+
+        span {
+          font-size: 14px;
+          color: #555;
+        }
+        p > span {
+          font-size: 12px;
+          width: 42px;
+          display: inline-block;
+          text-align: center;
+          margin-left: 12px;
+          border-radius: 100px;
+          border: 1px solid #333;
+        }
+      }
+      .btn_7 {
+        width: 170px;
+      }
+      @media (max-width: 768px) {
+        .t_dis {
+          display: none;
+        }
+      }
+    }
+    .carousel {
+      width: 100%;
+    }
+  }
+
+  //*****container*****
 
   .hostel-page1,
-  .hostel-page2 {
+  .hostel-page2,
+  .hostel-page3 {
     margin: 0 auto;
     .seach-out {
       // gap: 24px;
@@ -58,7 +122,7 @@
         }
       }
     }
-
+    // GO旅宿-hostel
     .point-hotel {
       display: flex;
       flex-direction: column;
@@ -91,99 +155,62 @@
           }
         }
       }
-    } // GO旅宿-hostel-booking
+    }
 
+    // GO旅宿-hostel-booking
     .hotel-booking {
-      .cards_item {
+      .booking_list {
         display: flex;
-        // flex-wrap: wrap;
+        flex-wrap: wrap;
         justify-content: space-between;
-        gap: 32px;
         .card {
-          // width: 378px;
+          margin-bottom: 32px;
+          .card_image {
+            border-radius: 12px;
+            overflow: hidden;
+          }
+          .card_content {
+            margin-top: 16px;
+            margin-bottom: 4px;
+            span {
+              background-color: $gray_3;
+              display: flex;
+              border-radius: 4px;
+              padding: 0px 4px;
+              justify-content: center;
+              align-items: center;
+              gap: 2px;
+            }
+            display: flex;
+            justify-content: space-between;
+          }
+          .card_price {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            .star {
+              gap: 4px;
+              display: flex;
+            }
+          }
         }
+      }
+      @media (max-width: 768px) {
+        .card {
+          width: 48%;
+        }
+      }
 
-        .card_image {
+      @media (max-width: 414px) {
+        .card {
           width: 100%;
-          border-radius: 12px;
-          overflow: hidden;
-        }
-        .card_content {
-          margin-top: 16px;
-          margin-bottom: 4px;
-          span {
-            background-color: $gray_3;
-            display: flex;
-            border-radius: 4px;
-            padding: 0px 4px;
-            justify-content: center;
-            align-items: center;
-            gap: 2px;
-          }
-          display: flex;
-          justify-content: space-between;
-        }
-        .card_price {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 4px;
-          .star {
-            gap: 4px;
-            display: flex;
-          }
         }
       }
     }
-  } // page1&2 container end
 
-  // *****GO旅宿-hostel-booking_detail******
-
-  .d_seach-out {
-    background-color: $purple_d;
-    display: flex;
-    padding: 32px 120px;
-    .seach-bg {
-      width: 100%;
-    }
-    .d_seachbar {
-      border-radius: $br_12;
-      display: flex;
-      gap: 16px;
-
-      .d_seachbox {
-        display: flex;
-        padding: 12px 16px;
-        flex-direction: column;
-        background-color: $gray_2;
-        justify-content: center;
-        gap: 8px;
-        border-radius: $br_8;
-        span {
-          font-size: 14px;
-          color: #555;
-        }
-        p > span {
-          font-size: 12px;
-          color: dark;
-          width: 42px;
-          gap: 10px;
-          display: inline-block;
-          text-align: center;
-          margin-left: 12px;
-          border-radius: 100px;
-          border: 1px solid #333;
-        }
-      }
-      .btn_7 {
-        width: 170px;
-      }
-    }
-  }
-  //   Page 3 輪播圖
-
-  .container {
+    // GO旅宿-hostel-booking_detail
     .carousel {
-      // overflow: hidden;
+      overflow: hidden;
       margin: 0 auto;
       .pic {
         gap: 20px;
@@ -193,9 +220,16 @@
     }
     .name {
       display: flex;
+      gap: 12px;
       margin-bottom: 16px;
       .star {
         display: flex;
+        gap: 4px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hostel-info {
+        padding: 0 32px;
       }
     }
     .address {
@@ -230,71 +264,93 @@
         }
       }
     }
+    @media (max-width: 768px) {
+      .system {
+        padding: 0 32px;
+        .icon_out {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
     .allroom {
       // total 共用區
       .spSubtotal {
         display: flex;
-        text-align: end;
-        margin-top: 24px;
         padding-top: 24px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        gap: 20px;
+        justify-content: flex-end;
         border-top: 1px solid $gray_1;
-        > .btn_7 {
-          border: none;
-          width: 170px;
-          padding: 16px 28px;
-          font-size: $fontsize;
-        }
-        > .btn_7_border {
-          border: none;
-          width: 170px;
-          padding: 16px 28px;
-          font-size: $fontsize;
-        }
         .spStepper {
           display: flex;
-          flex-direction: row;
-          justify-content: center;
+          gap: 32px;
           align-items: center;
-          gap: 4px;
-          input[type="text"] {
-            outline: none;
-            border: none;
-            text-align: center;
-            width: 32px;
+          .add {
+            display: flex;
+            gap: 4px;
+            .spSubtotal_icon {
+              border: 1px solid #333;
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              > img {
+                width: 10px;
+                height: 10px;
+                transform: translate(10px, 10px);
+              }
+              &:first-child {
+                border: 1px solid #e0e0e0;
+              }
+            }
+            // h5{
+            //   margin-left: 32px;
+            // }
+            input[type="text"] {
+              outline: none;
+              border: none;
+              text-align: center;
+              width: 32px;
+            }
           }
-          .spSubtotal_icon {
-            border: 1px solid #333;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            > img {
-              width: 10px;
-              height: 10px;
-              transform: translate(10px, 10px);
-            }
-            &:first-child {
-              border: 1px solid #e0e0e0;
-            }
+        }
+        .suButtom {
+          display: flex;
+          gap: 12px;
+          .btn_5 {
+            border: none;
+            width: 170px;
+            padding: 16px 28px;
+            font-size: $fontsize;
+          }
+          .btn_5_border {
+            border: none;
+            width: 170px;
+            padding: 16px 28px;
+            font-size: $fontsize;
+          }
+        }
+        @media (max-width: 768px) {
+          display: flex;
+          flex-direction: column;
+          .spStepper {
+            justify-content: space-between;
           }
         }
       }
 
-      // 狗套房
-      .dog-room {
+      // 貓狗套房
+      .dog-room,
+      .cat-room {
         border-radius: $br_12;
         border: 1px solid #e0e0e0;
         padding: 20px;
-        font-size: 30px;
-        h5 {
-          margin-bottom: 14px;
-        }
+
         .detail {
           display: flex;
           justify-content: space-between;
+          gap: 32px;
           .leftimg {
+            overflow: hidden;
             border-radius: $br_12;
           }
           .d_info {
@@ -303,10 +359,9 @@
             justify-content: flex-end;
             .info-top {
               display: flex;
+              margin-bottom: 24px;
               gap: 12px;
               .info-left {
-                font-size: $fontsize;
-                margin-bottom: 24px;
                 .i-title p {
                   color: $black;
                   padding: 8px 16px;
@@ -345,48 +400,7 @@
             }
           }
         }
-      }
 
-      // 貓套房
-      .cat-room {
-        border-radius: $br_12;
-        border: 1px solid #e0e0e0;
-        padding: 20px;
-        font-size: 30px;
-        > h5 {
-          margin-bottom: 14px;
-        }
-        .c-detail {
-          display: flex;
-          justify-content: space-between;
-          .c_info {
-            width: 666px;
-            .c-title {
-              padding: 8px 16px;
-              background-color: $gray_2;
-              margin-bottom: 20px;
-              h5 {
-                display: block;
-                font-size: $fontsize;
-              }
-            }
-            .c-text {
-              font-size: $fontsize;
-              padding: 0px 16px;
-              margin-bottom: 20px;
-            }
-            .c-memo {
-              display: flex;
-              padding: 0px 20px;
-
-              p {
-                gap: 8px;
-                font-size: $fontsize;
-                color: $black;
-              }
-            }
-          }
-        }
       }
     }
 
@@ -403,8 +417,37 @@
         }
       }
     }
-  }
-}
+
+    @media (max-width: 768px) {
+      .hostel-list {
+        padding: 0 32px;
+        .dog-room {
+          padding: 32px;
+          .detail {
+            display: flex;
+            gap: 32px;
+            .info-top {
+              flex-direction: column;
+              .info-left {
+              }
+              .info-right {
+                .i-title {
+                  margin-bottom: 20px;
+                }
+                .i-text {
+                  padding: 0px 16px;
+                  line-height: 12px;
+                }
+              }
+            }
+            .info-bottom {
+            }
+          }
+        }
+      }
+    }
+  } // container end
+} //滿版end
 
 // page 1&2 RWD
 @media screen and (max-width: 768px) {
@@ -416,8 +459,7 @@
       }
     }
     .hostel-page1,
-    .hostel-page2,
-    .hostel-page3 {
+    .hostel-page2 {
       padding: 0 32px;
       // margin: 0 auto;
       .seach-out {
@@ -451,49 +493,7 @@
           }
         }
       }
-
-      // GO旅宿-hostel-booking
-
-      .hotel-booking {
-        padding: 0 32px;
-        .cards_item {
-          display: flex;
-          gap: 32px;
-
-          .card {
-            width: 336px;
-          }
-          .card_image {
-            border-radius: 12px;
-            overflow: hidden;
-          }
-          .card_content {
-            margin-top: 16px;
-            margin-bottom: 4px;
-            span {
-              background-color: $gray_3;
-              display: flex;
-              border-radius: 4px;
-              padding: 0px 4px;
-              justify-content: center;
-              align-items: center;
-              gap: 2px;
-            }
-            display: flex;
-            justify-content: space-between;
-          }
-          .card_price {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4px;
-            .star {
-              gap: 4px;
-              display: flex;
-            }
-          }
-        }
-      }
-    } //page1&2 container end
+    } //page1 container end
   } //wrapper end
 } //RWD end
 
