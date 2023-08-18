@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>常見問題 | PetpaGo</title>
-  </head>
 
-  <body>
-    <div class="wrapper faq">
-      @@include('layout/header.html')
-      <div class="banner mb_100">
-        <h2>常見問題</h2>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  @@include('layout/meta.html')
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>常見問題 | PetpaGo</title>
+</head>
 
-      <div class="container col-10">
-        <ul class="faq_head mb_100">
-          <li class="faq_list active">
-            <a href="#">預訂詳情</a>
-          </li>
-          <li class="faq_list">
-            <a href="#">取消預訂</a>
-          </li>
-          <li class="faq_list">
-            <a href="#">特殊需求</a>
-          </li>
-          <li class="faq_list">
-            <a href="#">更改預訂</a>
-          </li>
-        </ul>
+<body>
+  <div class="wrapper faq">
+    @@include('layout/header.html')
+    <div class="banner mb_100">
+      <h2>常見問題</h2>
+    </div>
 
+    <div class="container col-10" id="faq">
+      <ul class="faq_head mb_100">
+        <li class="faq_list active">
+          <a @click="faq_changePage(1)">預訂詳情</a>
+        </li>
+        <li class="faq_list">
+          <a @click="faq_changePage(2)">取消預訂</a>
+        </li>
+        <li class="faq_list">
+          <a @click="faq_changePage(3)">特殊需求</a>
+        </li>
+        <li class="faq_list">
+          <a @click="faq_changePage(4)">更改預訂</a>
+        </li>
+      </ul>
 
-      <div class="accordion mb_100">
+      <!-- index 1 -->
+
+      <div v-if="faq_index === 1" class="accordion mb_100">
         <div class="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
             <span class="accordion-title">如何預約司機？</span>
             <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
           </button>
           <div class="accordion-content">
-              <ol>
-                <li>對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。</li>
-                <li>若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。</li>
-                <li>為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。</li>
-                <li>詢問職業駕駛有否於車內設置毛孩指定座位。</li>
-                <li>你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。</li>
-              </ol>
+            <ol>
+              <li>對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。</li>
+              <li>若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。</li>
+              <li>為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。</li>
+              <li>詢問職業駕駛有否於車內設置毛孩指定座位。</li>
+              <li>你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。</li>
+            </ol>
           </div>
         </div>
         <div class="accordion-item">
@@ -70,7 +69,7 @@
           <div class="accordion-content">
             <p>
               毛孩的定義廣泛，品種大小各有不同，而毛孩優步主要為家庭寵物（如：貓狗）而設。請切記，你在行程期間須為管理毛孩負上全部責任。
-職業駕駛有權自行決定是否搭載貓狗以外的動物，亦有權拒絕搭載他們認為不安全或不受控制的毛孩。
+              職業駕駛有權自行決定是否搭載貓狗以外的動物，亦有權拒絕搭載他們認為不安全或不受控制的毛孩。
             </p>
           </div>
         </div>
@@ -92,20 +91,243 @@
           </button>
           <div class="accordion-content">
             <p>
-              毛孩優步的車資與菁英優步相同，但設有額外附加費新台幣 40 元。此外，如果毛孩於行程中出現意外情況，導致車輛需要清潔（例如在車內大小便、嘔吐或破壞等），可能需要支付職業駕駛額外清潔費。為避免支付額外清潔費，請參閱以下注意事項。
+              毛孩優步的車資與菁英優步相同，但設有額外附加費新台幣 40
+              元。此外，如果毛孩於行程中出現意外情況，導致車輛需要清潔（例如在車內大小便、嘔吐或破壞等），可能需要支付職業駕駛額外清潔費。為避免支付額外清潔費，請參閱以下注意事項。
             </p>
           </div>
         </div>
       </div>
+
+      <!-- index 2 -->
+
+      <div v-if="faq_index === 2" class="accordion mb_100">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">2如何預約司機？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <ol>
+              <li>對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。</li>
+              <li>若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。</li>
+              <li>為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。</li>
+              <li>詢問職業駕駛有否於車內設置毛孩指定座位。</li>
+              <li>你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。</li>
+            </ol>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-2" aria-expanded="false">
+            <span class="accordion-title">我可攜帶多少隻毛孩搭乘毛孩優步行程？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              每趟毛孩優步行程只限搭載一隻毛孩。如果你欲預約多隻毛孩行程，請務必事先與職業駕駛聯絡，職業駕駛可自行決定是否接受行程。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-3" aria-expanded="false">
+            <span class="accordion-title">我可以攜帶什麼種類的動物？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              毛孩的定義廣泛，品種大小各有不同，而毛孩優步主要為家庭寵物（如：貓狗）而設。請切記，你在行程期間須為管理毛孩負上全部責任。
+              職業駕駛有權自行決定是否搭載貓狗以外的動物，亦有權拒絕搭載他們認為不安全或不受控制的毛孩。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-4" aria-expanded="false">
+            <span class="accordion-title">我不可以攜帶什麼種類的動物？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              保育類動物或其他經政府指定公告之動物（如：比特犬、日本土佐犬、紐波利頓犬、阿根廷杜告犬、巴西菲勒犬、獒犬及其混血之犬隻），因涉及相關違禁法令而無法攜帶。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-5" aria-expanded="false">
+            <span class="accordion-title">毛孩優步行程會收取額外費用嗎？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              毛孩優步的車資與菁英優步相同，但設有額外附加費新台幣 40
+              元。此外，如果毛孩於行程中出現意外情況，導致車輛需要清潔（例如在車內大小便、嘔吐或破壞等），可能需要支付職業駕駛額外清潔費。為避免支付額外清潔費，請參閱以下注意事項。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- index 3 -->
+
+      <div v-if="faq_index === 3" class="accordion mb_100">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">3如何預約司機？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <ol>
+              <li>對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。</li>
+              <li>若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。</li>
+              <li>為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。</li>
+              <li>詢問職業駕駛有否於車內設置毛孩指定座位。</li>
+              <li>你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。</li>
+            </ol>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-2" aria-expanded="false">
+            <span class="accordion-title">我可攜帶多少隻毛孩搭乘毛孩優步行程？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              每趟毛孩優步行程只限搭載一隻毛孩。如果你欲預約多隻毛孩行程，請務必事先與職業駕駛聯絡，職業駕駛可自行決定是否接受行程。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-3" aria-expanded="false">
+            <span class="accordion-title">我可以攜帶什麼種類的動物？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              毛孩的定義廣泛，品種大小各有不同，而毛孩優步主要為家庭寵物（如：貓狗）而設。請切記，你在行程期間須為管理毛孩負上全部責任。
+              職業駕駛有權自行決定是否搭載貓狗以外的動物，亦有權拒絕搭載他們認為不安全或不受控制的毛孩。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-4" aria-expanded="false">
+            <span class="accordion-title">我不可以攜帶什麼種類的動物？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              保育類動物或其他經政府指定公告之動物（如：比特犬、日本土佐犬、紐波利頓犬、阿根廷杜告犬、巴西菲勒犬、獒犬及其混血之犬隻），因涉及相關違禁法令而無法攜帶。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-5" aria-expanded="false">
+            <span class="accordion-title">毛孩優步行程會收取額外費用嗎？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              毛孩優步的車資與菁英優步相同，但設有額外附加費新台幣 40
+              元。此外，如果毛孩於行程中出現意外情況，導致車輛需要清潔（例如在車內大小便、嘔吐或破壞等），可能需要支付職業駕駛額外清潔費。為避免支付額外清潔費，請參閱以下注意事項。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- index 4 -->
+
+      <div v-if="faq_index === 4" class="accordion mb_100">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">4如何預約司機？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <ol>
+              <li>對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。</li>
+              <li>若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。</li>
+              <li>為協助職業駕駛保持車輛整潔，我們建議乘客自備毛巾，以保護車內座椅。</li>
+              <li>詢問職業駕駛有否於車內設置毛孩指定座位。</li>
+              <li>你務必於行程中全程妥善控管自己的毛孩。如因寵物未受妥善控制而產生意外，你可能需就意外造成的損失負責。</li>
+            </ol>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-2" aria-expanded="false">
+            <span class="accordion-title">我可攜帶多少隻毛孩搭乘毛孩優步行程？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              每趟毛孩優步行程只限搭載一隻毛孩。如果你欲預約多隻毛孩行程，請務必事先與職業駕駛聯絡，職業駕駛可自行決定是否接受行程。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-3" aria-expanded="false">
+            <span class="accordion-title">我可以攜帶什麼種類的動物？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              毛孩的定義廣泛，品種大小各有不同，而毛孩優步主要為家庭寵物（如：貓狗）而設。請切記，你在行程期間須為管理毛孩負上全部責任。
+              職業駕駛有權自行決定是否搭載貓狗以外的動物，亦有權拒絕搭載他們認為不安全或不受控制的毛孩。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-4" aria-expanded="false">
+            <span class="accordion-title">我不可以攜帶什麼種類的動物？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              保育類動物或其他經政府指定公告之動物（如：比特犬、日本土佐犬、紐波利頓犬、阿根廷杜告犬、巴西菲勒犬、獒犬及其混血之犬隻），因涉及相關違禁法令而無法攜帶。
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button id="accordion-button-5" aria-expanded="false">
+            <span class="accordion-title">毛孩優步行程會收取額外費用嗎？</span>
+            <img class="icon" aria-hidden="true" src="/images/icon/components-icon/faqbt-circle.svg" alt="btn">
+          </button>
+          <div class="accordion-content">
+            <p>
+              毛孩優步的車資與菁英優步相同，但設有額外附加費新台幣 40
+              元。此外，如果毛孩於行程中出現意外情況，導致車輛需要清潔（例如在車內大小便、嘔吐或破壞等），可能需要支付職業駕駛額外清潔費。為避免支付額外清潔費，請參閱以下注意事項。
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- End -->
     </div>
     @@include('layout/footer.html')
-    
+
     <script>
       //頭部篩選
+
+      const faq = Vue.createApp({
+        data() {
+          return {
+            faq_index: 1,
+            qAnda:[{
+              name: 11,
+              answer: 11,
+            }]
+          }
+        },
+        methods: {
+          faq_changePage(index) {
+            this.faq_index = index;
+          },
+
+        }
+      })
+
+      const vm_faq = faq.mount("#faq");
+
       const faqItems = document.querySelectorAll('.faq_list');
 
       faqItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
           // 移除所有項目的 active 類
           faqItems.forEach(item => {
             item.classList.remove('active');
@@ -131,6 +353,9 @@
       }
 
       items.forEach((item) => item.addEventListener("click", toggleAccordion));
+
+
     </script>
-  </body>
+</body>
+
 </html>
