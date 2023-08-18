@@ -12,12 +12,13 @@
       width: 25%;
       padding-bottom: 12px;
       text-align: center;
-      // font-weight: 700;
+      font-weight: 700;
       font-size: 20px;
       cursor: pointer;
       position: relative;
       a {
         color: $textColor_m;
+        color: $gray_1;
       }
 
       &::before {
@@ -44,105 +45,70 @@
         transform: scaleX(0.5); /* 線的寬度由0慢慢變為1，從左至右展開 */
       }
     }
+    @media (max-width: 434px) {
+      .faq_list {
+        font-size: 16px;
+      }
+      .active::before {
+        transform: scaleX(0.8);
+      }
+    }
   }
 
   // codepen
-  $bg: #fff;
-  $text: #7288a2;
-  $gray: #4d5974;
-  $lightgray: #e5e5e5;
-  $blue: #03b5d2;
-
   .accordion {
     .accordion-item {
       border-bottom: 1px solid $gray_1;
-      button[aria-expanded="true"] {
-        // border-bottom: 1px solid $blue;
-      }
+      // button[aria-expanded="true"] {
+      //   border-bottom: 1px solid $purple;
+      // }
     }
     button {
       position: relative;
-      display: block;
+      @include flex(row, space-between);
       text-align: left;
       width: 100%;
-      padding: 1em 0;
       color: $textColor_m;
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 700;
       border: none;
       background: none;
       outline: none;
+      padding: 0;
       &:hover,
       &:focus {
         cursor: pointer;
         color: $purple;
-        &::after {
-          cursor: pointer;
-          color: red;
-          border: 1px solid red;
-        }
       }
       .accordion-title {
-        padding: 1em 1.5em 1em 0;
+        padding: 32px 0;
       }
       .icon {
         display: inline-block;
-        position: absolute;
-        top: 18px;
-        right: 0;
-        width: 22px;
-        height: 22px;
-        border: 1px solid;
-        border-radius: 22px;
-        &::before {
-          display: block;
-          position: absolute;
-          content: "";
-          top: 9px;
-          left: 5px;
-          width: 10px;
-          height: 2px;
-          background: currentColor;
-        }
-        &::after {
-          display: block;
-          position: absolute;
-          content: "";
-          top: 5px;
-          left: 9px;
-          width: 2px;
-          height: 10px;
-          background: currentColor;
-        }
       }
     }
     button[aria-expanded="true"] {
       color: $purple;
       .icon {
-        &::after {
-          width: 0;
-        }
+        transform: rotate(-180deg);
       }
       + .accordion-content {
         opacity: 1;
-        max-height: 10em;
-        transition: all 200ms linear;
+        max-height: 20em;
+        margin-bottom: 32px;
+        transition: all 500ms linear;
         will-change: opacity, max-height;
       }
     }
     .accordion-content {
       opacity: 0;
       max-height: 0;
-      // overflow: hidden;
-      transition: opacity 200ms linear, max-height 200ms linear;
+      overflow: hidden;
+      transition: opacity 300ms linear, max-height 300ms linear;
       will-change: opacity, max-height;
-      p {
-        font-size: 1rem;
-        font-weight: 300;
-        margin: 2em 0;
-      }
       ol li {
         list-style-type: circle;
+        margin-left: 20px;
       }
     }
   }
