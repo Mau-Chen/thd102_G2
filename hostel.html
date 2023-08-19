@@ -54,7 +54,7 @@
           </label>
         </div>
       </div>
-        <button class="btn_7">立即搜尋</button>
+      <button class="btn_7" type="button" id="searchButton">立即搜尋</button>
       </div>
     </div>
   </div>
@@ -127,5 +127,11 @@
       @@include('layout/ad.html') @@include('layout/footer.html')
       </div>
     </div>
+    <script>
+      document.getElementById("searchButton").addEventListener("click", function() {
+  window.location.href = "hostel-booking.html";
+});
+
+    </script>
   </body>
 </html>
