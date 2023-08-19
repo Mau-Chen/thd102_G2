@@ -204,7 +204,7 @@
               container.addEventListener('click', function(event) {
                   // 檢查被點擊的元素是否是 ".cancel-btn"
                   if (event.target.classList.contains('cancel-btn')) {
-                      const isConfirmed = confirm('你確定要取消這個預約嗎？');
+                      const isConfirmed = confirm('確定要取消此預約嗎？');
                       if (isConfirmed) {
                           // 找到父層的 li 元素並移除它
                           const liElement = event.target.closest('li.accordion');
@@ -219,7 +219,6 @@
 
     </script>
 
-
     <script> //刪除myPost
           document.addEventListener("DOMContentLoaded",function(){
             let postDetail = document.querySelectorAll(".post-detail");
@@ -227,8 +226,11 @@
             postDetail.forEach(function(post_detail){
               let postDelete = post_detail.querySelector(".post-delete");
               postDelete.addEventListener("click",function(){
+                const isConfirmed = confirm('確定要刪除此貼文嗎？');
                 // console.log("Hello, it's me");
-                post_detail.style.display = 'none';
+                if(isConfirmed){
+                  post_detail.style.display = 'none';
+                };
               });
             });
           });
