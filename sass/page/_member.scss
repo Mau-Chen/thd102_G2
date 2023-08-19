@@ -84,17 +84,17 @@
 }
   // ------ 會員右邊欄設定 -------------------------------
   .mr-bg {
-    background-color: $white;
+    // background-color: $white;
     border-radius: $br_12;
-    padding: 24px;
+    // padding: 24px;
     align-self: stretch;
   }
 
   .member-box {
     // 共用flex設定
     .order2{
-      background-color: #fff;
-      border-radius: 12px;
+      background-color: $white;
+      border-radius: $br_12;
       padding: 24px;
       margin-bottom: 24px;
       font-size: 18px;
