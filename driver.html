@@ -105,6 +105,7 @@
             format: `MM月 dd日 ｜HH ：mm`,
             msg_start: "",
             msg_end: "",
+            car_menu: "",
             cars: [
               {
                 id: "a",
@@ -136,18 +137,26 @@
             this.msg_end = msg_start;
           },
           category_kind_display(e) {
-            // let category_kind = document.querySelector(".category_kind");
-            // console.log(category_kind);
-            // category_kind.classList.toggle("active");
-            // console.log(e.target);
             let category_kind_active = this.$refs.category_kind_active;
             category_kind_active.classList.toggle("active");
           },
           smooth(e) {
-            let clickLi = e.currentTarget;
-            let liDiv = clickLi.querySelector("div");
-            liDiv.classList.toggle("smooth");
-            // console.log(e.target.closest(cars_type));
+            let click_ul = e.target.closest(".carList").parentElement; // ul
+            let clean = click_ul.querySelectorAll("div");
+            clean.forEach((n) => {
+              n.classList.remove("smooth");
+            });
+
+            let click_li = e.target.closest(".carList");
+            let click_li_div = click_li.querySelector("div");
+            click_li_div.classList.add("smooth");
+            // 將具有 class="smooth" 的項目的 cars_type 賦值給 selectedCarType
+            if (click_li_div.classList.contains("smooth")) {
+              this.car_menu = click_li.querySelector("p").innerText;
+            }
+          },
+          display_none_car() {
+            alert("aaaa");
           },
         },
         mounted() {

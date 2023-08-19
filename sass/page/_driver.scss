@@ -52,6 +52,10 @@
           cursor: pointer;
         }
 
+        input[type="text"] {
+          color: $black;
+        }
+
         .downsection {
           @include flex(row, space-between);
           gap: 16px;
@@ -64,9 +68,13 @@
             @include flex(row, space-between);
             gap: 16px;
 
-            // .catagory_kind.active {
-            //   // display: block;
-            // }
+            .category input[type="button"] {
+              width: 100%;
+              text-align: left;
+              padding-left: 0;
+              color: $black;
+            }
+
             .category_kind {
               position: absolute;
               left: 0;
@@ -76,19 +84,33 @@
               background-color: $white;
               border-radius: $br_8;
               border: 1px solid #e6e6e6;
-              opacity: 0;
-              // transition: opicity 1s ease 1s, transform 1s ease-out,
-              //   translateY 1s ease-out;
-              // transform: scaleY(0);
-              transform: translateY(-20px);
-              // transform: sacle(0);
-              transition: all 0.1s ease;
+              z-index: 2;
+              display: none;
               &.active {
-                opacity: 1;
-                transform: translateY(0);
-                // transform: scaleY(1);
-                // translatey: 50px;
-                // transform: translateY(1px);
+                display: block;
+                animation: scale-up-ver-top 0.1s
+                  cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+                animation: slide-bottom 0.2s
+                  cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+              }
+              @keyframes scale-up-ver-top {
+                0% {
+                  transform: scaleY(0.4);
+                  transform-origin: 100% 0%;
+                }
+                100% {
+                  transform: scaleY(1);
+                  transform-origin: 100% 0%;
+                }
+              }
+
+              @keyframes slide-bottom {
+                0% {
+                  transform: translateY(-10px);
+                }
+                100% {
+                  transform: translateY(0);
+                }
               }
 
               .category_bottom {
