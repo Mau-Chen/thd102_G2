@@ -68,12 +68,11 @@
     }
   }
 
-  // ------------ GO旅宿-hostel ------------
+  // ------------ page 1 -- GO旅宿-hostel ------------
   .container {
     .seach-out {
       // gap: 24px;
       margin-top: -161px;
-
       .seach-title {
         h2 {
           color: #865214;
@@ -118,30 +117,65 @@
         }
       }
     }
-    .point-hotel {
+  }
+
+  .top_area_hotels {
+    padding: 0 32px;
+    .cards-wraper {
       display: flex;
-      flex-direction: column;
-
-      .cards {
-        display: flex;
-        gap: 40px;
-        flex-direction: column;
-      }
-
-      .cards_item {
-        display: flex;
-        justify-content: space-between;
-        // gap: 40px;
-      }
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px 32px;
       .card {
-        border: 1px solid #e0e0e0;
+        border: 1px solid $gray_1;
         border-radius: $br_12;
         overflow: hidden;
+        flex-basis: calc(25% - 32px);
+      }
+      img {
+        width: 100%;
+      }
+      .card_text {
+        padding: 20px;
+        :first-child {
+          font-weight: 600;
+        }
+      }
+      @media (max-width: 900px) {
+        // justify-content: center;
+        .card {
+          flex-basis: calc(50% - 32px);
+        }
+      }
+      @media (max-width: 500px) {
+        .card {
+          flex-basis: calc(100%);
+        }
+      }
+    }
+  }
+  .point-hotel {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .cards_item {
+      // @include flex(row, flex-start);
+      // flex-wrap: wrap;
+      // flex-basis: calc(25% - 10px); // 20% for 5 columns
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 40px 32px;
+      .card {
+        border: 1px solid $gray_1;
+        border-radius: $br_12;
+        overflow: hidden;
+        flex-basis: calc(25% - 32px); // 4 個一排，減去間距
         img {
           width: 100%;
         }
         .card_content {
-          padding: 20px;
+          padding: 20px 16px;
           p {
             font-weight: 600;
           }
@@ -206,7 +240,82 @@
     }
   }
 
-  // ------------ GO旅宿-hostel-booking_detail ------------
+  // page 1&2 RWD
+  @media screen and (max-width: 768px) {
+    .hostel {
+      picture {
+        margin: 0 auto;
+        img {
+          width: 100%;
+        }
+      }
+      .hostel-page1,
+      .hostel-page2 {
+        padding: 0 32px;
+        // margin: 0 auto;
+        .seach-out {
+          // margin: -161px 32px 32px;
+          .seach-bg {
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 32px;
+            .seachbar {
+              gap: 16px;
+              justify-content: space-between;
+              .seachbox {
+                padding: 8px 16px;
+              }
+            }
+            .btn_7 {
+              margin-left: 0;
+            }
+          }
+        }
+        .point-hotel {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          margin: 0 auto;
+          .cards {
+            gap: 32px;
+            .cards_item {
+              flex-wrap: wrap;
+              gap: 32px;
+            }
+          }
+        }
+      } //page1 container end
+    } //wrapper end
+  } //RWD end
+
+  @media screen and (max-width: 414px) {
+    .hostel {
+      .hostel-page1,
+      .hostel-page2 {
+        padding: 0px 16px;
+        position: relative;
+        .seach-out {
+          .seach-title {
+            position: absolute;
+            top: -240px;
+            left: 80px;
+            h2 {
+              text-align: center;
+            }
+          }
+
+          .seach-bg {
+            padding: 20px;
+            .seachbar {
+              flex-direction: column;
+            }
+          }
+        }
+      }
+    } //wrapper end
+  } // RWD 414 end
+
+  // ------------ page 3 - GO旅宿-hostel-booking_detail ------------
   .container {
     .carousel {
       overflow: hidden;
@@ -240,10 +349,18 @@
         display: flex;
         font-size: 20px;
         gap: 4px;
-        margin-bottom: 12px;
+        margin-bottom: 20px;
       }
       .info {
         color: $textColor_m;
+      }
+      @media (max-width: 768px) {
+        h3 {
+          font-size: 28px;
+        }
+        .info p {
+          text-align: justify;
+        }
       }
     }
 
@@ -256,21 +373,13 @@
         padding: 24px 20px;
         border-radius: $br_12;
         border: 1px solid $gray_1;
-        @include flex();
+        @include flex(row, space-evenly);
         flex-wrap: wrap;
         gap: 16px;
         .system_icon {
           flex-basis: calc(20% - 13px); // 20% for 5 columns
           @include flex(column);
           gap: 12px;
-
-          @media (max-width: 768px) {
-            flex-basis: calc(33.33% - 10px); // 33.33% for 3 columns
-          }
-
-          @media (max-width: 480px) {
-            flex-basis: calc(50% - 10px); // 50% for 2 columns
-          }
           .icon {
             width: 94px;
             height: 94px;
@@ -286,17 +395,24 @@
             text-align: center;
           }
         }
-        @media (max-width: 1000px) {
-          // padding: 24px 100px;
-        }
-        @media (max-width: 500px) {
+        @media (max-width: 680px) {
           justify-content: flex-start;
-          gap: 20px;
+          .system_icon {
+            flex-basis: calc(33.33% - 11px); // 33.33% for 3 columns
+          }
+        }
+        @media (max-width: 480px) {
+          .system_icon {
+            flex-basis: calc(50% - 10px); // 50% for 2 columns
+          }
         }
       }
     }
 
     // ------ 住宿選擇 section ------ //
+    .hostel-list h4 {
+      margin-bottom: 20px;
+    }
     .allRoom {
       display: flex;
       gap: 32px;
@@ -432,26 +548,26 @@
                 }
               }
             }
+            .suButton {
+              display: flex;
+              gap: 12px;
+              .btn_5 {
+                border: none;
+              }
+              .btn_5_border {
+                background: none;
+              }
+            }
             @media (max-width: 900px) {
               flex-direction: column;
               .spStepper {
                 width: 100%;
                 justify-content: space-between;
               }
-              .suButtom {
+              .suButton {
                 width: 100%;
               }
             }
-          }
-        }
-        .suButtom {
-          display: flex;
-          gap: 12px;
-          .btn_5 {
-            border: none;
-          }
-          .btn_5_border {
-            background: none;
           }
         }
       }
@@ -475,78 +591,3 @@
     }
   }
 } //滿版end
-
-// page 1&2 RWD
-@media screen and (max-width: 768px) {
-  .hostel {
-    picture {
-      margin: 0 auto;
-      img {
-        width: 100%;
-      }
-    }
-    .hostel-page1,
-    .hostel-page2 {
-      padding: 0 32px;
-      // margin: 0 auto;
-      .seach-out {
-        // margin: -161px 32px 32px;
-        .seach-bg {
-          flex-wrap: wrap;
-          gap: 12px;
-          padding: 32px;
-          .seachbar {
-            gap: 16px;
-            justify-content: space-between;
-            .seachbox {
-              padding: 8px 16px;
-            }
-          }
-          .btn_7 {
-            margin-left: 0;
-          }
-        }
-      }
-      .point-hotel {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        margin: 0 auto;
-        .cards {
-          gap: 32px;
-          .cards_item {
-            flex-wrap: wrap;
-            gap: 32px;
-          }
-        }
-      }
-    } //page1 container end
-  } //wrapper end
-} //RWD end
-
-@media screen and (max-width: 414px) {
-  .hostel {
-    .hostel-page1,
-    .hostel-page2 {
-      padding: 0px 16px;
-      position: relative;
-      .seach-out {
-        .seach-title {
-          position: absolute;
-          top: -240px;
-          left: 80px;
-          h2 {
-            text-align: center;
-          }
-        }
-
-        .seach-bg {
-          padding: 20px;
-          .seachbar {
-            flex-direction: column;
-          }
-        }
-      }
-    }
-  } //wrapper end
-} // RWD 414 end
