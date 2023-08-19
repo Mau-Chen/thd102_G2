@@ -33,9 +33,16 @@
             :auto-position="false"
           />
         </div>
-        <div class="category col-4 col-sm-12 categoryset">
+        <div
+          class="category col-4 col-sm-12 categoryset"
+          @blur="display_none_car"
+        >
           <span>車種</span>
-          <input type="text" value="轎車" @click="category_kind_display" />
+          <input
+            type="button"
+            :value="car_menu"
+            @click="category_kind_display"
+          />
           <div class="category_kind" ref="category_kind_active">
             <div class="category_bottom">
               <ul class="car">
@@ -45,14 +52,10 @@
                   :key="item.id"
                   @click="smooth"
                 >
-                  <p>{{item.cars_type}}</p>
+                  <p ref="CAR">{{item.cars_type}}</p>
                   <span>{{item.cars_text}}</span>
                   <div></div>
                 </li>
-                <!-- <li class="carList carListEnd">
-                  <p>休旅車</p>
-                  <span>乘客＋毛孩共4位</span>
-                </li> -->
               </ul>
             </div>
           </div>
