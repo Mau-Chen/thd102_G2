@@ -4,7 +4,7 @@
 
   // Banner
   picture {
-    margin: 0 auto;
+    margin: 0 auto -150px;
     img {
       width: 100%;
     }
@@ -67,58 +67,96 @@
       width: 100%;
     }
   }
+  //
 
   // ------------ page 1 -- GO旅宿-hostel ------------
-  .container {
-    .search-box {
-      // gap: 24px;
-      margin-top: -161px;
-      .seach-title {
-        h2 {
-          color: #865214;
-        }
-      }
+  // search bar
+  $searchColor: #edecfe;
 
-      .seach-bg {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 24px;
-        position: relative;
-        padding: 40px;
-        background-color: $white;
-        border-radius: $br_12;
-        /* Drop Shadow */
-        box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
-        .seachbar {
-          width: 100%;
-          background-color: $white;
-          border-radius: $br_12;
-          display: flex;
-          gap: 16px;
-          .seachbox {
-            display: flex;
-            height: 76px;
-            padding: 12px 16px;
-            flex-direction: column;
-            background-color: $gray_2;
-            justify-content: center;
-            gap: 8px;
-
-            border-radius: $br_8;
-            input {
-              border: none;
-              outline: none;
-              background-color: transparent;
+  .hostel_headBox {
+    // margin-top: -210px;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .hostel_title {
+    color: #865214;
+    @media (max-width: 500px) {
+      text-align: center;
+      position: relative;
+    }
+  }
+  .search_hotel {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+    padding: 40px;
+    border-radius: $br_12;
+    background: $white;
+    box-shadow: 20px 40px 48px 0px rgba(141, 147, 201, 0.05);
+    .threeInput {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      .search-box {
+        padding: 12px 16px;
+        background: $gray_2;
+        border-radius: $br_8;
+        label {
+          cursor: pointer;
+          display: block;
+          span {
+            display: block;
+            font-size: 14px;
+            color: $textColor_m;
+          }
+          input {
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            padding: 0;
+            outline: #edecfe;
+            ::placeholder {
+              color: $textColor_l;
             }
           }
         }
-        .btn_7 {
-          margin-left: 16px;
+        &:hover {
+          background: $searchColor;
+        }
+        &:focus-within {
+          background: $searchColor;
+        }
+      }
+    }
+
+    .btn_7 {
+      border: none;
+      width: 12%;
+    }
+    @media (max-width: 1000px) {
+      padding: 32px;
+    }
+    @media (max-width: 850px) {
+      padding: 24px;
+      flex-direction: column;
+      .btn_7 {
+        height: 58px;
+        width: 100%;
+      }
+    }
+    @media (max-width: 500px) {
+      .threeInput {
+        flex-direction: column;
+        .search-box {
+          width: 100%;
         }
       }
     }
   }
 
+  // search bar end
   .top_area_hotels {
     padding: 0 32px;
     .cards-wraper {
@@ -153,15 +191,17 @@
         }
       }
     }
+    @media (max-width: 500px) {
+      .container {
+        padding: 0 32px;
+      }
+    }
   }
   .point-hotel {
     display: flex;
     flex-direction: column;
     gap: 40px;
     .cards_item {
-      // @include flex(row, flex-start);
-      // flex-wrap: wrap;
-      // flex-basis: calc(25% - 10px); // 20% for 5 columns
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
@@ -205,12 +245,10 @@
             margin-bottom: 4px;
             span {
               background-color: $gray_3;
-              display: flex;
+              @include flex();
+              gap: 2px;
               border-radius: 4px;
               padding: 0px 4px;
-              justify-content: center;
-              align-items: center;
-              gap: 2px;
             }
             display: flex;
             justify-content: space-between;
@@ -252,9 +290,7 @@
       .hostel-page1,
       .hostel-page2 {
         padding: 0 32px;
-        // margin: 0 auto;
         .seach-out {
-          // margin: -161px 32px 32px;
           .seach-bg {
             flex-wrap: wrap;
             gap: 12px;
