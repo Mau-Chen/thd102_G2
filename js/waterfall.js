@@ -118,7 +118,7 @@ export default {
     this.updateColumns(); 
     setTimeout(() => {
       this.updateColumns();
-  }, 1);
+  }, 150);
     
     //RWD監聽
     const self = this;
