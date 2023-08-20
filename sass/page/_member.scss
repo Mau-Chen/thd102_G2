@@ -113,6 +113,10 @@
       @include flex(column);
       gap: 20px;
       height: 100%;
+      .kite-flex{
+        @include flex(column);
+        height: 100%;
+      }
     }
     // -- 有訂單記錄
     ul li {

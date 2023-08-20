@@ -17,14 +17,16 @@
         
         <div class="member-box col-10 col-lg-9 col-sm-12 mr-bg">
           <!-- Out of Orders -->
-          <div id="order5" class="kite order2" >
-            <img src="images/icon/member-icon/nolist.svg" alt="" />
-            <h5>尚無訂單</h5>
+          <div id="order5" class="kite order2" style="display:none;">
+              <div class="kite-flex">  <!--為了讓裡面的flex作用多包的一層-->
+                <img src="images/icon/member-icon/nolist.svg" alt="" />
+                <h5>尚無訂單</h5>
+              </div>
           </div>
 
 
           <!------------ 訂單紀錄 listBody ------------>
-          <ul id="order" style="display:none;">
+          <ul id="order" style="display:block;">
                       <!-- 使用 vue 渲染 -->
                       <!-- <template v-if="tasks != '' "></template> -->
                       <!-- <template v-else> </template> -->
@@ -196,7 +198,7 @@
     </div>
     <script type="module" src="js/memberOrder.js"></script>
     
-    <script> //取消預約
+    <!-- <script> //取消預約
       document.addEventListener('DOMContentLoaded', function() {
           const container = document.getElementById('order'); // 假設父元素的ID為 "order"
           
@@ -217,7 +219,7 @@
           }
       });
 
-    </script>
+    </script> -->
 
     <script> //刪除myPost
           document.addEventListener("DOMContentLoaded",function(){
@@ -270,6 +272,39 @@
 
       today = yyyy + '-' + mm + '-' + dd;
       document.getElementById("myDateInput").setAttribute("max", today);
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('order'); // 假設父元素的ID為 "order"
+      const emptyMessage = document.getElementById('order5'); // 假設無訂單訊息的ID為 "order5"
+
+      function checkIfEmpty() {
+        if (container.children.length === 0) {
+          emptyMessage.style.display = 'block';
+        }
+      }
+
+      // 初始檢查
+      checkIfEmpty();
+
+      if (container) {
+        container.addEventListener('click', function(event) {
+          if (event.target.classList.contains('cancel-btn')) {
+            const isConfirmed = confirm('確定要取消此預約嗎？');
+            if (isConfirmed) {
+              const liElement = event.target.closest('li.accordion');
+              if (liElement) {
+                liElement.parentNode.removeChild(liElement);
+              }
+              // 再次檢查是否為空
+              checkIfEmpty();
+            }
+          }
+        });
+      }
+    });
+
     </script>
   </body>
 </html>
