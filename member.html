@@ -261,5 +261,15 @@
           });
       });
     </script>
+
+    <script> //讓出生日期只能選今天以前
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
+      document.getElementById("myDateInput").setAttribute("max", today);
+    </script>
   </body>
 </html>
