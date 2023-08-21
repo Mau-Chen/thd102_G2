@@ -91,14 +91,14 @@
     </div>
     <!-- <script src="./vue.global.js"></script> -->
     <script src="/js/vue-datepicker.iife.js"></script>
-    <script>
+    <script type="module">
       // let category_set = document.getElementById("dropmenu");
       // category_set.addEventListener("click", function () {
       //   console.log("eee");
       // });
+
+      import DriverSelector from "./js/components/DriverSelector.js";
       const app = Vue.createApp({
-        // components: { Datepicker: VueDatePicker },
-        // props: ["calendarCellClassName", "timePickerInline", "weekStart"],
         data() {
           return {
             date: "",
@@ -106,11 +106,14 @@
             msg_start: "",
             msg_end: "",
             car_menu: "",
+            showCarMenu: "",
+            showCarMenu: false, // 控制下拉選單是否顯示的變數
+            counter: 1,
             cars: [
               {
                 id: "a",
                 cars_type: "轎車",
-                cars_text: "乘客＋毛還共3位",
+                cars_text: "乘客＋毛孩共3位",
               },
               {
                 id: "b",
@@ -127,6 +130,9 @@
             disabledtoday.setDate(disabledtoday.getDate() + 1);
 
             return disabledtoday;
+          },
+          show_passenger_quantity() {
+            return `${this.counter} 位乘客，${this.counter} 位毛孩`;
           },
         },
         methods: {
@@ -155,9 +161,18 @@
               this.car_menu = click_li.querySelector("p").innerText;
             }
           },
-          display_none_car() {
-            alert("aaaa");
+
+          driverStepper_wrapper_display() {
+            let driverStepper_wrapper_active =
+              this.$refs.driverStepper_wrapper_active;
+            driverStepper_wrapper_active.classList.toggle("active");
           },
+          // PlusOne() {
+          //   this.counter++;
+          // },
+          // MinusOne() {
+          //   this.counter--;
+          // },
         },
         mounted() {
           const startDate = new Date();
@@ -165,10 +180,16 @@
           // this.date = [startDate, endDate];
           this.date = startDate;
           // this.date = [startDate];
+
+          const firstItem = document.querySelector(".carList");
+          const firstItemDiv = firstItem.querySelector("div");
+          firstItemDiv.classList.add("smooth");
+          this.car_menu = firstItem.querySelector("p").innerText;
         },
       });
       app.component("Datepicker", VueDatePicker);
-      app.mount("#app");
+      app.component("DriverSelector", DriverSelector);
+      app.mount("#driver_app");
     </script>
   </body>
 </html>

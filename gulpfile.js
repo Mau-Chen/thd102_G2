@@ -50,7 +50,7 @@ exports.cssmini = minify;
 const uglify = require("gulp-uglify");
 
 function minijs() {
-  return src("js/*.js").pipe(uglify()).pipe(dest("dist/js"));
+  return src(["js/*.js", "js/**/*.*"]).pipe(uglify()).pipe(dest("dist/js"));
 }
 exports.js = minijs;
 
@@ -115,7 +115,7 @@ function browser(done) {
   watch(["*.html", "layout/*.html"], includeHTML).on("change", reload);
   watch(["sass/*.scss", "sass/**/*.scss"], styleSass).on("change", reload);
   watch(["images/*.*", "images/**/*.*"], img_copy).on("change", reload);
-  watch("js/*.js", minijs).on("change", reload);
+  watch(["js/*.js", "js/**/*.*"], minijs).on("change", reload);
   done();
 }
 
@@ -140,7 +140,7 @@ exports.pic = min_images;
 const babel = require("gulp-babel");
 
 function babel5() {
-  return src("js/*.js")
+  return src(["js/*.js", "js/**/*.*"])
     .pipe(
       babel({
         presets: ["@babel/env"],

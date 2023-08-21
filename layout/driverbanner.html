@@ -2,7 +2,7 @@
   <div class="drivertitle">
     <h2 class="mb_24">最安心的寵物接送</h2>
   </div>
-  <div class="searchbar" id="app">
+  <div class="searchbar" id="driver_app">
     <div class="upsection">
       <div class="place col-6 col-lg-6 col-sm-12">
         <span>出發點</span>
@@ -33,10 +33,7 @@
             :auto-position="false"
           />
         </div>
-        <div
-          class="category col-4 col-sm-12 categoryset"
-          @blur="display_none_car"
-        >
+        <div class="category col-4 col-sm-12 categoryset">
           <span>車種</span>
           <input
             type="button"
@@ -63,7 +60,18 @@
 
         <div class="category col-4 col-sm-12">
           <span>乘客數量</span>
-          <input type="text" placeholder="1位乘客, 2位毛孩" />
+          <input
+            type="button"
+            :value="show_passenger_quantity"
+            @click="driverStepper_wrapper_display"
+          />
+
+          <div class="driverStepper_wrapper" ref="driverStepper_wrapper_active">
+            <div class="passenger_quantity">
+              <driver-selector></driver-selector>
+              <driver-selector></driver-selector>
+            </div>
+          </div>
         </div>
       </div>
 
