@@ -82,8 +82,8 @@
               width: 100%;
               padding: 16px;
               background-color: $white;
-              border-radius: $br_8;
               border: 1px solid #e6e6e6;
+              border-radius: $br_8;
               z-index: 2;
               display: none;
               &.active {
@@ -138,6 +138,100 @@
                     }
                     &:last-child {
                       border: 0;
+                    }
+                  }
+                }
+              }
+            }
+
+            .driverStepper_wrapper {
+              position: absolute;
+              left: 0;
+              top: calc(100% + 1px);
+              width: 100%;
+              background-color: $white;
+              border: 1px solid #e6e6e6;
+              border-radius: $br_8;
+              z-index: 2;
+              padding: 16px;
+              display: none;
+              &.active {
+                display: block;
+                animation: scale-up-ver-top 0.1s
+                  cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+                animation: slide-bottom 0.2s
+                  cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+              }
+              @keyframes scale-up-ver-top {
+                0% {
+                  transform: scaleY(0.4);
+                  transform-origin: 100% 0%;
+                }
+                100% {
+                  transform: scaleY(1);
+                  transform-origin: 100% 0%;
+                }
+              }
+
+              @keyframes slide-bottom {
+                0% {
+                  transform: translateY(-10px);
+                }
+                100% {
+                  transform: translateY(0);
+                }
+              }
+              .passenger_quantity {
+                .driverStepper {
+                  @include flex(row, space-between);
+                  gap: 4px;
+                  border-bottom: 1px solid #e2e2e2;
+                  position: relative;
+                  padding: 16px 0;
+                  &:last-child {
+                    border: 0;
+                  }
+                  .driver_Subtotal_icon_wrapper {
+                    @include flex(row, space-between);
+                    .num_input input[type="number"] {
+                      width: 32px;
+                      border: none;
+                      height: 32px;
+                      text-align: center;
+                      //取消預設箭頭
+                      &::-webkit-outer-spin-button,
+                      &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                        -moz-appearance: textfield;
+                      }
+                    }
+                  }
+                }
+
+                .dirver_Subtotal_icon {
+                  border: 1px solid $black;
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+
+                  &.limit {
+                    border: 1px solid $gray_1;
+
+                    svg {
+                      path {
+                        fill: $gray_1;
+                      }
+                    }
+                  }
+
+                  svg {
+                    width: 10px;
+                    height: 10px;
+                    transform: translate(10px, 10px);
+
+                    path {
+                      fill: $black;
                     }
                   }
                 }
