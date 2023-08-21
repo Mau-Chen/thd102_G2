@@ -1,16 +1,29 @@
 .ad_comm {
   background: $purple_d;
   background-image: url("/images/pic/background/05.jpg");
-  //   backdrop-filter: blur(10px);
   padding: 100px 120px;
-  .container {
+  @media (max-width: 1000px) {
+    padding: 100px 40px;
+  }
+  @media (max-width: 500px) {
+    padding: 60px 40px;
+  }
+  .glide {
+    max-width: 1000px;
+    margin: 0 auto;
     overflow: hidden;
+    @media (max-width: 850px) and (min-width: 768px) {
+      overflow: visible;
+    }
   }
 
   .top {
     color: $white;
     margin-bottom: 32px;
     @include flex(row, space-between);
+    @media (max-width: 850px) and (min-width: 768px) {
+      padding: 0 80px;
+    }
     .arrow_btn {
       cursor: pointer;
       @include flex(row, space-between);
@@ -18,7 +31,7 @@
       .arrow {
         width: 50px;
         height: 50px;
-        background: $white;
+        background: rgba(110, 96, 246, 0.3);
         border-radius: 100%;
         @include flex();
         transition: transform 0.5s ease-in-out;
@@ -60,10 +73,14 @@
       border-radius: $br_12;
       text-align: justify;
       background-color: rgba(110, 96, 246, 0.3);
+      width: 100%;
       .star {
         display: flex;
         gap: 8px;
         margin-bottom: 16px;
+        svg {
+          fill: rgba(255, 92, 0, 0.5);
+        }
       }
     }
     .comm_user {
@@ -80,10 +97,11 @@
       }
     }
     .glide__slide--active {
-      //   border: 2px solid #3e3e3e;
       border-radius: $br_12;
       background-color: rgba(110, 96, 246, 0.8);
-      //   transform: (0.8);
+      .ad_box .star svg {
+        fill: #ff5c00;
+      }
     }
   }
 }
