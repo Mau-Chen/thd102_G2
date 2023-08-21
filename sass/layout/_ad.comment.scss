@@ -1,11 +1,18 @@
 .ad_comm {
   background: $purple_d;
+  background-image: url("/images/pic/background/05.jpg");
+  //   backdrop-filter: blur(10px);
   padding: 100px 120px;
+  .container {
+    overflow: hidden;
+  }
+
   .top {
     color: $white;
     margin-bottom: 32px;
     @include flex(row, space-between);
     .arrow_btn {
+      cursor: pointer;
       @include flex(row, space-between);
       gap: 20px;
       .arrow {
@@ -14,18 +21,45 @@
         background: $white;
         border-radius: 100%;
         @include flex();
+        transition: transform 0.5s ease-in-out;
+        svg {
+          stroke: #09003e;
+        }
+      }
+      .arrow:hover {
+        background: none;
+        border: 2px solid $purple;
+        animation: arrowAnimation 0.8s infinite alternate;
+        svg {
+          stroke: $purple;
+        }
       }
     }
   }
+  @keyframes arrowAnimation {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.85);
+    }
+  }
+
   .bottom {
-    display: flex;
-    gap: 30px;
+    ul {
+      display: flex;
+      li {
+        display: flex;
+      }
+    }
     .ad_box {
       @include flex(column, space-between);
       padding: 40px;
       background: $white;
+      color: $white;
       border-radius: $br_12;
       text-align: justify;
+      background-color: rgba(110, 96, 246, 0.3);
       .star {
         display: flex;
         gap: 8px;
@@ -39,10 +73,17 @@
       p {
         font-weight: 700;
         color: $purple_d;
+        color: $white;
       }
       span {
         font-size: 14px;
       }
+    }
+    .glide__slide--active {
+      //   border: 2px solid #3e3e3e;
+      border-radius: $br_12;
+      background-color: rgba(110, 96, 246, 0.8);
+      //   transform: (0.8);
     }
   }
 }
