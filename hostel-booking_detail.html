@@ -8,6 +8,11 @@
     />
     @@include('layout/meta.html')
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+  /> -->
+    <link rel="stylesheet" href="sass/plugin/_SwiperCarousel.scss" />
     <title>GO旅宿 | PetpaGo</title>
   </head>
 
@@ -45,24 +50,51 @@
       </div>
 
       <!------ 輪播圖 ------>
-      <div class="container">
-        <div class="carousel mb_60">
-          <div class="pic mb_60">
-            <img
-              src="./images/pic/hostel/hostel page3/hostel-carousel-01.png"
-              alt=""
-            />
-            <img
-              src="./images/pic/hostel/hostel page3/hostel-carousel-02.png"
-              alt=""
-            />
-            <img
-              src="./images/pic/hostel/hostel page3/hostel-carousel-03.png"
-              alt=""
-            />
+      
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper mb_60">
+            <div class="swiper-slide">
+              <img
+                src="./images/pic/hostel/hostel page3/hostel-carousel-01.png"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="./images/pic/hostel/hostel page3/hostel-carousel-02.png"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="./images/pic/hostel/hostel page3/hostel-carousel-03.png"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="./images/pic/hostel/hostel page3/hostel-carousel-04.png"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="./images/pic/hostel/hostel page3/hostel-carousel-05.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="./images/pic/hostel/hostel page3/hostel-carousel-06.png.png"
+            >
+              <img src="./pic/hostel-carousel-06.png" alt="" />
+            </div>
           </div>
+
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
-      </div>
+  
 
       <!---------------- main 旅宿資訊 star ---------------->
       <main class="hostel_content">
@@ -336,5 +368,46 @@
       <!---------------- main 旅宿資訊 end ---------------->
       @@include('layout/footer.html')
     </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- 輪播 Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        // centeredSlides: true,
+        spaceBetween: 16,
+        cssMode: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          // el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+
+        // Responsive breakpoints 斷點
+        breakpoints: {
+          // when window width is >= 375px
+          375: {
+            slidesPerView: 1,
+            spaceBetween: 8,
+          },
+          // when window width is >= 414px
+          414: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          // when window width is >= 767px
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 11,
+          },
+        },
+      });
+    </script>
   </body>
 </html>
