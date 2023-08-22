@@ -25,6 +25,7 @@
       @include flex(column, space-around, null);
       margin-top: -161px;
       margin-bottom: 100px;
+
       .drivertitle {
         h2 {
           color: #126c86;
@@ -37,7 +38,7 @@
       // }
       .searchbar {
         width: 100%;
-        padding: 40px 50px;
+        padding: 40px;
         border-radius: 16px;
         background-color: $white;
         // position: relative;
@@ -45,7 +46,7 @@
         box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
         .upsection {
           @include flex();
-          gap: 12px;
+          gap: 8px;
           margin-bottom: 16px;
           input::placeholder {
             color: $textColor_l;
@@ -58,7 +59,7 @@
           border: none;
           outline: none;
           background-color: transparent;
-          text-indent: 16px;
+          // text-indent: 16px;
           cursor: pointer;
         }
 
@@ -243,6 +244,7 @@
         .place,
         .category {
           height: 76px;
+          padding: 12px 16px;
           background-color: $gray_2;
           //   margin-right: 56px;
           @include flex(column, center, null);
@@ -250,9 +252,9 @@
           position: relative;
           span {
             font-size: 14px;
-            margin-left: 16px;
             color: $textColor_m;
-            margin-bottom: 8px;
+            // margin-left: 16px;
+            // margin-bottom: 8px;
           }
           .dp__tp_inline_btn_bar {
             margin-left: 0;
@@ -269,7 +271,7 @@
           background-color: $gray_2;
           border-radius: 8px;
           color: $textColor_m;
-          padding: 4px 16px;
+          padding: 12px 16px;
           .remindicon {
             margin-right: 8px;
           }
@@ -415,9 +417,9 @@
         .searchbar {
           padding: 24px;
 
-          .upsection {
-            gap: 16px;
-          }
+          // .upsection {
+          //   gap: 16px;
+          // }
           .downsection {
             flex-wrap: wrap;
             .btn_7 {
@@ -481,6 +483,7 @@
           }
         }
         .searchbar {
+          padding: 20px;
           .upsection {
             display: block;
             img {
