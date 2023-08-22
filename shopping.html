@@ -138,7 +138,7 @@
                                         <label>我要使用 Pet Points</label>
                                     </div>
                                     <p>可用 Pet Points <span>{{ havePoints }}</span> 點，最多使用<input type="number"
-                                            id="usePoint" v-model="canUsePoints" @keyup="limitPoint">點</p>
+                                            id="usePoint" v-model="canUsePoints" :max="canUsePoints">點</p>
                                 </div>
                                 <div class="spPay mb_32">
                                     <h5>信用卡/簽帳金融卡付款</h5>
@@ -183,33 +183,6 @@
                             <!-- 總計 -->
                             <div class="spMain_right col-5">
                                 <div class="spCard">
-                                    <!-- <div class="spBuy_text">
-                                        <div class="spList_up">
-                                            <h6>寵物接送</h6>
-                                        </div>
-                                        <div class="spList_down">
-                                            <p>8月17日 ｜16:00 </p>
-                                            <p>轎車</p>
-                                        </div>
-                                    </div>
-                                    <div class="spBuy_text">
-                                        <div class="spList_up">
-                                            <h6>快樂寵物旅館</h6>
-                                        </div>
-                                        <div class="spList_down">
-                                            <p>8月17日 - 8月19日 (2晚)</p>
-                                            <p>狗套房X1 ｜ 小型犬</p>
-                                        </div>
-                                    </div>
-                                    <div class="spBuy_text">
-                                        <div class="spList_up">
-                                            <h6>快樂寵物旅館</h6>
-                                        </div>
-                                        <div class="spList_down">
-                                            <p>8月17日 - 8月19日 (2晚)</p>
-                                            <p>貓套房X1</p>
-                                        </div>
-                                    </div> -->
                                     <div class="spBuy_text" v-for="(item, index) in shoppingItems" :key="index">
                                         <div class="spList_up">
                                             <h6>{{ item.product }}</h6>
@@ -540,19 +513,19 @@
                         this.$refs[`input${index - 1}`].focus();
                     }
                 },
-                limitPoint() {
-                    let userInput = parseFloat(this.userInputPoints);
+                // limitPoint() {
+                //     let userInput = parseFloat(this.userInputPoints);
 
-                    if (isNaN(userInput)) {
-                        this.userInputPoints = '';
-                    } else {
-                        if (userInput > this.canUsePoints) {
-                            this.userInputPoints = this.canUsePoints.toString();
-                        } else {
-                            return userInput;
-                        }
-                    }
-                },
+                //     if (isNaN(userInput)) {
+                //         this.userInputPoints = '';
+                //     } else {
+                //         if (userInput > this.canUsePoints) {
+                //             this.userInputPoints = this.canUsePoints.toString();
+                //         } else {
+                //             return userInput;
+                //         }
+                //     }
+                // },
 
 
 
