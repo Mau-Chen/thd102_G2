@@ -3,7 +3,7 @@
   background-image: url("/images/pic/background/05.jpg");
   padding: 100px 120px;
   @media (max-width: 1000px) {
-    padding: 100px 40px;
+    padding: 100px 0;
   }
   @media (max-width: 500px) {
     padding: 60px 40px;
@@ -16,14 +16,18 @@
     //   overflow: visible;
     // }
   }
-
   .top {
     color: $white;
     margin-bottom: 32px;
+    position: relative;
     @include flex(row, space-between);
     @media (max-width: 850px) and (min-width: 768px) {
       padding: 0 80px;
     }
+    h4 {
+      color: $purple;
+    }
+
     .arrow_btn {
       cursor: pointer;
       @include flex(row, space-between);
