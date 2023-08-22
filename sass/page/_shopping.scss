@@ -416,7 +416,7 @@
                 textarea {
                     margin-bottom: 0;
                     resize: none;
-                    // padding: 6px 6px 0;
+                    padding: 6px 12px;
                     border: 1px solid $gray_1;
                     border-radius: $br_8;
                     outline: none;
@@ -475,7 +475,7 @@
                 .creditCard {
                     @include flex(row, space-between);
                     margin-bottom: 24px;
-                    gap: 32px;
+                    gap: 16px;
 
                     //信用卡資訊細項
                     >div {
@@ -497,7 +497,7 @@
                         }
 
                         &:first-child>div {
-                            @include flex(row, space-between);
+                            @include flex(row, space-around);
                             color: $textColor_l;
                             padding: 0 1px;
 
@@ -519,6 +519,7 @@
                         &:last-child {
                             input {
                                 padding: 0 5px;
+                                width: 100%;
                                 &::placeholder{
                                     opacity: 1;
                                 }
@@ -841,7 +842,7 @@
 
                     .creditCard {
                         flex-direction: column;
-                        gap: 16px;
+                        gap: 12px;
 
                         >div {
                             &:first-child>div {
