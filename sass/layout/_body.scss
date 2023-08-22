@@ -7,8 +7,8 @@ body {
 .wrapper {
   @include layout(100);
   @import "header";
+  @import "login";
   @import "footer";
-  @import "ad";
 }
 
 .container {

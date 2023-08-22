@@ -309,10 +309,10 @@
     <script>
       // banner
       window.addEventListener("scroll", function () {
-  const parallaxBg = document.querySelector(".parallax-bg");
-  const scrollValue = window.scrollY;
-  parallaxBg.style.transform = `translateY(${scrollValue * 0.5}px)`;
-});
+        const parallaxBg = document.querySelector(".parallax-bg");
+        const scrollValue = window.scrollY;
+        parallaxBg.style.transform = `translateY(${scrollValue * 0.5}px)`;
+      });
 
       //頭部篩選
       const faq = Vue.createApp({
@@ -352,6 +352,7 @@
         }
       })
 
+      //手風琴效果
       const vm_faq = faq.mount("#faq");
 
       const faqItems = document.querySelectorAll('.faq_list');
@@ -367,11 +368,13 @@
         });
       });
 
-      //手風琴效果
-
-
 
       // 預設開頁面執行一次
+      
+      // 預設展開第一個手風琴區塊
+      const firstAccordionButton = document.querySelector('.accordion button');
+      firstAccordionButton.setAttribute('aria-expanded', 'true');
+      
       
 
     </script>
