@@ -77,6 +77,23 @@
       border-radius: $br_12;
       text-align: justify;
       background-color: rgba(110, 96, 246, 0.3);
+      .card_content {
+        @include flex(row, space-between);
+        margin-bottom: 16px;
+        p {
+          font-weight: 600;
+        }
+        span {
+          @include flex(row, space-between);
+          gap: 4px;
+          padding: 2px 8px;
+          border-radius: 4px;
+          background-color: rgba(233, 233, 233, 0.3);
+          font-size: 14px;
+          color: $black;
+        }
+      }
+
       .star {
         display: flex;
         gap: 8px;
@@ -102,8 +119,13 @@
     .glide__slide--active {
       border-radius: $br_12;
       background-color: rgba(110, 96, 246, 0.8);
-      .ad_box .star svg {
-        fill: #ff5c00;
+      .ad_box {
+        .card_content span {
+          background-color: $gray_3;
+        }
+        .star svg {
+          fill: #ff5c00;
+        }
       }
     }
   }

@@ -38,20 +38,28 @@
           <input
             type="button"
             :value="car_menu"
-            @click="category_kind_display"
+            @click="car_menu_open === true ? car_menu_open = false : car_menu_open = true"
           />
-          <div class="category_kind" ref="category_kind_active">
+          <div
+            class="category_kind"
+            :class="{'active':car_menu_open}"
+            ref="category_kind_active"
+          >
             <div class="category_bottom">
               <ul class="car">
-                <li
-                  class="carList"
-                  v-for="item in cars"
-                  :key="item.id"
-                  @click="smooth"
-                >
+                <li class="carList" v-for="item in cars" :key="item.id">
+                  <input
+                    type="radio"
+                    v-model="car_menu"
+                    name="car-type"
+                    :value="item.cars_type"
+                  />
                   <p ref="CAR">{{item.cars_type}}</p>
                   <span>{{item.cars_text}}</span>
-                  <div></div>
+                  <div
+                    class="check-box"
+                    :class="{'smooth':item.cars_type === car_menu}"
+                  ></div>
                 </li>
               </ul>
             </div>
@@ -62,14 +70,17 @@
           <span>乘客數量</span>
           <input
             type="button"
-            :value="show_passenger_quantity"
-            @click="driverStepper_wrapper_display"
+            @click="passenger_menu_open = !passenger_menu_open"
           />
 
-          <div class="driverStepper_wrapper" ref="driverStepper_wrapper_active">
+          <div
+            class="driverStepper_wrapper"
+            :class="{'active':passenger_menu_open}"
+            ref="driverStepper_wrapper_active"
+          >
             <div class="passenger_quantity">
-              <driver-selector></driver-selector>
-              <driver-selector></driver-selector>
+              <driver-selector dselector="乘客"></driver-selector>
+              <driver-selector dselector="毛孩"></driver-selector>
             </div>
           </div>
         </div>
