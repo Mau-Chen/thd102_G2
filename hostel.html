@@ -1,74 +1,64 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>GO旅宿 | PetpaGo</title>
-    <style>
-      .dropDownParent {
-        position: relative;
-      }
 
-      .dropDown {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        bottom: -63px;
-        background-color: aqua;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  @@include('layout/meta.html')
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>GO旅宿 | PetpaGo</title>
+  <style>
+    .dropDownParent {
+      position: relative;
+    }
 
-      .dropDownItem {
-        display: flex;
-        justify-content: space-between;
-      }
-    </style>
-  </head>
+    .dropDown {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: -63px;
+      background-color: aqua;
+    }
 
-  <body>
-    <div class="wrapper hostel">
-      @@include('layout/header.html')
+    .dropDownItem {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
 
-      <!-- Banner -->
-      <picture>
-        <source
-          media="(max-width:414px )"
-          srcset="images/banner/hostel/m375-hostel.svg"
-        />
-        <source
-          media="(max-width:768px )"
-          srcset="images/banner/hostel/p768-hostel.svg"
-        />
-        <img src="images/banner/hostel/big_hostel_banner.svg" alt="" />
-        <!-- <img src="/images/banner/hostel/hostel_cat.svg" alt="banner"> -->
-      </picture>
+<body>
+  <div class="wrapper hostel">
+    @@include('layout/header.html')
 
-      <!---------------- search bar star ---------------->
-      <div class="hostel_headBox">
-        <div class="container">
-          <h2 class="hostel_title">最貼心的寵物住宿</h2>
-          <div class="search_hotel mb_100">
-            <div class="threeInput" id="select_pet">
-              <div class="search-box col-4">
-                <label for="">
-                  <span>住宿地點或住宿名稱</span>
-                  <input type="text" placeholder="城市／地區／住宿名稱" />
-                </label>
-              </div>
-              <div class="search-box col-4">
-                <label for="">
-                  <span>入住＆退房日期</span>
-                  <input type="date" />
-                </label>
-              </div>
-              <div
-                class="search-box col-4 dropDownParent"
-                @click="isPop = !isPop"
-              >
+    <!-- Banner -->
+    <picture>
+      <source media="(max-width:414px )" srcset="images/banner/hostel/m375-hostel.svg" />
+      <source media="(max-width:768px )" srcset="images/banner/hostel/p768-hostel.svg" />
+      <img src="images/banner/hostel/big_hostel_banner.svg" alt="" />
+      <!-- <img src="/images/banner/hostel/hostel_cat.svg" alt="banner"> -->
+    </picture>
+
+    <!---------------- search bar star ---------------->
+    <div class="hostel_headBox">
+      <div class="container">
+        <h2 class="hostel_title">最貼心的寵物住宿</h2>
+        <div class="search_hotel mb_100">
+          <div class="threeInput" id="select_pet">
+            <div class="search-box col-4">
+              <label for="">
+                <span>住宿地點或住宿名稱</span>
+                <input type="text" placeholder="城市／地區／住宿名稱" />
+              </label>
+            </div>
+            <div class="search-box col-4">
+              <label for="">
+                <span>入住＆退房日期</span>
+                <input type="date" />
+              </label>
+            </div>
+            <div class="search-box dropDownParent col-4">
+              <div @click="isPop = !isPop">
                 <label for="">
                   <span>寵物類型</span>
                   <!-- <input type="text" placeholder="請選擇" /> -->
@@ -78,152 +68,132 @@
                   <span v-show="numDog > 0 && numCat > 0">,</span>
                   <span v-show="numCat > 0">{{ numCat}}隻貓</span>
                 </p>
-                <div class="dropDown" v-show="isPop === true">
+
+              </div>
+              <div class="dropDown" v-show="isPop === true">
+                <div class="dropDownItem">
+                  <p>貓</p>
                   <div class="dropDownItem">
-                    <p>貓</p>
-                    <div class="dropDownItem">
-                      <button type="button" @click="toChange('numCat', 1)">
-                        +
-                      </button>
-                      <span>{{ numCat }}</span>
-                      <button type="button" @click="toChange('numCat', -1)">
-                        -
-                      </button>
-                    </div>
+                    <button type="button" @click="toChange('numCat', 1)">
+                      +
+                    </button>
+                    <span>{{ numCat }}</span>
+                    <button type="button" @click="toChange('numCat', -1)">
+                      -
+                    </button>
                   </div>
+                </div>
+                <div class="dropDownItem">
+                  <p>狗</p>
                   <div class="dropDownItem">
-                    <p>狗</p>
-                    <div class="dropDownItem">
-                      <button type="button" @click="toChange('numDog', 1)">
-                        +
-                      </button>
-                      <span>{{ numDog }}</span>
-                      <button type="button" @click="toChange('numDog', -1)">
-                        -
-                      </button>
-                    </div>
+                    <button type="button" @click="toChange('numDog', 1)">
+                      +
+                    </button>
+                    <span>{{ numDog }}</span>
+                    <button type="button" @click="toChange('numDog', -1)">
+                      -
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <button class="btn_7" type="button" id="searchButton">
-              立即搜尋
-            </button>
+
+          </div>
+          <button class="btn_7" type="button" id="searchButton">
+            立即搜尋
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!---------------- main 精選寵物旅宿 star ---------------->
+    <main class="top_area_hotels mb_60">
+      <div class="container">
+        <h5 class="mb_40">精選寵物旅宿</h5>
+        <div class="cards-wrapper">
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-01.png" alt="台北" />
+            <div class="card_text">
+              <p>台北</p>
+              <p>30間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-02.png" alt="台中" />
+            <div class="card_text">
+              <p>台中</p>
+              <p>20間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-03.png" alt="台南" />
+            <div class="card_text">
+              <p>台南</p>
+              <p>8間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-04.png" alt="高雄" />
+            <div class="card_text">
+              <p>高雄</p>
+              <p>15間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-05.png" alt="新竹" />
+            <div class="card_text">
+              <p>新竹</p>
+              <p>8間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-06.png" alt="花蓮" />
+            <div class="card_text">
+              <p>花蓮</p>
+              <p>10間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-07.png" alt="嘉義" />
+            <div class="card_text">
+              <p>嘉義</p>
+              <p>6間住宿</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="/images/pic/hostel/hostel page1/hostel-city-08.png" alt="外島" />
+            <div class="card_text">
+              <p>外島</p>
+              <p>3間住宿</p>
+            </div>
           </div>
         </div>
       </div>
+    </main>
 
-      <!---------------- main 精選寵物旅宿 star ---------------->
-      <main class="top_area_hotels mb_60">
-        <div class="container">
-          <h5 class="mb_40">精選寵物旅宿</h5>
-          <div class="cards-wrapper">
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-01.png"
-                alt="台北"
-              />
-              <div class="card_text">
-                <p>台北</p>
-                <p>30間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-02.png"
-                alt="台中"
-              />
-              <div class="card_text">
-                <p>台中</p>
-                <p>20間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-03.png"
-                alt="台南"
-              />
-              <div class="card_text">
-                <p>台南</p>
-                <p>8間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-04.png"
-                alt="高雄"
-              />
-              <div class="card_text">
-                <p>高雄</p>
-                <p>15間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-05.png"
-                alt="新竹"
-              />
-              <div class="card_text">
-                <p>新竹</p>
-                <p>8間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-06.png"
-                alt="花蓮"
-              />
-              <div class="card_text">
-                <p>花蓮</p>
-                <p>10間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-07.png"
-                alt="嘉義"
-              />
-              <div class="card_text">
-                <p>嘉義</p>
-                <p>6間住宿</p>
-              </div>
-            </div>
-            <div class="card">
-              <img
-                src="/images/pic/hostel/hostel page1/hostel-city-08.png"
-                alt="外島"
-              />
-              <div class="card_text">
-                <p>外島</p>
-                <p>3間住宿</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+    @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
+    @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
+  </div>
 
-      @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
-      @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
-    </div>
-
-    <script>
-      const select_pet = Vue.createApp({
-        data() {
-          return {
-            isPop: false,
-            numCat: 1,
-            numDog: 1,
-          };
+  <script>
+    const select_pet = Vue.createApp({
+      data() {
+        return {
+          isPop: false,
+          numCat: 1,
+          numDog: 1,
+        };
+      },
+      methods: {
+        toChange(property, value) {
+          if (value > 0 || (value < 0 && this[property] > 0)) {
+            this[property] += value;
+          }
         },
-        methods: {
-          toChange(property, value) {
-            if (value > 0 || (value < 0 && this[property] > 0)) {
-              this[property] += value;
-            }
-          },
-        },
-      });
-      const vm233 = select_pet.mount("#select_pet");
-    </script>
-  </body>
+      },
+    });
+    const vm233 = select_pet.mount("#select_pet");
+  </script>
+</body>
+
 </html>
