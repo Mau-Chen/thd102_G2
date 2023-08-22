@@ -79,16 +79,20 @@
             ref="driverStepper_wrapper_active"
           >
             <div class="passenger_quantity">
-              <driver-selector dselector="乘客"></driver-selector>
-              <driver-selector dselector="毛孩"></driver-selector>
+              <driver-selector :dselector="passenger"></driver-selector>
+              <driver-selector :dselector="pet"></driver-selector>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="driverbtn btn_7 col-2 col-lg-12" id="driverbtn">
+      <button
+        type="submit"
+        class="driverbtn btn_7 col-2 col-lg-12"
+        id="driverbtn"
+      >
         <p>立即搜尋</p>
-      </div>
+      </button>
     </div>
     <div class="remind">
       <img
