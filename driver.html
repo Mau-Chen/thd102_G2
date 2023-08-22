@@ -90,6 +90,8 @@
       @@include('layout/ad.html') @@include('layout/ad.comment.html')
       @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
+    <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script>
     <!-- <script src="./vue.global.js"></script> -->
     <script src="/js/vue-datepicker.iife.js"></script>
     <script type="module">
@@ -99,6 +101,7 @@
       // });
 
       import DriverSelector from "./js/components/DriverSelector.js";
+      // console.log(window.VueUse);
       const app = Vue.createApp({
         data() {
           return {
@@ -106,20 +109,23 @@
             format: `MM月 dd日 ｜HH ：mm`,
             msg_start: "",
             msg_end: "",
-            car_menu: "",
-            showCarMenu: "",
-            showCarMenu: false, // 控制下拉選單是否顯示的變數
+            passenger_counter: 0,
+            pet_counter: 0,
+            car_menu: "轎車",
+            car_menu_open: false,
+            passenger_menu_open: false,
             counter: 1,
+
             cars: [
               {
                 id: "a",
                 cars_type: "轎車",
-                cars_text: "乘客＋毛孩共3位",
+                cars_text: "乘客＋毛孩最多3位",
               },
               {
                 id: "b",
                 cars_type: "休旅車",
-                cars_text: "乘客＋毛孩共4位",
+                cars_text: "乘客＋毛孩最多4位",
               },
             ],
           };
@@ -143,36 +149,30 @@
             this.msg_start = msg_end;
             this.msg_end = msg_start;
           },
-          category_kind_display(e) {
-            let category_kind_active = this.$refs.category_kind_active;
-            category_kind_active.classList.toggle("active");
-          },
-          smooth(e) {
-            let click_ul = e.target.closest(".carList").parentElement; // ul
-            let clean = click_ul.querySelectorAll("div");
-            clean.forEach((n) => {
-              n.classList.remove("smooth");
-            });
-
-            let click_li = e.target.closest(".carList");
-            let click_li_div = click_li.querySelector("div");
-            click_li_div.classList.add("smooth");
-            // 將具有 class="smooth" 的項目的 cars_type 賦值給 selectedCarType
-            if (click_li_div.classList.contains("smooth")) {
-              this.car_menu = click_li.querySelector("p").innerText;
-            }
-          },
-
-          driverStepper_wrapper_display() {
-            let driverStepper_wrapper_active =
-              this.$refs.driverStepper_wrapper_active;
-            driverStepper_wrapper_active.classList.toggle("active");
-          },
-          // PlusOne() {
-          //   this.counter++;
+          // category_kind_display(e) {
+          //   let category_kind_active = this.$refs.category_kind_active;
+          //   category_kind_active.classList.toggle("active");
           // },
-          // MinusOne() {
-          //   this.counter--;
+          // smooth(e) {
+          //   let click_ul = e.target.closest(".carList").parentElement; // ul
+          //   let clean = click_ul.querySelectorAll("div");
+          //   clean.forEach((n) => {
+          //     n.classList.remove("smooth");
+          //   });
+
+          //   let click_li = e.target.closest(".carList");
+          //   let click_li_div = click_li.querySelector("div");
+          //   click_li_div.classList.add("smooth");
+          //   // 將具有 class="smooth" 的項目的 cars_type 賦值給 selectedCarType
+          //   if (click_li_div.classList.contains("smooth")) {
+          //     this.car_menu = click_li.querySelector("p").innerText;
+          //   }
+          // },
+
+          // driverStepper_wrapper_display() {
+          //   let driverStepper_wrapper_active =
+          //     this.$refs.driverStepper_wrapper_active;
+          //   driverStepper_wrapper_active.classList.toggle("active");
           // },
         },
         mounted() {
@@ -182,10 +182,10 @@
           this.date = startDate;
           // this.date = [startDate];
 
-          const firstItem = document.querySelector(".carList");
-          const firstItemDiv = firstItem.querySelector("div");
-          firstItemDiv.classList.add("smooth");
-          this.car_menu = firstItem.querySelector("p").innerText;
+          // const firstItem = document.querySelector(".carList");
+          // const firstItemDiv = firstItem.querySelector("div");
+          // firstItemDiv.classList.add("smooth");
+          // this.car_menu = firstItem.querySelector("p").innerText;
         },
       });
       app.component("Datepicker", VueDatePicker);
