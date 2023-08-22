@@ -1,35 +1,89 @@
 .ad_comm {
   background: $purple_d;
+  background-image: url("/images/pic/background/05.jpg");
   padding: 100px 120px;
+  @media (max-width: 1000px) {
+    padding: 100px 0;
+  }
+  @media (max-width: 500px) {
+    padding: 60px 40px;
+  }
+  .glide {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    // @media (max-width: 850px) and (min-width: 768px) {
+    //   overflow: visible;
+    // }
+  }
   .top {
     color: $white;
     margin-bottom: 32px;
+    position: relative;
     @include flex(row, space-between);
+    @media (max-width: 850px) and (min-width: 768px) {
+      padding: 0 80px;
+    }
+    h4 {
+      color: $purple;
+    }
+
     .arrow_btn {
+      cursor: pointer;
       @include flex(row, space-between);
       gap: 20px;
       .arrow {
         width: 50px;
         height: 50px;
-        background: $white;
+        background: rgba(110, 96, 246, 0.3);
         border-radius: 100%;
         @include flex();
+        transition: transform 0.5s ease-in-out;
+        svg {
+          stroke: #09003e;
+        }
+      }
+      .arrow:hover {
+        background: none;
+        border: 2px solid $purple;
+        animation: arrowAnimation 0.8s infinite alternate;
+        svg {
+          stroke: $purple;
+        }
       }
     }
   }
+  @keyframes arrowAnimation {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.85);
+    }
+  }
+
   .bottom {
-    display: flex;
-    gap: 30px;
+    ul {
+      display: flex;
+      li {
+        display: flex;
+      }
+    }
     .ad_box {
       @include flex(column, space-between);
       padding: 40px;
       background: $white;
+      color: $white;
       border-radius: $br_12;
       text-align: justify;
+      background-color: rgba(110, 96, 246, 0.3);
       .star {
         display: flex;
         gap: 8px;
         margin-bottom: 16px;
+        svg {
+          fill: rgba(255, 92, 0, 0.5);
+        }
       }
     }
     .comm_user {
@@ -39,9 +93,17 @@
       p {
         font-weight: 700;
         color: $purple_d;
+        color: $white;
       }
       span {
         font-size: 14px;
+      }
+    }
+    .glide__slide--active {
+      border-radius: $br_12;
+      background-color: rgba(110, 96, 246, 0.8);
+      .ad_box .star svg {
+        fill: #ff5c00;
       }
     }
   }

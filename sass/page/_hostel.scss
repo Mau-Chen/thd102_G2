@@ -115,9 +115,6 @@
     @media (max-width: 414px) {
       padding: 0 20px;
     }
-    .container {
-      padding: 0 20px;
-    }
     .cards-wrapper {
       display: flex;
       justify-content: space-between;
@@ -149,10 +146,14 @@
         }
       }
     }
-    @media (max-width: 500px) {
-      // padding: 0 20px;
+    @media (max-width: 850px) {
       .container {
-        // padding: 0 20px;
+        padding: 0 24px;
+      }
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 0 20px;
         h5 {
           margin-bottom: 20px;
         }
@@ -287,6 +288,7 @@
     @media (max-width: 768px) {
       .onDis768 {
         display: none;
+        width: 100%;
       }
       .onFat768 {
         width: 100%;

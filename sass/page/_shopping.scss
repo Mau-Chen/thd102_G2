@@ -43,6 +43,7 @@
         color: $gray_1;
         background-color: transparent;
         text-indent: 0;
+        cursor: auto;
 
         &::before {
             content: "";
@@ -99,6 +100,7 @@
         &.jsNow {
             // color: $green;
             color: $black;
+            cursor: pointer;
 
             &::before {
                 // transform: translateX(-50%) scale(1.2);
@@ -209,7 +211,8 @@
                     // line-height: 22px;
                     display: inline-flex;
                     align-items: center;
-                    width: 368px;
+                    // width: 368px;
+                    width: 100%;
 
                     &::before {
                         content: "";
@@ -271,7 +274,7 @@
                     padding-top: 32px;
                     text-align: end;
                     @include flex(row, end);
-                    gap: 32px;
+                    // gap: 32px;
 
                     .spStepper {
                         @include flex();
@@ -332,6 +335,7 @@
                         font-weight: 700;
                         font-size: 24px;
                         // margin-left: 32px;
+                        width: 150px;
                     }
                 }
             }
@@ -412,7 +416,7 @@
                 textarea {
                     margin-bottom: 0;
                     resize: none;
-                    // padding: 6px 6px 0;
+                    padding: 6px 12px;
                     border: 1px solid $gray_1;
                     border-radius: $br_8;
                     outline: none;
@@ -421,7 +425,6 @@
             }
 
             .spOrder_check {
-                // margin-bottom: 24px;
                 @include flex(row, flex-start);
 
                 input[type="checkbox"] {
@@ -443,13 +446,13 @@
                         color: #D63900;
                     }
 
-                    input[type="text"] {
-                        height: 34px;
-                        text-align: center;
-                        padding: 0 10px;
-                        margin: 0 8px;
-                        color: #D63900;
-                    }
+                    // input[type="text"] {
+                    //     height: 34px;
+                    //     text-align: center;
+                    //     padding: 0 10px;
+                    //     margin: 0 8px;
+                    //     color: #D63900;
+                    // }
                 }
             }
 
@@ -472,7 +475,7 @@
                 .creditCard {
                     @include flex(row, space-between);
                     margin-bottom: 24px;
-                    gap: 32px;
+                    gap: 16px;
 
                     //信用卡資訊細項
                     >div {
@@ -484,11 +487,17 @@
                             //所有input
                             input {
                                 text-align: center;
+                                &::placeholder{
+                                    opacity: 1;
+                                }
+                                &:focus::placeholder{
+                                    opacity: 0;
+                                }
                             }
                         }
 
                         &:first-child>div {
-                            @include flex(row, space-between);
+                            @include flex(row, space-around);
                             color: $textColor_l;
                             padding: 0 1px;
 
@@ -496,6 +505,7 @@
                                 border: none;
                                 padding: 0;
                                 width: 44px;
+
                             }
                         }
 
@@ -509,6 +519,13 @@
                         &:last-child {
                             input {
                                 padding: 0 5px;
+                                width: 100%;
+                                &::placeholder{
+                                    opacity: 1;
+                                }
+                                &:focus::placeholder{
+                                    opacity: 0;
+                                }
                             }
                         }
                     }
@@ -516,6 +533,24 @@
                     ~p {
                         font-size: 14px;
                         color: $textColor_m;
+                    }
+                }
+
+                input[type="number"] {
+                    text-align: center;
+                    width: 45px;
+                    border: 1px solid $gray_1;
+                    color: #D63900;
+                    border-radius: $br_8;
+                    margin: 0 8px;
+                    height: 34px;
+
+                    //取消預設箭頭
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                        -moz-appearance: textfield;
                     }
                 }
             }
@@ -538,6 +573,16 @@
                 .spList_down {
                     p {
                         margin-bottom: 4px;
+                        font-size: 18px;
+                    }
+
+                    >div {
+                        @include flex(row, space-between);
+
+                        p {
+                            font-size: 18px;
+                            margin-bottom: 0;
+                        }
                     }
                 }
             }
@@ -701,6 +746,22 @@
     }
 
     // @include flex();
+    @media screen and (max-width: 820px) {
+        .sp2 {
+            .spMain {
+                gap: 0;
+                flex-direction: column;
+    
+                .spMain_left {
+                    width: 100%;
+                }
+    
+                .spMain_right {
+                    width: 100%;
+                }
+            }
+        }
+    }
 
 
     @media screen and (max-width: 768px) {
@@ -748,6 +809,12 @@
                         }
                     }
                 }
+
+                .spMain_right {
+                    .spCard {
+                        margin-top: 32px;
+                    }
+                }
             }
 
         }
@@ -775,7 +842,7 @@
 
                     .creditCard {
                         flex-direction: column;
-                        gap: 16px;
+                        gap: 12px;
 
                         >div {
                             &:first-child>div {
@@ -796,6 +863,16 @@
                     .spBuy_text {
                         .spList_up {
                             margin-bottom: 8px;
+                        }
+
+                        .spList_down {
+                            p {
+                                font-size: 16px;
+                            }
+
+                            >div p {
+                                font-size: 16px;
+                            }
                         }
                     }
                 }
