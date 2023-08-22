@@ -138,7 +138,7 @@
                                         <label>我要使用 Pet Points</label>
                                     </div>
                                     <p>可用 Pet Points <span>{{ havePoints }}</span> 點，最多使用<input type="number"
-                                            id="usePoint" v-model="canUsePoints" @keyup="limitPoint">點</p>
+                                            id="usePoint" v-model="valNew" placeholder="60">點</p>
                                 </div>
                                 <div class="spPay mb_32">
                                     <h5>信用卡/簽帳金融卡付款</h5>
@@ -368,6 +368,7 @@
                         value: 'service@tibame.com', // 初始Email
                         isValid: true, // 是否有效，預設有效
                     },
+                    valNew: "",
                     spOrderPhone: '0912345678',
                     sameMemberChecked: false,
                     havePoints: 7000,
@@ -539,23 +540,7 @@
                     } else if (inputValue.length === 0 && index > 1) {
                         this.$refs[`input${index - 1}`].focus();
                     }
-                },
-                limitPoint() {
-                    let userInput = parseFloat(this.userInputPoints);
-
-                    if (isNaN(userInput)) {
-                        this.userInputPoints = '';
-                    } else {
-                        if (userInput > this.canUsePoints) {
-                            this.userInputPoints = this.canUsePoints.toString();
-                        } else {
-                            return userInput;
-                        }
-                    }
-                },
-
-
-
+                }
             },
             computed: {
                 // 計算總件數
@@ -574,13 +559,13 @@
                 canUsePoints() {
                     const max = this.countSubtotal(this.shoppingItems[0]) * 0.2;
                     return this.havePoints <= max ? this.havePoints : max;
-                },
+                }
             },
             watch: {
                 // 監視checkedNames的變化。若所有都被選，checked為true，否為false。
                 checkedNames(val) {
                     this.checked = val.length === this.shoppingItems.length;
-                },
+                }
             },
         });
 

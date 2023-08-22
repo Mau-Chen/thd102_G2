@@ -10,9 +10,9 @@
     登入
   </div> -->
   <!-- 用v-if來渲染出燈箱畫面，此處的v-if渲染內容為燈箱主體，不可更動。 -->
-  <div v-if="ispop === true" class="lightbox">
+  <div v-if="ispop === true" class="lightbox" @click="ispop = false">
     <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
-    <div class="loginpage_base">
+    <div class="loginpage_base" @click.stop>
       <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
       <div class="close">
         <div class="icon" @click="ispop = false">

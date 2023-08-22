@@ -28,8 +28,8 @@ export default {
             <!-- 燈箱 放大圖片 -->
             
 
-            <div v-if="item.lightboxOpen === true" class="lightbox">
-              <div class="loginpage_base">
+            <div v-if="item.lightboxOpen === true" class="lightbox" @click="toggleLightbox(item)">
+              <div class="loginpage_base" @click.stop>
                 <div class="close fallTop">
                   <div class="icon" @click="toggleLightbox(item)">
                     <img src="./images/icon/components-icon/close-line.svg" alt="close" />
