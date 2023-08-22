@@ -1,11 +1,12 @@
 export default {
   emits: ["passengerEvent"],
   props: ["dselector"],
+
   template: `
   <div class="driverStepper">
-  <p>{{ dselector }} </p>
+  <p>{{ dselector }}</p>
   <div class="driver_Subtotal_icon_wrapper col-5">
-    <input type="hidden" v-model="counter" :name="dselecotr" @change="$emits('passengerEvent')">
+    <input type="hidden" v-model="counter" :name="dselector" @change="$emits('passengerEvent')">
     <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
     <div class="dirver_Subtotal_icon" @click="MinusOne">
       <svg
@@ -79,9 +80,4 @@ export default {
     //   }
     // },
   },
-  // computed: {
-  //   dynamicInputValue() {
-  //     return `${this.passenger_counter}位乘客，${this.pet_counter}位毛孩`;
-  //   },
-  // },
 };

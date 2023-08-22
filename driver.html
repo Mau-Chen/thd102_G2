@@ -90,16 +90,11 @@
       @@include('layout/ad.html') @@include('layout/ad_carousel_driver.html')
       @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
-    <script src="https://unpkg.com/@vueuse/shared"></script>
-    <script src="https://unpkg.com/@vueuse/core"></script>
+    <!-- <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script> -->
     <!-- <script src="./vue.global.js"></script> -->
     <script src="/js/vue-datepicker.iife.js"></script>
     <script type="module">
-      // let category_set = document.getElementById("dropmenu");
-      // category_set.addEventListener("click", function () {
-      //   console.log("eee");
-      // });
-
       import DriverSelector from "./js/components/DriverSelector.js";
       // console.log(window.VueUse);
       const app = Vue.createApp({
@@ -109,13 +104,14 @@
             format: `MM月 dd日 ｜HH ：mm`,
             msg_start: "",
             msg_end: "",
-            passenger_counter: 0,
-            pet_counter: 0,
+            passenger_counter: "",
+            pet_counter: "",
             car_menu: "轎車",
             car_menu_open: false,
             passenger_menu_open: false,
             counter: 1,
-
+            passenger: "乘客",
+            pet: "寵物",
             cars: [
               {
                 id: "a",
@@ -149,31 +145,6 @@
             this.msg_start = msg_end;
             this.msg_end = msg_start;
           },
-          // category_kind_display(e) {
-          //   let category_kind_active = this.$refs.category_kind_active;
-          //   category_kind_active.classList.toggle("active");
-          // },
-          // smooth(e) {
-          //   let click_ul = e.target.closest(".carList").parentElement; // ul
-          //   let clean = click_ul.querySelectorAll("div");
-          //   clean.forEach((n) => {
-          //     n.classList.remove("smooth");
-          //   });
-
-          //   let click_li = e.target.closest(".carList");
-          //   let click_li_div = click_li.querySelector("div");
-          //   click_li_div.classList.add("smooth");
-          //   // 將具有 class="smooth" 的項目的 cars_type 賦值給 selectedCarType
-          //   if (click_li_div.classList.contains("smooth")) {
-          //     this.car_menu = click_li.querySelector("p").innerText;
-          //   }
-          // },
-
-          // driverStepper_wrapper_display() {
-          //   let driverStepper_wrapper_active =
-          //     this.$refs.driverStepper_wrapper_active;
-          //   driverStepper_wrapper_active.classList.toggle("active");
-          // },
         },
         mounted() {
           const startDate = new Date();
