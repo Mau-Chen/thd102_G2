@@ -19,7 +19,7 @@
                 <div class="spStep_box col-10 col-sm-12">
                     <button v-for="(step, index) in steps" :key="index" class="spStep"
                         :class="{ 'jsNow': index <= currentStep }" @click="setCurrentStep(index)" type="button"
-                        :disabled="index > currentStep">
+                        :disabled="index > currentStep">{{ step }}</button>
                 </div>
             </div>
             <div class="spMain_bg">
@@ -119,18 +119,14 @@
                             <div class="spMain_left col-7">
                                 <div class="spCard spOrderMan">
                                     <p>姓名：<span>*</span></p>
-                                    <input type="text" placeholder="請輸入姓名" :value="sameMemberChecked ? spOrderName : ''"
-                                        required>
+                                    <input type="text" placeholder="請輸入姓名" v-model="spOrderName">
                                     <p>電子信箱：<span>*</span></p>
-                                    <input type="text" placeholder="請輸入Email"
-                                        :value="sameMemberChecked ? spOrderEmail.value : ''" required>
+                                    <input type="email" placeholder="請輸入Email" v-model="spOrderEmail">
                                     <p>行動電話：<span>*</span></p>
-                                    <input type="number" placeholder="請輸入行動電話"
-                                        :value="sameMemberChecked ? spOrderPhone : ''"
-                                        required :maxlength="10">
+                                    <input type="tel" placeholder="請輸入行動電話" v-model="spOrderPhone">
                                     <!-- 限制只可輸入數字 -->
                                     <div class="spSame_member">
-                                        <input type="checkbox" v-model="sameMemberChecked">
+                                        <input type="checkbox" v-model="sameMemberChecked" @change="sameMember">
                                         <label>同會員資料</label>
                                     </div>
                                     <p>備註：</p>
@@ -139,14 +135,11 @@
                                 <h5 class="mb_32">優惠折扣</h5>
                                 <div class="spCard">
                                     <div class="spOrder_check">
-                                        <input type="checkbox">
+                                        <input type="checkbox" v-model="usePointsCheck">
                                         <label>我要使用 Pet Points</label>
                                     </div>
-                                    <!-- <p>可用 Pet Points <span>{{ havePoints }}</span> 點，最多使用<input type="number"
-                                            id="usePoint" v-model="canUsePoints" :max="canUsePoints">點</p> -->
                                     <p>可用 Pet Points <span>{{ havePoints }}</span> 點，最多使用<input type="number"
-                                            id="usePoint" v-model="usePoints" @input="handlePoints"
-                                            :placeholder="canUsePoints">點</p>
+                                            id="usePoint" v-model="usePoints" @input="handlePoints">點</p>
                                 </div>
                                 <div class="spPay mb_32">
                                     <h5>信用卡/簽帳金融卡付款</h5>
@@ -161,28 +154,29 @@
                                             <p>信用卡號碼<span>*</span></p>
                                             <div>
                                                 <input type="text" ref="input1" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(1, 4)" v-model="cardNumber[0]" required>
+                                                    @input="handleCC(1, 4)" v-model="cardNumber[0]">
                                                 <input type="text" ref="input2" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(2, 4)" v-model="cardNumber[1]" required>
+                                                    @input="handleCC(2, 4)" v-model="cardNumber[1]">
                                                 <input type="text" ref="input3" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(3, 4)" v-model="cardNumber[2]" required>
+                                                    @input="handleCC(3, 4)" v-model="cardNumber[2]">
                                                 <input type="text" ref="input4" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(4, 4)" v-model="cardNumber[3]" required>
+                                                    @input="handleCC(4, 4)" v-model="cardNumber[3]">
                                             </div>
                                         </div>
                                         <div class="col-4 col-lg-12">
                                             <p>有效期限<span>*</span></p>
                                             <div>
                                                 <input type="text" ref="input5" maxlength="2" placeholder="MM"
-                                                    @input="handleCC(5, 2)" v-model="cardExpiration[0]" required>
+                                                    @input="handleCC(5, 2)" v-model="cardDate[0]" requiredd="required">
                                                 /<input type="text" ref="input6" maxlength="2" placeholder="YY"
-                                                    @input="handleCC(6, 2)" v-model="cardExpiration[1]" required>
+                                                    @input="handleCC(6, 2)" v-model="cardDate[1]" requiredd="required">
                                             </div>
                                         </div>
                                         <div class="col-4 col-lg-12">
                                             <p>背面後3碼<span>*</span></p>
                                             <input type="text" placeholder="CVC/CVV" maxlength="3" minlength="3"
-                                                ref="input7" @input="handleCC(7, 3)" v-model="cardCVC" required>
+                                                ref="input7" @input="handleCC(7, 3)" v-model="cardCVC"
+                                                required="required">
                                         </div>
                                     </div>
                                     <p>請注意本平台不會向您收取任何平台交易手續費，但你下單時使用的信用卡可能會向您收取相關手續費， 請參考其相關服務政策和規定，並向你所選的交易服務商取得更多資訊。
@@ -192,7 +186,7 @@
                             <!-- 總計 -->
                             <div class="spMain_right col-5">
                                 <div class="spCard">
-                                    <div class="spBuy_text" v-for="(item, index) in shoppingItems" :key="index">
+                                    <div class="spBuy_text" v-for="(item, index) in selectedItems" :key="index">
                                         <div class="spList_up">
                                             <h6>{{ item.product }}</h6>
                                         </div>
@@ -200,8 +194,7 @@
                                             <p>{{ useDate(item) }}</p>
                                             <div>
                                                 <p v-if="item.listType === '狗套房'">{{ item.listType }} ｜ {{ item.dogSize
-                                                    }}
-                                                </p>
+                                                    }}</p>
                                                 <p v-else>{{ item.listType }}</p>
                                                 <p>NT${{ countSubtotal(item).toLocaleString('en-US') }}</p>
                                             </div>
@@ -214,15 +207,16 @@
                                         </div>
                                         <div>
                                             <p>Pet Points 折抵</p>
-                                            <p>-NT$ {{ usePoints }}</p>
+                                            <p>-NT$ {{ (usePointsCheck ? usePoints : 0).toLocaleString('en-US') }}</p>
                                         </div>
                                     </div>
                                     <div class="spTotal">
                                         <p>{{ this.checkedNames.length }}件總計</p>
-                                        <h5>NT${{payPrice}}</h5>
+                                        <h5>NT${{(usePointsCheck ? payPrice : totalPrice).toLocaleString('en-US')}}</h5>
                                     </div>
-                                    <button class="spNext btn_5 jsNext" type="button"
-                                        @click="currentStep ++ ">下一步</button>
+                                    <!-- <button class="spNext btn_5 jsNext" type="button"
+                                        @click="currentStep ++ ">下一步</button> -->
+                                    <button class="spNext btn_5 jsNext" type="button" @click="checkform">下一步</button>
                                     <div>
                                         <img src="images/icon/member-icon/black-points.svg" alt="">
                                         <p>可獲得 Pet Points <span>{{Math.floor((payPrice)/100)}}</span> 點</p>
@@ -245,45 +239,25 @@
                                         <!-- first list box1 -->
                                         <div class="ol-header mb_24">
                                             <div class="ol-headText">
-                                                <p>訂單日期：2023年8月4日</p>
-                                                <p>訂單編號：PT0004</p>
+                                                <p>訂單日期：{{ nowDate }}</p>
+                                                <p>訂單編號：{{ orderID }}</p>
                                             </div>
                                         </div>
                                         <!-- first list box2 -->
                                         <div class="ol-content mb_24">
                                             <!-- box2-1 -->
-                                            <div class="ol-contentBox mb_24">
-                                                <img src="/images/pic/shop/goShop01.png" alt="driveDog">
+                                            <div class="ol-contentBox mb_24" v-for="(item, index) in selectedItems"
+                                                :key="index">
+                                                <img :src="item.pictureSrc">
                                                 <div class="ol-ContText">
-                                                    <h6 class="mb_16">寵物接送</h6>
-                                                    <p>8月17日 ｜ 16:00</p>
+                                                    <h6 class="mb_16">{{ item.product }}</h6>
+                                                    <p>{{ useDate(item) }}</p>
                                                     <div class="ol-info">
-                                                        <p>轎車</p>
-                                                        <p>NT$ 300</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- box2-2 -->
-                                            <div class="ol-contentBox mb_24">
-                                                <img src="/images/pic/shop/goShop02.png" alt="driveDog">
-                                                <div class="ol-ContText">
-                                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                                    <p>8月17日-8月19日 (3晚)</p>
-                                                    <div class="ol-info">
-                                                        <p>狗套房X1 ｜ 小型犬</p>
-                                                        <p>NT$ 2,400</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- box2-3 -->
-                                            <div class="ol-contentBox mb_24">
-                                                <img src="/images/pic/shop/goShop03.png" alt="driveDog">
-                                                <div class="ol-ContText">
-                                                    <h6 class="mb_16">快樂寵物旅館</h6>
-                                                    <p>8月17日-8月19日 (3晚)</p>
-                                                    <div class="ol-info">
-                                                        <p>貓套房X1 ｜ 貓咪</p>
-                                                        <p>NT$ 2,400</p>
+                                                        <p v-if="item.listType === '狗套房'">{{ item.listType }} ｜ {{
+                                                            item.dogSize
+                                                            }}</p>
+                                                        <p v-else>{{ item.listType }}</p>
+                                                        <p>NT${{ countSubtotal(item).toLocaleString('en-US') }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -291,23 +265,26 @@
                                         <!-- first list box3 -->
                                         <div class="ol-money mb_24">
                                             <div class="ol-count mb_16">
-                                                <p>3件合計</p>
-                                                <span>NT$ 5,100</span>
+                                                <p>{{ this.checkedNames.length }}件合計</p>
+                                                <span>NT$ {{ totalPrice.toLocaleString('en-US') }}</span>
                                             </div>
                                             <div class="ol-count">
                                                 <p>Pet Points 折抵</p>
-                                                <span>-NT$ 30</span>
+                                                <span>-NT$ {{ (usePointsCheck ? usePoints : 0).toLocaleString('en-US')
+                                                    }}</span>
                                             </div>
                                         </div>
                                         <!-- first list box4 -->
                                         <div class="ol-total">
                                             <div class="ol-count mb_24">
                                                 <p>總計</p>
-                                                <span>NT$ 5,070</span>
+                                                <span>NT$ {{(usePointsCheck ? payPrice :
+                                                    totalPrice).toLocaleString('en-US')}}</span>
                                             </div>
                                             <p><img src="/images/icon/member-icon/black-points.svg"
-                                                    alt="points-icon">已獲得 Pet Points
-                                                <span>50</span> 點
+                                                    alt="points-icon">已獲得
+                                                Pet Points
+                                                <span>{{Math.floor((payPrice)/100)}}</span> 點
                                             </p>
                                         </div>
                                     </li>
@@ -316,15 +293,15 @@
                             <div class="spCard OrderMan">
                                 <div>
                                     <p>姓名</p>
-                                    <p>王緯育</p>
+                                    <p>{{ spOrderName }}</p>
                                 </div>
                                 <div>
                                     <p>電子信箱</p>
-                                    <p>service@tibame.com</p>
+                                    <p>{{ spOrderEmail }}</p>
                                 </div>
                                 <div>
                                     <p>行動電話</p>
-                                    <p>0912-345-678</p>
+                                    <p>{{ spOrderPhone }}</p>
                                 </div>
                             </div>
                             <button class="btn_5 btn-success" type="button" id="Go_index"
@@ -346,22 +323,34 @@
                     steps: ["查看購物車", "填寫資料", "完成付款"],
                     checked: false,
                     checkedNames: [],
-                    spOrderName: '王緯育',
-                    spOrderEmail: {
-                        value: 'service@tibame.com', // 初始Email
-                        isValid: true, // 是否有效，預設有效
+
+                    member_data: {
+                        name: '王緯育',
+                        email: 'service@tibame.com',
+                        phone: '0912345678',
                     },
-                    spOrderPhone: '0912345678',
+
+                    spOrderName: '',
+                    spOrderEmail: '',
+                    spOrderPhone: '',
                     sameMemberChecked: false,
-                    havePoints: 7000,
+                    havePoints: 100,
                     usePoints: 0,
+                    usePointsCheck: true,
+
+                    nowDate: null,
+                    orderID: 'PT0004',
+
+                    spReadyName: '',
+                    spReadyEmail: '',
+                    spReadyPhone: '',
+
 
                     cardNumber: ['', '', '', ''],
-                    cardExpiration: ['', ''],
+                    cardDate: ['', ''],
                     cardCVC: '',
                     isStepTwoValid: false,
                     validationErrors: [],
-                    // valNew: "",
                     shoppingItems: [
                         {
                             id: "Car",
@@ -418,10 +407,25 @@
                 nextButton.addEventListener('click', () => {
                     window.location.href = 'index.html';
                 });
+
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                this.nowDate = new Date().toLocaleDateString('zh-TW', options);
+
             },
             methods: {
+                sameMember(){
+                    if(this.sameMemberChecked === true){
+                        this.spOrderName=this.member_data.name;
+                        this.spOrderEmail=this.member_data.email;
+                        this.spOrderPhone=this.member_data.phone;
+                    }
+                },
                 caculate_point() {
-                    this.usePoints = this.totalPrice * 0.2
+                    if (this.havePoints < this.totalPrice * 0.2) {
+                        this.usePoints = this.havePoints;
+                    } else {
+                        this.usePoints = this.totalPrice * 0.2;
+                    }
                 },
                 setCurrentStep(index) {
                     this.currentStep = index;
@@ -525,22 +529,35 @@
                         this.$refs[`input${index - 1}`].focus();
                     }
                 },
-                handlePoints(usePoints) {
-                    this.usePoints = Math.min(Math.max(this.usePoints, 0), this.canUsePoints);
+                checkform() {
+                    this.validationErrors = [];
+                    if (this.spOrderName.trim() === '') {
+                        alert('姓名欄位不可為空值');
+                    } else if (!this.validateEmail(this.spOrderEmail)) {
+                        alert('請輸入正確的E-mail格式，例:XXX@XXX.XXX');
+                    } else if (!this.validatePhoneNumber(this.spOrderPhone)) {
+                        alert('請輸入正確的行動電話格式，例:09XXXXXXXX');
+                    } else if (this.cardNumber[0].trim() === '') {
+                        alert('信用卡欄位不可為空值');
+                    }else{
+                        this.currentStep++;
+                    }
                 },
-                // updateMaxPointsToUse(event) {
-                //     const inputValue = parseInt(event.target.value);
-                //     if (!isNaN(inputValue) && inputValue <= this.havePoints) {
-                //         this.canUsePoints = inputValue;
-                //     }
-                // },
+                validateEmail(email) {
+                    const emailRegex = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+                    return emailRegex.test(email);
+                },
+                validatePhoneNumber(phone) {
+                    const phoneRegex = /^09\d{8}$/;
+                    return phoneRegex.test(phone);
+                },
+                resetSameMemberChecked() {
+                    this.sameMemberChecked = false;
+                },
+
 
             },
             computed: {
-                // 計算總件數
-                // totalItems() {
-                //     return this.checkedNames.length;
-                // },
                 // 計算總價格。
                 totalPrice() {
                     return this.shoppingItems.reduce((total, item) => {
@@ -557,6 +574,10 @@
                 payPrice() {
                     return this.totalPrice - this.usePoints;
                 },
+                // 過濾勾選商品    
+                selectedItems() {
+                    return this.shoppingItems.filter(item => this.checkedNames.includes(item.id));
+                },
             },
             watch: {
                 // 監視checkedNames的變化。若所有都被選，checked為true，否為false。
@@ -567,149 +588,6 @@
         });
 
         app.mount('#spApp');
-
-
-
-
-
-
-        //第三頁按鈕回到首頁
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     let nextButton = document.getElementById('Go_index');
-        //     nextButton.addEventListener('click', function () {
-        //         window.location.href = 'index.html';
-        //     });
-        // });
-
-        // DOM 元素
-        const DOMstrings = {
-            //辨識步驟按鈕
-            stepsBtnClass: 'spStep',
-            //取得所有.spStep
-            stepsBtns: document.querySelectorAll('.spStep'),
-            //辨識進度條區塊
-            stepsBox: document.querySelector('.spStep_box'),
-            //辨識表單容器
-            stepsForm: document.querySelector('.sp_form'),
-            //辨識頁面
-            stepFormPageClass: 'spPage',
-            stepFormPanels: document.querySelectorAll('.spPage'),
-            stepNextBtnClass: 'jsNext'
-        };
-
-        // 定意函式（從一組元素中移除class）
-        const removeClasses = (arraySet, className) => {
-            arraySet.forEach(e => {
-                e.classList.remove(className);
-            });
-        };
-
-        // 找到指定class的父層
-        const findParent = (e1, parentClass) => {
-            let nowNode = e1;
-            while (!(nowNode.classList.contains(parentClass))) {
-                nowNode = nowNode.parentNode;
-            }
-            return nowNode;
-        };
-
-        // 得到當前的步驟按鈕索引
-        const getNowStep = e2 => {
-            return Array.from(DOMstrings.stepsBtns).indexOf(e2);
-        };
-
-        // 設置所有被點擊之前（包括被點擊的）的步驟按鈕為活動狀態
-        const setActiveStep = (activeStepNum) => {
-            // 移除所有class=jsNow
-            removeClasses(DOMstrings.stepsBtns, 'jsNow');
-
-            // 被選取的項目加上class=jsNow
-            DOMstrings.stepsBtns.forEach((e3, index) => {
-                if (index <= activeStepNum) {
-                    e3.classList.add('jsNow');
-                }
-            });
-        };
-
-        // 找到有jsNow，交給activePanel
-        const getActivePage = () => {
-            let activePanel;
-            DOMstrings.stepFormPanels.forEach(e4 => {
-                if (elem.classList.contains('jsNow')) {
-                    activePanel = e4;
-                }
-            });
-            return activePanel;
-        };
-
-        // 打開活動的面板（並關閉非活動的面板）
-        const setActivePanel = activePanelNum => {
-            // 移除所有面板的活動類別
-            removeClasses(DOMstrings.stepFormPanels, 'jsNow');
-
-            // 顯示活動的面板
-            DOMstrings.stepFormPanels.forEach((elem, index) => {
-                if (index === activePanelNum) {
-                    elem.classList.add('jsNow');
-                    setFormHeight(elem);
-                }
-            });
-        };
-
-        // 將表單高度設置為當前面板的高度
-        const formHeight = (activePanel) => {
-            const activePanelHeight = activePanel.offsetHeight;
-            DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
-        };
-
-        const setFormHeight = () => {
-            const activePanel = getActivePage();
-            formHeight(activePanel);
-        };
-
-        // 點擊步驟進度條的功能
-        DOMstrings.stepsBox.addEventListener('click', e => {
-            // 檢查點擊目標是否為步驟按鈕
-            const eventTarget = e.target;
-            if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
-                return;
-            }
-            // 獲取活動的步驟按鈕的序號
-            const activeStep = getNowStep(eventTarget);
-            // 設置所有被點擊之前（包括被點擊的）的步驟按鈕為活動狀態
-            setActiveStep(activeStep);
-            // 打開活動的面板
-            setActivePanel(activeStep);
-        });
-
-        // 點擊“上一步”和“下一步”按鈕的功能
-        DOMstrings.stepsForm.addEventListener('click', e => {
-            const eventTarget = e.target;
-            // 檢查是否點擊了“上一步”或“下一步”按鈕
-            if (!((eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) || (eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`)))) {
-                return;
-            }
-            // 找到活動的面板
-            const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPageClass}`);
-            let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
-
-            // 根據點擊的按鈕設置活動步驟和活動面板
-            if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
-                activePanelNum--;
-            } else {
-                activePanelNum++;
-            }
-            // setActiveStep(activePanelNum);
-            // setActivePanel(activePanelNum);
-        });
-
-        // 在頁面載入時設置正確的表單高度
-        window.addEventListener('load', setFormHeight, false);
-
-        // 在窗口大小調整時設置正確的表單高度
-        window.addEventListener('resize', setFormHeight, false);
-
-
 
     </script>
 

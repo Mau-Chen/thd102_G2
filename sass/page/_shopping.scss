@@ -9,7 +9,7 @@
         border: none;
     }
 
-    input[type="text"] {
+    input{
         height: 48px;
         border: 1px solid $gray_1;
         border-radius: $br_8;
@@ -397,7 +397,7 @@
                     }
                 }
 
-                input[type="text"],
+                input,
                 textarea {
                     width: 100%;
                     padding: 0 12px;
@@ -485,6 +485,9 @@
 
                     //信用卡資訊細項
                     >div {
+                        >p>span{
+                            color: #D63900;
+                        }
 
                         >div {
                             border: 1px solid $gray_1;
