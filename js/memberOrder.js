@@ -116,7 +116,6 @@ const app = Vue.createApp({
             },
           ],
         },
-
       ],
     };
   },
