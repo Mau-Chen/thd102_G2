@@ -90,11 +90,9 @@
       @@include('layout/ad.html') @@include('layout/ad_carousel_driver.html')
       @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
-    <!-- <script src="https://unpkg.com/@vueuse/shared"></script>
-    <script src="https://unpkg.com/@vueuse/core"></script> -->
-    <!-- <script src="./vue.global.js"></script> -->
+
     <script src="/js/vue-datepicker.iife.js"></script>
-    <script type="module">
+    <script>
       // import DriverSelector from "./js/components/DriverSelector.js";
       // console.log(window.VueUse);
       const app = Vue.createApp({
@@ -104,8 +102,8 @@
             format: `MM月 dd日 ｜HH ：mm`,
             msg_start: "",
             msg_end: "",
-            passenger_counter: 0,
-            pet_counter: 0,
+            passenger_counter: 1,
+            pet_counter: 1,
             car_menu: "轎車",
             car_menu_open: false,
             passenger_menu_open: false,
@@ -144,15 +142,6 @@
             this.msg_start = msg_end;
             this.msg_end = msg_start;
           },
-          // asq(val) {
-          //   console.log(val);
-          //   const counter = val.counter;
-          //   if (val.dselector === "乘客") {
-          //     this.passenger_counter = counter;
-          //   } else {
-          //     this.pet_counter = counter;
-          //   }
-          // },
           PlusOne(counter_name) {
             if (this.car_menu === "轎車") {
               if (this.passenger_counter + this.pet_counter < 3) {
