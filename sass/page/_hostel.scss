@@ -134,7 +134,7 @@
             border: 1px solid #333;
             align-items: center;
           }
-          button{
+          button {
             background-color: white;
           }
         }
@@ -581,7 +581,7 @@
                     font-size: 20px;
                   }
                   .spSubtotal_icon {
-                    border: 1px solid #b3b3b3;
+                    border: 1px solid $black;
                     width: 32px;
                     height: 32px;
                     border-radius: 50%;
@@ -590,15 +590,23 @@
                       height: 10px;
                       transform: translate(10px, 10px);
                     }
-                    &:first-child {
+
+                    &.limit {
                       border: 1px solid $gray_1;
+                      svg {
+                        path {
+                          fill: $gray_1;
+                        }
+                      }
                     }
-                  }
-                  input[type="text"] {
-                    outline: none;
-                    border: none;
-                    text-align: center;
-                    width: 32px;
+                    svg {
+                      width: 10px;
+                      height: 10px;
+                      transform: translate(10px, 10px);
+                      path {
+                        fill: $black;
+                      }
+                    }
                   }
                 }
               }
@@ -623,6 +631,30 @@
                 }
               }
             }
+          }
+        }
+
+        svg {
+          width: 10px;
+          height: 10px;
+          transform: translate(10px, 10px);
+
+          path {
+            fill: $black;
+          }
+        }
+        input[type="number"] {
+          text-align: center;
+          width: 32px;
+          border: none;
+          height: 32px;
+
+          //取消預設箭頭
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            -moz-appearance: textfield;
           }
         }
       }
