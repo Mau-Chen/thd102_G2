@@ -4,7 +4,7 @@
   </div>
   <div class="searchbar" id="driver_app">
     <div class="upsection">
-      <div class="place col-6 col-lg-6 col-sm-12">
+      <div class="place">
         <span>出發點</span>
         <input type="text" placeholder="輸入上車地點" v-model="msg_start" />
       </div>
@@ -15,7 +15,7 @@
         @click="change"
       />
 
-      <div class="place col-6 col-lg-6 col-sm-12">
+      <div class="place">
         <span>目的地</span>
         <input type="text" placeholder="輸入下車地點" v-model="msg_end" />
       </div>
@@ -23,7 +23,7 @@
 
     <div class="downsection">
       <div class="categorycontrol col-12">
-        <div class="category col-4 col-sm-12">
+        <div class="category">
           <span>乘車日期&時間</span>
           <DatePicker
             v-model="date"
@@ -36,7 +36,7 @@
             :auto-position="false"
           />
         </div>
-        <div class="category col-4 col-sm-12 categoryset">
+        <div class="category categoryset">
           <span>車種</span>
           <input
             type="button"
@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="category col-4 col-sm-12">
+        <div class="category">
           <span>乘客數量</span>
           <input
             type="button"

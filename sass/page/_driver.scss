@@ -16,8 +16,14 @@
       width: 100%;
     }
   }
+  .drive_container {
+    padding: 0 32px;
+    @media (max-width: 414px) {
+      padding: 0 20px;
+    }
+  }
   .container {
-    margin: 0 auto;
+    // margin: 0 auto;
 
     .titlesearchbar {
       position: relative;
@@ -56,11 +62,13 @@
           }
         }
         input {
+          cursor: pointer;
           border: none;
           outline: none;
           background-color: transparent;
+          width: 100%;
+          padding: 0;
           // text-indent: 16px;
-          cursor: pointer;
         }
 
         input[type="text"] {
@@ -250,6 +258,7 @@
           @include flex(column, center, null);
           border-radius: $br_8;
           position: relative;
+          width: 100%;
           span {
             font-size: 14px;
             color: $textColor_m;
@@ -413,7 +422,8 @@
     }
     .container {
       .titlesearchbar {
-        margin: -161px 32px 60px 32px;
+        // margin: -161px 32px 60px 32px;
+        margin-top: 160px;
         .searchbar {
           padding: 24px;
 
@@ -429,7 +439,7 @@
         }
       }
       .drivercards {
-        padding: 0 28px;
+        padding: 0 20px;
 
         .leftcard {
           display: none;
@@ -472,36 +482,39 @@
     .container {
       position: relative;
       .titlesearchbar {
-        margin-left: 16px;
-        margin-right: 16px;
+        margin-top: -80px;
+        align-items: center;
         .drivertitle {
           position: absolute;
-          top: -240px;
-          left: 80px;
-          h2 {
-            text-align: center;
-          }
+          top: -320px;
         }
         .searchbar {
           padding: 20px;
           .upsection {
             display: block;
+            margin-bottom: 0;
             img {
               display: none;
             }
             .place {
               margin-bottom: 8px;
+              height: auto;
             }
           }
           .downsection {
             display: block;
+            margin-bottom: 8px;
             .categorycontrol {
               display: block;
               margin-bottom: 12px;
               .category {
                 margin-bottom: 8px;
+                height: auto;
               }
             }
+          }
+          .remind {
+            font-size: 14px;
           }
         }
       }
@@ -557,6 +570,14 @@
       .cancel {
         margin: 0 16px;
       }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .drive_container .container .titlesearchbar {
+    .drivertitle {
+      top: -290px;
     }
   }
 }
