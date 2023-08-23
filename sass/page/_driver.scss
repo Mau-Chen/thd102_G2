@@ -30,8 +30,7 @@
       //   outline: 1px solid red;
       @include flex(column, space-around, null);
       margin-top: -161px;
-      margin-bottom: 100px;
-
+      // margin-bottom: 130px;
       .drivertitle {
         h2 {
           color: #126c86;
@@ -289,41 +288,54 @@
     }
     .drivercards {
       @include flex(row, center, null);
-      gap: 39px;
+      gap: 60px;
+      margin-top: 120px;
+      @media (max-width: 850px) and (min-width: 769px) {
+        margin-top: 110px;
+        gap: 32px;
+      }
       .leftcard {
-        height: 994px;
-        @include flex(row, center, flex-start);
+        // height: 994px;
+        // @include flex(row, center, flex-start);
         .filter {
           width: 100%;
           height: 100%;
           background-color: rgba(102, 213, 192, 0.1);
           border-radius: 0 100px 100px 0; /* 左上、右上、右下、左下 */
           span {
+            // font-family: "Abel", sans-serif;
+            font-weight: 700;
             writing-mode: vertical-rl;
             padding-left: 5px;
             font-size: 32px;
             color: $black;
-            border-left: 1px solid rgb(0, 0, 0);
-            margin-top: -27px;
+            border-left: 1px solid $black;
+            margin-top: -37px;
             margin-left: 44%;
           }
         }
       }
       .rightcard {
-        h4 {
-          color: #222;
-        }
+        // h4 {
+        //   color: #222;
+        // }
         ul {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 20px 34px;
+          gap: 60px 60px;
           li {
             h6 {
               margin-bottom: 16px;
             }
             .db {
-              width: 100%;
+              // width: 100%;
             }
+            p {
+              text-align: justify;
+            }
+          }
+          @media (max-width: 850px) and (min-width: 769px) {
+            gap: 32px;
           }
         }
       }
@@ -333,6 +345,7 @@
       position: relative;
       padding: 40px;
       height: 100%;
+      margin-top: 40px;
       /* Drop Shadow */
       box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
       border-radius: $br_12;
@@ -355,6 +368,7 @@
               color: $textColor_m;
             }
             span {
+              font-weight: 500;
               color: $black;
               font-size: 20px;
             }
@@ -370,16 +384,16 @@
         }
         .journeybtn {
           @include flex();
-          gap: 0 12px;
+          gap: 12px;
         }
 
         .remind {
           @include flex(row, null, center);
           // height: 44px;
           background-color: $gray_2;
-          border-radius: 8px;
+          border-radius: $br_8;
           color: $textColor_m;
-          padding: 4px 16px;
+          padding: 12px 16px;
           margin-top: 20px;
           .remindicon {
             margin-right: 8px;
@@ -387,21 +401,22 @@
         }
       }
     }
-    .notice,
-    .cancel {
-      letter-spacing: 0.6px;
-      padding: 32px 0 64px 0;
-      border-top: 1px solid #e0e0e0;
-      span {
-        display: block;
+    .driver_notice {
+      .notes {
+        border-top: 1px solid $gray_1;
+        padding-top: 32px;
+        margin-bottom: 60px;
+      }
+      h5 {
         font-size: 24px;
-        font-weight: 700;
         margin-bottom: 20px;
       }
       ul {
         padding-left: 20px;
         li {
           list-style-type: disc;
+          line-height: 2;
+          text-align: justify;
         }
       }
     }
@@ -422,8 +437,7 @@
     }
     .container {
       .titlesearchbar {
-        // margin: -161px 32px 60px 32px;
-        margin-top: 160px;
+        margin-top: -185px;
         .searchbar {
           padding: 24px;
 
@@ -439,7 +453,8 @@
         }
       }
       .drivercards {
-        padding: 0 20px;
+        padding: 0 24px;
+        margin-top: 0;
 
         .leftcard {
           display: none;
@@ -447,7 +462,7 @@
         .rightcard {
           position: relative;
           margin-top: 110px;
-          margin-bottom: 90px;
+          // margin-bottom: 90px;
           &::before {
             content: "";
             background-color: rgba(102, 213, 192, 0.1);
@@ -462,10 +477,11 @@
         }
       }
       .drivermap {
+        padding: 24px;
         .journey {
           padding: 16px;
           .juorneydetail {
-            margin-bottom: 24px;
+            // margin-bottom: 24px;
           }
         }
       }
@@ -537,9 +553,9 @@
       }
 
       .drivermap {
-        margin-left: 16px;
-        margin-right: 16px;
-        padding: 16px;
+        // margin-left: 16px;
+        // margin-right: 16px;
+        padding: 20px;
         iframe {
           height: 249px;
         }
@@ -548,7 +564,7 @@
             display: block;
             .embark_datetime {
               border-bottom: 1px solid $gray_1;
-              margin-bottom: 8px;
+              margin-bottom: 20px;
               &:nth-child(2) {
                 border-left: none;
                 border-right: none;

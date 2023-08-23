@@ -24,113 +24,99 @@
         />
         <img src="images/banner/drive/big_drive_banner.svg" alt="" />
       </picture>
-      <div class="container">
-        @@include('layout/driverbanner.html')
-        <!-- <p>driver</p> -->
-        <div class="drivermap mb_100">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.4676872269497!2d121.54067797600091!3d25.052132837560045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abe6b0446815%3A0xf006dde8c27afcc7!2z57ev6IKyVGliYU1l6ZmE6Kit5Y-w5YyX6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1691652210207!5m2!1szh-TW!2stw"
-            width="100%"
-            height="742"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            class="mb_32"
-          ></iframe>
-          <div class="journey">
-            <div class="juorneydetail col-8 col-lg-12">
-              <div class="embark_datetime col-4 col-lg-4 col-sm-12">
-                <p>乘車日期＆時間</p>
-                <span>8月17日｜16：00</span>
-              </div>
-              <div class="embark_datetime col-4 col-lg-4 col-sm-12">
-                <p>預計搭乘時間</p>
-                <span>15分鐘</span>
-              </div>
-              <div class="embark_datetime col-4 col-lg-4 col-sm-12">
-                <p>總金額</p>
-                <span>NT＄ 300</span>
-              </div>
-            </div>
 
-            <div class="journeybtn col-4 col-lg-12">
-              <div class="btn_5_border col-6 col-lg-6">
-                <p>加入購物車</p>
+      <main class="drive_container">
+        <div class="container">
+          @@include('layout/driverbanner.html')
+          <!-- <p>driver</p> -->
+          <div class="drivermap mb_100">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.4676872269497!2d121.54067797600091!3d25.052132837560045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abe6b0446815%3A0xf006dde8c27afcc7!2z57ev6IKyVGliYU1l6ZmE6Kit5Y-w5YyX6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1691652210207!5m2!1szh-TW!2stw"
+              width="100%"
+              height="742"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="mb_32"
+            ></iframe>
+            <div class="journey">
+              <div class="juorneydetail col-8 col-lg-12">
+                <div class="embark_datetime col-4 col-lg-4 col-sm-12">
+                  <p>乘車日期＆時間</p>
+                  <span>8月17日｜16：00</span>
+                </div>
+                <div class="embark_datetime col-4 col-lg-4 col-sm-12">
+                  <p>預計搭乘時間</p>
+                  <span>15分鐘</span>
+                </div>
+                <div class="embark_datetime col-4 col-lg-4 col-sm-12">
+                  <p>總金額</p>
+                  <span>NT＄ 300</span>
+                </div>
               </div>
-              <div class="btn_5 col-6 col-lg-6">
-                <p>立即預定</p>
+
+              <div class="journeybtn col-4 col-lg-12">
+                <div class="btn_5_border col-6 col-lg-6">
+                  <p>加入購物車</p>
+                </div>
+                <div class="btn_5 col-6 col-lg-6">
+                  <p>立即預定</p>
+                </div>
               </div>
-            </div>
-            <div class="remind col-12">
-              <img
-                src="../images/icon/drive-icon/notes.svg"
-                alt=""
-                class="remindicon"
-              />
-              <p>
-                上述搭乘時間為一般狀況，實際搭乘時間會依交通路況等現實因素有所誤差。
-              </p>
+              <div class="remind col-12">
+                <img
+                  src="../images/icon/drive-icon/notes.svg"
+                  alt=""
+                  class="remindicon"
+                />
+                <p>
+                  上述搭乘時間為一般狀況，實際搭乘時間會依交通路況等現實因素有所誤差。
+                </p>
+              </div>
             </div>
           </div>
+          <section class="driver_notice mb_100">
+            <div class="notes">
+              <h5>注意事項</h5>
+              <ul>
+                <li>
+                  若乘車現場發現與訂購人數不符，導致超載，司機有權拒絕提供服務，恕不退費。
+                </li>
+                <li>
+                  司機資料及車牌號碼會在您出發前一天 20:00 前
+                  (GMT+8)，以email提供。
+                </li>
+                <li>
+                  若當日有任何緊急狀況，請撥打憑證或訊息上之緊急聯絡電話。
+                </li>
+                <li>
+                  對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。
+                </li>
+                <li>
+                  若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。
+                </li>
+                <li>
+                  正常情形下，毛孩一般會留下幼細的毛髮或正常合理動物氣味，這種情況下不會額外收取清潔費。不過，如果毛孩出現超出一般合理情況，導致車輛需要清潔(例如在車內大小便、嘔吐或破壞等)，就需要支付額外清潔費。
+                </li>
+              </ul>
+            </div>
+
+            <div class="notes">
+              <h5>取消政策</h5>
+              <ul>
+                <li>所選日期 2 天（含）之前取消，收取手續費 0%。</li>
+                <li>所選日期 0 ~ 1 天之間取消，收取手續費 100%。</li>
+                <li>
+                  需 2-5
+                  個工作天進行取消流程，依照您購買的商品取消政策收取手續費，並於取消流程完成後14
+                  個工作天內退款。
+                </li>
+              </ul>
+            </div>
+          </section>
         </div>
-        <div class="notice">
-          <span>注意事項</span>
-          <ul>
-            <li>
-              <p>
-                若乘車現場發現與訂購人數不符，導致超載，司機有權拒絕提供服務，恕不退費。
-              </p>
-            </li>
-            <li>
-              <p>
-                司機資料及車牌號碼會在您出發前一天 20:00 前
-                (GMT+8)，以email提供。
-              </p>
-            </li>
-            <li>
-              <p>若當日有任何緊急狀況，請撥打憑證或訊息上之緊急聯絡電話。</p>
-            </li>
-            <li>
-              <p>
-                對於貓狗，我們鼓勵乘客在行程中使用牽繩、胸帶或手提籠，而其他動物則必須放在封閉式寵物袋或寵物籠內。經職業駕駛同意後，你才能於行程中將寵物解開相關控管措施。
-              </p>
-            </li>
-            <li>
-              <p>
-                若你攜帶具攻擊性或有攻擊紀錄之寵物，請務必採取必要防護措施，包括以長度不超過一點五公尺之繩或鍊牽引及配戴不影響散熱之透氣口罩等適當防護措施。
-              </p>
-            </li>
-            <li>
-              <p>
-                正常情形下，毛孩一般會留下幼細的毛髮或正常合理動物氣味，這種情況下不會額外收取清潔費。不過，如果毛孩出現超出一般合理情況，導致車輛需要清潔(例如在車內大小便、嘔吐或破壞等)，就需要支付額外清潔費。
-              </p>
-            </li>
-          </ul>
-        </div>
-        <div class="cancel">
-          <span>取消政策</span>
-          <ul>
-            <li>
-              <p>所選日期 2 天（含）之前取消，收取手續費 0%</p>
-            </li>
-            <li>
-              <p>所選日期 0 ~ 1 天之間取消，收取手續費 100%</p>
-            </li>
-            <li>
-              <p>
-                需 2-5
-                個工作天進行取消流程，依照您購買的商品取消政策收取手續費，並於取消流程完成後14
-                個工作天內退款。
-              </p>
-            </li>
-          </ul>
-        </div>
-        <!-- 加入購物車視窗 -->
-        <div class="added-shopping-car">
-          @@include('layout/added-shopping-car.html')
-        </div>
-      </div>
+      </main>
       @@include('layout/footer.html')
     </div>
 
@@ -214,17 +200,17 @@
       app.mount("#driver_app");
     </script>
 
+    <script>
+      //顯示已加入購物車
+      let btn = document.querySelector(".btn_5_border");
+      let popup = document.querySelector(".ol-content");
 
-    <script> //顯示已加入購物車
-      let btn = document.querySelector('.btn_5_border');
-      let popup = document.querySelector('.ol-content');
+      btn.addEventListener("click", function () {
+        popup.style.opacity = "1";
 
-      btn.addEventListener('click', function() {
-          popup.style.opacity = '1';
-
-          setTimeout(function() {
-              popup.style.opacity = '0';
-          }, 3000);
+        setTimeout(function () {
+          popup.style.opacity = "0";
+        }, 3000);
       });
     </script>
   </body>
