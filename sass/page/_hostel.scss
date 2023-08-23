@@ -107,6 +107,43 @@
         }
       }
     }
+    // 寵物類型下拉選單
+    .dropDownParent {
+      position: relative;
+      .dropDown {
+        border: 1px solid #e6e6e6;
+        position: absolute;
+        padding: 16px;
+        width: 100%;
+        left: 0;
+        bottom: -163px;
+        background-color: white;
+        border-radius: 8px;
+        animation: slide-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        z-index: 9999;
+        .dropDownItem {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 8px 0;
+          .minus,
+          .plus {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            align-items: center;
+          }
+          button{
+            background-color: white;
+          }
+        }
+        .line {
+          border-bottom: 1px solid #e2e2e2;
+        }
+      }
+    }
+    // Datepicker
   }
   // search bar end
 
@@ -296,15 +333,7 @@
     }
   }
   // -------- Page-3 pic carousel --------
-  
-  // .swiper-wrapper {
-  //   overflow: hidden;
-  // }
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    color: $purple;
-  }
-  
+
   .swiper-slide {
     width: 60% !important;
     margin-left: 10px;
@@ -319,17 +348,17 @@
       width: 100% !important;
     }
   }
-  .swiper-button-next, .swiper-button-prev{
-    font-size: 38px;
-    font-weight: 700;
+  .swiper-button-next,
+  .swiper-button-prev {
     width: 48px;
     height: 48px;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
   }
   .swiper-button-next:after,
-  .swiper-button-prev:after{
-    font-size: 30px;
+  .swiper-button-prev:after {
+    font-size: 20px;
+    font-weight: 700;
   }
 
   .swiper-button-next:after,
