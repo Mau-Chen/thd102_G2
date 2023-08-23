@@ -10,6 +10,9 @@ body {
   @import "header";
   @import "login";
   @import "footer";
+  @media (max-width: 1000px) {
+    padding-top: 76px;
+  }
 }
 
 .container {
