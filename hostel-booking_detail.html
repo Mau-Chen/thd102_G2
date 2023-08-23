@@ -321,7 +321,7 @@
                       </div>
                       <div class="suButton col-6">
                         <input
-                          class="btn_5_border col-6"
+                          class="btn_5_border col-6 addCart"
                           type="submit"
                           value="加入購物車"
                         />
@@ -378,7 +378,7 @@
                       </div>
                       <div class="suButton col-6">
                         <input
-                          class="btn_5_border col-6"
+                          class="btn_5_border col-6 addCart"
                           type="submit"
                           value="加入購物車"
                         />
@@ -421,6 +421,10 @@
           <!-- 入住須知 section end -->
         </div>
       </main>
+      <!-- 加入購物車顯示 -->
+      <div class="added-shopping-car">
+        @@include('layout/added-shopping-car.html')
+      </div>
       <!---------------- main 旅宿資訊 end ---------------->
       @@include('layout/footer.html')
     </div>
@@ -533,4 +537,23 @@
       window.addEventListener("resize", checkWidth);
     });
   </script>
+
+<script>
+  //顯示已加入購物車
+  let addCart = document.querySelectorAll(".addCart");
+  let popup = document.querySelector(".ol-content");
+
+  for (let index = 0; index < addCart.length; index++) {
+    const element = addCart[index];
+
+    element.addEventListener("click", function () {
+    popup.style.opacity = '1';
+
+    setTimeout(function () {
+      popup.style.opacity = '0';
+    }, 3000);
+  });
+}
+</script>
+
 </html>
