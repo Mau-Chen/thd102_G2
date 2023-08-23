@@ -56,7 +56,7 @@ export default {
                     <span>NT$ {{ (task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce).toLocaleString('en-US') }}</span>
                 </div>
                 <p><img src="/images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points <span>50</span> 點</p>  
-                <button v-if="index === 0" class="btn_4_border cancel-btn">取消預約</button>
+                <button class="btn_4_border cancel-btn">取消預約</button>
             </div>
         </div>
     </div>
