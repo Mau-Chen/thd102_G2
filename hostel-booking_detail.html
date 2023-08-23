@@ -19,7 +19,7 @@
       <!---------------- search bar star ---------------->
       <div class="d_search-out mb_60">
         <div class="search_hotel searchBar_p3">
-          <div class="threeInput"  id="select_pet">
+          <div class="threeInput" id="select_pet">
             <div class="search-box col-4 onDis768">
               <label for="">
                 <span>住宿地點或住宿名稱</span>
@@ -31,20 +31,19 @@
                 <span>入住＆退房日期</span>
                 <!-- <input type="date" /> -->
                 <DatePicker
-                v-model="date"
-                range
-                max-range="7"
-                :format="format"
-                calendar-cell-class-name="dp-custom-cell"
-                time-picker-inline
-                week-start="0"
-                :is-24="true"
-                :min-date="disabledDates"
-                :auto-position="false"
-                :enable-time-picker="false"
-              >
-              </DatePicker>
-
+                  v-model="date"
+                  range
+                  max-range="7"
+                  :format="format"
+                  calendar-cell-class-name="dp-custom-cell"
+                  time-picker-inline
+                  week-start="0"
+                  :is-24="true"
+                  :min-date="disabledDates"
+                  :auto-position="false"
+                  :enable-time-picker="false"
+                >
+                </DatePicker>
               </label>
             </div>
             <div class="search-box dropDownParent col-4 onFat768">
@@ -235,7 +234,7 @@
           </section>
 
           <!--  住宿選擇 section -->
-          <section class="hostel-list">
+          <section class="hostel-list" id="htApp">
             <h4>住宿選擇</h4>
             <!-- dog room -->
             <div class="allRoom mb_32">
@@ -309,15 +308,56 @@
                     <div class="spSubtotal">
                       <div class="spStepper">
                         <div class="add">
-                          <div class="spSubtotal_icon">
-                            <img src="images/icon/components-icon/minus.svg" />
+                          <!-- <div class="spSubtotal_icon"> -->
+                          <div
+                            class="spSubtotal_icon"
+                            @click="updateAmount(-1)"
+                            :class="{ 'limit': BuyNum === 0 }"
+                          >
+                            <!-- <img src="images/icon/components-icon/minus.svg" /> -->
+                            <svg
+                              width="11"
+                              height="3"
+                              viewBox="0 0 11 3"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
+                                fill="#E6E6E6"
+                              />
+                            </svg>
                           </div>
-                          <input type="text" value="1" />
-                          <div class="spSubtotal_icon">
-                            <img src="images/icon/components-icon/add.svg" />
+                          <!-- <input type="text" value="1" /> -->
+                          <input
+                            type="number"
+                            v-model="BuyNum"
+                            @input="handleInput"
+                          />
+                          <!-- <div class="spSubtotal_icon"> -->
+                          <div
+                            class="spSubtotal_icon"
+                            @click="updateAmount(1)"
+                            :class="{ 'limit': BuyNum === 9 }"
+                          >
+                            <!-- <img src="images/icon/components-icon/add.svg" /> -->
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 11 11"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M10.3125 4.875H6.375V0.9375C6.375 0.71875 6.15625 0.5 5.9375 0.5H5.0625C4.81641 0.5 4.625 0.71875 4.625 0.9375V4.875H0.6875C0.441406 4.875 0.25 5.09375 0.25 5.3125V6.1875C0.25 6.43359 0.441406 6.625 0.6875 6.625H4.625V10.5625C4.625 10.8086 4.81641 11 5.0625 11H5.9375C6.15625 11 6.375 10.8086 6.375 10.5625V6.625H10.3125C10.5312 6.625 10.75 6.43359 10.75 6.1875V5.3125C10.75 5.09375 10.5312 4.875 10.3125 4.875Z"
+                                fill="#5E5E5E"
+                              />
+                            </svg>
                           </div>
                         </div>
-                        <h5>NT$800</h5>
+                        <h5>
+                          NT${{ updateSubtotal().toLocaleString('en-US') }}
+                        </h5>
                       </div>
                       <div class="suButton col-6">
                         <input
@@ -366,15 +406,56 @@
                     <div class="spSubtotal">
                       <div class="spStepper">
                         <div class="add">
-                          <div class="spSubtotal_icon">
-                            <img src="images/icon/components-icon/minus.svg" />
+                          <!-- <div class="spSubtotal_icon"> -->
+                            <div
+                            class="spSubtotal_icon"
+                            @click="updateAmount(-1)"
+                            :class="{ 'limit': BuyNum === 0 }"
+                          >
+                            <!-- <img src="images/icon/components-icon/minus.svg" /> -->
+                            <svg
+                              width="11"
+                              height="3"
+                              viewBox="0 0 11 3"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
+                                fill="#E6E6E6"
+                              />
+                            </svg>
                           </div>
-                          <input type="text" value="1" />
-                          <div class="spSubtotal_icon">
-                            <img src="images/icon/components-icon/add.svg" />
+                          <!-- <input type="text" value="1" /> -->
+                          <input
+                            type="number"
+                            v-model="BuyNum"
+                            @input="handleInput"
+                          />
+                          <!-- <div class="spSubtotal_icon"> -->
+                          <div
+                            class="spSubtotal_icon"
+                            @click="updateAmount(1)"
+                            :class="{ 'limit': BuyNum === 9 }"
+                          >
+                            <!-- <img src="images/icon/components-icon/add.svg" /> -->
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 11 11"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M10.3125 4.875H6.375V0.9375C6.375 0.71875 6.15625 0.5 5.9375 0.5H5.0625C4.81641 0.5 4.625 0.71875 4.625 0.9375V4.875H0.6875C0.441406 4.875 0.25 5.09375 0.25 5.3125V6.1875C0.25 6.43359 0.441406 6.625 0.6875 6.625H4.625V10.5625C4.625 10.8086 4.81641 11 5.0625 11H5.9375C6.15625 11 6.375 10.8086 6.375 10.5625V6.625H10.3125C10.5312 6.625 10.75 6.43359 10.75 6.1875V5.3125C10.75 5.09375 10.5312 4.875 10.3125 4.875Z"
+                                fill="#5E5E5E"
+                              />
+                            </svg>
                           </div>
                         </div>
-                        <h5>NT$800</h5>
+                        <h5>
+                          NT${{ updateSubtotal().toLocaleString('en-US') }}
+                        </h5>
                       </div>
                       <div class="suButton col-6">
                         <input
@@ -443,9 +524,9 @@
         },
         pagination: {
           el: ".swiper-pagination",
-        }, 
+        },
       });
-      // Datepicker & 寵物類型 
+      // Datepicker & 寵物類型
       const select_pet = Vue.createApp({
         data() {
           return {
@@ -453,7 +534,7 @@
             numCat: 1,
             numDog: 1,
             date: null,
-            format: `MM月 dd日`
+            format: `MM月 dd日`,
           };
         },
         computed: {
@@ -490,7 +571,48 @@
       select_pet.component("Datepicker", VueDatePicker);
 
       const vm233 = select_pet.mount("#select_pet");
-
+    </script>
+    <script>
+      const app2 = Vue.createApp({
+        data() {
+          return {
+            spPrice: 800,
+            BuyNum: 0,
+            // countSubtotal: 100,
+            // shoppingItems: [
+            //   {
+            //     spPrice: 300,
+            //     BuyNum: 1,
+            //   },
+            // ],
+          };
+        },
+        methods: {
+          updateSubtotal() {
+            return this.spPrice * this.BuyNum;
+          },
+          // 更新數量，更新小計。
+          updateAmount(change) {
+            if (this.BuyNum < 9) {
+              this.BuyNum = Math.max(1, this.BuyNum + change);
+            } else if (this.BuyNum >= 9) {
+              this.BuyNum = 8;
+              this.BuyNum = Math.max(1, this.BuyNum + change);
+            }
+            this.updateSubtotal();
+          },
+          // 限制輸入在0～9之間
+          handleInput() {
+            if (BuyNum < 0) {
+              BuyNum = 0;
+            } else if (BuyNum > 9) {
+              BuyNum = 9;
+            }
+            this.updateSubtotal();
+          },
+        },
+      });
+      app2.mount("#htApp");
     </script>
   </body>
 
