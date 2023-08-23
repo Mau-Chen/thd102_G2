@@ -19,7 +19,7 @@
       <!---------------- search bar star ---------------->
       <div class="d_search-out mb_60">
         <div class="search_hotel searchBar_p3">
-          <div class="threeInput">
+          <div class="threeInput"  id="select_pet">
             <div class="search-box col-4 onDis768">
               <label for="">
                 <span>住宿地點或住宿名稱</span>
@@ -29,14 +29,79 @@
             <div class="search-box col-4 onFat768">
               <label for="">
                 <span>入住＆退房日期</span>
-                <input type="date" />
+                <!-- <input type="date" /> -->
+                <DatePicker
+                v-model="date"
+                range
+                max-range="7"
+                :format="format"
+                calendar-cell-class-name="dp-custom-cell"
+                time-picker-inline
+                week-start="0"
+                :is-24="true"
+                :min-date="disabledDates"
+                :auto-position="false"
+                :enable-time-picker="false"
+              >
+              </DatePicker>
+
               </label>
             </div>
-            <div class="search-box col-4 onFat768">
-              <label for="">
-                <span>寵物類型</span>
-                <input type="text" placeholder="請選擇" />
-              </label>
+            <div class="search-box dropDownParent col-4 onFat768">
+              <div @click="isPop = !isPop">
+                <label for="">
+                  <span>寵物類型</span>
+                  <!-- <input type="text" placeholder="請選擇" /> -->
+                </label>
+                <p>
+                  <span v-show="numDog > 0">{{ numDog }}隻狗</span>
+                  <span v-show="numDog > 0 && numCat > 0">,</span>
+                  <span v-show="numCat > 0">{{ numCat}}隻貓</span>
+                </p>
+              </div>
+              <div class="dropDown" v-show="isPop === true">
+                <div class="dropDownItem">
+                  <p>狗</p>
+                  <div class="dropDownItem col-4">
+                    <button
+                      type="button"
+                      class="minus"
+                      @click="toChange('numDog', -1)"
+                    >
+                      -
+                    </button>
+                    <span>{{ numDog }}</span>
+                    <button
+                      type="button"
+                      class="plus"
+                      @click="toChange('numDog', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="dropDownItem">
+                  <p>貓</p>
+                  <div class="dropDownItem col-4">
+                    <button
+                      type="button"
+                      class="minus"
+                      @click="toChange('numCat', -1)"
+                    >
+                      -
+                    </button>
+                    <span>{{ numCat }}</span>
+                    <button
+                      type="button"
+                      class="plus"
+                      @click="toChange('numCat', +1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <button class="btn_7 onDis768" type="button" id="searchButton">
@@ -361,6 +426,7 @@
     </div>
 
     <!-- Swiper JS -->
+    <script src="/js/vue-datepicker.iife.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- 輪播 Initialize Swiper -->
@@ -377,10 +443,54 @@
         },
         pagination: {
           el: ".swiper-pagination",
-        },
-
-        
+        }, 
       });
+      // Datepicker & 寵物類型 
+      const select_pet = Vue.createApp({
+        data() {
+          return {
+            isPop: false,
+            numCat: 1,
+            numDog: 1,
+            date: null,
+            format: `MM月 dd日`
+          };
+        },
+        computed: {
+          disabledDates() {
+            let today = new Date();
+            let disabledtoday = new Date(today);
+            disabledtoday.setDate(disabledtoday.getDate() + 1);
+
+            return disabledtoday;
+          },
+          hoursArray() {
+            const arr = [];
+            for (let i = 0; i < 24; i++) {
+              arr.push({ text: i < 10 ? `0${i}` : i, value: i });
+            }
+            return arr;
+          },
+          minutesArray() {
+            const arr = [];
+            for (let i = 0; i < 60; i++) {
+              arr.push({ text: i < 10 ? `0${i}` : i, value: i });
+            }
+            return arr;
+          },
+        },
+        methods: {
+          toChange(property, value) {
+            if (value > 0 || (value < 0 && this[property] > 0)) {
+              this[property] += value;
+            }
+          },
+        },
+      });
+      select_pet.component("Datepicker", VueDatePicker);
+
+      const vm233 = select_pet.mount("#select_pet");
+
     </script>
   </body>
 
