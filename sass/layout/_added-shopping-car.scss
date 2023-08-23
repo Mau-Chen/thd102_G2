@@ -1,15 +1,18 @@
 //購物車彈跳窗
 .added-shopping-car{
-    width: 350px;
-    padding: 30px 0 0 0 ;
     position: relative;
     .ol-content{
-        width: 350px;
-        padding: 20px;
+        padding: 20px 32px ;
         background: $white;
         border-radius: $br_12;
+        position:fixed;
+        top: 100px;
+        right: 10px;
+        box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.2);
+        opacity: 0;
         @include flex($jc:flex-start);
         gap: 10px;
+        transition: opacity 1s ease-in-out;
         .ol-title{
             @include flex($jc: space-between);
         }
@@ -36,14 +39,15 @@
             padding: 12px 20px;
         }
     }
-    .ol-content::before{
-        content: "";
-        position: absolute;
-        top: 20px;
-        right: 34px;
-        border-left: 24px solid transparent;
-        border-right: 24px solid transparent;
-        border-bottom: 20px solid white;
-        z-index: 1;
-    }
+    // .ol-content::before{
+    //     content: "";
+    //     position: absolute;
+    //     top: 20px;
+    //     right: 34px;
+    //     border-left: 24px solid transparent;
+    //     border-right: 24px solid transparent;
+    //     border-bottom: 20px solid white;
+    //     box-shadow: rgba(255,255,255,0.3);
+    //     z-index: 1;
+    // }
 }

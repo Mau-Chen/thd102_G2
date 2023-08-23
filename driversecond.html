@@ -126,6 +126,10 @@
             </li>
           </ul>
         </div>
+        <!-- 加入購物車視窗 -->
+        <div class="added-shopping-car">
+          @@include('layout/added-shopping-car.html')
+        </div>
       </div>
       @@include('layout/footer.html')
     </div>
@@ -208,6 +212,20 @@
       });
       app.component("Datepicker", VueDatePicker);
       app.mount("#driver_app");
+    </script>
+
+
+    <script> //顯示已加入購物車
+      let btn = document.querySelector('.btn_5_border');
+      let popup = document.querySelector('.ol-content');
+
+      btn.addEventListener('click', function() {
+          popup.style.opacity = '1';
+
+          setTimeout(function() {
+              popup.style.opacity = '0';
+          }, 3000);
+      });
     </script>
   </body>
 </html>
