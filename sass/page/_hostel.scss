@@ -305,6 +305,38 @@
     color: $purple;
   }
   // }
+  .swiper-slide {
+    width: 60% !important;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      width: 100% !important;
+    }
+  }
+  .swiper-button-next, .swiper-button-prev{
+    font-size: 38px;
+    font-weight: 700;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+  }
+  .swiper-button-next:after,
+  .swiper-button-prev:after{
+    font-size: 30px;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    color: white;
+  }
+
   // -------- Page-3 hostel_content --------
   .hostel_content {
     padding: 0 32px;

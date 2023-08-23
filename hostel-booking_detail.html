@@ -7,12 +7,8 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
-    <!-- <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-  /> -->
     <link rel="stylesheet" href="sass/plugin/_SwiperCarousel.scss" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>GO旅宿 | PetpaGo</title>
   </head>
 
@@ -50,15 +46,9 @@
       </div>
 
       <!------ 輪播圖 ------>
-      
+      <div class="container">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper mb_60">
-            <div class="swiper-slide">
-              <img
-                src="./images/pic/hostel/hostel page3/hostel-carousel-01.png"
-                alt=""
-              />
-            </div>
             <div class="swiper-slide">
               <img
                 src="./images/pic/hostel/hostel page3/hostel-carousel-02.png"
@@ -83,10 +73,11 @@
                 alt=""
               />
             </div>
-            <div
-              class="./images/pic/hostel/hostel page3/hostel-carousel-06.png.png"
-            >
-              <img src="./pic/hostel-carousel-06.png" alt="" />
+            <div class="swiper-slide">
+              <img
+                src="./images/pic/hostel/hostel page3/hostel-carousel-01.png"
+                alt=""
+              />
             </div>
           </div>
 
@@ -94,7 +85,7 @@
           <div class="swiper-button-prev"></div>
           <div class="swiper-pagination"></div>
         </div>
-  
+      </div>
 
       <!---------------- main 旅宿資訊 star ---------------->
       <main class="hostel_content">
@@ -375,80 +366,61 @@
     <!-- 輪播 Initialize Swiper -->
     <script>
       var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        // centeredSlides: true,
-        spaceBetween: 16,
-        cssMode: true,
+        slidesPerView: "auto",
+        centeredSlides: true,
+        // spaceBetween: 16,
+        loop: true,
+        // cssMode: true,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
         pagination: {
-          // el: ".swiper-pagination",
+          el: ".swiper-pagination",
         },
-        mousewheel: true,
-        keyboard: true,
 
-        // Responsive breakpoints 斷點
-        breakpoints: {
-          // when window width is >= 375px
-          375: {
-            slidesPerView: 1,
-            spaceBetween: 8,
-          },
-          // when window width is >= 414px
-          414: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          // when window width is >= 767px
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 11,
-          },
-        },
+        
       });
     </script>
   </body>
 
-  <script> //768選單
-    document.addEventListener('DOMContentLoaded', function() {
-      const searchOut = document.querySelector('.d_search-out');
-      const onDis768Elements = document.querySelectorAll('.onDis768');
-    
+  <script>
+    //768選單
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchOut = document.querySelector(".d_search-out");
+      const onDis768Elements = document.querySelectorAll(".onDis768");
+
       function handleMouseEnter() {
-        onDis768Elements.forEach(function(element) {
-          element.style.display = 'block';
+        onDis768Elements.forEach(function (element) {
+          element.style.display = "block";
         });
       }
-    
+
       function handleMouseLeave() {
-        onDis768Elements.forEach(function(element) {
-          element.style.display = 'none';
+        onDis768Elements.forEach(function (element) {
+          element.style.display = "none";
         });
       }
-    
+
       function checkWidth() {
         const windowSize = window.innerWidth;
-    
+
         if (windowSize <= 768) {
-          searchOut.addEventListener('mouseenter', handleMouseEnter);
-          searchOut.addEventListener('mouseleave', handleMouseLeave);
+          searchOut.addEventListener("mouseenter", handleMouseEnter);
+          searchOut.addEventListener("mouseleave", handleMouseLeave);
         } else {
-          onDis768Elements.forEach(function(element) {
-            element.style.display = '';
+          onDis768Elements.forEach(function (element) {
+            element.style.display = "";
           });
-          searchOut.removeEventListener('mouseenter', handleMouseEnter);
-          searchOut.removeEventListener('mouseleave', handleMouseLeave);
+          searchOut.removeEventListener("mouseenter", handleMouseEnter);
+          searchOut.removeEventListener("mouseleave", handleMouseLeave);
         }
       }
-  
+
       //初始檢查
       checkWidth();
       // 當視窗大小改變時重新檢查
-      window.addEventListener('resize', checkWidth);
+      window.addEventListener("resize", checkWidth);
     });
-    </script>
-    
-    
+  </script>
 </html>
