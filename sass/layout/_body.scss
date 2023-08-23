@@ -5,6 +5,7 @@ body {
   color: $black;
 }
 .wrapper {
+  padding-top: 88px;
   @include layout(100);
   @import "header";
   @import "login";
