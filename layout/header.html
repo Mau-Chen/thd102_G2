@@ -6,7 +6,7 @@
     <li><a href="hostel.html">GO旅宿</a></li>
     <li><a href="driver.html">GO司機</a></li>
     <li><a href="photowall.html">GO有料</a></li>
-    <li>
+    <li class="shoop">
       <a href="shopping.html">
         <img src="/images/icon/header-icon/shoop.svg" alt="shopCar"
       /></a>
@@ -26,6 +26,11 @@
         />
       </svg>
       <!-- <img src="/images/icon/header-icon/user-icon.svg" alt="user" /> -->
+    </li>
+    <li>
+      <div class="shopping-cart">
+        @@include('./shopping-cart.html')
+      </div>
     </li>
   </ul>
 
@@ -222,4 +227,20 @@
   }
 
   new Hambuger();
+</script>
+
+<script> //滑鼠移到購物車上面的展示效果
+  document.addEventListener("DOMContentLoaded", () => {
+  const shoopElement = document.querySelector('.shoop');
+  const shoppingCartElement = document.querySelector('.shopping-cart');
+  
+  shoopElement.addEventListener('mouseenter', () => {
+    shoppingCartElement.style.display = 'block';
+  });
+  
+  shoopElement.addEventListener('mouseleave', () => {
+    shoppingCartElement.style.display = 'none';
+  });
+});
+
 </script>
