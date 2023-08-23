@@ -296,15 +296,15 @@
     }
   }
   // -------- Page-3 pic carousel --------
-  // .wrapper {
-  .swiper-wrapper {
-    overflow: hidden;
-  }
+  
+  // .swiper-wrapper {
+  //   overflow: hidden;
+  // }
   .swiper-button-next:after,
   .swiper-button-prev:after {
     color: $purple;
   }
-  // }
+  
   .swiper-slide {
     width: 60% !important;
     margin-left: 10px;
