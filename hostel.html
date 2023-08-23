@@ -14,37 +14,20 @@
         position: relative;
       }
 
-      .dropDown {
-        border: 1px solid #e6e6e6;
-        position: absolute;
-        padding: 16px;
-        width: 100%;
-        left: 0;
-        bottom: -163px;
-        background-color: white;
-        border-radius: 8px;
-        animation: slide-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-      }
+    .dropDown {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: -63px;
+      background-color: aqua;
+    }
 
-      .dropDownItem {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        .minus,
-        .plus {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          border: 1px solid #333;
-          align-items: center;
-        }
-      }
-      .line{
-          border-bottom: 1px solid #e2e2e2;
-        }
-    </style>
-  </head>
+    .dropDownItem {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
 
   <body>
     <div class="wrapper hostel">
@@ -64,87 +47,72 @@
         <!-- <img src="/images/banner/hostel/hostel_cat.svg" alt="banner"> -->
       </picture>
 
-      <!---------------- search bar star ---------------->
-      <div class="hostel_headBox">
-        <div class="container">
-          <h2 class="hostel_title">最貼心的寵物住宿</h2>
-          <div class="search_hotel mb_100">
-            <div class="threeInput" id="select_pet">
-              <div class="search-box col-4">
+    <!---------------- search bar star ---------------->
+    <div class="hostel_headBox">
+      <div class="container">
+        <h2 class="hostel_title">最貼心的寵物住宿</h2>
+        <div class="search_hotel mb_100">
+          <div class="threeInput" id="select_pet">
+            <div class="search-box col-4">
+              <label for="">
+                <span>住宿地點或住宿名稱</span>
+                <input type="text" placeholder="城市／地區／住宿名稱" />
+              </label>
+            </div>
+            <div class="search-box col-4">
+              <label for="">
+                <span>入住＆退房日期</span>
+                <input type="date" />
+              </label>
+            </div>
+            <div class="search-box dropDownParent col-4">
+              <div @click="isPop = !isPop">
                 <label for="">
-                  <span>住宿地點或住宿名稱</span>
-                  <input type="text" placeholder="城市／地區／住宿名稱" />
+                  <span>寵物類型</span>
+                  <!-- <input type="text" placeholder="請選擇" /> -->
                 </label>
+                <p>
+                  <span v-show="numDog > 0">{{ numDog }}隻狗</span>
+                  <span v-show="numDog > 0 && numCat > 0">,</span>
+                  <span v-show="numCat > 0">{{ numCat}}隻貓</span>
+                </p>
+
               </div>
-              <div class="search-box col-4">
-                <label for="">
-                  <span>入住＆退房日期</span>
-                  <input type="date" />
-                </label>
-              </div>
-              <div class="search-box dropDownParent col-4">
-                <div @click="isPop = !isPop">
-                  <label for="">
-                    <span>寵物類型</span>
-                    <!-- <input type="text" placeholder="請選擇" /> -->
-                  </label>
-                  <p>
-                    <span v-show="numCat > 0">{{ numDog }}隻狗</span>
-                    <span v-show="numDog > 0 && numCat > 0">,</span>
-                    <span v-show="numDog > 0">{{ numCat}}隻貓</span>
-                  </p>
-                </div>
-                <div class="dropDown" v-show="isPop === true">
+              <div class="dropDown" v-show="isPop === true">
+                <div class="dropDownItem">
+                  <p>貓</p>
                   <div class="dropDownItem">
-                    <p>狗</p>
-                    <div class="dropDownItem col-5">
-                      <button
-                        type="button"
-                        class="minus"
-                        @click="toChange('numDog', -1)"
-                      >
-                        -
-                      </button>
-                      <span>{{ numDog }}</span>
-                      <button
-                        type="button"
-                        class="plus"
-                        @click="toChange('numDog', 1)"
-                      >
-                        +
-                      </button>
-                    </div>
+                    <button type="button" @click="toChange('numCat', 1)">
+                      +
+                    </button>
+                    <span>{{ numCat }}</span>
+                    <button type="button" @click="toChange('numCat', -1)">
+                      -
+                    </button>
                   </div>
-                  <div class="line"></div>
+                </div>
+                <div class="dropDownItem">
+                  <p>狗</p>
                   <div class="dropDownItem">
-                    <p>貓</p>
-                    <div class="dropDownItem col-5">
-                      <button
-                        type="button"
-                        class="minus"
-                        @click="toChange('numCat', -1)"
-                      >
-                        -
-                      </button>
-                      <span>{{ numCat }}</span>
-                      <button
-                        type="button"
-                        class="plus"
-                        @click="toChange('numCat', 1)"
-                      >
-                        +
-                      </button>
-                    </div>
+                    <button type="button" @click="toChange('numDog', 1)">
+                      +
+                    </button>
+                    <span>{{ numDog }}</span>
+                    <button type="button" @click="toChange('numDog', -1)">
+                      -
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <button class="btn_7" type="button" id="searchButton">
-              立即搜尋
-            </button>
+
           </div>
+          <button class="btn_7" type="button" id="searchButton">
+            立即搜尋
+          </button>
         </div>
       </div>
+    </div>
 
       <!---------------- main 精選寵物旅宿 star ---------------->
       <main class="top_area_hotels mb_60">
@@ -239,24 +207,25 @@
       @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
 
-    <script>
-      const select_pet = Vue.createApp({
-        data() {
-          return {
-            isPop: false,
-            numCat: 1,
-            numDog: 1,
-          };
+  <script>
+    const select_pet = Vue.createApp({
+      data() {
+        return {
+          isPop: false,
+          numCat: 1,
+          numDog: 1,
+        };
+      },
+      methods: {
+        toChange(property, value) {
+          if (value > 0 || (value < 0 && this[property] > 0)) {
+            this[property] += value;
+          }
         },
-        methods: {
-          toChange(property, value) {
-            if (value > 0 || (value < 0 && this[property] > 0)) {
-              this[property] += value;
-            }
-          },
-        },
-      });
-      const vm233 = select_pet.mount("#select_pet");
-    </script>
-  </body>
+      },
+    });
+    const vm233 = select_pet.mount("#select_pet");
+  </script>
+</body>
+
 </html>

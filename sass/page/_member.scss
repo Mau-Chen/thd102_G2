@@ -200,6 +200,7 @@
       }
       .arrowIcon {
         transform: rotate(180deg);
+        cursor: pointer;
       }
       .active_arrow {
         transform: rotate(0deg);
@@ -283,11 +284,35 @@
       border-left: 1px solid $gray_1;
       border-right: 1px solid $gray_1;
       border-bottom: 1px solid $gray_1;
+      a{
+        img{
+          max-width: none;
+        }
+      }
       .post-date-delete {
         @include flex($jc: space-between);
         width: 100%;
         img {
           cursor: pointer;
+        }
+      }
+      .lightbox{
+        display: none;
+        &:target{
+          display:block;
+        }
+        span {
+          /* Full width and height */
+          display: block;
+          width: 50%;
+          height: 50%;
+          margin: 0 auto;
+          margin-top: 170px;
+        
+          /* Size and position background image */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
         }
       }
     }

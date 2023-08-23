@@ -25,80 +25,80 @@
         <img src="images/banner/drive/big_drive_banner.svg" alt="" />
       </picture>
 
-      <div class="container">
-        @@include('layout/driverbanner.html')
-        <!-- <p>driver</p> -->
-        <section class="drivercards mb_100">
-          <div class="leftcard col-5">
-            <div class="filter">
-              <span>HOW TO BOOKING</span>
+      <main class="drive_container">
+        <div class="container">
+          @@include('layout/driverbanner.html')
+          <!-- <p>driver</p> -->
+          <section class="drivercards mb_100">
+            <div class="leftcard col-5">
+              <div class="filter">
+                <span>HOW TO BOOKING</span>
+              </div>
             </div>
-          </div>
-          <div class="rightcard col-7 col-lg-12 col-sm-12">
-            <h4 class="mb_28">如何預約</h4>
-            <div class="card">
-              <ul>
-                <li>
-                  <img
-                    src="./images/illustration/db-01.svg"
-                    alt=""
-                    class="mb_32 db"
-                  />
-                  <h6>輸入起訖點</h6>
-                  <p>
-                    讓司機準確地前往您的位置，並帶您和您的寵物安全抵達目的地。
-                  </p>
-                </li>
-                <li>
-                  <img
-                    src="./images/illustration/db-02.svg"
-                    alt=""
-                    class="mb_32 db"
-                  />
-                  <h6>選擇日期、時間、人數和寵物</h6>
-                  <p>
-                    我們建議至少提前3小時預約，以確保預約司機服務得到及時處理。
-                  </p>
-                </li>
-                <li>
-                  <img
-                    src="./images/illustration/db-03.svg"
-                    alt=""
-                    class="mb_32 db"
-                  />
-                  <h6>費用試算</h6>
-                  <p>
-                    完成選擇後，系統將預估車程費用試算。讓您提前了解預計的搭乘費用。
-                  </p>
-                </li>
-                <li>
-                  <img
-                    src="./images/illustration/db-04.svg"
-                    alt=""
-                    class="mb_32 db"
-                  />
-                  <h6>輸入起訖點</h6>
-                  <p>
-                    讓司機準確地前往您的位置，並帶您和您的寵物安全抵達目的地。
-                  </p>
-                </li>
-              </ul>
+            <div class="rightcard col-7 col-lg-12 col-sm-12">
+              <h4 class="mb_28">如何預約</h4>
+              <div class="card">
+                <ul>
+                  <li>
+                    <img
+                      src="./images/illustration/db-01.svg"
+                      alt=""
+                      class="mb_32 db"
+                    />
+                    <h6>輸入起訖點</h6>
+                    <p>
+                      讓司機準確地前往您的位置，並帶您和您的寵物安全抵達目的地。
+                    </p>
+                  </li>
+                  <li>
+                    <img
+                      src="./images/illustration/db-02.svg"
+                      alt=""
+                      class="mb_32 db"
+                    />
+                    <h6>選擇日期、時間、人數和寵物</h6>
+                    <p>
+                      我們建議至少提前3小時預約，以確保預約司機服務得到及時處理。
+                    </p>
+                  </li>
+                  <li>
+                    <img
+                      src="./images/illustration/db-03.svg"
+                      alt=""
+                      class="mb_32 db"
+                    />
+                    <h6>費用試算</h6>
+                    <p>
+                      完成選擇後，系統將預估車程費用試算。讓您提前了解預計的搭乘費用。
+                    </p>
+                  </li>
+                  <li>
+                    <img
+                      src="./images/illustration/db-04.svg"
+                      alt=""
+                      class="mb_32 db"
+                    />
+                    <h6>輸入起訖點</h6>
+                    <p>
+                      讓司機準確地前往您的位置，並帶您和您的寵物安全抵達目的地。
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
+      </main>
       @@include('layout/ad.html') @@include('layout/ad_carousel_driver.html')
       @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
+    <!-- <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script> -->
     <!-- <script src="./vue.global.js"></script> -->
     <script src="/js/vue-datepicker.iife.js"></script>
     <script type="module">
-      // let category_set = document.getElementById("dropmenu");
-      // category_set.addEventListener("click", function () {
-      //   console.log("eee");
-      // });
-
       import DriverSelector from "./js/components/DriverSelector.js";
+      // console.log(window.VueUse);
       const app = Vue.createApp({
         data() {
           return {
@@ -106,20 +106,24 @@
             format: `MM月 dd日 ｜HH ：mm`,
             msg_start: "",
             msg_end: "",
-            car_menu: "",
-            showCarMenu: "",
-            showCarMenu: false, // 控制下拉選單是否顯示的變數
+            passenger_counter: 0,
+            pet_counter: 0,
+            car_menu: "轎車",
+            car_menu_open: false,
+            passenger_menu_open: false,
             counter: 1,
+            passenger: "乘客",
+            pet: "寵物",
             cars: [
               {
                 id: "a",
                 cars_type: "轎車",
-                cars_text: "乘客＋毛孩共3位",
+                cars_text: "乘客＋毛孩最多3位",
               },
               {
                 id: "b",
                 cars_type: "休旅車",
-                cars_text: "乘客＋毛孩共4位",
+                cars_text: "乘客＋毛孩最多4位",
               },
             ],
           };
@@ -143,37 +147,6 @@
             this.msg_start = msg_end;
             this.msg_end = msg_start;
           },
-          category_kind_display(e) {
-            let category_kind_active = this.$refs.category_kind_active;
-            category_kind_active.classList.toggle("active");
-          },
-          smooth(e) {
-            let click_ul = e.target.closest(".carList").parentElement; // ul
-            let clean = click_ul.querySelectorAll("div");
-            clean.forEach((n) => {
-              n.classList.remove("smooth");
-            });
-
-            let click_li = e.target.closest(".carList");
-            let click_li_div = click_li.querySelector("div");
-            click_li_div.classList.add("smooth");
-            // 將具有 class="smooth" 的項目的 cars_type 賦值給 selectedCarType
-            if (click_li_div.classList.contains("smooth")) {
-              this.car_menu = click_li.querySelector("p").innerText;
-            }
-          },
-
-          driverStepper_wrapper_display() {
-            let driverStepper_wrapper_active =
-              this.$refs.driverStepper_wrapper_active;
-            driverStepper_wrapper_active.classList.toggle("active");
-          },
-          // PlusOne() {
-          //   this.counter++;
-          // },
-          // MinusOne() {
-          //   this.counter--;
-          // },
         },
         mounted() {
           const startDate = new Date();
@@ -182,10 +155,10 @@
           this.date = startDate;
           // this.date = [startDate];
 
-          const firstItem = document.querySelector(".carList");
-          const firstItemDiv = firstItem.querySelector("div");
-          firstItemDiv.classList.add("smooth");
-          this.car_menu = firstItem.querySelector("p").innerText;
+          // const firstItem = document.querySelector(".carList");
+          // const firstItemDiv = firstItem.querySelector("div");
+          // firstItemDiv.classList.add("smooth");
+          // this.car_menu = firstItem.querySelector("p").innerText;
         },
       });
       app.component("Datepicker", VueDatePicker);

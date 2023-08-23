@@ -1,12 +1,91 @@
 //關於我們
-.about{
+.about {
+  .about_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 100px;
+  }
+  .about_header {
+    background-image: url("/images/banner/drive/drive_line.svg");
+    text-align: center;
+    padding: 100px 0;
+    h1 {
+      color: $purple_d;
+    }
+  }
 
+  .about_sec {
+    background: $green;
+    padding: 100px 40px;
+    @include flex(column);
+    gap: 32px;
+    color: $white;
+    h2 {
+      letter-spacing: 2px;
+      span {
+        color: #00ffddd3;
+        margin: 0 20px;
+      }
+    }
 
+    .join_number {
+      @include flex(row, space-between);
+      gap: 140px;
+      .little_box {
+        @include flex(column);
+        h1 {
+          color: #00ffddd3;
+        }
+      }
+    }
+  }
 
-
-
-
-
-
-
+  .about_thd {
+    .container {
+      @include flex();
+      gap: 120px;
+      .team {
+        position: relative;
+        .team_name {
+          position: absolute;
+          bottom: 10%;
+          right: -15%;
+          background-color: $white;
+          border-radius: $br_8;
+          padding: 10px 16px;
+          p {
+            font-weight: 700;
+          }
+        }
+      }
+      .team_text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  }
+  .about_four {
+    .container {
+      background: #e5f4f2;
+      border-radius: $br_12;
+      padding: 64px 120px;
+      @include flex(row, space-between);
+      gap: 40px;
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        p {
+          color: $textColor_m;
+          margin-bottom: 16px;
+        }
+        .btn_5 {
+          background: $green;
+          width: 25%;
+        }
+      }
+    }
+  }
 }

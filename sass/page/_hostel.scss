@@ -67,10 +67,10 @@
             width: 100%;
             padding: 0;
             outline: #edecfe;
-            ::placeholder {
-              color: $textColor_l;
-            }
           }
+        }
+        ::placeholder {
+          color: $textColor_l;
         }
         &:hover {
           background: $searchColor;
@@ -98,10 +98,10 @@
     }
     @media (max-width: 500px) {
       padding: 20px;
-      gap: 20px;
+      gap: 12px;
       .threeInput {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
         .search-box {
           width: 100%;
         }
@@ -296,9 +296,14 @@
     }
   }
   // -------- Page-3 pic carousel --------
-  
-  // .swiper {
-  //   height: 500px;
+  // .wrapper {
+  .swiper-wrapper {
+    overflow: hidden;
+  }
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    color: $purple;
+  }
   // }
   .swiper-slide {
     width: 60% !important;
