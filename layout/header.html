@@ -3,10 +3,16 @@
     <img src="/images/logo/PetpaGo-logo.svg" alt="PetpaGo logo" />
   </a>
   <ul class="navList col-10">
-    <li><a href="hostel.html">GO旅宿</a></li>
-    <li><a href="driver.html">GO司機</a></li>
-    <li><a href="photowall.html">GO有料</a></li>
-    <li class="shoop">
+    <li class="nav_item" data-content="GO旅宿">
+      <a href="hostel.html">GO旅宿</a>
+    </li>
+    <li class="nav_item" data-content="GO司機">
+      <a href="driver.html">GO司機</a>
+    </li>
+    <li class="nav_item" data-content="GO有料">
+      <a href="photowall.html">GO有料</a>
+    </li>
+    <li>
       <a href="shopping.html">
         <img src="/images/icon/header-icon/shoop.svg" alt="shopCar"
       /></a>
@@ -25,12 +31,9 @@
           fill="#09003E"
         />
       </svg>
-      <!-- <img src="/images/icon/header-icon/user-icon.svg" alt="user" /> -->
     </li>
     <li>
-      <div class="shopping-cart">
-        @@include('./shopping-cart.html')
-      </div>
+      <div class="shopping-cart">@@include('./shopping-cart.html')</div>
     </li>
   </ul>
 
@@ -110,6 +113,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js"></script>
 <script>
+  // rwd nav button
   class Hambuger {
     constructor() {
       window.pc = true;
@@ -229,18 +233,18 @@
   new Hambuger();
 </script>
 
-<script> //滑鼠移到購物車上面的展示效果
+<script>
+  //滑鼠移到購物車上面的展示效果
   document.addEventListener("DOMContentLoaded", () => {
-  const shoopElement = document.querySelector('.shoop');
-  const shoppingCartElement = document.querySelector('.shopping-cart');
-  
-  shoopElement.addEventListener('mouseenter', () => {
-    shoppingCartElement.style.display = 'block';
-  });
-  
-  shoopElement.addEventListener('mouseleave', () => {
-    shoppingCartElement.style.display = 'none';
-  });
-});
+    const shoopElement = document.querySelector(".shoop");
+    const shoppingCartElement = document.querySelector(".shopping-cart");
 
+    shoopElement.addEventListener("mouseenter", () => {
+      shoppingCartElement.style.display = "block";
+    });
+
+    shoopElement.addEventListener("mouseleave", () => {
+      shoppingCartElement.style.display = "none";
+    });
+  });
 </script>

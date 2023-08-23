@@ -5,26 +5,39 @@
     overflow: hidden;
     // height: 560px;
     background: #955ffd;
-    // background-image: url("/images/banner/index_banner.svg");
-    // background-position: right bottom;
-    // background-repeat: no-repeat;
     @include flex(row, space-between);
     .banner_text {
       color: $white;
       margin-left: 7.5em;
-      @media (max-width: 1000px) {
-        margin-left: 2em;
+      h6 {
+        font-weight: 300;
       }
-    }
-    @media (max-width: 768px) {
-      // .banner_text {
-      //   margin-left: 2.5em;
-      // }
+      @media (max-width: 1000px) {
+        margin-left: 3em;
+        h1 {
+          font-size: 40px;
+        }
+      }
     }
     @media (max-width: 434px) {
       height: 615px;
       background-size: 100%;
       flex-direction: column;
+      img {
+        position: relative;
+        left: 40px;
+      }
+      .banner_text {
+        margin-left: 0;
+        text-align: center;
+        margin-top: 4.5em;
+        h1 {
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+    @media (max-width: 375px) {
+      height: 590px;
     }
   }
   .section_p120 {
