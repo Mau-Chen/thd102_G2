@@ -3,106 +3,207 @@
     <h2 class="mb_24">最安心的寵物接送</h2>
   </div>
   <div class="searchbar" id="driver_app">
-    <div class="upsection">
-      <div class="place">
-        <span>出發點</span>
-        <input type="text" placeholder="輸入上車地點" v-model="msg_start" />
-      </div>
-
-      <img
-        src="../images/icon/drive-icon/change-bt.svg"
-        alt=""
-        @click="change"
-      />
-
-      <div class="place">
-        <span>目的地</span>
-        <input type="text" placeholder="輸入下車地點" v-model="msg_end" />
-      </div>
-    </div>
-
-    <div class="downsection">
-      <div class="categorycontrol col-12">
-        <div class="category">
-          <span>乘車日期&時間</span>
-          <DatePicker
-            v-model="date"
-            :format="format"
-            calendar-cell-class-name="dp-custom-cell"
-            time-picker-inline
-            week-start="0"
-            :is-24="true"
-            :min-date="disabledDates"
-            :auto-position="false"
+    <form action="driversecond.html" method="get">
+      <div class="upsection">
+        <div class="place">
+          <span>出發點</span>
+          <input
+            type="text"
+            placeholder="輸入上車地點"
+            v-model="msg_start"
+            name="start_place"
           />
         </div>
-        <div class="category categoryset">
-          <span>車種</span>
+
+        <img
+          src="../images/icon/drive-icon/change-bt.svg"
+          alt=""
+          @click="change"
+        />
+
+        <div class="place">
+          <span>目的地</span>
           <input
-            type="button"
-            :value="car_menu"
-            @click="car_menu_open === true ? car_menu_open = false : car_menu_open = true"
+            type="text"
+            placeholder="輸入下車地點"
+            v-model="msg_end"
+            name="end_place"
           />
-          <div
-            class="category_kind"
-            :class="{'active':car_menu_open}"
-            ref="category_kind_active"
-          >
-            <div class="category_bottom">
-              <ul class="car">
-                <li class="carList" v-for="item in cars" :key="item.id">
-                  <input
-                    type="radio"
-                    v-model="car_menu"
-                    name="car-type"
-                    :value="item.cars_type"
-                  />
-                  <p ref="CAR">{{item.cars_type}}</p>
-                  <span>{{item.cars_text}}</span>
-                  <div
-                    class="check-box"
-                    :class="{'smooth':item.cars_type === car_menu}"
-                  ></div>
-                </li>
-              </ul>
+        </div>
+      </div>
+
+      <div class="downsection">
+        <div class="categorycontrol col-12">
+          <div class="category">
+            <span>乘車日期&時間</span>
+            <DatePicker
+              v-model="date"
+              :format="format"
+              calendar-cell-class-name="dp-custom-cell"
+              time-picker-inline
+              week-start="0"
+              :is-24="true"
+              :min-date="disabledDates"
+              :auto-position="false"
+              name="date-picker"
+            />
+          </div>
+          <div class="category categoryset">
+            <span>車種</span>
+            <input
+              type="button"
+              :value="car_menu"
+              @click="car_menu_open === true ? car_menu_open = false : car_menu_open = true"
+              name="car_type"
+            />
+            <div
+              class="category_kind"
+              :class="{'active':car_menu_open}"
+              ref="category_kind_active"
+            >
+              <div class="category_bottom">
+                <ul class="car">
+                  <li
+                    class="carList"
+                    v-for="item in cars"
+                    :key="item.id"
+                    @click="car_menu =  item.cars_type"
+                  >
+                    <input
+                      type="radio"
+                      v-model="car_menu"
+                      name="car-type"
+                      :value="item.cars_type"
+                    />
+                    <p ref="CAR">{{item.cars_type}}</p>
+                    <span>{{item.cars_text}}</span>
+                    <div
+                      class="check-box"
+                      :class="{'smooth':item.cars_type === car_menu}"
+                    ></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="category">
+            <span>乘客數量</span>
+            <input
+              type="button"
+              @click="passenger_menu_open = !passenger_menu_open"
+              :value="show_passenger_quantity"
+              name="driver_quantity"
+            />
+
+            <div
+              class="driverStepper_wrapper"
+              :class="{'active':passenger_menu_open}"
+              ref="driverStepper_wrapper_active"
+            >
+              <div class="passenger_quantity">
+                <div class="driverStepper">
+                  <p>乘客</p>
+                  <div class="driver_Subtotal_icon_wrapper col-5">
+                    <input
+                      type="hidden"
+                      v-model="passenger_counter"
+                      name="passenger"
+                    />
+                    <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
+                    <div
+                      class="dirver_Subtotal_icon"
+                      @click="MinusOne('passenger_counter')"
+                    >
+                      <svg
+                        width="11"
+                        height="3"
+                        viewBox="0 0 11 3"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
+                          fill="#E6E6E6"
+                        />
+                      </svg>
+                    </div>
+                    <p>{{ passenger_counter }}</p>
+                    <div
+                      class="dirver_Subtotal_icon"
+                      @click="PlusOne('passenger_counter')"
+                    >
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 11 11"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.3125 4.875H6.375V0.9375C6.375 0.71875 6.15625 0.5 5.9375 0.5H5.0625C4.81641 0.5 4.625 0.71875 4.625 0.9375V4.875H0.6875C0.441406 4.875 0.25 5.09375 0.25 5.3125V6.1875C0.25 6.43359 0.441406 6.625 0.6875 6.625H4.625V10.5625C4.625 10.8086 4.81641 11 5.0625 11H5.9375C6.15625 11 6.375 10.8086 6.375 10.5625V6.625H10.3125C10.5312 6.625 10.75 6.43359 10.75 6.1875V5.3125C10.75 5.09375 10.5312 4.875 10.3125 4.875Z"
+                          fill="#5E5E5E"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="driverStepper">
+                  <p>毛孩</p>
+                  <div class="driver_Subtotal_icon_wrapper col-5">
+                    <input type="hidden" v-model="pet_counter" name="pet" />
+                    <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
+                    <div
+                      class="dirver_Subtotal_icon"
+                      @click="MinusOne('pet_counter')"
+                    >
+                      <svg
+                        width="11"
+                        height="3"
+                        viewBox="0 0 11 3"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
+                          fill="#E6E6E6"
+                        />
+                      </svg>
+                    </div>
+                    <p>{{ pet_counter }}</p>
+                    <div
+                      class="dirver_Subtotal_icon"
+                      @click="PlusOne('pet_counter')"
+                    >
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 11 11"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.3125 4.875H6.375V0.9375C6.375 0.71875 6.15625 0.5 5.9375 0.5H5.0625C4.81641 0.5 4.625 0.71875 4.625 0.9375V4.875H0.6875C0.441406 4.875 0.25 5.09375 0.25 5.3125V6.1875C0.25 6.43359 0.441406 6.625 0.6875 6.625H4.625V10.5625C4.625 10.8086 4.81641 11 5.0625 11H5.9375C6.15625 11 6.375 10.8086 6.375 10.5625V6.625H10.3125C10.5312 6.625 10.75 6.43359 10.75 6.1875V5.3125C10.75 5.09375 10.5312 4.875 10.3125 4.875Z"
+                          fill="#5E5E5E"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="category">
-          <span>乘客數量</span>
-          <input
-            type="button"
-            @click="passenger_menu_open = !passenger_menu_open"
-          />
-
-          <div
-            class="driverStepper_wrapper"
-            :class="{'active':passenger_menu_open}"
-            ref="driverStepper_wrapper_active"
-          >
-            <div class="passenger_quantity">
-              <driver-selector
-                :dselector="passenger"
-                @passenger-event=""
-              ></driver-selector>
-              <driver-selector
-                :dselector="pet"
-                @passenger-eveny=""
-              ></driver-selector>
-            </div>
-          </div>
-        </div>
+        <button
+          type="submit"
+          class="driverbtn btn_7 col-2 col-lg-12"
+          id="driverbtn"
+        >
+          <p>立即搜尋</p>
+        </button>
       </div>
-
-      <button
-        type="submit"
-        class="driverbtn btn_7 col-2 col-lg-12"
-        id="driverbtn"
-      >
-        <p>立即搜尋</p>
-      </button>
-    </div>
+    </form>
     <div class="remind">
       <img
         src="../images/icon/drive-icon/notes.svg"

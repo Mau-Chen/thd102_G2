@@ -97,7 +97,7 @@
     <!-- <script src="./vue.global.js"></script> -->
     <script src="/js/vue-datepicker.iife.js"></script>
     <script type="module">
-      import DriverSelector from "./js/components/DriverSelector.js";
+      // import DriverSelector from "./js/components/DriverSelector.js";
       // console.log(window.VueUse);
       const app = Vue.createApp({
         data() {
@@ -111,7 +111,6 @@
             car_menu: "轎車",
             car_menu_open: false,
             passenger_menu_open: false,
-            counter: 1,
             passenger: "乘客",
             pet: "寵物",
             cars: [
@@ -137,7 +136,7 @@
             return disabledtoday;
           },
           show_passenger_quantity() {
-            return `${this.counter} 位乘客，${this.counter} 位毛孩`;
+            return `${this.passenger_counter} 位乘客，${this.pet_counter} 位毛孩`;
           },
         },
         methods: {
@@ -146,6 +145,35 @@
             let msg_end = this.msg_end;
             this.msg_start = msg_end;
             this.msg_end = msg_start;
+          },
+          // asq(val) {
+          //   console.log(val);
+          //   const counter = val.counter;
+          //   if (val.dselector === "乘客") {
+          //     this.passenger_counter = counter;
+          //   } else {
+          //     this.pet_counter = counter;
+          //   }
+          // },
+          PlusOne(counter_name) {
+            if (this.car_menu === "轎車") {
+              if (this.passenger_counter + this.pet_counter < 3) {
+                this[counter_name]++;
+                console.log(this[counter_name]);
+              }
+            }
+            if (this.car_menu === "休旅車") {
+              if (this.passenger_counter + this.pet_counter < 4) {
+                this[counter_name]++;
+              }
+            }
+          },
+          MinusOne(counter_name) {
+            if (this[counter_name] <= 0) {
+              this[counter_name] = 0;
+            } else {
+              this[counter_name]--;
+            }
           },
         },
         mounted() {
@@ -162,7 +190,7 @@
         },
       });
       app.component("Datepicker", VueDatePicker);
-      app.component("DriverSelector", DriverSelector);
+      // app.component("DriverSelector", DriverSelector);
       app.mount("#driver_app");
     </script>
   </body>
