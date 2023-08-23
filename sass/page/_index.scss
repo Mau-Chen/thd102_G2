@@ -60,25 +60,25 @@
     }
   }
   .section_2 {
-    background: $purple_d;
+    background: #16122c;
     color: $white;
     padding: 100px 32px;
     // 設定背景色變化
     position: relative;
     --mouse-x: 0px;
     --mouse-y: 0px;
-    --color: #4b48a11a;
+    --color: #36347c1a;
     ::before {
       content: "";
       background: radial-gradient(
         circle at var(--mouse-x) var(--mouse-y),
         var(--color),
-        transparent 80%
+        transparent 70%
       );
       position: absolute;
       inset: 0;
       transition: 1s;
-      opacity: 0;
+      opacity: 0.1;
     }
     :hover::before {
       opacity: 1;
