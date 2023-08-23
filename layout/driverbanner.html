@@ -34,6 +34,7 @@
             :is-24="true"
             :min-date="disabledDates"
             :auto-position="false"
+            :locale="TW"
           />
         </div>
         <div class="category categoryset">
@@ -82,8 +83,14 @@
             ref="driverStepper_wrapper_active"
           >
             <div class="passenger_quantity">
-              <driver-selector :dselector="passenger"></driver-selector>
-              <driver-selector :dselector="pet"></driver-selector>
+              <driver-selector
+                :dselector="passenger"
+                @passenger-event=""
+              ></driver-selector>
+              <driver-selector
+                :dselector="pet"
+                @passenger-event=""
+              ></driver-selector>
             </div>
           </div>
         </div>
