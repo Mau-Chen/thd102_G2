@@ -24,13 +24,13 @@ exports.sync = parallel(taskA, taskB);
 //順序
 exports.async = series(taskA, taskB);
 
-// 搬家
-function copy() {
-  return src(["*.html", "*.js", "!main.js", "**/*.scss"]).pipe(dest("dist"));
-}
-//  過去檔案會有index about gulpfile 不會有main.js
+// // 搬家
+// function copy() {
+//   return src(["*.html", "*.js", "!gulpfile.js", "**/*.scss"]).pipe(dest("dist"));
+// }
+// //  過去檔案會有index about gulpfile 不會有main.js
 
-exports.m = copy;
+// exports.m = copy;
 
 //圖片打包
 function img_copy() {
@@ -50,7 +50,7 @@ exports.cssmini = minify;
 const uglify = require("gulp-uglify");
 
 function minijs() {
-  return src(["js/*.js", "js/**/*.*"]).pipe(uglify()).pipe(dest("dist./js"));
+  return src(["js/*.js", "js/**/*.js"]).pipe(uglify()).pipe(dest("dist/js"));
 }
 exports.js = minijs;
 
@@ -115,7 +115,7 @@ function browser(done) {
   watch(["*.html", "layout/*.html"], includeHTML).on("change", reload);
   watch(["sass/*.scss", "sass/**/*.scss"], styleSass).on("change", reload);
   watch(["images/*.*", "images/**/*.*"], img_copy).on("change", reload);
-  watch(["js/*.js", "js/**/*.*"], minijs).on("change", reload);
+  watch(["js/*.js", "js/**/*.js"], minijs).on("change", reload);
   done();
 }
 
@@ -140,7 +140,7 @@ exports.pic = min_images;
 const babel = require("gulp-babel");
 
 function babel5() {
-  return src(["js/*.js", "js/**/*.*"])
+  return src(["js/*.js", "js/**/*.js"])
     .pipe(
       babel({
         presets: ["@babel/env"],
@@ -168,7 +168,5 @@ exports.dev = series(
 );
 
 //上線用
-exports.online = series(
-  clear,
-  parallel(includeHTML, styleSass, babel5, min_images)
-);
+exports.online = 
+  parallel(includeHTML, styleSass, babel5, min_images);
