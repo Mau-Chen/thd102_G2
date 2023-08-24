@@ -26,7 +26,7 @@
       <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
       <div class="close">
         <div class="icon" @click="ispop = false">
-          <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+          <img src="../images/icon/components-icon/close-line.svg" alt="close" />
         </div>
       </div>
       <!-- 此處為燈箱切換頁面的主體，用v-if渲染出不同的內文，用data:index來控制要渲染的頁面。
@@ -64,10 +64,10 @@
           </div>
           <div class="otherIcon">
             <a href="#">
-              <img src="../images/icon/components-icon/fb-Logo.svg" alt="" />
+              <img src=".../images/icon/components-icon/fb-Logo.svg" alt="" />
             </a>
             <a href="#">
-              <img src="../images/icon/components-icon/google-Logo.svg" alt="" />
+              <img src=".../images/icon/components-icon/google-Logo.svg" alt="" />
             </a>
           </div>
         </div>
@@ -115,7 +115,7 @@
       <!-- index 3 忘記密碼/設定成功 -->
       <div v-if="index === 3" class="loginPage succPag">
         <div class="pageIsideContainer">
-          <img src="./images/icon/components-icon/success.svg" alt="" />
+          <img src="../images/icon/components-icon/success.svg" alt="" />
           <h5 class="mb_24">密碼重設成功</h5>
           <button type="button" class="btn_5" @click="changePage(0)">
             確認
