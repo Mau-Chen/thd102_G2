@@ -428,11 +428,11 @@
                           </div>
                           <!-- <input type="text" value="1" /> -->
                           <input
-                          type="number"
-                          v-model="P2.BuyNum"
-                          @input="handleInput(P2)"
-                        />
-                        <div>
+                            type="number"
+                            v-model="P2.BuyNum"
+                            @input="handleInput(P2)"
+                          />
+
                           <!-- <div class="spSubtotal_icon"> -->
                           <div
                             class="spSubtotal_icon"
@@ -581,7 +581,6 @@
       const app2 = Vue.createApp({
         data() {
           return {
-
             P1: {
               spPrice: 800,
               BuyNum: 1,
@@ -688,10 +687,10 @@
     });
   </script>
 
-<script>
-  //顯示已加入購物車
-  let addCart = document.querySelectorAll(".addCart");
-  let popup = document.querySelector(".ol-contentShop");
+  <script>
+    //顯示已加入購物車
+    let addCart = document.querySelectorAll(".addCart");
+    let popup = document.querySelector(".ol-contentShop");
 
     for (let index = 0; index < addCart.length; index++) {
       const element = addCart[index];
