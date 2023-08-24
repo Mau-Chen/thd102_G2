@@ -54,7 +54,7 @@
                 </label>
                 <p>
                   <span v-show="numDog > 0">{{ numDog }}隻狗</span>
-                  <span v-show="numDog > 0 && numCat > 0">,</span>
+                  <span v-show="numDog > 0 && numCat > 0">，</span>
                   <span v-show="numCat > 0">{{ numCat}}隻貓</span>
                 </p>
               </div>
@@ -311,8 +311,8 @@
                           <!-- <div class="spSubtotal_icon"> -->
                           <div
                             class="spSubtotal_icon"
-                            @click="updateAmount(-1)"
-                            :class="{ 'limit': BuyNum === 0 }"
+                            @click="updateAmount(P1,-1)"
+                            :class="{ 'limit': P1.BuyNum === 0 }"
                           >
                             <!-- <img src="images/icon/components-icon/minus.svg" /> -->
                             <svg
@@ -331,14 +331,14 @@
                           <!-- <input type="text" value="1" /> -->
                           <input
                             type="number"
-                            v-model="BuyNum"
-                            @input="handleInput"
+                            v-model="P1.BuyNum"
+                            @input="handleInput(P1)"
                           />
                           <!-- <div class="spSubtotal_icon"> -->
                           <div
                             class="spSubtotal_icon"
-                            @click="updateAmount(1)"
-                            :class="{ 'limit': BuyNum === 9 }"
+                            @click="updateAmount(P1,1)"
+                            :class="{ 'limit': P1.BuyNum === 9 }"
                           >
                             <!-- <img src="images/icon/components-icon/add.svg" /> -->
                             <svg
@@ -356,7 +356,7 @@
                           </div>
                         </div>
                         <h5>
-                          NT${{ updateSubtotal().toLocaleString('en-US') }}
+                          NT${{ updateSubtotal(P1).toLocaleString('en-US') }}
                         </h5>
                       </div>
                       <div class="suButton col-6">
@@ -407,10 +407,10 @@
                       <div class="spStepper">
                         <div class="add">
                           <!-- <div class="spSubtotal_icon"> -->
-                            <div
+                          <div
                             class="spSubtotal_icon"
-                            @click="updateAmount(-1)"
-                            :class="{ 'limit': BuyNum === 0 }"
+                            @click="updateAmount(P2,-1)"
+                            :class="{ 'limit': P2.BuyNum === 0 }"
                           >
                             <!-- <img src="images/icon/components-icon/minus.svg" /> -->
                             <svg
@@ -428,15 +428,16 @@
                           </div>
                           <!-- <input type="text" value="1" /> -->
                           <input
-                            type="number"
-                            v-model="BuyNum"
-                            @input="handleInput"
-                          />
+                          type="number"
+                          v-model="P2.BuyNum"
+                          @input="handleInput(P2)"
+                        />
+                        <div>
                           <!-- <div class="spSubtotal_icon"> -->
                           <div
                             class="spSubtotal_icon"
-                            @click="updateAmount(1)"
-                            :class="{ 'limit': BuyNum === 9 }"
+                            @click="updateAmount(P2,1)"
+                            :class="{ 'limit': P2.BuyNum === 9 }"
                           >
                             <!-- <img src="images/icon/components-icon/add.svg" /> -->
                             <svg
@@ -454,7 +455,7 @@
                           </div>
                         </div>
                         <h5>
-                          NT${{ updateSubtotal().toLocaleString('en-US') }}
+                          NT${{ updateSubtotal(P2).toLocaleString('en-US') }}
                         </h5>
                       </div>
                       <div class="suButton col-6">
@@ -580,8 +581,18 @@
       const app2 = Vue.createApp({
         data() {
           return {
-            spPrice: 800,
-            BuyNum: 0,
+
+            P1: {
+              spPrice: 800,
+              BuyNum: 1,
+            },
+            P2: {
+              spPrice: 1000,
+              BuyNum: 0,
+            },
+
+            // spPrice: 800,
+            // BuyNum: 1,
             // countSubtotal: 100,
             // shoppingItems: [
             //   {
@@ -592,27 +603,44 @@
           };
         },
         methods: {
-          updateSubtotal() {
-            return this.spPrice * this.BuyNum;
+          updateSubtotal(product) {
+            return product.spPrice * product.BuyNum;
           },
           // 更新數量，更新小計。
-          updateAmount(change) {
-            if (this.BuyNum < 9) {
-              this.BuyNum = Math.max(1, this.BuyNum + change);
-            } else if (this.BuyNum >= 9) {
-              this.BuyNum = 8;
-              this.BuyNum = Math.max(1, this.BuyNum + change);
+          // updateAmount(change) {
+          //   if (this.BuyNum < 9) {
+          //     this.BuyNum = Math.max(0, this.BuyNum + change);
+          //   } else if (this.BuyNum >= 9) {
+          //     this.BuyNum = 8;
+          //     this.BuyNum = Math.max(0, this.BuyNum + change);
+          //   }
+          //   this.updateSubtotal();
+          // },
+          updateAmount(product, change) {
+            if (product.BuyNum < 9) {
+              product.BuyNum = Math.max(1, product.BuyNum + change);
+            } else if (product.BuyNum >= 9) {
+              product.BuyNum = 8;
+              product.BuyNum = Math.max(1, product.BuyNum + change);
             }
-            this.updateSubtotal();
+            this.updateSubtotal(product);
           },
           // 限制輸入在0～9之間
-          handleInput() {
-            if (BuyNum < 0) {
-              BuyNum = 0;
-            } else if (BuyNum > 9) {
-              BuyNum = 9;
+          // handleInput() {
+          //   if ((BuyNum = 1)) {
+          //     BuyNum = 1;
+          //   } else if (BuyNum > 9) {
+          //     BuyNum = 9;
+          //   }
+          //   this.updateSubtotal();
+          // },
+          handleInput(product) {
+            if (product.BuyNum < 1) {
+              product.BuyNum = 0;
+            } else if (product.BuyNum > 9) {
+              product.BuyNum = 9;
             }
-            this.updateSubtotal();
+            this.updateSubtotal(product);
           },
         },
       });
@@ -660,22 +688,21 @@
     });
   </script>
 
-<script>
-  //顯示已加入購物車
-  let addCart = document.querySelectorAll(".addCart");
-  let popup = document.querySelector(".ol-content");
+  <script>
+    //顯示已加入購物車
+    let addCart = document.querySelectorAll(".addCart");
+    let popup = document.querySelector(".ol-content");
 
-  for (let index = 0; index < addCart.length; index++) {
-    const element = addCart[index];
+    for (let index = 0; index < addCart.length; index++) {
+      const element = addCart[index];
 
-    element.addEventListener("click", function () {
-    popup.style.opacity = '1';
+      element.addEventListener("click", function () {
+        popup.style.opacity = "1";
 
-    setTimeout(function () {
-      popup.style.opacity = '0';
-    }, 3000);
-  });
-}
-</script>
-
+        setTimeout(function () {
+          popup.style.opacity = "0";
+        }, 3000);
+      });
+    }
+  </script>
 </html>
