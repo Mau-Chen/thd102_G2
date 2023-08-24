@@ -50,7 +50,7 @@ exports.cssmini = minify;
 const uglify = require("gulp-uglify");
 
 function minijs() {
-  return src(["js/*.js", "js/**/*.*"]).pipe(uglify()).pipe(dest("dist/js"));
+  return src(["js/*.js", "js/**/*.*"]).pipe(uglify()).pipe(dest("dist./js"));
 }
 exports.js = minijs;
 
@@ -146,7 +146,7 @@ function babel5() {
         presets: ["@babel/env"],
       })
     )
-    .pipe(dest("dist/js"));
+    .pipe(dest("dist./js"));
 }
 
 exports.es = babel5;
