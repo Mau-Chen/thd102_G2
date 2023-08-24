@@ -14,10 +14,10 @@ export default{props:["items"],template:`
             </div>
             <div class="function_btn_group">
               <div class="more">
-                <img src=".../images/icon/photowall-icon/love-circle.svg">
+                <img src="../images/icon/photowall-icon/love-circle.svg">
               </div>
               <div class="more"  @click="toggleLightbox2(item)">
-                <img src=".../images/icon/photowall-icon/bb-circle.svg">
+                <img src="../images/icon/photowall-icon/bb-circle.svg">
               </div>
             </div>
 
@@ -30,7 +30,7 @@ export default{props:["items"],template:`
               <div class="loginpage_base" @click.stop>
                 <div class="close fallTop">
                   <div class="icon" @click="toggleLightbox(item)">
-                    <img src="../images/icon/components-icon/close-line.svg" alt="close" />
+                    <img src="./images/icon/components-icon/close-line.svg" alt="close" />
                   </div>
                 </div>
                 <div class="loginPage waterFallStyle fallBody">
@@ -43,10 +43,10 @@ export default{props:["items"],template:`
                     </div>
                     <div class="function_btn_group">
                       <div class="more">
-                        <img src=".../images/icon/photowall-icon/love-circle.svg">
+                        <img src="../images/icon/photowall-icon/love-circle.svg">
                       </div>
                       <div class="more" @click="toggleLightbox2(item)">
-                        <img src=".../images/icon/photowall-icon/bb-circle.svg">
+                        <img src="../images/icon/photowall-icon/bb-circle.svg">
                       </div>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ export default{props:["items"],template:`
               <div class="loginpage_base">
                 <div class="close">
                   <div class="icon" @click="toggleLightbox2(item)">
-                    <img src="../images/icon/components-icon/close-line.svg" alt="close" />
+                    <img src="./images/icon/components-icon/close-line.svg" alt="close" />
                   </div>
                 </div>
                 <div class="loginPage">

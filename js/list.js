@@ -14,7 +14,7 @@ export default {
               <span>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c).toLocaleString('en-US') }}</span>
             </div>
             <div class="arrowIcon" @click="open(index)" :class="{ active_arrow: isOpen[index] }">
-              <img src="../images/icon/components-icon/faqbt-circle.svg" alt="button">
+              <img src="./images/icon/components-icon/faqbt-circle.svg" alt="button">
             </div>
         </div>
     </div>
