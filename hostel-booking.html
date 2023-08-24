@@ -44,20 +44,20 @@
                   <span>入住＆退房日期</span>
                   <!-- <input type="date" /> -->
                   <DatePicker
-                  v-model="date"
-                  range
-                  max-range="7"
-                  :format="format"
-                  calendar-cell-class-name="dp-custom-cell"
-                  time-picker-inline
-                  week-start="0"
-                  :is-24="true"
-                  :min-date="disabledDates"
-                  :auto-position="false"
-                  :enable-time-picker="false"
-                >
-                </DatePicker>
-                <!-- <DatePicker
+                    v-model="date"
+                    range
+                    max-range="7"
+                    :format="format"
+                    calendar-cell-class-name="dp-custom-cell"
+                    time-picker-inline
+                    week-start="0"
+                    :is-24="true"
+                    :min-date="disabledDates"
+                    :auto-position="false"
+                    :enable-time-picker="false"
+                  >
+                  </DatePicker>
+                  <!-- <DatePicker
                     v-model="date"
                     calendar-cell-class-name="dp-custom-cell"
                     time-picker-inline
@@ -67,7 +67,6 @@
                     :min-date="disabledDates"
                   >
                   </DatePicker> -->
-
                 </label>
               </div>
               <!--  -->
@@ -126,7 +125,8 @@
                     </div>
                   </div>
                 </div>
-              </div>            </div>
+              </div>
+            </div>
             <button class="btn_7" type="button" id="searchButton">
               立即搜尋
             </button>
@@ -141,7 +141,7 @@
           <h5>9間狗貓共住旅館在台北</h5>
           <div class="top3_box">
             <!-- 1 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic1.png"
@@ -183,9 +183,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 2 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic2.png"
@@ -227,9 +227,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 3 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic3.png"
@@ -271,9 +271,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 4 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic4.png"
@@ -315,9 +315,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 5 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic5.png"
@@ -359,9 +359,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 6 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic6.png"
@@ -403,9 +403,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 7 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic7.png"
@@ -447,9 +447,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 8 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic8.png"
@@ -491,9 +491,9 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
             <!-- 9 -->
-            <div class="card">
+            <a class="card" href="hostel-booking_detail.html">
               <div class="card_image">
                 <img
                   src="./images/pic/hostel/hostel page2/hostel-pic9.png"
@@ -535,7 +535,7 @@
                   <span>(10)</span>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
           <!-- </div> -->
         </div>
@@ -553,7 +553,7 @@
             numCat: 1,
             numDog: 1,
             date: null,
-            format: `MM月 dd日`
+            format: `MM月 dd日`,
           };
         },
         computed: {
@@ -596,6 +596,6 @@
         .addEventListener("click", function () {
           window.location.href = "hostel-booking_detail.html";
         });
-      </script>
+    </script>
   </body>
 </html>

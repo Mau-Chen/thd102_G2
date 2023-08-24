@@ -37,6 +37,9 @@
       }
     }
   }
+  .ad_box_white {
+    background: $white;
+  }
   @media (max-width: 434px) {
     flex-direction: column;
     align-items: flex-start;

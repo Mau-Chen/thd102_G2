@@ -1,596 +1,780 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     @@include('layout/meta.html')
     <link rel="stylesheet" href="./css/style.css" />
     <title>Go結帳 | PetpaGo</title>
     <link href="/images/pgo.ico" rel="icon" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="wrapper shopping bg_gray">
-        @@include('layout/header.html')
-        <div class="sp_container" id="spApp">
-            <!--進度條-->
-            <div class="spStep_bg">
-                <div class="spStep_box col-10 col-sm-12">
-                    <button v-for="(step, index) in steps" :key="index" class="spStep"
-                        :class="{ 'jsNow': index <= currentStep }" @click="setCurrentStep(index)" type="button"
-                        :disabled="index > currentStep">{{ step }}</button>
-                </div>
-            </div>
-            <div class="spMain_bg">
-                <form class="sp_form">
-                    <!--步驟一內容-->
-                    <div class="spPage" :class="{'jsNow':currentStep === 0}">
-                        <div class="spMain_wrapper">
-                            <h5 class="spMian_title">您的購物車</h5>
-                            <div class="spMain">
-                                <div class="spMain_left col-7 col-lg-12">
-                                    <div class="spCard">
-                                        <!-- 用 v-model 與 checked 綁定，控制全選的狀態。@change監聽變化並呼叫 allChecked 函數。 -->
-                                        <input type="checkbox" v-model="checked" @change="allChecked">
-                                        <label>
-                                            <div>全選</div>
-                                        </label>
-                                    </div>
-                                    <!-- 使用 v-for 為每個項目應用CSS類別。 -->
-                                    <div v-for="(item, index) in shoppingItems" :key="index"
-                                        :class="['spCard', item.type]">
-                                        <div class="spCard_up">
-                                            <!-- checkbox與 checkedNames 綁定，記錄選中的商品。 -->
-                                            <input type="checkbox" :value="item.id" v-model="checkedNames">
-                                            <label>
-                                                <picture>
-                                                    <source :srcset="item.pictureSrc_m" media="(max-width: 414px)">
-                                                    <img :src="item.pictureSrc">
-                                                </picture>
-                                            </label>
-                                            <div class="spBuy_text">
-                                                <div class="spList_up">
-                                                    <h6>{{ item.product }}</h6>
-                                                    <!-- 綁定確認刪除事件 -->
-                                                    <img src="images/icon/shop-icon/delete.svg"
-                                                        @click="confirmDelete(index)">
-                                                </div>
-                                                <div class="spList_down">
-                                                    <p>{{ useDate(item) }}</p>
-                                                    <p v-if="item.listType === '狗套房'">{{ item.listType }} ｜ {{
-                                                        item.dogSize}}</p>
-                                                    <p v-else>{{ item.listType }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="spSubtotal">
-                                            <!-- 是否有 spStepper 屬性，顯示加減按鈕 -->
-                                            <div v-if="item.spStepper">
-                                                <div class="spStepper">
-                                                    <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
-                                                    <div class="spSubtotal_icon" @click="updateAmount(item, -1)"
-                                                        :class="{ 'limit': item.BuyNum === 1 }">
-                                                        <svg width="11" height="3" viewBox="0 0 11 3" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
-                                                                fill="#E6E6E6" />
-                                                        </svg>
-                                                    </div>
-                                                    <input type="number" v-model="item.BuyNum"
-                                                        @input="handleInput(item)">
-                                                    <div class="spSubtotal_icon" @click="updateAmount(item, 1)"
-                                                        :class="{ 'limit': item.BuyNum === 9 }">
-                                                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M10.3125 4.875H6.375V0.9375C6.375 0.71875 6.15625 0.5 5.9375 0.5H5.0625C4.81641 0.5 4.625 0.71875 4.625 0.9375V4.875H0.6875C0.441406 4.875 0.25 5.09375 0.25 5.3125V6.1875C0.25 6.43359 0.441406 6.625 0.6875 6.625H4.625V10.5625C4.625 10.8086 4.81641 11 5.0625 11H5.9375C6.15625 11 6.375 10.8086 6.375 10.5625V6.625H10.3125C10.5312 6.625 10.75 6.43359 10.75 6.1875V5.3125C10.75 5.09375 10.5312 4.875 10.3125 4.875Z"
-                                                                fill="#5E5E5E" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- 小計的金額用函數 countSubtotal(item) 計算 -->
-                                            <p>NT${{ countSubtotal(item).toLocaleString('en-US') }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="spMain_right col-5 col-lg-12">
-                                    <div class="spCard">
-                                        <div class="spTotal mb_32">
-                                            <!-- totalItems 和 totalPrice 分別計算總件數和總＄。 -->
-                                            <p>{{ this.checkedNames.length }}件總計</p>
-                                            <h5>NT${{ totalPrice.toLocaleString('en-US') }}</h5>
-                                        </div>
-                                        <button class="spNext btn_5 jsNext" type="button"
-                                            @click="caculate_point();currentStep ++">下一步</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @@include('layout/ad.html')
-                    </div>
-                    <!--步驟二內容-->
-                    <div class="spPage sp2" :class="{'jsNow':currentStep === 1}">
-                        <h5 class="spMian_title">聯絡資料</h5>
-                        <div class="spMain">
-                            <!-- 左內容 -->
-                            <div class="spMain_left col-7">
-                                <div class="spCard spOrderMan">
-                                    <p>姓名：<span>*</span></p>
-                                    <input type="text" placeholder="請輸入姓名" v-model="spOrderName">
-                                    <p>電子信箱：<span>*</span></p>
-                                    <input type="email" placeholder="請輸入Email" v-model="spOrderEmail">
-                                    <p>行動電話：<span>*</span></p>
-                                    <input type="tel" placeholder="請輸入行動電話" v-model="spOrderPhone">
-                                    <!-- 限制只可輸入數字 -->
-                                    <div class="spSame_member">
-                                        <input type="checkbox" v-model="sameMemberChecked" @change="sameMember">
-                                        <label>同會員資料</label>
-                                    </div>
-                                    <p>備註：</p>
-                                    <textarea rows="3" placeholder="請輸入寵物品種/須注意事項/特殊需求"></textarea>
-                                </div>
-                                <h5 class="mb_32">優惠折扣</h5>
-                                <div class="spCard">
-                                    <div class="spOrder_check">
-                                        <input type="checkbox" v-model="usePointsCheck">
-                                        <label>我要使用 Pet Points</label>
-                                    </div>
-                                    <p>可用 Pet Points <span>{{ havePoints }}</span> 點，最多使用<input type="number"
-                                            id="usePoint" v-model="usePoints" @input="handlePoints">點</p>
-                                </div>
-                                <div class="spPay mb_32">
-                                    <h5>信用卡/簽帳金融卡付款</h5>
-                                    <span><img src="images/icon/shop-icon/mastercard.svg" alt=""><img
-                                            src="images/icon/shop-icon/visa.svg" alt=""><img
-                                            src="images/icon/shop-icon/ae.svg" alt=""><img
-                                            src="images/icon/shop-icon/jcb.svg" alt=""></span>
-                                </div>
-                                <div class="spCard">
-                                    <div class="creditCard">
-                                        <div class="col-4 col-lg-12">
-                                            <p>信用卡號碼<span>*</span></p>
-                                            <div>
-                                                <input type="text" ref="input1" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(1, 4)" v-model="cardNumber[0]">
-                                                <input type="text" ref="input2" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(2, 4)" v-model="cardNumber[1]">
-                                                <input type="text" ref="input3" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(3, 4)" v-model="cardNumber[2]">
-                                                <input type="text" ref="input4" maxlength="4" placeholder="0000"
-                                                    @input="handleCC(4, 4)" v-model="cardNumber[3]">
-                                            </div>
-                                        </div>
-                                        <div class="col-4 col-lg-12">
-                                            <p>有效期限<span>*</span></p>
-                                            <div>
-                                                <input type="text" ref="input5" maxlength="2" placeholder="MM"
-                                                    @input="handleCC(5, 2)" v-model="cardDate[0]" requiredd="required">
-                                                /<input type="text" ref="input6" maxlength="2" placeholder="YY"
-                                                    @input="handleCC(6, 2)" v-model="cardDate[1]" requiredd="required">
-                                            </div>
-                                        </div>
-                                        <div class="col-4 col-lg-12">
-                                            <p>背面後3碼<span>*</span></p>
-                                            <input type="text" placeholder="CVC/CVV" maxlength="3" minlength="3"
-                                                ref="input7" @input="handleCC(7, 3)" v-model="cardCVC"
-                                                required="required">
-                                        </div>
-                                    </div>
-                                    <p>請注意本平台不會向您收取任何平台交易手續費，但你下單時使用的信用卡可能會向您收取相關手續費， 請參考其相關服務政策和規定，並向你所選的交易服務商取得更多資訊。
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- 總計 -->
-                            <div class="spMain_right col-5">
-                                <div class="spCard">
-                                    <div class="spBuy_text" v-for="(item, index) in selectedItems" :key="index">
-                                        <div class="spList_up">
-                                            <h6>{{ item.product }}</h6>
-                                        </div>
-                                        <div class="spList_down">
-                                            <p>{{ useDate(item) }}</p>
-                                            <div>
-                                                <p v-if="item.listType === '狗套房'">{{ item.listType }} ｜ {{ item.dogSize
-                                                    }}</p>
-                                                <p v-else>{{ item.listType }}</p>
-                                                <p>NT${{ countSubtotal(item).toLocaleString('en-US') }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="spBuy_text spCount">
-                                        <div>
-                                            <p>{{ this.checkedNames.length }}件合計</p>
-                                            <p>NT${{ totalPrice.toLocaleString('en-US') }}</p>
-                                        </div>
-                                        <div>
-                                            <p>Pet Points 折抵</p>
-                                            <p>-NT$ {{ (usePointsCheck ? usePoints : 0).toLocaleString('en-US') }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="spTotal">
-                                        <p>{{ this.checkedNames.length }}件總計</p>
-                                        <h5>NT${{(usePointsCheck ? payPrice : totalPrice).toLocaleString('en-US')}}</h5>
-                                    </div>
-                                    <!-- <button class="spNext btn_5 jsNext" type="button"
-                                        @click="currentStep ++ ">下一步</button> -->
-                                    <button class="spNext btn_5 jsNext" type="button" @click="checkform">下一步</button>
-                                    <div>
-                                        <img src="images/icon/member-icon/black-points.svg" alt="">
-                                        <p>可獲得 Pet Points <span>{{Math.floor((payPrice)/100)}}</span> 點</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--步驟三內容-->
-                    <div class="spPage" :class="{'jsNow':currentStep === 2}">
-                        <div class="spMain sp3">
-                            <div class="mb_32">
-                                <img src="images/icon/components-icon/success.svg" alt="">
-                                <h5>訂單完成</h5>
-                                <p>訂單資料將寄送至：service@tibame.com</p>
-                            </div>
-                            <div class="spCard">
-                                <ul>
-                                    <li class="accordion">
-                                        <!-- first list box1 -->
-                                        <div class="ol-header mb_24">
-                                            <div class="ol-headText">
-                                                <p>訂單日期：{{ nowDate }}</p>
-                                                <p>訂單編號：{{ orderID }}</p>
-                                            </div>
-                                        </div>
-                                        <!-- first list box2 -->
-                                        <div class="ol-content mb_24">
-                                            <!-- box2-1 -->
-                                            <div class="ol-contentBox mb_24" v-for="(item, index) in selectedItems"
-                                                :key="index">
-                                                <img :src="item.pictureSrc">
-                                                <div class="ol-ContText">
-                                                    <h6 class="mb_16">{{ item.product }}</h6>
-                                                    <p>{{ useDate(item) }}</p>
-                                                    <div class="ol-info">
-                                                        <p v-if="item.listType === '狗套房'">{{ item.listType }} ｜ {{
-                                                            item.dogSize
-                                                            }}</p>
-                                                        <p v-else>{{ item.listType }}</p>
-                                                        <p>NT${{ countSubtotal(item).toLocaleString('en-US') }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- first list box3 -->
-                                        <div class="ol-money mb_24">
-                                            <div class="ol-count mb_16">
-                                                <p>{{ this.checkedNames.length }}件合計</p>
-                                                <span>NT$ {{ totalPrice.toLocaleString('en-US') }}</span>
-                                            </div>
-                                            <div class="ol-count">
-                                                <p>Pet Points 折抵</p>
-                                                <span>-NT$ {{ (usePointsCheck ? usePoints : 0).toLocaleString('en-US')
-                                                    }}</span>
-                                            </div>
-                                        </div>
-                                        <!-- first list box4 -->
-                                        <div class="ol-total">
-                                            <div class="ol-count mb_24">
-                                                <p>總計</p>
-                                                <span>NT$ {{(usePointsCheck ? payPrice :
-                                                    totalPrice).toLocaleString('en-US')}}</span>
-                                            </div>
-                                            <p><img src="/images/icon/member-icon/black-points.svg"
-                                                    alt="points-icon">已獲得
-                                                Pet Points
-                                                <span>{{Math.floor((payPrice)/100)}}</span> 點
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="spCard OrderMan">
-                                <div>
-                                    <p>姓名</p>
-                                    <p>{{ spOrderName }}</p>
-                                </div>
-                                <div>
-                                    <p>電子信箱</p>
-                                    <p>{{ spOrderEmail }}</p>
-                                </div>
-                                <div>
-                                    <p>行動電話</p>
-                                    <p>{{ spOrderPhone }}</p>
-                                </div>
-                            </div>
-                            <button class="btn_5 btn-success" type="button" id="Go_index"
-                                @click="goToIndex">回首頁</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+      @@include('layout/header.html')
+      <div class="sp_container" id="spApp">
+        <!--進度條-->
+        <div class="spStep_bg">
+          <div class="spStep_box col-10 col-sm-12">
+            <button
+              v-for="(step, index) in steps"
+              :key="index"
+              class="spStep"
+              :class="{ 'jsNow': index <= currentStep }"
+              @click="setCurrentStep(index)"
+              type="button"
+              :disabled="index > currentStep"
+            >
+              {{ step }}
+            </button>
+          </div>
         </div>
-        @@include('layout/footer.html')
+        <div class="spMain_bg">
+          <form class="sp_form">
+            <!--步驟一內容-->
+            <div class="spPage" :class="{'jsNow':currentStep === 0}">
+              <div class="spMain_wrapper">
+                <h5 class="spMian_title">您的購物車</h5>
+                <div class="spMain">
+                  <div class="spMain_left col-7 col-lg-12">
+                    <div class="spCard">
+                      <!-- 用 v-model 與 checked 綁定，控制全選的狀態。@change監聽變化並呼叫 allChecked 函數。 -->
+                      <input
+                        type="checkbox"
+                        v-model="checked"
+                        @change="allChecked"
+                      />
+                      <label>
+                        <div>全選</div>
+                      </label>
+                    </div>
+                    <!-- 使用 v-for 為每個項目應用CSS類別。 -->
+                    <div
+                      v-for="(item, index) in shoppingItems"
+                      :key="index"
+                      :class="['spCard', item.type]"
+                    >
+                      <div class="spCard_up">
+                        <!-- checkbox與 checkedNames 綁定，記錄選中的商品。 -->
+                        <input
+                          type="checkbox"
+                          :value="item.id"
+                          v-model="checkedNames"
+                        />
+                        <label>
+                          <picture>
+                            <source
+                              :srcset="item.pictureSrc_m"
+                              media="(max-width: 414px)"
+                            />
+                            <img :src="item.pictureSrc" />
+                          </picture>
+                        </label>
+                        <div class="spBuy_text">
+                          <div class="spList_up">
+                            <h6>{{ item.product }}</h6>
+                            <!-- 綁定確認刪除事件 -->
+                            <img
+                              src="images/icon/shop-icon/delete.svg"
+                              @click="confirmDelete(index)"
+                            />
+                          </div>
+                          <div class="spList_down">
+                            <p>{{ useDate(item) }}</p>
+                            <p v-if="item.listType === '狗套房'">
+                              {{ item.listType }} ｜ {{ item.dogSize}}
+                            </p>
+                            <p v-else>{{ item.listType }}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="spSubtotal">
+                        <!-- 是否有 spStepper 屬性，顯示加減按鈕 -->
+                        <div v-if="item.spStepper">
+                          <div class="spStepper">
+                            <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
+                            <div
+                              class="spSubtotal_icon"
+                              @click="updateAmount(item, -1)"
+                              :class="{ 'limit': item.BuyNum === 1 }"
+                            >
+                              <svg
+                                width="11"
+                                height="3"
+                                viewBox="0 0 11 3"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
+                                  fill="#E6E6E6"
+                                />
+                              </svg>
+                            </div>
+                            <input
+                              type="number"
+                              v-model="item.BuyNum"
+                              @input="handleInput(item)"
+                            />
+                            <div
+                              class="spSubtotal_icon"
+                              @click="updateAmount(item, 1)"
+                              :class="{ 'limit': item.BuyNum === 9 }"
+                            >
+                              <svg
+                                width="11"
+                                height="11"
+                                viewBox="0 0 11 11"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M10.3125 4.875H6.375V0.9375C6.375 0.71875 6.15625 0.5 5.9375 0.5H5.0625C4.81641 0.5 4.625 0.71875 4.625 0.9375V4.875H0.6875C0.441406 4.875 0.25 5.09375 0.25 5.3125V6.1875C0.25 6.43359 0.441406 6.625 0.6875 6.625H4.625V10.5625C4.625 10.8086 4.81641 11 5.0625 11H5.9375C6.15625 11 6.375 10.8086 6.375 10.5625V6.625H10.3125C10.5312 6.625 10.75 6.43359 10.75 6.1875V5.3125C10.75 5.09375 10.5312 4.875 10.3125 4.875Z"
+                                  fill="#5E5E5E"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 小計的金額用函數 countSubtotal(item) 計算 -->
+                        <p>
+                          NT${{ countSubtotal(item).toLocaleString('en-US') }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="spMain_right col-5 col-lg-12">
+                    <div class="spCard">
+                      <div class="spTotal mb_32">
+                        <!-- totalItems 和 totalPrice 分別計算總件數和總＄。 -->
+                        <p>{{ this.checkedNames.length }}件總計</p>
+                        <h5>NT${{ totalPrice.toLocaleString('en-US') }}</h5>
+                      </div>
+                      <button
+                        class="spNext btn_5 jsNext"
+                        type="button"
+                        @click="caculate_point();currentStep ++"
+                      >
+                        下一步
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              @@include('layout/ad_white.html')
+            </div>
+            <!--步驟二內容-->
+            <div class="spPage sp2" :class="{'jsNow':currentStep === 1}">
+              <h5 class="spMian_title">聯絡資料</h5>
+              <div class="spMain">
+                <!-- 左內容 -->
+                <div class="spMain_left col-7">
+                  <div class="spCard spOrderMan">
+                    <p>姓名：<span>*</span></p>
+                    <input
+                      type="text"
+                      placeholder="請輸入姓名"
+                      v-model="spOrderName"
+                    />
+                    <p>電子信箱：<span>*</span></p>
+                    <input
+                      type="email"
+                      placeholder="請輸入Email"
+                      v-model="spOrderEmail"
+                    />
+                    <p>行動電話：<span>*</span></p>
+                    <input
+                      type="tel"
+                      placeholder="請輸入行動電話"
+                      v-model="spOrderPhone"
+                    />
+                    <!-- 限制只可輸入數字 -->
+                    <div class="spSame_member">
+                      <input
+                        type="checkbox"
+                        v-model="sameMemberChecked"
+                        @change="sameMember"
+                      />
+                      <label>同會員資料</label>
+                    </div>
+                    <p>備註：</p>
+                    <textarea
+                      rows="3"
+                      placeholder="請輸入寵物品種/須注意事項/特殊需求"
+                    ></textarea>
+                  </div>
+                  <h5 class="mb_32">優惠折扣</h5>
+                  <div class="spCard">
+                    <div class="spOrder_check">
+                      <input type="checkbox" v-model="usePointsCheck" />
+                      <label>我要使用 Pet Points</label>
+                    </div>
+                    <p>
+                      可用 Pet Points
+                      <span>{{ havePoints }}</span> 點，最多使用<input
+                        type="number"
+                        id="usePoint"
+                        v-model="usePoints"
+                        @input="handlePoints"
+                      />點
+                    </p>
+                  </div>
+                  <div class="spPay mb_32">
+                    <h5>信用卡/簽帳金融卡付款</h5>
+                    <span
+                      ><img
+                        src="images/icon/shop-icon/mastercard.svg"
+                        alt="" /><img
+                        src="images/icon/shop-icon/visa.svg"
+                        alt="" /><img
+                        src="images/icon/shop-icon/ae.svg"
+                        alt="" /><img
+                        src="images/icon/shop-icon/jcb.svg"
+                        alt=""
+                    /></span>
+                  </div>
+                  <div class="spCard">
+                    <div class="creditCard">
+                      <div class="col-4 col-lg-12">
+                        <p>信用卡號碼<span>*</span></p>
+                        <div>
+                          <input
+                            type="text"
+                            ref="input1"
+                            maxlength="4"
+                            placeholder="0000"
+                            @input="handleCC(1, 4)"
+                            v-model="cardNumber[0]"
+                          />
+                          <input
+                            type="text"
+                            ref="input2"
+                            maxlength="4"
+                            placeholder="0000"
+                            @input="handleCC(2, 4)"
+                            v-model="cardNumber[1]"
+                          />
+                          <input
+                            type="text"
+                            ref="input3"
+                            maxlength="4"
+                            placeholder="0000"
+                            @input="handleCC(3, 4)"
+                            v-model="cardNumber[2]"
+                          />
+                          <input
+                            type="text"
+                            ref="input4"
+                            maxlength="4"
+                            placeholder="0000"
+                            @input="handleCC(4, 4)"
+                            v-model="cardNumber[3]"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-4 col-lg-12">
+                        <p>有效期限<span>*</span></p>
+                        <div>
+                          <input
+                            type="text"
+                            ref="input5"
+                            maxlength="2"
+                            placeholder="MM"
+                            @input="handleCC(5, 2)"
+                            v-model="cardDate[0]"
+                            requiredd="required"
+                          />
+                          /<input
+                            type="text"
+                            ref="input6"
+                            maxlength="2"
+                            placeholder="YY"
+                            @input="handleCC(6, 2)"
+                            v-model="cardDate[1]"
+                            requiredd="required"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-4 col-lg-12">
+                        <p>背面後3碼<span>*</span></p>
+                        <input
+                          type="text"
+                          placeholder="CVC/CVV"
+                          maxlength="3"
+                          minlength="3"
+                          ref="input7"
+                          @input="handleCC(7, 3)"
+                          v-model="cardCVC"
+                          required="required"
+                        />
+                      </div>
+                    </div>
+                    <p>
+                      請注意本平台不會向您收取任何平台交易手續費，但你下單時使用的信用卡可能會向您收取相關手續費，
+                      請參考其相關服務政策和規定，並向你所選的交易服務商取得更多資訊。
+                    </p>
+                  </div>
+                </div>
+                <!-- 總計 -->
+                <div class="spMain_right col-5">
+                  <div class="spCard">
+                    <div
+                      class="spBuy_text"
+                      v-for="(item, index) in selectedItems"
+                      :key="index"
+                    >
+                      <div class="spList_up">
+                        <h6>{{ item.product }}</h6>
+                      </div>
+                      <div class="spList_down">
+                        <p>{{ useDate(item) }}</p>
+                        <div>
+                          <p v-if="item.listType === '狗套房'">
+                            {{ item.listType }} ｜ {{ item.dogSize }}
+                          </p>
+                          <p v-else>{{ item.listType }}</p>
+                          <p>
+                            NT${{ countSubtotal(item).toLocaleString('en-US') }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="spBuy_text spCount">
+                      <div>
+                        <p>{{ this.checkedNames.length }}件合計</p>
+                        <p>NT${{ totalPrice.toLocaleString('en-US') }}</p>
+                      </div>
+                      <div>
+                        <p>Pet Points 折抵</p>
+                        <p>
+                          -NT$ {{ (usePointsCheck ? usePoints :
+                          0).toLocaleString('en-US') }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="spTotal">
+                      <p>{{ this.checkedNames.length }}件總計</p>
+                      <h5>
+                        NT${{(usePointsCheck ? payPrice :
+                        totalPrice).toLocaleString('en-US')}}
+                      </h5>
+                    </div>
+                    <!-- <button class="spNext btn_5 jsNext" type="button"
+                                        @click="currentStep ++ ">下一步</button> -->
+                    <button
+                      class="spNext btn_5 jsNext"
+                      type="button"
+                      @click="checkform"
+                    >
+                      下一步
+                    </button>
+                    <div>
+                      <img
+                        src="images/icon/member-icon/black-points.svg"
+                        alt=""
+                      />
+                      <p>
+                        可獲得 Pet Points
+                        <span>{{Math.floor((payPrice)/100)}}</span> 點
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--步驟三內容-->
+            <div class="spPage" :class="{'jsNow':currentStep === 2}">
+              <div class="spMain sp3">
+                <div class="mb_32">
+                  <img src="images/icon/components-icon/success.svg" alt="" />
+                  <h5>訂單完成</h5>
+                  <p>訂單資料將寄送至：service@tibame.com</p>
+                </div>
+                <div class="spCard">
+                  <ul>
+                    <li class="accordion">
+                      <!-- first list box1 -->
+                      <div class="ol-header mb_24">
+                        <div class="ol-headText">
+                          <p>訂單日期：{{ nowDate }}</p>
+                          <p>訂單編號：{{ orderID }}</p>
+                        </div>
+                      </div>
+                      <!-- first list box2 -->
+                      <div class="ol-content mb_24">
+                        <!-- box2-1 -->
+                        <div
+                          class="ol-contentBox mb_24"
+                          v-for="(item, index) in selectedItems"
+                          :key="index"
+                        >
+                          <img :src="item.pictureSrc" />
+                          <div class="ol-ContText">
+                            <h6 class="mb_16">{{ item.product }}</h6>
+                            <p>{{ useDate(item) }}</p>
+                            <div class="ol-info">
+                              <p v-if="item.listType === '狗套房'">
+                                {{ item.listType }} ｜ {{ item.dogSize }}
+                              </p>
+                              <p v-else>{{ item.listType }}</p>
+                              <p>
+                                NT${{
+                                countSubtotal(item).toLocaleString('en-US') }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- first list box3 -->
+                      <div class="ol-money mb_24">
+                        <div class="ol-count mb_16">
+                          <p>{{ this.checkedNames.length }}件合計</p>
+                          <span
+                            >NT$ {{ totalPrice.toLocaleString('en-US') }}</span
+                          >
+                        </div>
+                        <div class="ol-count">
+                          <p>Pet Points 折抵</p>
+                          <span
+                            >-NT$ {{ (usePointsCheck ? usePoints :
+                            0).toLocaleString('en-US') }}</span
+                          >
+                        </div>
+                      </div>
+                      <!-- first list box4 -->
+                      <div class="ol-total">
+                        <div class="ol-count mb_24">
+                          <p>總計</p>
+                          <span
+                            >NT$ {{(usePointsCheck ? payPrice :
+                            totalPrice).toLocaleString('en-US')}}</span
+                          >
+                        </div>
+                        <p>
+                          <img
+                            src="/images/icon/member-icon/black-points.svg"
+                            alt="points-icon"
+                          />已獲得 Pet Points
+                          <span>{{Math.floor((payPrice)/100)}}</span> 點
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="spCard OrderMan">
+                  <div>
+                    <p>姓名</p>
+                    <p>{{ spOrderName }}</p>
+                  </div>
+                  <div>
+                    <p>電子信箱</p>
+                    <p>{{ spOrderEmail }}</p>
+                  </div>
+                  <div>
+                    <p>行動電話</p>
+                    <p>{{ spOrderPhone }}</p>
+                  </div>
+                </div>
+                <button
+                  class="btn_5 btn-success"
+                  type="button"
+                  id="Go_index"
+                  @click="goToIndex"
+                >
+                  回首頁
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      @@include('layout/footer.html')
     </div>
 
-
     <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    currentStep: 0,
-                    steps: ["查看購物車", "填寫資料", "完成付款"],
-                    checked: false,
-                    checkedNames: [],
+      const app = Vue.createApp({
+        data() {
+          return {
+            currentStep: 0,
+            steps: ["查看購物車", "填寫資料", "完成付款"],
+            checked: false,
+            checkedNames: [],
 
-                    member_data: {
-                        name: '王緯育',
-                        email: 'service@tibame.com',
-                        phone: '0912345678',
-                    },
-
-                    spOrderName: '',
-                    spOrderEmail: '',
-                    spOrderPhone: '',
-                    sameMemberChecked: false,
-                    havePoints: 100,
-                    usePoints: 0,
-                    usePointsCheck: true,
-
-                    nowDate: null,
-                    orderID: 'PT0004',
-
-                    spReadyName: '',
-                    spReadyEmail: '',
-                    spReadyPhone: '',
-
-
-                    cardNumber: ['', '', '', ''],
-                    cardDate: ['', ''],
-                    cardCVC: '',
-                    isStepTwoValid: false,
-                    validationErrors: [],
-                    shoppingItems: [
-                        {
-                            id: "Car",
-                            type: "spDriver",
-                            pictureSrc_m: "images/pic/shop/goShop01_m.png",
-                            pictureSrc: "images/pic/shop/goShop01.png",
-                            product: "寵物接送",
-                            listType: "轎車",
-                            spStepper: false,
-                            spPrice: 300,
-                            BuyNum: 1,
-                            listDate_S: "8/17",
-                            listDate_E: "8/17",
-                            listDate_T: "16:00",
-                        },
-                        {
-                            id: "Hostel1",
-                            type: "spHostel",
-                            pictureSrc_m: "images/pic/shop/goShop02_m.png",
-                            pictureSrc: "images/pic/shop/goShop02.png",
-                            product: "快樂寵物旅館",
-                            listType: "狗套房",
-                            dogSize: "小型犬",
-                            spStepper: true,
-                            spPrice: 800,
-                            BuyNum: 1,
-                            listDate_S: "8/17",
-                            listDate_E: "8/20",
-                            listDate_T: "16:00",
-                        },
-                        {
-                            id: "Hostel2",
-                            type: "spHostel",
-                            pictureSrc_m: "images/pic/shop/goShop03_m.png",
-                            pictureSrc: "images/pic/shop/goShop03.png",
-                            product: "快樂寵物旅館",
-                            listType: "貓套房",
-                            spStepper: true,
-                            spPrice: 800,
-                            BuyNum: 1,
-                            listDate_S: "8/17",
-                            listDate_E: "8/20",
-                            listDate_T: "16:00",
-                        },
-                    ],
-                };
+            member_data: {
+              name: "王緯育",
+              email: "service@tibame.com",
+              phone: "0912345678",
             },
-            // 預設全選。
-            mounted() {
-                this.checked = true;
-                this.checkedNames = this.shoppingItems.map(item => item.id);
 
-                let nextButton = document.getElementById('Go_index');
-                nextButton.addEventListener('click', () => {
-                    window.location.href = 'index.html';
-                });
+            spOrderName: "",
+            spOrderEmail: "",
+            spOrderPhone: "",
+            sameMemberChecked: false,
+            havePoints: 100,
+            usePoints: 0,
+            usePointsCheck: true,
 
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                this.nowDate = new Date().toLocaleDateString('zh-TW', options);
+            nowDate: null,
+            orderID: "PT0004",
 
-            },
-            methods: {
-                sameMember(){
-                    if(this.sameMemberChecked === true){
-                        this.spOrderName=this.member_data.name;
-                        this.spOrderEmail=this.member_data.email;
-                        this.spOrderPhone=this.member_data.phone;
-                    }
-                },
-                caculate_point() {
-                    if (this.havePoints < this.totalPrice * 0.2) {
-                        this.usePoints = this.havePoints;
-                    } else {
-                        this.usePoints = this.totalPrice * 0.2;
-                    }
-                },
-                setCurrentStep(index) {
-                    this.currentStep = index;
-                },
-                // 切換全選狀態。如果checked為true，則將checkedNames設置為所有購物項目的ID，否則將其清空。
-                allChecked() {
-                    if (this.checked) {
-                        this.checkedNames = this.shoppingItems.map((item) => item.id);
-                    } else {
-                        this.checkedNames = [];
-                    }
-                },
-                // 格式化日期資訊，顯示成特定的格式
-                useDate(item) {
-                    if (item.spStepper) {
-                        item.listDate_D = Math.round((new Date(item.listDate_E) - new Date(item.listDate_S)) / (1000 * 60 * 60 * 24));
-                        const formattedStartDate = this.formatDate(item.listDate_S);
-                        const formattedEndDate = this.formatDate(item.listDate_E);
-                        return `${formattedStartDate} - ${formattedEndDate} (${item.listDate_D}晚)`;
-                    } else {
-                        const formattedDate = this.formatDate(item.listDate_S);
-                        return `${formattedDate} ｜ ${item.listDate_T}`;
-                    }
-                },
-                updateSubtotal(item) {
-                    if (item.spStepper) {
-                        item.listDate_D = Math.round((new Date(item.listDate_E) - new Date(item.listDate_S)) / (1000 * 60 * 60 * 24));
-                        item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D;
-                    } else {
-                        item.listDate_D = 1;
-                        item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D;
-                    }
-                },
-                // 計算小計(單價、數量和天數)
-                countSubtotal(item) {
-                    if (item.spStepper) {
-                        item.listDate_D = Math.round((new Date(item.listDate_E) - new Date(item.listDate_S)) / (1000 * 60 * 60 * 24));
-                        return item.spPrice * item.BuyNum * item.listDate_D;
-                    } else {
-                        item.listDate_D = 1;
-                        return item.spPrice * item.BuyNum * item.listDate_D;
-                    }
-                },
-                // 更新數量，更新小計。
-                updateAmount(item, change) {
-                    if (item.BuyNum < 9) {
-                        item.BuyNum = Math.max(1, item.BuyNum + change);
-                    } else if (item.BuyNum >= 9) {
-                        item.BuyNum = 8;
-                        item.BuyNum = Math.max(1, item.BuyNum + change);
-                    }
-                    this.updateSubtotal(item);
-                },
-                // 限制輸入在1～9之間
-                handleInput(item) {
-                    if (item.BuyNum < 1) {
-                        item.BuyNum = 1;
-                    } else if (item.BuyNum > 9) {
-                        item.BuyNum = 9;
-                    }
-                    this.updateSubtotal(item);
-                },
-                // 格式化日期
-                formatDate(dateStr) {
-                    const [month, day] = dateStr.split('/');
-                    return `${Number(month)}月${Number(day)}日`;
-                },
-                // 確認是否移除
-                confirmDelete(index) {
-                    const isConfirmed = confirm("確認移除嗎？");
-                    if (isConfirmed) {
-                        // 點擊後刪除當前.spCard
-                        this.shoppingItems.splice(index, 1);
-                        // 引用整理索引
-                        this.updateIndex();
-                    }
-                },
-                // 重新整理索引值
-                updateIndex() {
-                    this.shoppingItems.forEach((item, index) => {
-                        item.index = index;
-                    });
-                },
-                goToIndex() {
-                    window.location.href = 'index.html';
-                },
-                //信用卡焦點改變
-                handleCC(index, lengthToCheck) {
-                    const inputElement = this.$refs[`input${index}`];
-                    const inputValue = inputElement.value;
+            spReadyName: "",
+            spReadyEmail: "",
+            spReadyPhone: "",
 
-                    const pattern = /^[0-9]*$/;
-                    if (!pattern.test(inputValue)) {
-                        inputElement.value = '';
-                        return;
-                    }
+            cardNumber: ["", "", "", ""],
+            cardDate: ["", ""],
+            cardCVC: "",
+            isStepTwoValid: false,
+            validationErrors: [],
+            shoppingItems: [
+              {
+                id: "Car",
+                type: "spDriver",
+                pictureSrc_m: "images/pic/shop/goShop01_m.png",
+                pictureSrc: "images/pic/shop/goShop01.png",
+                product: "寵物接送",
+                listType: "轎車",
+                spStepper: false,
+                spPrice: 300,
+                BuyNum: 1,
+                listDate_S: "8/17",
+                listDate_E: "8/17",
+                listDate_T: "16:00",
+              },
+              {
+                id: "Hostel1",
+                type: "spHostel",
+                pictureSrc_m: "images/pic/shop/goShop02_m.png",
+                pictureSrc: "images/pic/shop/goShop02.png",
+                product: "快樂寵物旅館",
+                listType: "狗套房",
+                dogSize: "小型犬",
+                spStepper: true,
+                spPrice: 800,
+                BuyNum: 1,
+                listDate_S: "8/17",
+                listDate_E: "8/20",
+                listDate_T: "16:00",
+              },
+              {
+                id: "Hostel2",
+                type: "spHostel",
+                pictureSrc_m: "images/pic/shop/goShop03_m.png",
+                pictureSrc: "images/pic/shop/goShop03.png",
+                product: "快樂寵物旅館",
+                listType: "貓套房",
+                spStepper: true,
+                spPrice: 800,
+                BuyNum: 1,
+                listDate_S: "8/17",
+                listDate_E: "8/20",
+                listDate_T: "16:00",
+              },
+            ],
+          };
+        },
+        // 預設全選。
+        mounted() {
+          this.checked = true;
+          this.checkedNames = this.shoppingItems.map((item) => item.id);
 
-                    if (inputValue.length === lengthToCheck && index < 7) {
-                        this.$refs[`input${index + 1}`].focus();
-                    } else if (inputValue.length === 0 && index > 1) {
-                        this.$refs[`input${index - 1}`].focus();
-                    }
-                },
-                checkform() {
-                    this.validationErrors = [];
-                    if (this.spOrderName.trim() === '') {
-                        alert('姓名欄位不可為空值');
-                    } else if (!this.validateEmail(this.spOrderEmail)) {
-                        alert('請輸入正確的E-mail格式，例:XXX@XXX.XXX');
-                    } else if (!this.validatePhoneNumber(this.spOrderPhone)) {
-                        alert('請輸入正確的行動電話格式，例:09XXXXXXXX');
-                    } else if (this.cardNumber[0].trim() === '') {
-                        alert('信用卡欄位不可為空值');
-                    }else{
-                        this.currentStep++;
-                    }
-                },
-                validateEmail(email) {
-                    const emailRegex = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-                    return emailRegex.test(email);
-                },
-                validatePhoneNumber(phone) {
-                    const phoneRegex = /^09\d{8}$/;
-                    return phoneRegex.test(phone);
-                },
-                resetSameMemberChecked() {
-                    this.sameMemberChecked = false;
-                },
+          let nextButton = document.getElementById("Go_index");
+          nextButton.addEventListener("click", () => {
+            window.location.href = "index.html";
+          });
 
+          const options = { year: "numeric", month: "long", day: "numeric" };
+          this.nowDate = new Date().toLocaleDateString("zh-TW", options);
+        },
+        methods: {
+          sameMember() {
+            if (this.sameMemberChecked === true) {
+              this.spOrderName = this.member_data.name;
+              this.spOrderEmail = this.member_data.email;
+              this.spOrderPhone = this.member_data.phone;
+            }
+          },
+          caculate_point() {
+            if (this.havePoints < this.totalPrice * 0.2) {
+              this.usePoints = this.havePoints;
+            } else {
+              this.usePoints = this.totalPrice * 0.2;
+            }
+          },
+          setCurrentStep(index) {
+            this.currentStep = index;
+          },
+          // 切換全選狀態。如果checked為true，則將checkedNames設置為所有購物項目的ID，否則將其清空。
+          allChecked() {
+            if (this.checked) {
+              this.checkedNames = this.shoppingItems.map((item) => item.id);
+            } else {
+              this.checkedNames = [];
+            }
+          },
+          // 格式化日期資訊，顯示成特定的格式
+          useDate(item) {
+            if (item.spStepper) {
+              item.listDate_D = Math.round(
+                (new Date(item.listDate_E) - new Date(item.listDate_S)) /
+                  (1000 * 60 * 60 * 24)
+              );
+              const formattedStartDate = this.formatDate(item.listDate_S);
+              const formattedEndDate = this.formatDate(item.listDate_E);
+              return `${formattedStartDate} - ${formattedEndDate} (${item.listDate_D}晚)`;
+            } else {
+              const formattedDate = this.formatDate(item.listDate_S);
+              return `${formattedDate} ｜ ${item.listDate_T}`;
+            }
+          },
+          updateSubtotal(item) {
+            if (item.spStepper) {
+              item.listDate_D = Math.round(
+                (new Date(item.listDate_E) - new Date(item.listDate_S)) /
+                  (1000 * 60 * 60 * 24)
+              );
+              item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D;
+            } else {
+              item.listDate_D = 1;
+              item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D;
+            }
+          },
+          // 計算小計(單價、數量和天數)
+          countSubtotal(item) {
+            if (item.spStepper) {
+              item.listDate_D = Math.round(
+                (new Date(item.listDate_E) - new Date(item.listDate_S)) /
+                  (1000 * 60 * 60 * 24)
+              );
+              return item.spPrice * item.BuyNum * item.listDate_D;
+            } else {
+              item.listDate_D = 1;
+              return item.spPrice * item.BuyNum * item.listDate_D;
+            }
+          },
+          // 更新數量，更新小計。
+          updateAmount(item, change) {
+            if (item.BuyNum < 9) {
+              item.BuyNum = Math.max(1, item.BuyNum + change);
+            } else if (item.BuyNum >= 9) {
+              item.BuyNum = 8;
+              item.BuyNum = Math.max(1, item.BuyNum + change);
+            }
+            this.updateSubtotal(item);
+          },
+          // 限制輸入在1～9之間
+          handleInput(item) {
+            if (item.BuyNum < 1) {
+              item.BuyNum = 1;
+            } else if (item.BuyNum > 9) {
+              item.BuyNum = 9;
+            }
+            this.updateSubtotal(item);
+          },
+          // 格式化日期
+          formatDate(dateStr) {
+            const [month, day] = dateStr.split("/");
+            return `${Number(month)}月${Number(day)}日`;
+          },
+          // 確認是否移除
+          confirmDelete(index) {
+            const isConfirmed = confirm("確認移除嗎？");
+            if (isConfirmed) {
+              // 點擊後刪除當前.spCard
+              this.shoppingItems.splice(index, 1);
+              // 引用整理索引
+              this.updateIndex();
+            }
+          },
+          // 重新整理索引值
+          updateIndex() {
+            this.shoppingItems.forEach((item, index) => {
+              item.index = index;
+            });
+          },
+          goToIndex() {
+            window.location.href = "index.html";
+          },
+          //信用卡焦點改變
+          handleCC(index, lengthToCheck) {
+            const inputElement = this.$refs[`input${index}`];
+            const inputValue = inputElement.value;
 
-            },
-            computed: {
-                // 計算總價格。
-                totalPrice() {
-                    return this.shoppingItems.reduce((total, item) => {
-                        if (this.checkedNames.includes(item.id)) {
-                            return total + this.countSubtotal(item);
-                        }
-                        return total;
-                    }, 0);
-                },
-                canUsePoints() {
-                    const max = this.countSubtotal(this.shoppingItems[0]) * 0.2;
-                    return this.havePoints <= max ? this.havePoints : max;
-                },
-                payPrice() {
-                    return this.totalPrice - this.usePoints;
-                },
-                // 過濾勾選商品    
-                selectedItems() {
-                    return this.shoppingItems.filter(item => this.checkedNames.includes(item.id));
-                },
-            },
-            watch: {
-                // 監視checkedNames的變化。若所有都被選，checked為true，否為false。
-                checkedNames(val) {
-                    this.checked = val.length === this.shoppingItems.length;
-                }
-            },
-        });
+            const pattern = /^[0-9]*$/;
+            if (!pattern.test(inputValue)) {
+              inputElement.value = "";
+              return;
+            }
 
-        app.mount('#spApp');
+            if (inputValue.length === lengthToCheck && index < 7) {
+              this.$refs[`input${index + 1}`].focus();
+            } else if (inputValue.length === 0 && index > 1) {
+              this.$refs[`input${index - 1}`].focus();
+            }
+          },
+          checkform() {
+            this.validationErrors = [];
+            if (this.spOrderName.trim() === "") {
+              alert("姓名欄位不可為空值");
+            } else if (!this.validateEmail(this.spOrderEmail)) {
+              alert("請輸入正確的E-mail格式，例:XXX@XXX.XXX");
+            } else if (!this.validatePhoneNumber(this.spOrderPhone)) {
+              alert("請輸入正確的行動電話格式，例:09XXXXXXXX");
+            } else if (this.cardNumber[0].trim() === "") {
+              alert("信用卡欄位不可為空值");
+            } else {
+              this.currentStep++;
+            }
+          },
+          validateEmail(email) {
+            const emailRegex =
+              /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+            return emailRegex.test(email);
+          },
+          validatePhoneNumber(phone) {
+            const phoneRegex = /^09\d{8}$/;
+            return phoneRegex.test(phone);
+          },
+          resetSameMemberChecked() {
+            this.sameMemberChecked = false;
+          },
+        },
+        computed: {
+          // 計算總價格。
+          totalPrice() {
+            return this.shoppingItems.reduce((total, item) => {
+              if (this.checkedNames.includes(item.id)) {
+                return total + this.countSubtotal(item);
+              }
+              return total;
+            }, 0);
+          },
+          canUsePoints() {
+            const max = this.countSubtotal(this.shoppingItems[0]) * 0.2;
+            return this.havePoints <= max ? this.havePoints : max;
+          },
+          payPrice() {
+            return this.totalPrice - this.usePoints;
+          },
+          // 過濾勾選商品
+          selectedItems() {
+            return this.shoppingItems.filter((item) =>
+              this.checkedNames.includes(item.id)
+            );
+          },
+        },
+        watch: {
+          // 監視checkedNames的變化。若所有都被選，checked為true，否為false。
+          checkedNames(val) {
+            this.checked = val.length === this.shoppingItems.length;
+          },
+        },
+      });
 
+      app.mount("#spApp");
     </script>
-
-</body>
-
+  </body>
 </html>
