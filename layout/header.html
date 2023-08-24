@@ -3,13 +3,13 @@
     <img src="/images/logo/PetpaGo-logo.svg" alt="PetpaGo logo" />
   </a>
   <ul class="navList col-10">
-    <li class="nav_item" data-content="GO旅宿">
+    <li class="nav_item" data-content="GO旅宿" onclick="navigateTo('hostel.html')">
       <a href="hostel.html">GO旅宿</a>
     </li>
-    <li class="nav_item" data-content="GO司機">
+    <li class="nav_item" data-content="GO司機" onclick="navigateTo('driver.html')">
       <a href="driver.html">GO司機</a>
     </li>
-    <li class="nav_item" data-content="GO有料">
+    <li class="nav_item" data-content="GO有料" onclick="navigateTo('photowall.html')">
       <a href="photowall.html">GO有料</a>
     </li>
     <li>
@@ -114,6 +114,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js"></script>
 <script>
   // rwd nav button
+  function navigateTo(url) {
+            window.location.href = url;
+        };
+  
   class Hambuger {
     constructor() {
       window.pc = true;
