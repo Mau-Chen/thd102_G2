@@ -7,13 +7,17 @@
         top: 58px;
         right: 80px;
         display: none;
-        .ol-contentShop{
+        .ol-content{
             width: 350px;
             padding: 20px;
             background: $white;
             border-radius: $br_12;
             .ol-title{
                 @include flex($jc: space-between);
+                p{
+                    font-size: 14px;
+                    color: #555;
+                }
             }
             .ol-contentBox{
                 border-bottom: 1px solid $gray_1;
@@ -21,7 +25,6 @@
                     @include flex($jc: space-between)
                 }
             }
-
         }
         .checkout{
             @include flex($jc: space-between);
@@ -31,11 +34,8 @@
             span{
                 font-weight: bold;
             }
-            .btn_4_border{
-                background-color: $purple;
-                color: $white;
-                font-weight: bold;
-                padding: 12px 20px;
+            .btn_4{
+                border: none;
             }
         }
         // .ol-content::before{
