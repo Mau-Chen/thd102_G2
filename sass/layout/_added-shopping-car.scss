@@ -10,6 +10,7 @@
         right: 10px;
         box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.2);
         opacity: 0;
+        z-index: 9999;
         @include flex($jc:flex-start);
         gap: 10px;
         transition: opacity 1s ease-in-out;
