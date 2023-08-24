@@ -65,11 +65,22 @@
           color: $purple_d;
           margin-top: 20px;
           //   border-bottom: 1px solid $purple_d;
+          img {
+            animation: moveRightGo 1s infinite alternate ease-in-out;
+          }
         }
       }
       @media (max-width: 434px) {
         flex-direction: column;
       }
+    }
+  }
+  @keyframes moveRightGo {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(30%);
     }
   }
   .section_2 {
