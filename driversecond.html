@@ -216,9 +216,10 @@
     <script>
       //顯示已加入購物車
       let addCart = document.querySelector(".addCart");
-      let popup = document.querySelector(".ol-content");
+      let popup = document.querySelector(".ol-contentShop");
 
       addCart.addEventListener("click", function () {
+        console.log(popup);
         popup.style.opacity = "1";
 
         setTimeout(function () {
