@@ -34,7 +34,7 @@ exports.m = copy;
 
 //圖片打包
 function img_copy() {
-  return src(["images/*.*", "images/**/*.*"]).pipe(dest("dist./images"));
+  return src(["images/*.*", "images/**/*.*"]).pipe(dest("dist/images"));
 }
 
 //css 壓縮
@@ -125,13 +125,13 @@ exports.default = browser;
 const imagemin = require("gulp-imagemin");
 
 function min_images() {
-  return src("images/*.*")
+  return src(["images/*.*", "images/**/*.*"])
     .pipe(
       imagemin([
         imagemin.mozjpeg({ quality: 70, progressive: true }), // 壓縮品質      quality越低 -> 壓縮越大 -> 品質越差
       ])
     )
-    .pipe(dest("dist./images"));
+    .pipe(dest("dist/images"));
 }
 
 exports.pic = min_images;
@@ -146,7 +146,7 @@ function babel5() {
         presets: ["@babel/env"],
       })
     )
-    .pipe(dest("dist./js"));
+    .pipe(dest("dist/js"));
 }
 
 exports.es = babel5;
