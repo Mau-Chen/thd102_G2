@@ -14,10 +14,10 @@ export default{props:["items"],template:`
             </div>
             <div class="function_btn_group">
               <div class="more">
-                <img src="../images/icon/photowall-icon/love-circle.svg">
+                <img src="./images/icon/photowall-icon/love-circle.svg">
               </div>
               <div class="more"  @click="toggleLightbox2(item)">
-                <img src="../images/icon/photowall-icon/bb-circle.svg">
+                <img src="./images/icon/photowall-icon/bb-circle.svg">
               </div>
             </div>
 
@@ -43,10 +43,10 @@ export default{props:["items"],template:`
                     </div>
                     <div class="function_btn_group">
                       <div class="more">
-                        <img src="../images/icon/photowall-icon/love-circle.svg">
+                        <img src="./images/icon/photowall-icon/love-circle.svg">
                       </div>
                       <div class="more" @click="toggleLightbox2(item)">
-                        <img src="../images/icon/photowall-icon/bb-circle.svg">
+                        <img src="./images/icon/photowall-icon/bb-circle.svg">
                       </div>
                     </div>
                   </div>
