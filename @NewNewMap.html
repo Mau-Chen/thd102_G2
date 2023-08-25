@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation with Google Maps</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="startInput" placeholder="輸入起點地址">
+        <input type="text" id="endInput" placeholder="輸入終點地址">
+        <button id="navigateButton">Google Maps 導航</button>
+        <p id="distanceText">路徑距離：未計算</p>
+    </div>
+    <div id="map" style="height: 400px;"></div>
+
+    <script>
+        let startCoords = null;
+        let endCoords = null;
+        let map = null;
+        let directionsService = null;
+        let directionsRenderer = null;
+
+        function initializeMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 25.0330, lng: 121.5654 },
+                zoom: 13
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            const navigateButton = document.getElementById('navigateButton');
+            navigateButton.addEventListener('click', navigateWithGoogleMaps);
+        }
+
+        async function geocodeAddress(address) {
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`);
+            const data = await response.json();
+
+            if (data.length > 0) {
+                return {
+                    lat: parseFloat(data[0].lat),
+                    lon: parseFloat(data[0].lon)
+                };
+            } else {
+                return null;
+            }
+        }
+
+        async function navigateWithGoogleMaps() {
+            const startInput = document.getElementById('startInput').value;
+            const endInput = document.getElementById('endInput').value;
+
+            startCoords = await geocodeAddress(startInput);
+            endCoords = await geocodeAddress(endInput);
+
+            if (startCoords && endCoords) {
+                const request = {
+                    origin: new google.maps.LatLng(startCoords.lat, startCoords.lon),
+                    destination: new google.maps.LatLng(endCoords.lat, endCoords.lon),
+                    travelMode: 'DRIVING'
+                };
+
+                directionsService.route(request, (result, status) => {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+                        displayDistance(result.routes[0].legs[0].distance.text);
+                    }
+                });
+            }
+        }
+
+        function displayDistance(distanceText) {
+            const distanceParagraph = document.getElementById('distanceText');
+            distanceParagraph.textContent = `路徑距離：${distanceText}`;
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3q9avyDqpxxgigeW_k8Cr5WhdAK3QVG0&callback=initializeMap" async defer></script>
+</body>
+
+</html>
