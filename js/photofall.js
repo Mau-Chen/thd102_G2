@@ -1,4 +1,4 @@
-import photofall from './waterfall.js';
+import photofall from './js/waterfall.js';
 
 const app2 = Vue.createApp({
     data(){
@@ -10,83 +10,83 @@ const app2 = Vue.createApp({
             db_items: [
                 { 
                   id: "a_1",
-                  image: './images/pic/photoWall/photoWall01.png',
-                  icon: './images/pic/user1.png',
+                  image: '../images/pic/photoWall/photoWall01.png',
+                  icon: '../images/pic/user1.png',
                 },
                 { 
                   id: "a_2",
-                  image: './images/pic/photoWall/photoWall02.png',
-                  icon: './images/pic/user2.png', 
+                  image: '../images/pic/photoWall/photoWall02.png',
+                  icon: '../images/pic/user2.png', 
                 },
                 { 
                   id: "a_3",
-                  image: './images/pic/photoWall/photoWall03.png',
-                  icon: './images/pic/user1.png',
+                  image: '../images/pic/photoWall/photoWall03.png',
+                  icon: '../images/pic/user1.png',
                 },
                 { 
                   id: "a_4",
-                  image: './images/pic/photoWall/photoWall04.png',
-                  icon: './images/pic/user3.png',
+                  image: '../images/pic/photoWall/photoWall04.png',
+                  icon: '../images/pic/user3.png',
                 },
                 { 
                   id: "a_5",
-                  image: './images/pic/photoWall/photoWall05.png',
-                  icon: './images/pic/user3.png', 
+                  image: '../images/pic/photoWall/photoWall05.png',
+                  icon: '../images/pic/user3.png', 
                 },
                 { 
                   id: "a_6",
-                  image: './images/pic/photoWall/photoWall06.png',
-                  icon: './images/pic/user4.png',
+                  image: '../images/pic/photoWall/photoWall06.png',
+                  icon: '../images/pic/user4.png',
                 },
                 { 
                   id: "a_7",
-                  image: './images/pic/photoWall/photoWall07.png',
-                  icon: './images/pic/user5.png', 
+                  image: '../images/pic/photoWall/photoWall07.png',
+                  icon: '../images/pic/user5.png', 
                 },
                 { 
                   id: "a_8",
-                  image: './images/pic/photoWall/photoWall08.png',
-                  icon: './images/pic/user4.png', 
+                  image: '../images/pic/photoWall/photoWall08.png',
+                  icon: '../images/pic/user4.png', 
                 },
                 { 
                   id: "a_9",
-                  image: './images/pic/photoWall/photoWall09.png',
-                  icon: './images/pic/user3.png', 
+                  image: '../images/pic/photoWall/photoWall09.png',
+                  icon: '../images/pic/user3.png', 
                 },
                 { 
                   id: "a_10",
-                  image: './images/pic/photoWall/photoWall10.png',
-                  icon: './images/pic/user6.png', 
+                  image: '../images/pic/photoWall/photoWall10.png',
+                  icon: '../images/pic/user6.png', 
                 },
                 { 
                   id: "a_11",
-                  image: './images/pic/photoWall/photoWall11.png',
-                  icon: './images/pic/user2.png', 
+                  image: '../images/pic/photoWall/photoWall11.png',
+                  icon: '../images/pic/user2.png', 
                 },
                 { 
                   id: "a_12",
-                  image: './images/pic/photoWall/photoWall12.png',
-                  icon: './images/pic/user3.png', 
+                  image: '../images/pic/photoWall/photoWall12.png',
+                  icon: '../images/pic/user3.png', 
                 },
                 { 
                   id: "a_13",
-                  image: './images/pic/photoWall/photoWall13.png',
-                  icon: './images/pic/user4.png', 
+                  image: '../images/pic/photoWall/photoWall13.png',
+                  icon: '../images/pic/user4.png', 
                 },
                 { 
                   id: "a_14",
-                  image: './images/pic/photoWall/photoWall14.png',
-                  icon: './images/pic/user2.png', 
+                  image: '../images/pic/photoWall/photoWall14.png',
+                  icon: '../images/pic/user2.png', 
                 },
                 { 
                   id: "a_15",
-                  image: './images/pic/photoWall/photoWall15.png',
-                  icon: './images/pic/user4.png', 
+                  image: '../images/pic/photoWall/photoWall15.png',
+                  icon: '../images/pic/user4.png', 
                 },
                 { 
                   id: "a_16",
-                  image: './images/pic/photoWall/photoWall16.png',
-                  icon: './images/pic/user3.png', 
+                  image: '../images/pic/photoWall/photoWall16.png',
+                  icon: '../images/pic/user3.png', 
                 }
               ]
         }
@@ -103,7 +103,7 @@ const app2 = Vue.createApp({
         event.preventDefault(); //用來防止圖片拖進瀏覽器的預設事件
 
         const file = event.dataTransfer.files[0];
-        if(file && file.type.startsWith('image/')){
+        if(file && file.type.startsWith('./image/')){
           const reader = new FileReader();
           reader.onload = () => {
             this.previewImage = reader.result;
@@ -121,7 +121,7 @@ const app2 = Vue.createApp({
       },
       handleFileSelect(event) {
         const file = event.target.files[0];
-        if (file && file.type.startsWith('image/')) {
+        if (file && file.type.startsWith('./image/')) {
           const reader = new FileReader();
           reader.onload = () => {
             this.previewImage = reader.result;
