@@ -116,6 +116,7 @@
                     <div
                       class="dirver_Subtotal_icon"
                       @click="MinusOne('passenger_counter')"
+                      :class="{'limit': passenger_counter === 0}"
                     >
                       <svg
                         width="11"
@@ -134,6 +135,7 @@
                     <div
                       class="dirver_Subtotal_icon"
                       @click="PlusOne('passenger_counter')"
+                      ref="dirver_Subtotal_icon_control"
                     >
                       <svg
                         width="11"
@@ -158,6 +160,7 @@
                     <div
                       class="dirver_Subtotal_icon"
                       @click="MinusOne('pet_counter')"
+                      :class="{'limit': pet_counter === 0}"
                     >
                       <svg
                         width="11"

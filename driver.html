@@ -127,7 +127,7 @@
           disabledDates() {
             let today = new Date();
             let disabledtoday = new Date(today);
-            disabledtoday.setDate(disabledtoday.getDate() + 1);
+            disabledtoday.setHours(today.getHours() + 3);
 
             return disabledtoday;
           },
@@ -147,6 +147,12 @@
               if (this.passenger_counter + this.pet_counter < 3) {
                 this[counter_name]++;
               }
+
+              // if (this.passenger_counter + this.pet_counter >= 3) {
+              //   let dirver_Subtotal_icon_control =
+              //     this.$refs.dirver_Subtotal_icon_control;
+              //   dirver_Subtotal_icon_control.classList.add("limit");
+              // }
             }
             if (this.car_menu === "休旅車") {
               if (this.passenger_counter + this.pet_counter < 4) {
