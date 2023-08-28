@@ -13,6 +13,7 @@
         <input type="text" id="endInput" placeholder="輸入終點地址">
         <button id="navigateButton">Google Maps 導航</button>
         <p id="distanceText">路徑距離：未計算</p>
+        <p id="durationText">行程時間：未計算</p>
     </div>
     <div id="map" style="height: 400px;"></div>
 
@@ -67,8 +68,10 @@
 
                 directionsService.route(request, (result, status) => {
                     if (status === 'OK') {
+                        // console.log(result);
                         directionsRenderer.setDirections(result);
                         displayDistance(result.routes[0].legs[0].distance.text);
+                        displayDuration(result.routes[0].legs[0].duration.text);
                     }
                 });
             }
@@ -78,8 +81,15 @@
             const distanceParagraph = document.getElementById('distanceText');
             distanceParagraph.textContent = `路徑距離：${distanceText}`;
         }
+
+        function displayDuration(durationText) {
+            const durationParagraph = document.getElementById('durationText');
+            durationParagraph.textContent = `行程時間：${durationText}`;
+        }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3q9avyDqpxxgigeW_k8Cr5WhdAK3QVG0&callback=initializeMap" async defer></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3q9avyDqpxxgigeW_k8Cr5WhdAK3QVG0&callback=initializeMap"
+        async defer></script>
 </body>
 
 </html>
