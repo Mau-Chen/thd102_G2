@@ -144,3 +144,36 @@
 .login123 {
   display: none;
 }
+
+
+// Vue 動畫部分
+//X軸滑動
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  // transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(500px);
+  opacity: 0;
+}
+//Y軸滑動
+.slide-fadeY-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-fadeY-leave-active {
+  // transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fadeY-enter-from,
+.slide-fadeY-leave-to {
+  transform: translateY(200px);
+  opacity: 0;
+}
+
+

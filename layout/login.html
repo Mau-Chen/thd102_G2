@@ -9,151 +9,183 @@
   <div type="button" @click="ispop = true; changePage(0)" class="btn_4" v-show="success === false">
     登入
   </div>
-  <div v-show="success === true">
-    <a href="./member.html">
-      <svg width="25" height="25" viewBox="0 0 67 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M33.5003 0.666748C15.1003 0.666748 0.166992 15.6001 0.166992 34.0001C0.166992 52.4001 15.1003 67.3334 33.5003 67.3334C51.9003 67.3334 66.8337 52.4001 66.8337 34.0001C66.8337 15.6001 51.9003 0.666748 33.5003 0.666748ZM33.5003 14.0001C39.9337 14.0001 45.167 19.2334 45.167 25.6667C45.167 32.1001 39.9337 37.3334 33.5003 37.3334C27.067 37.3334 21.8337 32.1001 21.8337 25.6667C21.8337 19.2334 27.067 14.0001 33.5003 14.0001ZM33.5003 60.6668C26.7337 60.6668 18.7337 57.9334 13.0337 51.0668C18.8723 46.4858 26.0791 43.9961 33.5003 43.9961C40.9216 43.9961 48.1283 46.4858 53.967 51.0668C48.267 57.9334 40.267 60.6668 33.5003 60.6668Z"
-          fill="#09003E" />
-      </svg>
-    </a>
+  <transition name="slide-fade">
+    <div v-show="success === true">
+      <a href="./member.html">
+        <svg width="25" height="25" viewBox="0 0 67 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M33.5003 0.666748C15.1003 0.666748 0.166992 15.6001 0.166992 34.0001C0.166992 52.4001 15.1003 67.3334 33.5003 67.3334C51.9003 67.3334 66.8337 52.4001 66.8337 34.0001C66.8337 15.6001 51.9003 0.666748 33.5003 0.666748ZM33.5003 14.0001C39.9337 14.0001 45.167 19.2334 45.167 25.6667C45.167 32.1001 39.9337 37.3334 33.5003 37.3334C27.067 37.3334 21.8337 32.1001 21.8337 25.6667C21.8337 19.2334 27.067 14.0001 33.5003 14.0001ZM33.5003 60.6668C26.7337 60.6668 18.7337 57.9334 13.0337 51.0668C18.8723 46.4858 26.0791 43.9961 33.5003 43.9961C40.9216 43.9961 48.1283 46.4858 53.967 51.0668C48.267 57.9334 40.267 60.6668 33.5003 60.6668Z"
+            fill="#09003E" />
+        </svg>
+      </a>
+    </div>
+  </transition>
 
-  </div>
   <!-- 用v-if來渲染出燈箱畫面，此處的v-if渲染內容為燈箱主體，不可更動。 -->
-  <div v-if="ispop === true" class="lightbox" @click="ispop = false">
-    <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
-    <div class="loginpage_base" @click.stop>
-      <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
-      <div class="close">
-        <div class="icon" @click="ispop = false">
-          <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+  <template v-if="ispop === true">
+    <div class="lightbox" @click="ispop = false">
+      <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
+      <div class="loginpage_base" @click.stop>
+        <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
+        <div class="close">
+          <div class="icon" @click="ispop = false">
+            <img src="./images/icon/components-icon/close-line.svg" alt="close" />
+          </div>
         </div>
-      </div>
-      <!-- 此處為燈箱切換頁面的主體，用v-if渲染出不同的內文，用data:index來控制要渲染的頁面。
+        <!-- 此處為燈箱切換頁面的主體，用v-if渲染出不同的內文，用data:index來控制要渲染的頁面。
                     同一class但不同 index的div 即為不同的頁面，所有要開發的頁面，都要放在同一層級。 -->
 
-      <!-- index 0 登入頁面 -->
-      <div v-if="index === 0" class="loginPage">
-        <div class="pageIsideContainer">
-          <h5>登入/註冊</h5>
-          <!-- 此處綁定了自行寫入的post事件 -->
-          <form @submit.prevent="handleSubmit">
-            <!-- sectionHead本身不包含任何屬性，為了要完全貼齊form的上轅。 -->
-            <div class="sectionHead">
-              <label for="account">帳號</label>
-              <input type="email" id="account" name="account" placeholder="請輸入E-MAIL" class="loginType"
-                v-model="account" />
+        <!-- index 0 登入頁面 -->
+        <transition name="slide-fade">
+          <template v-if="index === 0">
+            <div class="loginPage">
+              <div class="pageIsideContainer">
+                <h5>登入/註冊</h5>
+                <!-- 此處綁定了自行寫入的post事件 -->
+                <form @submit.prevent="handleSubmit">
+                  <!-- sectionHead本身不包含任何屬性，為了要完全貼齊form的上轅。 -->
+                  <div class="sectionHead">
+                    <label for="account">帳號</label>
+                    <input type="email" id="account" name="account" placeholder="請輸入E-MAIL" class="loginType"
+                      v-model="account" />
+                  </div>
+                  <!-- sectionBody包含了向上與向下的間距，要調整的方向在這裡。 -->
+                  <!-- <div class="sectionBody"> -->
+                  <label for="password">密碼</label>
+                  <input type="password" id="password" name="password" placeholder="請輸入密碼" class="loginType noMb24"
+                    v-model="password" />
+                  <a class="mb_24" @click="changePage(1)">忘記密碼?</a>
+                  <!-- </div> -->
+                  <div class="submit">
+                    <input type="button" class="btn_5" value="登入" @click="ispop = false, success = true" />
+                  </div>
+                </form>
+                <div class="register">
+                  <p>還沒成為PetpaGo會員?</p>
+                  <span @click="changePage(4)">立即註冊</span>
+                </div>
+                <div class="otherTypeToLogin">
+                  <p>或其它登入方式</p>
+                </div>
+                <div class="otherIcon">
+                  <a href="#">
+                    <img src="./images/icon/components-icon/fb-Logo.svg" alt="" />
+                  </a>
+                  <a href="#">
+                    <img src="./images/icon/components-icon/google-Logo.svg" alt="" />
+                  </a>
+                </div>
+              </div>
             </div>
-            <!-- sectionBody包含了向上與向下的間距，要調整的方向在這裡。 -->
-            <!-- <div class="sectionBody"> -->
-            <label for="password">密碼</label>
-            <input type="password" id="password" name="password" placeholder="請輸入密碼" class="loginType noMb24"
-              v-model="password" />
-            <a class="mb_24" @click="changePage(1)">忘記密碼?</a>
-            <!-- </div> -->
-            <div class="submit">
-              <input type="button" class="btn_5" value="登入" @click="ispop = false, success = true" />
+          </template>
+
+        </transition>
+
+
+        <!-- index 1 忘記密碼接入頁面 -->
+        <transition name="slide-fade">
+          <div v-if="index === 1" class="loginPage">
+            <div class="pageIsideContainer">
+              <h5>重設密碼</h5>
+              <p class="textColor_m-font">
+                輸入你註冊PetpaGo帳號的電子信箱，我們會發送重設密碼的連結
+              </p>
+              <form action="#" method="post">
+                <div class="sectionHead">
+                  <label for="checkEmail">電子信箱</label>
+                  <input type="email" placeholder="請輸入Email" id="checkEmail" class="loginType" />
+                </div>
+                <div class="submit">
+                  <input type="button" class="btn_5" value="確認" @click="changePage(2)" />
+                </div>
+              </form>
             </div>
-          </form>
-          <div class="register">
-            <p>還沒成為PetpaGo會員?</p>
-            <span @click="changePage(4)">立即註冊</span>
           </div>
-          <div class="otherTypeToLogin">
-            <p>或其它登入方式</p>
-          </div>
-          <div class="otherIcon">
-            <a href="#">
-              <img src="./images/icon/components-icon/fb-Logo.svg" alt="" />
-            </a>
-            <a href="#">
-              <img src="./images/icon/components-icon/google-Logo.svg" alt="" />
-            </a>
-          </div>
-        </div>
-      </div>
+        </transition>
 
-      <!-- index 1 忘記密碼接入頁面 -->
-      <div v-if="index === 1" class="loginPage">
-        <div class="pageIsideContainer">
-          <h5>重設密碼</h5>
-          <p class="textColor_m-font">
-            輸入你註冊PetpaGo帳號的電子信箱，我們會發送重設密碼的連結
-          </p>
-          <form action="#" method="post">
-            <div class="sectionHead">
-              <label for="checkEmail">電子信箱</label>
-              <input type="email" placeholder="請輸入Email" id="checkEmail" class="loginType" />
-            </div>
-            <div class="submit">
-              <input type="button" class="btn_5" value="確認" @click="changePage(2)" />
-            </div>
-          </form>
-        </div>
-      </div>
 
-      <!-- index 2 修改密碼頁面 -->
-      <div v-if="index === 2" class="loginPage">
-        <div class="pageIsideContainer">
-          <h5>重設密碼</h5>
-          <form action="#" method="post">
-            <div class="sectionHead">
-              <label for="passwordCheck">新密碼</label>
-              <input type="password" id="passwordCheck" name="password" placeholder="請輸入" class="loginType" />
+        <!-- index 2 修改密碼頁面 -->
+        <transition name="slide-fade">
+          <template v-if="index === 2">
+            <div class="loginPage">
+              <div class="pageIsideContainer">
+                <h5>重設密碼</h5>
+                <form action="#" method="post">
+                  <div class="sectionHead">
+                    <label for="passwordCheck">新密碼</label>
+                    <input type="password" id="passwordCheck" name="password" placeholder="請輸入" class="loginType" />
+                  </div>
+                  <!-- <div class="sectionBody"> -->
+                  <label for="passwordCheck1">請再次輸入新密碼</label>
+                  <input type="password" id="passwordCheck1" name="password" placeholder="請輸入" class="loginType" />
+                  <!-- </div> -->
+                  <div class="submit">
+                    <input type="button" class="btn_5" value="確認重設" @click="changePage(3)" />
+                  </div>
+                </form>
+              </div>
             </div>
-            <!-- <div class="sectionBody"> -->
-            <label for="passwordCheck1">請再次輸入新密碼</label>
-            <input type="password" id="passwordCheck1" name="password" placeholder="請輸入" class="loginType" />
-            <!-- </div> -->
-            <div class="submit">
-              <input type="button" class="btn_5" value="確認重設" @click="changePage(3)" />
-            </div>
-          </form>
-        </div>
-      </div>
+          </template>
 
-      <!-- index 3 忘記密碼/設定成功 -->
-      <div v-if="index === 3" class="loginPage succPag">
-        <div class="pageIsideContainer">
-          <img src="./images/icon/components-icon/success.svg" alt="" />
-          <h5 class="mb_24">密碼重設成功</h5>
-          <button type="button" class="btn_5" @click="changePage(0)">
-            確認
-          </button>
-        </div>
-      </div>
+        </transition>
 
-      <!-- index 4 註冊會員 -->
-      <div v-if="index === 4" class="loginPage">
-        <div class="pageIsideContainer">
-          <h5>註冊會員</h5>
 
-          <form action="#" method="post">
-            <div class="sectionHead">
-              <label for="member_name">姓名</label>
-              <input type="text" id="member_name" name="member_name" placeholder="請輸入" class="loginType" />
+        <!-- index 3 忘記密碼/設定成功 -->
+        <transition name="slide-fade">
+          <template v-if="index === 3">
+            <div class="loginPage succPag">
+              <div class="pageIsideContainer">
+                <img src="./images/icon/components-icon/success.svg" alt="" />
+                <h5 class="mb_24">密碼重設成功</h5>
+                <button type="button" class="btn_5" @click="changePage(0)">
+                  確認
+                </button>
+              </div>
             </div>
-            <!-- <div class="sectionBody"> -->
-            <label for="user_mail">電子信箱</label>
-            <input type="email" id="user_mail" name="user_mail" placeholder="請輸入" class="loginType" />
-            <!-- </div> -->
-            <!-- <div class="sectionBody"> -->
-            <label for="new_password">使用者密碼</label>
-            <input type="password" id="new_password" name="new_password" placeholder="請輸入" class="loginType" />
-            <!-- </div> -->
-            <!-- <div class="sectionBody"> -->
-            <label for="new_passwordCheck">請再次輸入使用者密碼</label>
-            <input type="password" id="new_passwordCheck" name="new_passwordCheck" placeholder="請輸入"
-              class="loginType" />
-            <!-- </div> -->
-            <div class="submit">
-              <input type="button" class="btn_5" value="立即加入" @click="changePage(0)" />
+          </template>
+
+        </transition>
+
+
+        <!-- index 4 註冊會員 -->
+        <transition name="slide-fade">
+          <template v-if="index === 4">
+            <div class="loginPage">
+              <div class="pageIsideContainer">
+                <h5>註冊會員</h5>
+
+                <form action="#" method="post">
+                  <div class="sectionHead">
+                    <label for="member_name">姓名</label>
+                    <input type="text" id="member_name" name="member_name" placeholder="請輸入" class="loginType" />
+                  </div>
+                  <!-- <div class="sectionBody"> -->
+                  <label for="user_mail">電子信箱</label>
+                  <input type="email" id="user_mail" name="user_mail" placeholder="請輸入" class="loginType" />
+                  <!-- </div> -->
+                  <!-- <div class="sectionBody"> -->
+                  <label for="new_password">使用者密碼</label>
+                  <input type="password" id="new_password" name="new_password" placeholder="請輸入" class="loginType" />
+                  <!-- </div> -->
+                  <!-- <div class="sectionBody"> -->
+                  <label for="new_passwordCheck">請再次輸入使用者密碼</label>
+                  <input type="password" id="new_passwordCheck" name="new_passwordCheck" placeholder="請輸入"
+                    class="loginType" />
+                  <!-- </div> -->
+                  <div class="submit">
+                    <input type="button" class="btn_5" value="立即加入" @click="changePage(0)" />
+                  </div>
+                </form>
+              </div>
             </div>
-          </form>
-        </div>
+          </template>
+
+        </transition>
+
       </div>
     </div>
-  </div>
+  </template>
+
 </div>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
