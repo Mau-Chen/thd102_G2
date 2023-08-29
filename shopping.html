@@ -141,7 +141,7 @@
                         </div>
                         <!-- 小計的金額用函數 countSubtotal(item) 計算 -->
                         <p>
-                          NT${{ countSubtotal(item) }}
+                          NT${{ countSubtotal(item).toLocaleString('en-US') }}
                         </p>
                       </div>
                     </div>
@@ -540,8 +540,8 @@
                 spStepper: false,
                 spPrice: 300,
                 BuyNum: 1,
-                listDate_S: "8/17",
-                listDate_E: "8/17",
+                listDate_S: "2023/8/17",
+                listDate_E: "2023/8/17",
                 listDate_T: "16:00",
               },
               {
@@ -555,8 +555,8 @@
                 spStepper: true,
                 spPrice: 800,
                 BuyNum: 1,
-                listDate_S: "8/17",
-                listDate_E: "8/20",
+                listDate_S: "2023/8/17",
+                listDate_E: "2023/8/20",
                 listDate_T: "16:00",
               },
               {
@@ -569,8 +569,8 @@
                 spStepper: true,
                 spPrice: 800,
                 BuyNum: 1,
-                listDate_S: "8/17",
-                listDate_E: "8/20",
+                listDate_S: "2023/8/17",
+                listDate_E: "2023/8/20",
                 listDate_T: "16:00",
               },
             ],
@@ -645,11 +645,18 @@
           // 計算小計(單價、數量和天數)
           countSubtotal(item) {
             console.log(item);
+            // const listDate_E = item.listDate_E
+            // const listDate_S = item.listDate_S
+            // const listDate_E = '2023/08/20'
+            // const listDate_S = '2023/08/17'
             if (item.spStepper) {
+              
               item.listDate_D = Math.round(
                 (new Date(item.listDate_E) - new Date(item.listDate_S)) /
                   (1000 * 60 * 60 * 24)
               );
+
+              
               return item.spPrice * item.BuyNum * item.listDate_D;
             } else {
               item.listDate_D = 1;
