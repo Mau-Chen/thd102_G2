@@ -141,7 +141,7 @@
                         </div>
                         <!-- 小計的金額用函數 countSubtotal(item) 計算 -->
                         <p>
-                          NT${{ countSubtotal(item).toLocaleString('en-US') }}
+                          NT${{ countSubtotal(item) }}
                         </p>
                       </div>
                     </div>
@@ -644,6 +644,7 @@
           },
           // 計算小計(單價、數量和天數)
           countSubtotal(item) {
+            console.log(item);
             if (item.spStepper) {
               item.listDate_D = Math.round(
                 (new Date(item.listDate_E) - new Date(item.listDate_S)) /
