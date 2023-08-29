@@ -46,9 +46,15 @@ header {
       color: $purple_d;
       height: 40px;
       @include flex();
-      // &:hover {
-      //   color: $purple;
-      // }
+      svg {
+        fill: $purple_d;
+      }
+      &.active {
+        color: $purple;
+        svg {
+          fill: $purple; /* SVG 圖標填充顏色 */
+        }
+      }
     }
     @media (max-width: 768px) {
       display: none;
