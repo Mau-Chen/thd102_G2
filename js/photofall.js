@@ -1,4 +1,4 @@
-import photofall from './js/waterfall.js';
+import photofall from './waterfall.js';
 
 const app2 = Vue.createApp({
     data(){
