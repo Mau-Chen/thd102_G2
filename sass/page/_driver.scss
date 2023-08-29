@@ -235,9 +235,15 @@
                     width: 10px;
                     height: 10px;
                     transform: translate(10px, 10px);
+                    &.pointer_none {
+                      pointer-events: none;
+                    }
 
                     path {
                       fill: $black;
+                      &.pointer_none {
+                        pointer-events: none;
+                      }
                     }
                   }
                 }
