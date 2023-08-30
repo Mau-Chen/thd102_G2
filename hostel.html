@@ -9,7 +9,6 @@
   <title>GO旅宿 | PetpaGo</title>
 </head>
 
-<<<<<<< HEAD
 <body>
   <div class="wrapper hostel">
     @@include('layout/header.html')
@@ -58,59 +57,6 @@
                 <label for="">
                   <span>寵物類型</span>
                   <!-- <input type="text" placeholder="請選擇" /> -->
-=======
-      <!-- Banner -->
-      <picture>
-        <source
-          media="(max-width:414px )"
-          srcset="./images/banner/hostel/m375-hostel.svg"
-        />
-        <source
-          media="(max-width:768px )"
-          srcset="./images/banner/hostel/p768-hostel.svg"
-        />
-        <img src="./images/banner/hostel/big_hostel_banner.svg" alt="" />
-        <!-- <img src="./images/banner/hostel/hostel_cat.svg" alt="banner"> -->
-      </picture>
-      <!---------------- search bar star ---------------->
-      <div class="hostel_headBox">
-        <div class="container">
-          <h2 class="hostel_title">最貼心的寵物住宿</h2>
-          <form
-            class="search_hotel mb_100"
-            action="./hostel-booking.html"
-            method="get"
-          >
-            <div class="threeInput" id="select_pet">
-              <div class="search-box col-4">
-                <label for="">
-                  <span>住宿地點或住宿名稱</span>
-                  <input
-                    type="text"
-                    placeholder="城市／地區／住宿名稱"
-                    name="city"
-                  />
-                </label>
-              </div>
-              <div class="search-box col-4" >
-                <label for="">
-                  <span>入住＆退房日期</span>
-                  <!-- <input type="date" /> -->
-                  <DatePicker
-                    v-model="date"
-                    range
-                    max-range="7"
-                    :format="format"
-                    calendar-cell-class-name="dp-custom-cell"
-                    time-picker-inline
-                    week-start="0"
-                    :is-24="true"
-                    :min-date="disabledDates"
-                    :auto-position="false"
-                    :enable-time-picker="false"
-                  >
-                  </DatePicker>
->>>>>>> uno
                 </label>
                 <p>
                   <span v-show="numDog > 0">{{ numDog }}隻狗</span>
@@ -178,22 +124,14 @@
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
-          </div>
-          <button class="btn_7" type="button" id="searchButton">
-            立即搜尋
-          </button>
-=======
             <button class="btn_7" type="submit" id="searchButton">
               立即搜尋
             </button>
           </form>
->>>>>>> uno
         </div>
       </div>
     </div>
 
-<<<<<<< HEAD
     <!---------------- main 精選寵物旅宿 star ---------------->
     <main class="top_area_hotels mb_60">
       <div class="container">
@@ -258,7 +196,9 @@
         </div>
       </div>
     </main>
-=======
+    @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
+    @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
+  </div>
     <script>
       const select_pet = Vue.createApp({
         data() {
@@ -276,11 +216,10 @@
             let today = new Date();
             let disabledtoday = new Date(today);
             disabledtoday.setDate(disabledtoday.getDate() + 1);
->>>>>>> uno
+            }
+        },
+      })
 
-    @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
-    @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
-  </div>
   <script src="./js/vue-datepicker.iife.js"></script>
 
   <script>
@@ -302,14 +241,6 @@
 
           return disabledtoday;
         },
-<<<<<<< HEAD
-        hoursArray() {
-          const arr = [];
-          for (let i = 0; i < 24; i++) {
-            arr.push({ text: i < 10 ? `0${i}` : i, value: i });
-          }
-          return arr;
-=======
         mounted() {
           // console.log("sss");
           this.start = true;
@@ -323,7 +254,6 @@
               this[property] += value;
             }
           },
->>>>>>> uno
         },
         minutesArray() {
           const arr = [];
@@ -333,12 +263,6 @@
           return arr;
         },
       },
-      methods: {
-        toChange(property, value) {
-          if (value > 0 || (value < 0 && this[property] > 0)) {
-            this[property] += value;
-          }
-        },
         closeDropdown() {
           // 点击下拉框以外的地方关闭下拉框
           this.isPop = false;
@@ -349,19 +273,6 @@
 
     const vm233 = select_pet.mount("#select_pet");
 
-    document
-      .getElementById("searchButton")
-      .addEventListener("click", function () {
-        window.location.href = "./hostel-booking.html";
-      });
-  </script>
-</body>
-
-<<<<<<< HEAD
-</html>
-=======
-      const vm233 = select_pet.mount("#select_pet");
-
       // document
       //   .getElementById("searchButton")
       //   .addEventListener("click", function () {
@@ -370,4 +281,3 @@
     </script>
   </body>
 </html>
->>>>>>> uno
