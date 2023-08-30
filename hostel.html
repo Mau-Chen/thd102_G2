@@ -1,73 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    @@include('layout/meta.html')
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>GO旅宿 | PetpaGo</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  @@include('layout/meta.html')
-  <link rel="stylesheet" href="./css/style.css" />
-  <title>GO旅宿 | PetpaGo</title>
-</head>
+  <body>
+    <div class="wrapper hostel">
+      @@include('layout/header.html')
 
-<body>
-  <div class="wrapper hostel">
-    @@include('layout/header.html')
-
-    <!-- Banner -->
-    <picture>
-      <source media="(max-width:414px )" srcset="./images/banner/hostel/m375-hostel.svg" />
-      <source media="(max-width:768px )" srcset="./images/banner/hostel/p768-hostel.svg" />
-      <img src="./images/banner/hostel/big_hostel_banner.svg" alt="" />
-      <!-- <img src="./images/banner/hostel/hostel_cat.svg" alt="banner"> -->
-    </picture>
-    <!---------------- search bar star ---------------->
-    <div class="hostel_headBox">
-      <div class="container">
-        <h2 class="hostel_title">最貼心的寵物住宿</h2>
-        <div class="search_hotel mb_100">
-          <div class="threeInput" id="select_pet">
-            <div class="search-box col-4">
-              <label for="">
-                <span>住宿地點或住宿名稱</span>
-                <input type="text" placeholder="城市／地區／住宿名稱" />
-              </label>
-            </div>
-            <div class="search-box col-4">
-              <label for="">
-                <span>入住＆退房日期</span>
-                <!-- <input type="date" /> -->
-                <DatePicker v-model="date" range max-range="7" :format="format"
-                  calendar-cell-class-name="dp-custom-cell" time-picker-inline week-start="0" :is-24="true"
-                  :min-date="disabledDates" :auto-position="false" :enable-time-picker="false">
-                </DatePicker>
-                <!-- <DatePicker
-                      v-model="date"
-                      calendar-cell-class-name="dp-custom-cell"
-                      time-picker-inline
-                      week-start="0"
-                      :is-24="true"
-                      :format="format"
-                      :min-date="disabledDates"
-                    >
-                    </DatePicker> -->
-              </label>
-            </div>
-            <div class="search-box dropDownParent col-4">
-              <div @click="isPop = !isPop">
+      <!-- Banner -->
+      <picture>
+        <source
+          media="(max-width:414px )"
+          srcset="./images/banner/hostel/m375-hostel.svg"
+        />
+        <source
+          media="(max-width:768px )"
+          srcset="./images/banner/hostel/p768-hostel.svg"
+        />
+        <img src="./images/banner/hostel/big_hostel_banner.svg" alt="" />
+        <!-- <img src="./images/banner/hostel/hostel_cat.svg" alt="banner"> -->
+      </picture>
+      <!---------------- search bar star ---------------->
+      <div class="hostel_headBox">
+        <div class="container">
+          <h2 class="hostel_title">最貼心的寵物住宿</h2>
+          <form
+            class="search_hotel mb_100"
+            action="./hostel-booking_detail.html"
+            method="get"
+          >
+            <div class="threeInput" id="select_pet">
+              <div class="search-box col-4">
                 <label for="">
-                  <span>寵物類型</span>
-                  <!-- <input type="text" placeholder="請選擇" /> -->
+                  <span>住宿地點或住宿名稱</span>
+                  <input
+                    type="text"
+                    placeholder="城市／地區／住宿名稱"
+                    name="city"
+                  />
                 </label>
-                <p>
-                  <span v-show="numDog > 0">{{ numDog }}隻狗</span>
-                  <span v-show="numDog > 0 && numCat > 0">，</span>
-                  <span v-show="numCat > 0">{{ numCat}}隻貓</span>
-                </p>
               </div>
-              <div class="search-box dropDownParent col-4" :class="{'-show' : start === true}">
+              <div class="search-box col-4">
+                <label for="">
+                  <span>入住＆退房日期</span>
+                  <!-- <input type="date" /> -->
+                  <DatePicker
+                    v-model="date"
+                    range
+                    max-range="7"
+                    :format="format"
+                    calendar-cell-class-name="dp-custom-cell"
+                    time-picker-inline
+                    week-start="0"
+                    :is-24="true"
+                    :min-date="disabledDates"
+                    :auto-position="false"
+                    :enable-time-picker="false"
+                  >
+                  </DatePicker>
+                </label>
+              </div>
+              <!--  -->
+              <div
+                class="search-box dropDownParent col-4"
+                :class="{'-show' : start === true}"
+              >
                 <div @click="isPop = !isPop">
                   <label for="">
                     <span>寵物類型</span>
+                    <!-- <input type="text" placeholder="請選擇" /> -->
                   </label>
                   <p>
                     <span v-show="numDog > 0">{{ numDog }}隻狗</span>
@@ -130,75 +139,99 @@
           </form>
         </div>
       </div>
+
+      <!---------------- main 精選寵物旅宿 star ---------------->
+      <main class="top_area_hotels mb_60">
+        <div class="container">
+          <h5 class="mb_40">精選寵物旅宿</h5>
+          <div class="cards-wrapper">
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-01.png"
+                alt="台北"
+              />
+              <div class="card_text">
+                <p>台北</p>
+                <p>30間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-02.png"
+                alt="台中"
+              />
+              <div class="card_text">
+                <p>台中</p>
+                <p>20間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-03.png"
+                alt="台南"
+              />
+              <div class="card_text">
+                <p>台南</p>
+                <p>8間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-04.png"
+                alt="高雄"
+              />
+              <div class="card_text">
+                <p>高雄</p>
+                <p>15間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-05.png"
+                alt="新竹"
+              />
+              <div class="card_text">
+                <p>新竹</p>
+                <p>8間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-06.png"
+                alt="花蓮"
+              />
+              <div class="card_text">
+                <p>花蓮</p>
+                <p>10間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-07.png"
+                alt="嘉義"
+              />
+              <div class="card_text">
+                <p>嘉義</p>
+                <p>6間住宿</p>
+              </div>
+            </a>
+            <a class="card" href="./hostel-booking.html">
+              <img
+                src="./images/pic/hostel/hostel page1/hostel-city-08.png"
+                alt="外島"
+              />
+              <div class="card_text">
+                <p>外島</p>
+                <p>3間住宿</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </main>
+      @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
+      @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
 
-    <!---------------- main 精選寵物旅宿 star ---------------->
-    <main class="top_area_hotels mb_60">
-      <div class="container">
-        <h5 class="mb_40">精選寵物旅宿</h5>
-        <div class="cards-wrapper">
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-01.png" alt="台北" />
-            <div class="card_text">
-              <p>台北</p>
-              <p>30間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-02.png" alt="台中" />
-            <div class="card_text">
-              <p>台中</p>
-              <p>20間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-03.png" alt="台南" />
-            <div class="card_text">
-              <p>台南</p>
-              <p>8間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-04.png" alt="高雄" />
-            <div class="card_text">
-              <p>高雄</p>
-              <p>15間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-05.png" alt="新竹" />
-            <div class="card_text">
-              <p>新竹</p>
-              <p>8間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-06.png" alt="花蓮" />
-            <div class="card_text">
-              <p>花蓮</p>
-              <p>10間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-07.png" alt="嘉義" />
-            <div class="card_text">
-              <p>嘉義</p>
-              <p>6間住宿</p>
-            </div>
-          </a>
-          <a class="card" href="./hostel-booking.html">
-            <img src="./images/pic/hostel/hostel page1/hostel-city-08.png" alt="外島" />
-            <div class="card_text">
-              <p>外島</p>
-              <p>3間住宿</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </main>
-    @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
-    @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
-  </div>
     <script>
       const select_pet = Vue.createApp({
         data() {
@@ -216,30 +249,23 @@
             let today = new Date();
             let disabledtoday = new Date(today);
             disabledtoday.setDate(disabledtoday.getDate() + 1);
+
+            return disabledtoday;
+          },
+          hoursArray() {
+            const arr = [];
+            for (let i = 0; i < 24; i++) {
+              arr.push({ text: i < 10 ? `0${i}` : i, value: i });
             }
-        },
-      })
-
-  <script src="./js/vue-datepicker.iife.js"></script>
-
-  <script>
-    const select_pet = Vue.createApp({
-      data() {
-        return {
-          isPop: false,
-          numCat: 1,
-          numDog: 1,
-          date: null,
-          format: `MM月 dd日`,
-        };
-      },
-      computed: {
-        disabledDates() {
-          let today = new Date();
-          let disabledtoday = new Date(today);
-          disabledtoday.setDate(disabledtoday.getDate() + 1);
-
-          return disabledtoday;
+            return arr;
+          },
+          minutesArray() {
+            const arr = [];
+            for (let i = 0; i < 60; i++) {
+              arr.push({ text: i < 10 ? `0${i}` : i, value: i });
+            }
+            return arr;
+          },
         },
         mounted() {
           // console.log("sss");
@@ -255,23 +281,10 @@
             }
           },
         },
-        minutesArray() {
-          const arr = [];
-          for (let i = 0; i < 60; i++) {
-            arr.push({ text: i < 10 ? `0${i}` : i, value: i });
-          }
-          return arr;
-        },
-      },
-        closeDropdown() {
-          // 点击下拉框以外的地方关闭下拉框
-          this.isPop = false;
-        },
-      },
-    });
-    select_pet.component("Datepicker", VueDatePicker);
+      });
+      select_pet.component("Datepicker", VueDatePicker);
 
-    const vm233 = select_pet.mount("#select_pet");
+      const vm233 = select_pet.mount("#select_pet");
 
       // document
       //   .getElementById("searchButton")
