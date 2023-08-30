@@ -27,7 +27,7 @@
 
       <main class="drive_container">
         <div class="container">
-          @@include('layout/driverbanner.html')
+          @@include('layout/driverbanner.html', {type:'submit'})
           <!-- <p>driver</p> -->
           <section class="drivercards mb_100">
             <div class="leftcard col-5">
@@ -142,29 +142,89 @@
             this.msg_start = msg_end;
             this.msg_end = msg_start;
           },
+          car_click(x) {
+            this.car_menu = x.cars_type;
+            this.passenger_counter = 1;
+            this.pet_counter = 1;
+            this.$refs.dirver_Subtotal_icon_control.classList.remove("limit");
+            this.$refs.pet_Subtotal_icon_control.classList.remove("limit");
+          },
           PlusOne(counter_name) {
+            let car_class = 0;
+            // this.passenger_counter = 1;
+            // this.pet_counter = 1;
             if (this.car_menu === "轎車") {
+              car_class = 3;
+
               if (this.passenger_counter + this.pet_counter < 3) {
                 this[counter_name]++;
               }
+              // console.log(this.passenger_counter);
+              // console.log(this.pet_counter);
 
-              // if (this.passenger_counter + this.pet_counter >= 3) {
-              //   let dirver_Subtotal_icon_control =
-              //     this.$refs.dirver_Subtotal_icon_control;
-              //   dirver_Subtotal_icon_control.classList.add("limit");
-              // }
+              if (this.passenger_counter + this.pet_counter >= car_class) {
+                this.$refs.dirver_Subtotal_icon_control.classList.add("limit");
+                this.$refs.pet_Subtotal_icon_control.classList.add("limit");
+              }
+
+              if (this.passenger_counter + this.pet_counter >= 3) {
+                let dirver_Subtotal_icon_control =
+                  this.$refs.dirver_Subtotal_icon_control;
+                dirver_Subtotal_icon_control.classList.add("limit");
+                let pet_control = this.$refs.pet_Subtotal_icon_control;
+                pet_control.classList.add("limit");
+              }
             }
+
             if (this.car_menu === "休旅車") {
+              car_class = 4;
+
               if (this.passenger_counter + this.pet_counter < 4) {
                 this[counter_name]++;
               }
+              console.log(this.passenger_counter);
+              console.log(this.pet_counter);
+              if (this.passenger_counter + this.pet_counter == car_class) {
+                console.log("aaa");
+                this.$refs.dirver_Subtotal_icon_control.classList.add("limit");
+                this.$refs.pet_Subtotal_icon_control.classList.add("limit");
+              }
             }
           },
-          MinusOne(counter_name) {
-            if (this[counter_name] <= 0) {
-              this[counter_name] = 0;
+          MinusOne(counter_name, e) {
+            if (e.target.classList.contains("limit")) {
+              // 灰色
             } else {
+              // 黑色
               this[counter_name]--;
+              if (this.car_menu === "轎車") {
+                car_class_minus = 3;
+                if (
+                  this.passenger_counter + this.pet_counter <=
+                  car_class_minus
+                ) {
+                  this.$refs.dirver_Subtotal_icon_control.classList.remove(
+                    "limit"
+                  );
+                  this.$refs.pet_Subtotal_icon_control.classList.remove(
+                    "limit"
+                  );
+                }
+              }
+              if (this.car_menu === "休旅車") {
+                car_class_minus = 4;
+                if (
+                  this.passenger_counter + this.pet_counter <=
+                  car_class_minus
+                ) {
+                  this.$refs.dirver_Subtotal_icon_control.classList.remove(
+                    "limit"
+                  );
+                  this.$refs.pet_Subtotal_icon_control.classList.remove(
+                    "limit"
+                  );
+                }
+              }
             }
           },
         },
@@ -174,16 +234,15 @@
           // this.date = [startDate, endDate];
           this.date = startDate;
           // this.date = [startDate];
-
-          // const firstItem = document.querySelector(".carList");
-          // const firstItemDiv = firstItem.querySelector("div");
-          // firstItemDiv.classList.add("smooth");
-          // this.car_menu = firstItem.querySelector("p").innerText;
         },
       });
       app.component("Datepicker", VueDatePicker);
       // app.component("DriverSelector", DriverSelector);
-      app.mount("#driver_app");
+      const vm_1 = app.mount("#driver_app");
+
+      window.addEventListener("click", function (e) {
+        console.log(e.target);
+      });
     </script>
   </body>
 </html>

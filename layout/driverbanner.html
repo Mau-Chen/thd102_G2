@@ -12,6 +12,7 @@
             placeholder="輸入上車地點"
             v-model="msg_start"
             name="start_place"
+            id="start_place_input"
           />
         </div>
 
@@ -28,6 +29,7 @@
             placeholder="輸入下車地點"
             v-model="msg_end"
             name="end_place"
+            id="end_place_input"
           />
         </div>
       </div>
@@ -69,7 +71,7 @@
                     class="carList"
                     v-for="item in cars"
                     :key="item.id"
-                    @click="car_menu =  item.cars_type"
+                    @click="car_click(item)"
                   >
                     <input
                       type="radio"
@@ -115,8 +117,9 @@
                     <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
                     <div
                       class="dirver_Subtotal_icon"
-                      @click="MinusOne('passenger_counter')"
-                      :class="{'limit': passenger_counter === 0}"
+                      @click="MinusOne('passenger_counter',$event)"
+                      :class="{'limit': passenger_counter === 1}"
+                      ref="passenger_minus_control"
                     >
                       <svg
                         width="11"
@@ -124,10 +127,12 @@
                         viewBox="0 0 11 3"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        class="pointer_none"
                       >
                         <path
                           d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
                           fill="#E6E6E6"
+                          class="pointer_none"
                         />
                       </svg>
                     </div>
@@ -159,8 +164,9 @@
                     <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
                     <div
                       class="dirver_Subtotal_icon"
-                      @click="MinusOne('pet_counter')"
-                      :class="{'limit': pet_counter === 0}"
+                      @click="MinusOne('pet_counter', $event)"
+                      :class="{'limit': pet_counter === 1}"
+                      ref="pet_minus_control"
                     >
                       <svg
                         width="11"
@@ -168,10 +174,12 @@
                         viewBox="0 0 11 3"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        class="pointer_none"
                       >
                         <path
                           d="M10.3125 0.875H0.6875C0.441406 0.875 0.25 1.09375 0.25 1.3125V2.1875C0.25 2.43359 0.441406 2.625 0.6875 2.625H10.3125C10.5312 2.625 10.75 2.43359 10.75 2.1875V1.3125C10.75 1.09375 10.5312 0.875 10.3125 0.875Z"
                           fill="#E6E6E6"
+                          class="pointer_none"
                         />
                       </svg>
                     </div>
@@ -179,6 +187,7 @@
                     <div
                       class="dirver_Subtotal_icon"
                       @click="PlusOne('pet_counter')"
+                      ref="pet_Subtotal_icon_control"
                     >
                       <svg
                         width="11"
@@ -201,9 +210,9 @@
         </div>
 
         <button
-          type="submit"
           class="driverbtn btn_7 col-2 col-lg-12"
           id="driverbtn"
+          type="@@type"
         >
           <p>立即搜尋</p>
         </button>

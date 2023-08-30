@@ -1,95 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Navigation with Google Maps</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div>
-        <input type="text" id="startInput" placeholder="輸入起點地址">
-        <input type="text" id="endInput" placeholder="輸入終點地址">
-        <button id="navigateButton">Google Maps 導航</button>
-        <p id="distanceText">路徑距離：未計算</p>
-        <p id="durationText">行程時間：未計算</p>
+      <input type="text" id="startInput" placeholder="輸入起點地址" />
+      <input type="text" id="endInput" placeholder="輸入終點地址" />
+      <button id="navigateButton">Google Maps 導航</button>
+      <p id="distanceText">路徑距離：未計算</p>
+      <p id="durationText">行程時間：未計算</p>
     </div>
-    <div id="map" style="height: 400px;"></div>
+    <div id="map" style="height: 400px"></div>
 
     <script>
-        let startCoords = null;
-        let endCoords = null;
-        let map = null;
-        let directionsService = null;
-        let directionsRenderer = null;
+      let startCoords = null;
+      let endCoords = null;
+      let map = null;
+      let directionsService = null;
+      let directionsRenderer = null;
 
-        function initializeMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 25.0330, lng: 121.5654 },
-                zoom: 13
-            });
+      function initializeMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 25.033, lng: 121.5654 },
+          zoom: 13,
+        });
 
-            directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
 
-            const navigateButton = document.getElementById('navigateButton');
-            navigateButton.addEventListener('click', navigateWithGoogleMaps);
+        const navigateButton = document.getElementById("navigateButton");
+        navigateButton.addEventListener("click", navigateWithGoogleMaps);
+      }
+
+      async function geocodeAddress(address) {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+            address
+          )}&format=json`
+        );
+        const data = await response.json();
+
+        if (data.length > 0) {
+          return {
+            lat: parseFloat(data[0].lat),
+            lon: parseFloat(data[0].lon),
+          };
+        } else {
+          return null;
         }
+      }
 
-        async function geocodeAddress(address) {
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`);
-            const data = await response.json();
+      async function navigateWithGoogleMaps() {
+        const startInput = document.getElementById("startInput").value;
+        const endInput = document.getElementById("endInput").value;
 
-            if (data.length > 0) {
-                return {
-                    lat: parseFloat(data[0].lat),
-                    lon: parseFloat(data[0].lon)
-                };
-            } else {
-                return null;
+        startCoords = await geocodeAddress(startInput);
+        endCoords = await geocodeAddress(endInput);
+
+        if (startCoords && endCoords) {
+          const request = {
+            origin: new google.maps.LatLng(startCoords.lat, startCoords.lon),
+            destination: new google.maps.LatLng(endCoords.lat, endCoords.lon),
+            travelMode: "DRIVING",
+          };
+
+          directionsService.route(request, (result, status) => {
+            if (status === "OK") {
+              // console.log(result);
+              directionsRenderer.setDirections(result);
+              displayDistance(result.routes[0].legs[0].distance.text);
+              displayDuration(result.routes[0].legs[0].duration.text);
             }
+          });
         }
+      }
 
-        async function navigateWithGoogleMaps() {
-            const startInput = document.getElementById('startInput').value;
-            const endInput = document.getElementById('endInput').value;
+      function displayDistance(distanceText) {
+        const distanceParagraph = document.getElementById("distanceText");
+        distanceParagraph.textContent = `路徑距離：${distanceText}`;
+      }
 
-            startCoords = await geocodeAddress(startInput);
-            endCoords = await geocodeAddress(endInput);
-
-            if (startCoords && endCoords) {
-                const request = {
-                    origin: new google.maps.LatLng(startCoords.lat, startCoords.lon),
-                    destination: new google.maps.LatLng(endCoords.lat, endCoords.lon),
-                    travelMode: 'DRIVING'
-                };
-
-                directionsService.route(request, (result, status) => {
-                    if (status === 'OK') {
-                        // console.log(result);
-                        directionsRenderer.setDirections(result);
-                        displayDistance(result.routes[0].legs[0].distance.text);
-                        displayDuration(result.routes[0].legs[0].duration.text);
-                    }
-                });
-            }
-        }
-
-        function displayDistance(distanceText) {
-            const distanceParagraph = document.getElementById('distanceText');
-            distanceParagraph.textContent = `路徑距離：${distanceText}`;
-        }
-
-        function displayDuration(durationText) {
-            const durationParagraph = document.getElementById('durationText');
-            durationParagraph.textContent = `行程時間：${durationText}`;
-        }
+      function displayDuration(durationText) {
+        const durationParagraph = document.getElementById("durationText");
+        durationParagraph.textContent = `行程時間：${durationText}`;
+      }
     </script>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3q9avyDqpxxgigeW_k8Cr5WhdAK3QVG0&callback=initializeMap"
-        async defer></script>
-</body>
-
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3q9avyDqpxxgigeW_k8Cr5WhdAK3QVG0&callback=initializeMap"
+      async
+      defer
+    ></script>
+  </body>
 </html>
