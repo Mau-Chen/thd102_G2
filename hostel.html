@@ -32,15 +32,23 @@
       <div class="hostel_headBox">
         <div class="container">
           <h2 class="hostel_title">最貼心的寵物住宿</h2>
-          <div class="search_hotel mb_100">
+          <form
+            class="search_hotel mb_100"
+            action="./hostel-booking.html"
+            method="get"
+          >
             <div class="threeInput" id="select_pet">
               <div class="search-box col-4">
                 <label for="">
                   <span>住宿地點或住宿名稱</span>
-                  <input type="text" placeholder="城市／地區／住宿名稱" />
+                  <input
+                    type="text"
+                    placeholder="城市／地區／住宿名稱"
+                    name="city"
+                  />
                 </label>
               </div>
-              <div class="search-box col-4">
+              <div class="search-box col-4" >
                 <label for="">
                   <span>入住＆退房日期</span>
                   <!-- <input type="date" /> -->
@@ -58,23 +66,12 @@
                     :enable-time-picker="false"
                   >
                   </DatePicker>
-                  <!-- <DatePicker
-                      v-model="date"
-                      calendar-cell-class-name="dp-custom-cell"
-                      time-picker-inline
-                      week-start="0"
-                      :is-24="true"
-                      :format="format"
-                      :min-date="disabledDates"
-                    >
-                    </DatePicker> -->
                 </label>
               </div>
-              <div class="search-box dropDownParent col-4">
+              <div class="search-box dropDownParent col-4" :class="{'-show' : start === true}">
                 <div @click="isPop = !isPop">
                   <label for="">
                     <span>寵物類型</span>
-                    <!-- <input type="text" placeholder="請選擇" /> -->
                   </label>
                   <p>
                     <span v-show="numDog > 0">{{ numDog }}隻狗</span>
@@ -90,6 +87,7 @@
                         type="button"
                         class="minus"
                         @click="toChange('numDog', -1)"
+                        :class="{'limit': numDog === 0}"
                       >
                         -
                       </button>
@@ -98,6 +96,7 @@
                         type="button"
                         class="plus"
                         @click="toChange('numDog', 1)"
+                        :class="{'limit': numDog === 9}"
                       >
                         +
                       </button>
@@ -111,6 +110,7 @@
                         type="button"
                         class="minus"
                         @click="toChange('numCat', -1)"
+                        :class="{'limit': numCat === 0}"
                       >
                         -
                       </button>
@@ -119,6 +119,7 @@
                         type="button"
                         class="plus"
                         @click="toChange('numCat', +1)"
+                        :class="{'limit': numCat === 9}"
                       >
                         +
                       </button>
@@ -127,10 +128,10 @@
                 </div>
               </div>
             </div>
-            <button class="btn_7" type="button" id="searchButton">
+            <button class="btn_7" type="submit" id="searchButton">
               立即搜尋
             </button>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -237,6 +238,7 @@
             numDog: 1,
             date: null,
             format: `MM月 dd日`,
+            start: false,
           };
         },
         computed: {
@@ -262,9 +264,16 @@
             return arr;
           },
         },
+        mounted() {
+          // console.log("sss");
+          this.start = true;
+        },
         methods: {
           toChange(property, value) {
-            if (value > 0 || (value < 0 && this[property] > 0)) {
+            if (
+              (value > 0 && this[property] < 9) ||
+              (value < 0 && this[property] > 0)
+            ) {
               this[property] += value;
             }
           },
@@ -274,11 +283,11 @@
 
       const vm233 = select_pet.mount("#select_pet");
 
-      document
-        .getElementById("searchButton")
-        .addEventListener("click", function () {
-          window.location.href = "./hostel-booking.html";
-        });
+      // document
+      //   .getElementById("searchButton")
+      //   .addEventListener("click", function () {
+      //     window.location.href = "./hostel-booking.html";
+      //   });
     </script>
   </body>
 </html>
