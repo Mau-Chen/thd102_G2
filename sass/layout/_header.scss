@@ -21,13 +21,14 @@ header {
     font-size: 18px;
     @include flex(row, flex-end);
     font-weight: 700;
-    gap: 36px;
+    // gap: 36px;
     overflow: hidden;
     .nav_item {
       cursor: pointer;
       transition: 0.5s;
       position: relative;
       width: 80px;
+      margin-right: 36px;
       &::after {
         content: attr(data-content);
         position: absolute;
@@ -52,7 +53,7 @@ header {
       &.active {
         color: $purple;
         svg {
-          fill: $purple; /* SVG 圖標填充顏色 */
+          fill: $purple;
         }
       }
     }
@@ -60,9 +61,13 @@ header {
       display: none;
     }
   }
-
+  .shoop {
+    margin-right: 36px;
+  }
   .btn_4 {
-    padding: 0 40px;
+    // padding: 0 40px;
+    width: 112px;
+    // margin-left: 36px;
   }
   .userIcon {
     display: none;
