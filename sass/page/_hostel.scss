@@ -110,6 +110,15 @@
     // 寵物類型下拉選單
     .dropDownParent {
       position: relative;
+      display: none;
+
+      &.-show {
+        display: block;
+      }
+
+      // & p.none {
+      //   display: none;
+      // }
       .dropDown {
         border: 1px solid #e6e6e6;
         position: absolute;
@@ -121,6 +130,9 @@
         border-radius: 8px;
         animation: slide-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         z-index: 9999;
+        &.none {
+          display: none;
+        }
         .dropDownItem {
           display: flex;
           justify-content: space-between;
@@ -133,6 +145,10 @@
             border-radius: 50%;
             border: 1px solid #333;
             align-items: center;
+            &.limit {
+              border: 1px solid $gray_1;
+              color: $gray_1;
+            }
           }
           button {
             background-color: white;
