@@ -34,7 +34,7 @@
           <h2 class="hostel_title">最貼心的寵物住宿</h2>
           <form
             class="search_hotel mb_100"
-            action="./hostel-booking_detail.html"
+            action="./hostel-booking.html"
             method="get"
           >
             <div class="threeInput" id="select_pet">
@@ -231,6 +231,7 @@
       @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
       @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
+    <script src="./js/vue-datepicker.iife.js"></script>
 
     <script>
       const select_pet = Vue.createApp({
@@ -289,7 +290,7 @@
       // document
       //   .getElementById("searchButton")
       //   .addEventListener("click", function () {
-      //     window.location.href = "./hostel-booking.html";
+      //     window.location.href = "hostel-booking_detail.html";
       //   });
     </script>
   </body>
