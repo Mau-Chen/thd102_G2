@@ -44,7 +44,7 @@
       .searchbar {
         width: 100%;
         padding: 40px;
-        border-radius: 16px;
+        border-radius: $br_12;
         background-color: $white;
         // position: relative;
         /* Drop Shadow */
@@ -353,9 +353,9 @@
       /* Drop Shadow */
       box-shadow: 20px 40px 48.34000015258789px 0px rgba(141, 147, 201, 0.05);
       border-radius: $br_12;
-
-      iframe {
+      .mapIframe {
         border-radius: $br_12;
+        height: 800px;
       }
       .journey {
         border: 1px solid $gray_1;
