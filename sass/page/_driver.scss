@@ -355,7 +355,7 @@
       border-radius: $br_12;
       .mapIframe {
         border-radius: $br_12;
-        height: 800px;
+        height: 742px;
       }
       .journey {
         border: 1px solid $gray_1;
@@ -365,7 +365,10 @@
           @include flex(row, space-between, null);
           // flex-wrap: wrap;
           gap: 20px;
-          @media (max-width: 820px) {
+        }
+        @media (max-width: 820px) {
+          padding: 24px;
+          .journey-info {
             flex-direction: column;
           }
         }
@@ -400,6 +403,9 @@
         .journeybtn {
           @include flex();
           gap: 12px;
+          @media (max-width: 820px) {
+            width: 100%;
+          }
         }
 
         .remind {
@@ -421,6 +427,9 @@
         border-top: 1px solid $gray_1;
         padding-top: 32px;
         margin-bottom: 60px;
+        @media (max-width: 768px) {
+          margin-bottom: 32px;
+        }
       }
       h5 {
         font-size: 24px;
@@ -438,12 +447,6 @@
   }
 }
 
-// @media screen and (max-width: 768px) {
-//   .titlesearchbar {
-//     margin-top: -150px;
-//   }
-// }
-
 @media screen and (max-width: 768px) {
   .driver {
     picture {
@@ -455,10 +458,6 @@
         margin-top: -185px;
         .searchbar {
           padding: 24px;
-
-          // .upsection {
-          //   gap: 16px;
-          // }
           .downsection {
             flex-wrap: wrap;
             .btn_7 {
@@ -477,7 +476,6 @@
         .rightcard {
           position: relative;
           margin-top: 110px;
-          // margin-bottom: 90px;
           &::before {
             content: "";
             background-color: rgba(102, 213, 192, 0.1);
@@ -493,13 +491,9 @@
       }
       .drivermap {
         padding: 24px;
-        .journey {
-          padding: 16px;
+        .mapIframe {
+          height: 500px;
         }
-      }
-      .notice,
-      .cancel {
-        margin: 0 32px;
       }
     }
   }
@@ -565,24 +559,22 @@
       }
 
       .drivermap {
-        // margin-left: 16px;
-        // margin-right: 16px;
         padding: 20px;
-        iframe {
-          height: 249px;
-        }
         .journey {
+          padding: 16px;
           .juorneydetail {
             display: block;
             .embark_datetime {
               border-bottom: 1px solid $gray_1;
               margin-bottom: 20px;
-              &:nth-child(2) {
-                border-left: none;
-                border-right: none;
-              }
+              // &:nth-child(2) {
+              //   border-left: none;
+              //   border-right: none;
+              // }
               &:nth-child(2),
-              &:nth-child(3) {
+              &:nth-child(3),
+              &:nth-child(4) {
+                border-left: none;
                 padding-left: 0;
               }
               span {
