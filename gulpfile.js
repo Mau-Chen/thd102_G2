@@ -169,4 +169,4 @@ exports.dev = series(
 
 //上線用
 exports.online = 
-  parallel(includeHTML, styleSass, babel5, min_images);
+  parallel(includeHTML, styleSass, minijs, min_images);
