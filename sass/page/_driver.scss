@@ -212,9 +212,13 @@
                   .driver_Subtotal_icon_wrapper {
                     @include flex(row, space-between);
                   }
+                  // .pointer_none {
+                  //   pointer-events: none;
+                  // }
                 }
 
                 .dirver_Subtotal_icon {
+                  pointer-events: auto;
                   border: 1px solid $black;
                   width: 32px;
                   height: 32px;

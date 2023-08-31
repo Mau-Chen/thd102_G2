@@ -52,11 +52,13 @@
               :offset="15"
             />
           </div>
+
           <div class="category categoryset">
             <span>車種</span>
             <input
               type="button"
               :value="car_menu"
+              class="car_menu_input"
               @click="car_menu_open === true ? car_menu_open = false : car_menu_open = true"
               name="car_type"
             />
@@ -69,21 +71,21 @@
                 <ul class="car">
                   <li
                     class="carList"
-                    v-for="item in cars"
-                    :key="item.id"
-                    @click="car_click(item)"
+                    v-for="(item,key) in cars_data"
+                    :key="key"
+                    @click="car_click()"
                   >
                     <input
                       type="radio"
                       v-model="car_menu"
                       name="car-type"
-                      :value="item.cars_type"
+                      :value="key"
                     />
-                    <p ref="CAR">{{item.cars_type}}</p>
+                    <p ref="CAR">{{key}}</p>
                     <span>{{item.cars_text}}</span>
                     <div
                       class="check-box"
-                      :class="{'smooth':item.cars_type === car_menu}"
+                      :class="{'smooth':key === car_menu}"
                     ></div>
                   </li>
                 </ul>
@@ -97,6 +99,7 @@
               type="button"
               @click="passenger_menu_open = !passenger_menu_open"
               :value="show_passenger_quantity"
+              class="passenger_menu_input"
               name="driver_quantity"
             />
 
@@ -107,7 +110,7 @@
             >
               <div class="passenger_quantity">
                 <div class="driverStepper">
-                  <p>乘客</p>
+                  <p class="pointer_none">乘客</p>
                   <div class="driver_Subtotal_icon_wrapper col-5">
                     <input
                       type="hidden"
@@ -136,11 +139,12 @@
                         />
                       </svg>
                     </div>
-                    <p>{{ passenger_counter }}</p>
+                    <p class="pointer_none">{{ passenger_counter }}</p>
                     <div
                       class="dirver_Subtotal_icon"
                       @click="PlusOne('passenger_counter')"
                       ref="dirver_Subtotal_icon_control"
+                      :class="{'limit':passenger_counter + pet_counter >= limit_passenger}"
                     >
                       <svg
                         width="11"
@@ -158,7 +162,7 @@
                   </div>
                 </div>
                 <div class="driverStepper">
-                  <p>毛孩</p>
+                  <p class="pointer_none">毛孩</p>
                   <div class="driver_Subtotal_icon_wrapper col-5">
                     <input type="hidden" v-model="pet_counter" name="pet" />
                     <!-- updateAmount、updateSubtotal:增減數量並更新小計 -->
@@ -183,11 +187,12 @@
                         />
                       </svg>
                     </div>
-                    <p>{{ pet_counter }}</p>
+                    <p class="pointer_none">{{ pet_counter }}</p>
                     <div
                       class="dirver_Subtotal_icon"
                       @click="PlusOne('pet_counter')"
                       ref="pet_Subtotal_icon_control"
+                      :class="{'limit':passenger_counter + pet_counter >= limit_passenger}"
                     >
                       <svg
                         width="11"
