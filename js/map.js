@@ -1,5 +1,3 @@
-//顯示已加入購物車
-
 // google map route
 let map, directionsService, directionsRenderer;
 
@@ -16,7 +14,7 @@ window.onload = async function () {
   directionsRenderer.setMap(map);
 
   const searchButton = document.getElementById("driverbtn");
-  console.log(searchButton);
+  // console.log(searchButton);
   searchButton.addEventListener("click", calculateDistance);
 
   // 網頁加載完畢後，立即進行地圖搜尋
@@ -26,7 +24,7 @@ window.onload = async function () {
 async function calculateDistance() {
   const originInput = document.getElementById("start_place_input");
   const originInput_value = originInput.value;
-  console.log(originInput_value);
+  // console.log(originInput_value);
   // console.log(originInput);
   const destinationInput = document.getElementById("end_place_input");
   const destinationInput_value = destinationInput.value;
@@ -84,11 +82,13 @@ async function getCoordinates(geocoder, location) {
   });
 }
 
+//顯示已加入購物車
+
 let addCart = document.querySelector(".addCart");
 let popup = document.querySelector(".ol-contentShop");
 
 addCart.addEventListener("click", function () {
-  console.log(popup);
+  // console.log(popup);
   popup.style.opacity = "1";
 
   setTimeout(function () {
