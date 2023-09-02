@@ -380,7 +380,8 @@
   box-sizing: border-box;
 }
 .dp__inner_nav {
-  display: flex;
+  // display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
