@@ -1,54 +1,75 @@
 function removeLogin123Class() {
-    setTimeout(() => {
-      const modalPage = document.getElementById("ModalPage");
-      if (modalPage) {
-        modalPage.classList.remove("login123");
+  setTimeout(() => {
+    const modalPage = document.getElementById("ModalPage");
+    if (modalPage) {
+      modalPage.classList.remove("login123");
+    }
+  }, 10);
+}
+removeLogin123Class();
+
+const ModalPage = Vue.createApp({
+  data() {
+    return {
+      text: "Hello World!",
+      returnStatus: "",
+      index: 0,
+      ispop: false,
+      account: "",
+      password: "",
+      success: false,
+    };
+  },
+  mounted() {
+    this.checkLogin();
+  },
+  methods: {
+    checkLogin() {
+      const user = JSON.parse(localStorage.getItem('user'));
+  
+      if (user && user.login === true) {
+        this.success = true;
       }
-    }, 10);
-  }
-  removeLogin123Class();
-
-  const ModalPage = Vue.createApp({
-    data() {
-      return {
-        text: "Hello World!",
-        returnStatus: "",
-        index: 0,
-        ispop: false,
-        account: "",
-        password: "",
-        success: false,
-      };
     },
-    methods: {
-      changePage(newIndex) {
-        this.index = newIndex;
-      },
-      handleSubmit() {
-        // 執行表單提交的處理
-        fetch("/php/login.php", {
-          method: "POST",
-          mode: "cors",
-          body: new URLSearchParams({
+
+    changePage(newIndex) {
+      this.index = newIndex;
+    },
+
+    login() {
+
+      const res = {
+        account: this.account,
+        password: this.password
+      }
+
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
+      fetch('/php/FrontendLogin/login.php', {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(res)
+      }).then((response) => response.json()).then((data) => {
+        if (data.login === "success") {
+          console.log("login!");
+          const user = {
             account: this.account,
-            password: this.password,
-          }),
-        })
-          .then((response) => response.json()) // 解析 JSON 回應
-          .then((data) => {
-            if (data.status === "success") {
-              // 如果回應為成功，執行頁面跳轉
-              window.open("member.html", "_self");
-            } else if (data.status === "error") {
-              // 如果回應為錯誤，處理無效認證的情況
-              console.log(data.message);
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      },
-    },
-  });
+            login: true
+          }
+          localStorage.setItem('user', JSON.stringify(user));
+          this.success = true;
+          this.ispop = false;
+        } else {
+          console.log("poor!")
+        }
+      })
 
-  const vm = ModalPage.mount("#ModalPage");
+
+    }
+
+
+  },
+});
+
+const vm = ModalPage.mount("#ModalPage");

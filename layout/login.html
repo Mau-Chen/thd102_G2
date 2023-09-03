@@ -8,7 +8,7 @@
         如果要綁定在其它物件上，只要打上@click這條即可觸發。 -->
   <div
     type="button"
-    @click="ispop = true; changePage(0)"
+    @click="ispop = true"
     class="btn_4"
     v-show="success === false"
   >
@@ -57,7 +57,7 @@
               <div class="pageIsideContainer">
                 <h5>登入/註冊</h5>
                 <!-- 此處綁定了自行寫入的post事件 -->
-                <form @submit.prevent="handleSubmit">
+                <form>
                   <!-- sectionHead本身不包含任何屬性，為了要完全貼齊form的上轅。 -->
                   <div class="sectionHead">
                     <label for="account">帳號</label>
@@ -88,7 +88,7 @@
                       type="button"
                       class="btn_5"
                       value="登入"
-                      @click="ispop = false, success = true"
+                      @click="login()"
                     />
                   </div>
                 </form>
