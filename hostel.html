@@ -64,6 +64,7 @@
                     :min-date="disabledDates"
                     :auto-position="false"
                     :enable-time-picker="false"
+                    name="getDate"
                   >
                   </DatePicker>
                 </label>
@@ -76,7 +77,7 @@
                 <div @click="isPop = !isPop">
                   <label for="">
                     <span>寵物類型</span>
-                    <!-- <input type="text" placeholder="請選擇" /> -->
+                    <input type="hidden" name="genre"  />
                   </label>
                   <p>
                     <span v-show="numDog > 0">{{ numDog }}隻狗</span>
@@ -133,7 +134,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn_7" type="submit" id="searchButton">
+            <button class="btn_7" type="submit" id="searchButton" >
               立即搜尋
             </button>
           </form>
