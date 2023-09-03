@@ -23,18 +23,6 @@ const app = Vue.createApp({
           cars_text: "乘客＋毛孩最多4位",
         },
       },
-      // cars: [
-      //   {
-      //     id: "a",
-      //     cars_type: "轎車",
-      //     cars_text: "乘客＋毛孩最多3位",
-      //   },
-      //   {
-      //     id: "b",
-      //     cars_type: "休旅車",
-      //     cars_text: "乘客＋毛孩最多4位",
-      //   },
-      // ],
     };
   },
   computed: {
