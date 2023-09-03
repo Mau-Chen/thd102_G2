@@ -1,4 +1,3 @@
-
 const app = Vue.createApp({
     data() {
         return {
@@ -148,11 +147,7 @@ const app = Vue.createApp({
         },
         // 計算小計(單價、數量和天數)
         countSubtotal(item) {
-            console.log(item);
-            // const listDate_E = item.listDate_E
-            // const listDate_S = item.listDate_S
-            // const listDate_E = '2023/08/20'
-            // const listDate_S = '2023/08/17'
+            // console.log(item);
             if (item.spStepper) {
 
                 item.listDate_D = Math.round(
@@ -211,58 +206,130 @@ const app = Vue.createApp({
             window.location.href = "index.html";
         },
         //信用卡焦點改變
-        handleCC(index, lengthToCheck) {
-            const inputElement = this.$refs[`input${index}`];
-            const inputValue = inputElement.value;
-
-            const pattern = /^[0-9]*$/;
-            if (!pattern.test(inputValue)) {
-                inputElement.value = "";
-                return;
+        handleCC(index, maxLength) {
+            // 信用卡號、有效期限、CVC/CVV 輸入處理函數
+            if (this.$refs["input" + index].value.length === maxLength) {
+                // 如果當前輸入框已達到最大長度
+                if (index < 7) {
+                    // 如果不是最後一個輸入框
+                    this.$refs["input" + (index + 1)].focus(); // 將焦點移至下一個輸入框
+                }
+            } else if (this.$refs["input" + index].value.length === 0 && index > 1) {
+                // 如果當前輸入框的文字長度為0，並且不是第一個輸入框
+                this.$refs["input" + (index - 1)].focus(); // 將焦點移至前一個輸入框
             }
-
-            if (inputValue.length === lengthToCheck && index < 7) {
-                this.$refs[`input${index + 1}`].focus();
-            } else if (inputValue.length === 0 && index > 1) {
-                this.$refs[`input${index - 1}`].focus();
+            //只能輸入數字或刪除鍵
+            const inputValue = this.$refs["input" + index].value;
+            if (!/^\d*$/.test(inputValue)) {
+                this.$refs["input" + index].value = inputValue.replace(/\D/g, ''); // 删除非数字字符
             }
         },
-        // checkform() {
-        //     this.validationErrors = [];
-        //     if (this.spOrderName.trim() === "") {
-        //         alert("姓名欄位不可為空值");
-        //     } else if (!this.validateEmail(this.spOrderEmail)) {
-        //         alert("請輸入正確的E-mail格式，例:XXX@XXX.XXX");
-        //     } else if (!this.validatePhoneNumber(this.spOrderPhone)) {
-        //         alert("請輸入正確的行動電話格式，例:09XXXXXXXX");
-        //     } else if (this.cardNumber[0].trim() === "") {
-        //         alert("信用卡欄位不可為空值");
-        //     } else {
-        //         this.currentStep++;
-        //     }
-        // },
         checkform() {
-            this.validationErrors = [];
+            let isValid = true;
+            let cardFieldErrorShown = false;
+
+            // 驗證姓名
             if (this.spOrderName.trim() === "") {
+                isValid = false;
                 alert("姓名欄位不可為空值");
-            } else if (!this.validateEmail(this.spOrderEmail)) {
+            }
+
+            // 驗證 Email
+            if (!this.validateEmail(this.spOrderEmail)) {
+                isValid = false;
                 alert("請輸入正確的E-mail格式，例:XXX@XXX.XXX");
-            } else if (!this.validatePhoneNumber(this.spOrderPhone)) {
+            }
+
+            // 驗證行動電話
+            if (!this.validatePhone(this.spOrderPhone)) {
+                isValid = false;
                 alert("請輸入正確的行動電話格式，例:09XXXXXXXX");
-            } else if (this.cardNumber[0].trim() === "") {
-                alert("信用卡欄位不可為空值");
-            } else {
+            }
+
+            // 驗證信用卡號的每一個部分是否填寫錯誤
+            for (let i = 0; i < this.cardNumber.length; i++) {
+                if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4) {
+                    isValid = false;
+                    if (!cardFieldErrorShown) {
+                        alert("請確認信用卡『欄位填寫』是否正確");
+                        cardFieldErrorShown = true; // 標記為已經顯示警告
+                    }
+                }
+            }
+
+            // 驗證有效期限
+            if (!this.validateCardDate()) {
+                isValid = false;
+                alert("請確認信用卡有效期限是否正確");
+            }
+
+            // 驗證 CVC/CVV
+            if (this.cardCVC.length !== 3) {
+                isValid = false;
+                // this.$refs.input7[0].classList.add("-error");
+            }
+
+            // 驗證信用卡號是否合法
+            if (!this.validateCreditCard(this.cardNumber)) {
+                isValid = false;
+                alert("請確認信用卡『卡號』是否正確");
+            }
+
+            // 如果通過驗證，執行下一步操作
+            if (isValid) {
+                // 執行下一步操作
                 this.currentStep++;
             }
         },
+
         validateEmail(email) {
             const emailRegex =
                 /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
             return emailRegex.test(email);
         },
-        validatePhoneNumber(phone) {
+        validatePhone(phone) {
             const phoneRegex = /^09\d{8}$/;
             return phoneRegex.test(phone);
+        },
+        // 使用 Luhn 算法檢查信用卡號是否有效
+        validateCreditCard(cardNumberArray) {
+            // 將陣列轉換為單個字串，並清除空格和破折號
+            const cleanedCardNumber = cardNumberArray.join('').replace(/[-\s]/g, '');
+            let sum = 0;
+            let doubleUp = false;
+
+            for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cleanedCardNumber.charAt(i), 10);
+
+                if (doubleUp) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+
+                sum += digit;
+                doubleUp = !doubleUp;
+            }
+
+            return sum % 10 === 0;
+        },
+        validateCardDate() {
+            // 獲取當前年份new Date().getFullYear()的後兩位數toString().slice(-2)
+            const currentYear = new Date().getFullYear().toString().slice(-2);
+
+            // 驗證第一個input是否為01、02、03、04、05、06、07、08、09、10、11、12
+            const monthInput = this.cardDate[0];
+            if (!/^(0[1-9]|1[0-2])$/.test(monthInput)) {
+                return false;
+            }
+
+            // 驗證第二個input是否大於等於今年的後兩碼
+            const yearInput = this.cardDate[1];
+            if (!/^\d{2}$/.test(yearInput) || parseInt(yearInput) < parseInt(currentYear)) {
+                return false;
+            }
+            return true;
         },
         resetSameMemberChecked() {
             this.sameMemberChecked = false;
