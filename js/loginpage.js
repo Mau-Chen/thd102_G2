@@ -25,12 +25,21 @@ const ModalPage = Vue.createApp({
   },
   methods: {
     checkLogin() {
-      const member = JSON.parse(localStorage.getItem('member'));
-  
-      if (member && member.login === true) {
-        this.success = true;
+      const memberJSON = localStorage.getItem('member');
+      if (memberJSON) {
+        const member = JSON.parse(memberJSON);
+        // console.log(member.account);
+        fetch(`/thd102/g2/php/FrontendLogin/check.php?account=${member.account}`, {
+          method: 'GET'
+        }).then((response) => response.json()).then((data) => {
+          if (data.login === "success") {
+            this.success = true;
+          }
+        })
+        
       }
     },
+    
 
     changePage(newIndex) {
       this.index = newIndex;
@@ -52,10 +61,9 @@ const ModalPage = Vue.createApp({
         body: JSON.stringify(res)
       }).then((response) => response.json()).then((data) => {
         if (data.login === "success") {
-          console.log("login!");
+          // console.log("login!");
           const member = {
             account: this.account,
-            login: true
           }
           localStorage.setItem('member', JSON.stringify(member));
           this.success = true;
