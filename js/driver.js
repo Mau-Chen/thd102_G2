@@ -57,34 +57,6 @@ const app = Vue.createApp({
       return `${this.passenger_counter} 位乘客，${this.pet_counter} 位毛孩`;
     },
   },
-  watch: {
-    date() {
-      // let url_string = "http://localhost:3000/driversecond.html";
-      // console.log(url_string);
-      // let driver_second_url = new URL(url_string);
-      // let driver_second_url_href = driver_second_url.href;
-      // console.log(driver_second_url_href);
-      // console.log(driver_second_url_href == url_string);
-      // console.log(driver_second_url);
-      // console.log(driver_second_url.searchParams.has(url_string));
-      // if (driver_second_url_href == url_string) {
-      let a = new Date(this.date);
-      let driver_month = a.getMonth() + 1;
-      let driver_date = a.getDate();
-      let driver_hour = (a.getHours() < 10 ? "0" : "") + a.getHours();
-      let driver_minutes = (a.getMinutes() < 10 ? "0" : "") + a.getMinutes();
-      console.log(a);
-      let driverDate = document.getElementById("driver_second_Date");
-      console.log(driverDate);
-      return (driverDate.textContent = `${driver_month}月${driver_date}日｜${driver_hour}:${driver_minutes}`);
-      // }
-      // this.format();
-      // console.log(this.date);
-      // document.getElementById(
-      //   "driverDate"
-      // ).textContent = `${driver_month}月${driver_date}日｜${driver_hour}：${driver_minutes}`;
-    },
-  },
   methods: {
     format(startDate) {
       let year = startDate.getFullYear();
@@ -94,7 +66,7 @@ const app = Vue.createApp({
       let minute =
         (startDate.getMinutes() < 10 ? "0" : "") + startDate.getMinutes();
 
-      return `${year}年 ${month}月 ${day}日｜${hour}:${minute}`;
+      return `${year}年${month}月${day}日｜${hour}:${minute}`;
     },
 
     change() {
@@ -119,13 +91,32 @@ const app = Vue.createApp({
         this[counter_name]--;
       }
     },
+    handleInternal() {
+      // Do something
+      // alert(`Current selection - ${date}`);
+      let driver_second_Date = document.getElementById("driver_second_Date");
+      if (driver_second_Date) {
+        // console.log("aaa");
+        console.log(this.date);
+        let driver_second_time = new Date(this.date);
+        // console.log(driver_second_time);
+        let driver_month = driver_second_time.getMonth() + 1;
+        let driver_date = driver_second_time.getDate();
+        let driver_hour =
+          (driver_second_time.getHours() < 10 ? "0" : "") +
+          driver_second_time.getHours();
+        let driver_minutes =
+          (driver_second_time.getMinutes() < 10 ? "0" : "") +
+          driver_second_time.getMinutes();
+        driver_second_Date.textContent = `${driver_month}月${driver_date}日｜${driver_hour}：${driver_minutes}`;
+      }
+    },
   },
   mounted() {
     // this.date = [startDate];
 
     // JavaScript 取得 Url 的 Query String
     let urlParams = new URLSearchParams(window.location.search);
-    // console.log(urlParams);
     let start_place = urlParams.get("start_place");
     let end_place = urlParams.get("end_place");
     let date_picker = urlParams.get("date-picker");
@@ -144,8 +135,8 @@ const app = Vue.createApp({
     if (date_picker) {
       // console.log(date_picker);
       let driver_date_picker = date_picker
-        .replace("年 ", "/")
-        .replace("月 ", "/")
+        .replace("年", "/")
+        .replace("月", "/")
         .replace("日", "")
         .replace(" ", "")
         .replace("｜", " ");
@@ -161,7 +152,7 @@ const app = Vue.createApp({
       // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
       // this.date = [startDate, endDate];
       // console.log(startDate);
-      this.date = startDate;
+      this.date = new Date(startDate).setHours(startDate.getHours() + 2);
     }
 
     if (car_type) {
