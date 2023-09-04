@@ -17,10 +17,12 @@ const app = Vue.createApp({
         轎車: {
           limit: 3,
           cars_text: "乘客＋毛孩最多3位",
+          cost: 40,
         },
         休旅車: {
           limit: 4,
           cars_text: "乘客＋毛孩最多4位",
+          cost: 50,
         },
       },
     };
