@@ -20,6 +20,9 @@ try{
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if($result){
         $res = array('login' => "success");
+        session_start();
+        $_SESSION[$account] = 'success';
+
         header('Content-Type: application/json');
         echo json_encode($res);
     }else{
