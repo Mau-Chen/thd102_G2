@@ -39,8 +39,23 @@ const ModalPage = Vue.createApp({
         
       }
     },
-    
+    logout() {
+      const memberJSON = localStorage.getItem('member');
+      if (memberJSON) {
+        const member = JSON.parse(memberJSON);
+        // console.log(member.account);
+        fetch(`/thd102/g2/php/FrontendLogin/logout.php?account=${member.account}`, {
+          method: 'GET'
+        }).then((response) => response.json()).then((data) => {
+          if (data.logout === "success") {
+            this.success = false;
+            window.location.href = 'index.html';
+          }
+        })
+        
+      }
 
+    },
     changePage(newIndex) {
       this.index = newIndex;
     },
