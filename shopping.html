@@ -144,7 +144,7 @@
                   <p>
                     可用 Pet Points
                     <span>{{ havePoints }}</span> 點，最多使用<input type="number" id="usePoint" v-model="usePoints"
-                      @input="handlePoints" />點
+                      @input="handlePoints($event)" />點
                   </p>
                 </div>
                 <div class="spPay mb_32">

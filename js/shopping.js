@@ -43,8 +43,8 @@ const app = Vue.createApp({
                     spStepper: false,
                     spPrice: 300,
                     BuyNum: 1,
-                    listDate_S: "2023/8/17",
-                    listDate_E: "2023/8/17",
+                    listDate_S: "8/17/2023",
+                    listDate_E: "8/17/2023",
                     listDate_T: "16:00",
                 },
                 {
@@ -58,8 +58,8 @@ const app = Vue.createApp({
                     spStepper: true,
                     spPrice: 800,
                     BuyNum: 1,
-                    listDate_S: "2023/8/17",
-                    listDate_E: "2023/8/20",
+                    listDate_S: "8/17/2023",
+                    listDate_E: "8/20/2023",
                     listDate_T: "16:00",
                 },
                 {
@@ -72,8 +72,8 @@ const app = Vue.createApp({
                     spStepper: true,
                     spPrice: 800,
                     BuyNum: 1,
-                    listDate_S: "2023/8/17",
-                    listDate_E: "2023/8/20",
+                    listDate_S: "8/17/2023",
+                    listDate_E: "8/20/2023",
                     listDate_T: "16:00",
                 },
             ],
@@ -91,6 +91,12 @@ const app = Vue.createApp({
 
         const options = { year: "numeric", month: "long", day: "numeric" };
         this.nowDate = new Date().toLocaleDateString("zh-TW", options);
+
+        // 獲取最大可使用的點數
+        const maxUsePoints = this.caculate_point();
+
+        // 將 usePoints 初始化為最大可使用的點數
+        this.usePoints = maxUsePoints;
     },
     methods: {
         sameMember() {
@@ -101,12 +107,9 @@ const app = Vue.createApp({
             }
         },
         caculate_point() {
-            if (this.havePoints < this.totalPrice * 0.2) {
-                this.usePoints = this.havePoints;
-            } else {
-                this.usePoints = this.totalPrice * 0.2;
-            }
+            return this.havePoints < this.totalPrice * 0.2 ? this.havePoints : this.totalPrice * 0.2;
         },
+
         setCurrentStep(index) {
             this.currentStep = index;
         },
@@ -266,7 +269,6 @@ const app = Vue.createApp({
             // 驗證 CVC/CVV
             if (this.cardCVC.length !== 3) {
                 isValid = false;
-                // this.$refs.input7[0].classList.add("-error");
             }
 
             // 驗證信用卡號是否合法
@@ -277,8 +279,9 @@ const app = Vue.createApp({
 
             // 如果通過驗證，執行下一步操作
             if (isValid) {
+                this.saveFormDataToDatabase();
                 // 執行下一步操作
-                this.currentStep++;
+                // this.currentStep++;
             }
         },
 
@@ -334,6 +337,74 @@ const app = Vue.createApp({
         resetSameMemberChecked() {
             this.sameMemberChecked = false;
         },
+        async saveFormDataToDatabase() {
+            try {
+                const dataToSave = {
+                    spOrderName: this.spOrderName,
+                    spOrderEmail: this.spOrderEmail,
+                    spOrderPhone: this.spOrderPhone,
+                    nowDate: this.nowDate, // 添加需要儲存的其他資料
+                    totalPrice: this.totalPrice, // 添加需要儲存的其他資料
+                    usePoints: this.usePoints, // 添加需要儲存的其他資料
+                    shoppingItems: [], // 儲存購物項目的陣列
+                };
+
+                // 將每個購物項目的相關資料添加到 shoppingItems 陣列中
+                this.shoppingItems.forEach((item) => {
+                    dataToSave.shoppingItems.push({
+                        product: item.product,
+                        listDate_S: item.listDate_S,
+                        listDate_E: item.listDate_E,
+                        listDate_D: item.listDate_D,
+                        spPrice: item.spPrice,
+                        BuyNum: item.BuyNum,
+                        dogSize: item.dogSize,
+                        listType: item.listType,
+                        // 添加其他需要儲存的資料
+                    });
+                });
+
+                const response = await fetch('shopping.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSave),
+                });
+
+                if (response.ok) {
+                    console.log('資料已成功儲存到資料庫');
+                } else {
+                    console.error('儲存資料到資料庫時出錯');
+                }
+            } catch (error) {
+                console.error('儲存資料時發生錯誤:', error);
+            }
+        },
+        handlePoints(event) {
+            const maxUsePoints = this.caculate_point();
+            let inputValue = event.target.value;
+        
+            // 使用正則表達式檢查輸入是否為有效數字或刪除鍵
+            const validInputRegex = /^[0-9\b]+$/;
+        
+            if (validInputRegex.test(inputValue)) {
+                // 如果輸入有效，將 usePoints 轉換為數值
+                const usePointsValue = parseInt(inputValue);
+        
+                // 檢查 usePoints 是否大於 maxUsePoints
+                if (usePointsValue > maxUsePoints) {
+                    this.usePoints = maxUsePoints.toString();
+                } else {
+                    this.usePoints = inputValue;
+                }
+            } else {
+                // 如果輸入無效，將其修正為合法的值 (只能是數字或空)
+                this.usePoints = "";
+            }
+        }
+        
+
     },
     computed: {
         // 計算總價格。
@@ -344,10 +415,6 @@ const app = Vue.createApp({
                 }
                 return total;
             }, 0);
-        },
-        canUsePoints() {
-            const max = this.countSubtotal(this.shoppingItems[0]) * 0.2;
-            return this.havePoints <= max ? this.havePoints : max;
         },
         payPrice() {
             return this.totalPrice - this.usePoints;
