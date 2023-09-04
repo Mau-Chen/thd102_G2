@@ -7,10 +7,12 @@ const app = Vue.createApp({
             checkedNames: [],
 
             member_data: {
+                id: 1,
                 name: "王緯育",
                 email: "service@tibame.com",
                 phone: "0912345678",
             },
+
 
             spOrderName: "",
             spOrderEmail: "",
@@ -43,9 +45,13 @@ const app = Vue.createApp({
                     spStepper: false,
                     spPrice: 300,
                     BuyNum: 1,
-                    listDate_S: "8/17/2023",
-                    listDate_E: "8/17/2023",
+                    // listDate_S: "8/17/2023",
+                    // listDate_E: "8/17/2023",
+                    listDate_S: "2023/8/17",
+                    listDate_E: "2023/8/17",
                     listDate_T: "16:00",
+                    startadd: "台北市中山區南京東路三段219號5樓",
+                    endadd: "台北市信義區福德街86號9樓"
                 },
                 {
                     id: "Hostel1",
@@ -58,8 +64,10 @@ const app = Vue.createApp({
                     spStepper: true,
                     spPrice: 800,
                     BuyNum: 1,
-                    listDate_S: "8/17/2023",
-                    listDate_E: "8/20/2023",
+                    // listDate_S: "8/17/2023",
+                    // listDate_E: "8/20/2023",
+                    listDate_S: "2023/8/17",
+                    listDate_E: "2023/8/20",
                     listDate_T: "16:00",
                 },
                 {
@@ -72,8 +80,10 @@ const app = Vue.createApp({
                     spStepper: true,
                     spPrice: 800,
                     BuyNum: 1,
-                    listDate_S: "8/17/2023",
-                    listDate_E: "8/20/2023",
+                    // listDate_S: "8/17/2023",
+                    // listDate_E: "8/20/2023",
+                    listDate_S: "2023/8/17",
+                    listDate_E: "2023/8/20",
                     listDate_T: "16:00",
                 },
             ],
@@ -186,7 +196,10 @@ const app = Vue.createApp({
         },
         // 格式化日期
         formatDate(dateStr) {
-            const [month, day] = dateStr.split("/");
+            // const [month, day] = dateStr.split("/");
+            // return `${Number(month)}月${Number(day)}日`;
+            const [year, month, day] = dateStr.split("/");
+            // return `${Number(year)}年${Number(month)}月${Number(day)}日`;
             return `${Number(month)}月${Number(day)}日`;
         },
         // 確認是否移除
@@ -272,10 +285,10 @@ const app = Vue.createApp({
             }
 
             // 驗證信用卡號是否合法
-            if (!this.validateCreditCard(this.cardNumber)) {
-                isValid = false;
-                alert("請確認信用卡『卡號』是否正確");
-            }
+            // if (!this.validateCreditCard(this.cardNumber)) {
+            //     isValid = false;
+            //     alert("請確認信用卡『卡號』是否正確");
+            // }
 
             // 如果通過驗證，執行下一步操作
             if (isValid) {
@@ -339,59 +352,109 @@ const app = Vue.createApp({
         },
         async saveFormDataToDatabase() {
             try {
-                const dataToSave = {
-                    spOrderName: this.spOrderName,
-                    spOrderEmail: this.spOrderEmail,
-                    spOrderPhone: this.spOrderPhone,
-                    nowDate: this.nowDate, // 添加需要儲存的其他資料
-                    totalPrice: this.totalPrice, // 添加需要儲存的其他資料
-                    usePoints: this.usePoints, // 添加需要儲存的其他資料
-                    shoppingItems: [], // 儲存購物項目的陣列
+                // 構建要保存到ORDER表中的數據
+                const orderData = {
+                    ORDERSTATUS: "無異動", // 從前端獲取
+                    ORDERDATE: this.nowDate, // 當前日期和時間
+                    BEFORETOTAL: this.totalPrice, // 總價格
+                    USEPOINTS: this.usePoints, // 使用的積分
+                    MEMBER_ID: this.member_data.id, // 會員ID
                 };
 
-                // 將每個購物項目的相關資料添加到 shoppingItems 陣列中
-                this.shoppingItems.forEach((item) => {
-                    dataToSave.shoppingItems.push({
-                        product: item.product,
-                        listDate_S: item.listDate_S,
-                        listDate_E: item.listDate_E,
-                        listDate_D: item.listDate_D,
-                        spPrice: item.spPrice,
-                        BuyNum: item.BuyNum,
-                        dogSize: item.dogSize,
-                        listType: item.listType,
-                        // 添加其他需要儲存的資料
-                    });
-                });
-
-                const response = await fetch('shopping.php', {
+                // 向伺服器發送POST請求保存訂單數據，並獲取生成的ORDER_ID
+                const orderResponse = await fetch('../php/shopping/shopping.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(dataToSave),
+                    body: JSON.stringify({ orderData }),
                 });
 
-                if (response.ok) {
-                    console.log('資料已成功儲存到資料庫');
+                if (!orderResponse.ok) {
+                    console.error('保存ORDER數據到數據庫時出錯');
+                    return;
+                }
+
+                // 解析ORDER_RESPONSE以獲取生成的ORDER_ID
+                const { ORDER_ID } = await orderResponse.json();
+
+                // 將每個購物項的相關數據添加到ORDERDETAILS表中
+                const orderDetailsData = this.shoppingItems.map((item) => {
+                    return {
+                        NOWPRICE: item.spPrice, // 商品價格
+                        QUANTITY: item.listDate_D, // 數量
+                        AMOUNT: item.BuyNum, // 金額
+                        SIZE: item.listType === "狗套房" ? item.dogSize : null, // 僅當listType為狗套房時傳遞
+                        START: item.spStepper ? item.startadd : null, // 僅當spStepper為true時傳遞
+                        END: item.spStepper ? item.endadd : null, // 僅當spStepper為true時傳遞
+                        STARTDATE: item.listDate_S, // 開始日期
+                        ENDDATE: item.listDate_E, // 結束日期
+                        ORDER_ID, // 使用從ORDER表獲取的ORDER_ID
+                        PRODUCT_ID: item.listType === "轎車" ? 1 : item.listType === "休旅車" ? 2 : item.listType === "貓套房" ? 3 : item.listType === "狗套房" ? 4 : null, // 根據不同的listType傳遞不同的值
+                        HOTELINFO_ID: !item.spStepper ? item.product : null, // 僅當spStepper為false時傳遞
+                    };
+                });
+
+                // 向伺服器發送POST請求保存ORDERDETAILS數據
+                const orderDetailsResponse = await fetch('../php/shopping/shopping.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ orderDetailsData }),
+                });
+
+                if (orderDetailsResponse.ok) {
+                    console.log('訂單數據已成功保存到數據庫');
+
+                    // 在此處執行currentStep++
+                    this.currentStep++;
                 } else {
-                    console.error('儲存資料到資料庫時出錯');
+                    console.error('保存訂單詳細數據到數據庫時出錯');
                 }
             } catch (error) {
-                console.error('儲存資料時發生錯誤:', error);
+                console.error('保存訂單數據時發生錯誤:', error);
             }
+            // try {
+            //     const response = await fetch('../php/shopping/shopping.php', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify(dataToSave),
+            //     });
+
+            //     if (response.ok) {
+            //         const responseData = await response.json();
+            //         if (responseData.success) {
+            //             console.log('订单数据已成功保存到数据库');
+            //         } else {
+            //             console.error('保存订单数据时出现问题：', responseData);
+            //         }
+            //     } else {
+            //         console.error('请求出现问题，状态码：', response.status);
+            //     }
+            // } catch (error) {
+            //     console.error('保存订单数据时出现错误：', error);
+            // }
+
         },
+
+
+
+
+
         handlePoints(event) {
             const maxUsePoints = this.caculate_point();
             let inputValue = event.target.value;
-        
+
             // 使用正則表達式檢查輸入是否為有效數字或刪除鍵
             const validInputRegex = /^[0-9\b]+$/;
-        
+
             if (validInputRegex.test(inputValue)) {
                 // 如果輸入有效，將 usePoints 轉換為數值
                 const usePointsValue = parseInt(inputValue);
-        
+
                 // 檢查 usePoints 是否大於 maxUsePoints
                 if (usePointsValue > maxUsePoints) {
                     this.usePoints = maxUsePoints.toString();
@@ -403,7 +466,7 @@ const app = Vue.createApp({
                 this.usePoints = "";
             }
         }
-        
+
 
     },
     computed: {
