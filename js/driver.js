@@ -37,6 +37,7 @@ const app = Vue.createApp({
     disabledDates() {
       let today = new Date();
       let disabledtoday = new Date(today);
+      console.log(today);
       disabledtoday.setHours(today.getHours() + 3);
 
       return disabledtoday;
@@ -121,7 +122,6 @@ const app = Vue.createApp({
     }
 
     if (date_picker) {
-      // console.log(date_picker);
       let driver_date_picker = date_picker
         .replace("年", "/")
         .replace("月", "/")
