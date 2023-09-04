@@ -44,6 +44,7 @@
                   <input
                     type="text"
                     placeholder="城市／地區／住宿名稱"
+                    v-model="location"
                     name="city"
                   />
                 </label>
@@ -134,7 +135,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn_7" type="submit" id="searchButton" >
+            <button class="btn_7" type="button" id="searchButton">
               立即搜尋
             </button>
           </form>
@@ -244,6 +245,7 @@
             date: null,
             format: `MM月 dd日`,
             start: false,
+            location: ""
           };
         },
         computed: {
@@ -282,11 +284,31 @@
               this[property] += value;
             }
           },
+
+          saveToLocalstorage(){
+            console.log("111");
+            const saveData = {
+              location: this.location,
+              date: this.date,
+              petnum:[this.numCat, this.numDog]
+            }
+            if(saveData.location !== '' && saveData.location !== saveData.date !== ''){
+              localStorage.setItem("hoteldata", JSON.stringify(saveData));
+              window.location.href = "hostel-booking.html";
+            }
+          }
         },
       });
       select_pet.component("Datepicker", VueDatePicker);
 
+
       const vm233 = select_pet.mount("#select_pet");
+
+      const searchButton_el = document.getElementById('searchButton');
+      searchButton_el.addEventListener("click",function(){
+        vm233.saveToLocalstorage();
+      })
+
 
       // document
       //   .getElementById("searchButton")
