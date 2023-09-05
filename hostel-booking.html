@@ -9,6 +9,9 @@
     @@include('layout/meta.html')
     <link rel="stylesheet" href="./css/style.css" />
     <title>GO旅宿 | PetpaGo</title>
+    <script>
+      // 要寫一個判斷,當local 無資料踢到P1?
+    </script>
   </head>
 
   <body>
@@ -604,19 +607,20 @@
             this.numCat = saveData.petnum[0];
             this.numDog = saveData.petnum[1];
 
-            localStorage.removeItem("hoteldata");
+            // 清空localStorage資料
+            // localStorage.removeItem("hoteldata");
             },
           //抓旅館資料
-          search(){
-            const search_target = this.location;
-            const dog = this.numDog > 0 ? 1 : 0;
-            const cat = this.numCat > 0 ? 1 : 0;
-            fetch(`/PHP/your_api_location/search.php?HOTELADD=${search_target}&DOGROOM=${dog}&CATROOM=${cat}`,{
-              method: "GET"
-            }).then(res => res.json()).then(data => {
-              console.log(data);
-            })
-          },
+          // search(){
+          //   const search_target = this.location;
+          //   const dog = this.numDog > 0 ? 1 : 0;
+          //   const cat = this.numCat > 0 ? 1 : 0;
+          //   fetch(`/PHP/your_api_location/search.php?HOTELADD=${search_target}&DOGROOM=${dog}&CATROOM=${cat}`,{
+          //     method: "GET"
+          //   }).then(res => res.json()).then(data => {
+          //     console.log(data);
+          //   })
+          // },
 
           toChange(property, value) {
             if (
