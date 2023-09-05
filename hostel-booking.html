@@ -36,7 +36,7 @@
           <h2 class="hostel_title">最貼心的寵物住宿</h2>
           <form
             class="search_hotel mb_100"
-            action="./hostel-booking_detail.html"
+            action="./hostel-booking.html"
             method="get"
           >
             <div class="threeInput" id="select_pet">
@@ -562,7 +562,7 @@
             numCat: 1,
             numDog: 1,
             date: null,
-            format: `MM月 dd日`,
+            format: `MM月dd日`,
             start: false,
             location: ''
           };
@@ -592,8 +592,15 @@
         },
         mounted() {
           // console.log("sss");
-          this.getLocalStorage();
           this.start = true;
+          const today = new Date()
+          const startDate = today.setDate(today.getDate()+ 1)
+          const endDate = today.setDate(today.getDate()+1)
+
+          this.date = [startDate, endDate]   
+          // 接資料
+          this.getLocalStorage();
+          
 
           //抓旅館資料
           // this.search();
@@ -636,11 +643,11 @@
 
       const vm233 = select_pet.mount("#select_pet");
 
-      document
-        .getElementById("searchButton")
-        .addEventListener("click", function () {
-          window.location.href = "hostel-booking_detail.html";
-        });
+      // document
+      //   .getElementById("searchButton")
+      //   .addEventListener("click", function () {
+      //     window.location.href = "hostel-booking_detail.html";
+      //   });
     </script>
   </body>
 </html>

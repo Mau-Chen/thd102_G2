@@ -78,7 +78,9 @@
                 <div @click="isPop = !isPop">
                   <label for="">
                     <span>寵物類型</span>
-                    <input type="hidden" name="genre"  />
+                    <!-- <input type="hidden" name="genre"  />
+                    <input type="hidden" name="numDog"  v-model="numDog"/>
+                    <input type="hidden" name="numCat"  v-model="numCat"/> -->
                   </label>
                   <p>
                     <span v-show="numDog > 0">{{ numDog }}隻狗</span>
@@ -242,8 +244,8 @@
             isPop: false,
             numCat: 1,
             numDog: 1,
-            date: null,
-            format: `MM月 dd日`,
+            date: "",
+            format: `MM月dd日`,
             start: false,
             location: ""
           };
@@ -274,6 +276,22 @@
         mounted() {
           // console.log("sss");
           this.start = true;
+          // 預設選擇日期
+          const today = new Date()
+          const startDate = today.setDate(today.getDate()+ 1)
+          const endDate = today.setDate(today.getDate()+1)
+          this.date = [startDate, endDate]      
+          // 點擊外面視窗跳開
+          document.addEventListener(
+            "click",
+            (e) => {
+              if(
+                e.target.classList.contains("dropDownParent")
+              ){
+                return false;
+              }
+            }
+          );
         },
         methods: {
           toChange(property, value) {
@@ -284,9 +302,8 @@
               this[property] += value;
             }
           },
-
           saveToLocalstorage(){
-            console.log("111");
+            // console.log("111");
             const saveData = {
               location: this.location,
               date: this.date,
