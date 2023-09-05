@@ -1,6 +1,4 @@
-// import DriverSelector from "./js/components/DriverSelector.js";
-// console.log(window.VueUse);
-const app = Vue.createApp({
+window.vue_app = Vue.createApp({
   data() {
     return {
       date: "",
@@ -107,6 +105,8 @@ const app = Vue.createApp({
     // this.date = [startDate];
 
     // JavaScript 取得 Url 的 Query String
+    // const path = window.location.pathname;
+    // const hash = window.location.hash;
     let urlParams = new URLSearchParams(window.location.search);
     let start_place = urlParams.get("start_place");
     let end_place = urlParams.get("end_place");
@@ -115,12 +115,21 @@ const app = Vue.createApp({
     let passenger_input = urlParams.get("passenger");
     let pet_input = urlParams.get("pet");
 
+    // urlParams.set("car-type", this.msg_start);
+    // window.history.replaceState(
+    //   {},
+    //   "",
+    //   `${path}?${urlParams.toString()}${hash}`
+    // );
+
     if (start_place) {
       this.msg_start = start_place;
+      // urlParams.delete("start_place");
     }
 
     if (end_place) {
       this.msg_end = end_place;
+      // urlParams.delete("end_place");
     }
 
     if (date_picker) {
@@ -137,25 +146,35 @@ const app = Vue.createApp({
       // 23年 08月 31日 ｜19 ：32
       // this.date = Date.parse("2023/08/31 19:09");
       this.date = Date.parse(driver_date_picker);
+      // urlParams.delete("date-picker");
     } else {
       const startDate = new Date();
       // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
       // this.date = [startDate, endDate];
       // console.log(startDate);
       this.date = new Date(startDate).setHours(startDate.getHours() + 2);
+      // urlParams.delete("date-picker");
     }
 
     if (car_type) {
       this.car_menu = car_type;
+      // urlParams.delete("car-type");
     }
 
     if (passenger_input) {
       this.passenger_counter = Number(passenger_input);
+      // urlParams.delete("passenger");
     }
 
     if (pet_input) {
       this.pet_counter = Number(pet_input);
+      // urlParams.delete("pet");
     }
+    // history.replaceState(null, null, window.location.pathname);
+    // let driver_result = urlParams.split("?")[0];
+    // console.log(driver_result);
+    // urlParams.delete("?");
+    // console.log(urlParams);
 
     document.addEventListener(
       "click",
@@ -183,6 +202,6 @@ const app = Vue.createApp({
     );
   },
 });
-app.component("Datepicker", VueDatePicker);
+window.vue_app.component("Datepicker", VueDatePicker);
 // app.component("DriverSelector", DriverSelector);
-app.mount("#driver_app");
+window.vue_app.mount("#driver_app");
