@@ -531,23 +531,12 @@
     <!-- Swiper JS -->
     <script src="./js/vue-datepicker.iife.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-    <!-- 輪播 Initialize Swiper -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        // spaceBetween: 16,
-        loop: true,
-        // cssMode: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-        },
-      });
+    <script src="./js/hostel_search.js"></script>
+    <script src="./js/booking_detail.js"></script>
+    <script src="./js/media.js"></script>
+    <script src="./js/cart.js"></script>
+    <!-- search.js -->
+    <!-- <script>
       // Datepicker & 寵物類型
       const select_pet = Vue.createApp({
         data() {
@@ -605,11 +594,14 @@
           },
           getLocalStorage(){
             const saveData = JSON.parse(localStorage.getItem("hoteldata"));
-            // console.log(saveData);
+            if(saveData){
             this.location = saveData.location;
             this.date = saveData.date;
             this.numCat = saveData.petnum[0];
             this.numDog = saveData.petnum[1];
+            }
+            // console.log(saveData);
+      
 
             // 清空localStorage資料
             // localStorage.removeItem("hoteldata");
@@ -619,8 +611,25 @@
       select_pet.component("Datepicker", VueDatePicker);
 
       const vm233 = select_pet.mount("#select_pet");
-    </script>
-    <script>
+    </script> -->
+
+    <!-- booking_detail.js -->
+    <!-- <script>
+
+var swiper = new Swiper(".mySwiper", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        // spaceBetween: 16,
+        loop: true,
+        // cssMode: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
       const app2 = Vue.createApp({
         data() {
           return {
@@ -658,10 +667,12 @@
         },
       });
       app2.mount("#htApp");
-    </script>
+    </script> -->
   </body>
 
-  <script>
+
+<!-- media.js -->
+  <!-- <script>
     //768選單
     document.addEventListener("DOMContentLoaded", function () {
       const searchOut = document.querySelector(".d_search-out");
@@ -699,9 +710,10 @@
       // 當視窗大小改變時重新檢查
       window.addEventListener("resize", checkWidth);
     });
-  </script>
+  </script> -->
 
-  <script>
+<!-- cart.js -->
+  <!-- <script>
     //顯示已加入購物車
     let addCart = document.querySelectorAll(".addCart");
     let popup = document.querySelector(".ol-contentShop");
@@ -717,5 +729,5 @@
         }, 3000);
       });
     }
-  </script>
+  </script> -->
 </html>
