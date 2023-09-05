@@ -1,26 +1,8 @@
 // google map route
+
+// import DriverSelector from "./js/components/DriverSelector.js";
+// console.log(window.VueUse);
 let map, directionsService, directionsRenderer;
-
-window.onload = async function () {
-  await google.maps.importLibrary("places", "geometry");
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 25.05214, lng: 121.54325 },
-    zoom: 15,
-  });
-
-  directionsService = new google.maps.DirectionsService();
-  directionsRenderer = new google.maps.DirectionsRenderer();
-  directionsRenderer.setMap(map);
-
-  const searchButton = document.getElementById("driverbtn");
-  // console.log(searchButton);
-  searchButton.addEventListener("click", calculateDistance);
-
-  // 網頁加載完畢後，立即進行地圖搜尋
-  calculateDistance();
-};
-
 async function calculateDistance() {
   const originInput = document.getElementById("start_place_input");
   const originInput_value = originInput.value;
@@ -56,11 +38,23 @@ async function calculateDistance() {
 
     directionsService.route(request, (response, status) => {
       if (status === "OK") {
+        console.log(window.vue_app);
+
+        const vm = window.vue_app._instance.data;
+        console.log(vm.car_menu);
+
+        console.log(vm.cars_data[vm.car_menu].cost);
         directionsRenderer.setDirections(response);
         const distance = response.routes[0].legs[0].distance.text;
+        console.log(response.routes[0].legs[0].distance);
+        console.log(response.routes[0].legs[0].distance.value);
         const duration = response.routes[0].legs[0].duration.text; // 取得旅程所需時間
         document.getElementById("distanceDisplay").textContent = `${distance}`;
         document.getElementById("durationDisplay").textContent = `${duration}`; // 顯示旅程所需時間
+        const embark_datetime_span = document.querySelector(
+          ".embark_datetime span"
+        );
+        console.log(embark_datetime_span);
       } else {
         alert("Directions request failed due to " + status);
       }
@@ -81,6 +75,26 @@ async function getCoordinates(geocoder, location) {
     });
   });
 }
+
+window.onload = async function () {
+  await google.maps.importLibrary("places", "geometry");
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 25.05214, lng: 121.54325 },
+    zoom: 15,
+  });
+
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+
+  const searchButton = document.getElementById("driverbtn");
+  // console.log(searchButton);
+  searchButton.addEventListener("click", calculateDistance);
+
+  // 網頁加載完畢後，立即進行地圖搜尋
+  calculateDistance();
+};
 
 //顯示已加入購物車
 
