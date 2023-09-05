@@ -42,8 +42,9 @@ async function calculateDistance() {
 
         const vm = window.vue_app._instance.data;
         console.log(vm.car_menu);
-
         console.log(vm.cars_data[vm.car_menu].cost);
+        const car_menu_cost = vm.cars_data[vm.car_menu].cost;
+        console.log(car_menu_cost);
         directionsRenderer.setDirections(response);
         const distance = response.routes[0].legs[0].distance.text;
         console.log(response.routes[0].legs[0].distance);
@@ -51,10 +52,8 @@ async function calculateDistance() {
         const duration = response.routes[0].legs[0].duration.text; // 取得旅程所需時間
         document.getElementById("distanceDisplay").textContent = `${distance}`;
         document.getElementById("durationDisplay").textContent = `${duration}`; // 顯示旅程所需時間
-        const embark_datetime_span = document.querySelector(
-          ".embark_datetime span"
-        );
-        console.log(embark_datetime_span);
+        const costDisplay = document.getElementById("costDisplay");
+        // console.log(costDisplay);
       } else {
         alert("Directions request failed due to " + status);
       }
