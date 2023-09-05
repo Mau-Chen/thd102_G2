@@ -1,6 +1,4 @@
-// import DriverSelector from "./js/components/DriverSelector.js";
-// console.log(window.VueUse);
-const app = Vue.createApp({
+window.vue_app = Vue.createApp({
   data() {
     return {
       date: "",
@@ -107,6 +105,8 @@ const app = Vue.createApp({
     // this.date = [startDate];
 
     // JavaScript 取得 Url 的 Query String
+    // const path = window.location.pathname;
+    // const hash = window.location.hash;
     let urlParams = new URLSearchParams(window.location.search);
     let start_place = urlParams.get("start_place");
     let end_place = urlParams.get("end_place");
@@ -115,12 +115,21 @@ const app = Vue.createApp({
     let passenger_input = urlParams.get("passenger");
     let pet_input = urlParams.get("pet");
 
+    // urlParams.set("car-type", this.msg_start);
+    // window.history.replaceState(
+    //   {},
+    //   "",
+    //   `${path}?${urlParams.toString()}${hash}`
+    // );
+
     if (start_place) {
       this.msg_start = start_place;
+      // urlParams.delete("start_place");
     }
 
     if (end_place) {
       this.msg_end = end_place;
+      // urlParams.delete("end_place");
     }
 
     if (date_picker) {
@@ -137,25 +146,35 @@ const app = Vue.createApp({
       // 23年 08月 31日 ｜19 ：32
       // this.date = Date.parse("2023/08/31 19:09");
       this.date = Date.parse(driver_date_picker);
+      // urlParams.delete("date-picker");
     } else {
       const startDate = new Date();
       // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
       // this.date = [startDate, endDate];
       // console.log(startDate);
       this.date = new Date(startDate).setHours(startDate.getHours() + 2);
+      // urlParams.delete("date-picker");
     }
 
     if (car_type) {
       this.car_menu = car_type;
+      // urlParams.delete("car-type");
     }
 
     if (passenger_input) {
       this.passenger_counter = Number(passenger_input);
+      // urlParams.delete("passenger");
     }
 
     if (pet_input) {
       this.pet_counter = Number(pet_input);
+      // urlParams.delete("pet");
     }
+    // history.replaceState(null, null, window.location.pathname);
+    // let driver_result = urlParams.split("?")[0];
+    // console.log(driver_result);
+    // urlParams.delete("?");
+    // console.log(urlParams);
 
     document.addEventListener(
       "click",
@@ -183,6 +202,74 @@ const app = Vue.createApp({
     );
   },
 });
-app.component("Datepicker", VueDatePicker);
+window.vue_app.component("Datepicker", VueDatePicker);
 // app.component("DriverSelector", DriverSelector);
-app.mount("#driver_app");
+window.vue_app.mount("#driver_app");
+
+
+
+//將資料放在localStorage
+document.addEventListener('DOMContentLoaded', function () {
+  const addToCartButton = document.querySelector('.btn_5_border.addCart');
+  const msgStartInput = document.querySelector('#start_place_input');
+  const msgEndInput = document.querySelector('#end_place_input');
+  const datePickerInput = document.querySelector('input[name="date-picker"]');
+  const carMenuInput = document.querySelector('.car_menu_input');
+  const listDistanceSpan = document.querySelector('#distanceDisplay');
+
+  // 存資料用
+  let cartData = [];
+
+  function addToCart() {
+    // 取msg_start和msg_end
+    const msgStartValue = msgStartInput.value;
+    const msgEndValue = msgEndInput.value;
+
+    // 取日期
+    const listDateValue = datePickerInput.value;
+    
+    // 分別取得日期和時間
+    const dateParts = listDateValue.split('｜');
+    const listDateD = dateParts[0]; // 日期
+    const listDateT = dateParts[1]; // 時間
+
+    // 取車種
+    const listTypeValue = carMenuInput.value;
+
+    // 取距離數字(含小數)
+    const listDistanceText = listDistanceSpan.textContent;
+    const listDistanceValue = parseFloat(listDistanceText.match(/\d+\.\d+/)[0]);
+
+    // 創物件拿來放資料組
+    const data = {
+      startadd: msgStartValue,
+      endadd: msgEndValue,
+      listDate_S: listDateD, // 存日期
+      listDate_E: listDateD,
+      listDate_T: listDateT, // 存時間
+      listType: listTypeValue,
+      listDistance: listDistanceValue,
+      product: '寵物接送',
+    };
+
+    cartData.push(data);
+
+    // 更新 localStorage
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }
+
+  // 綁按鈕點擊
+  addToCartButton.addEventListener('click', addToCart);
+
+  const goSPButton = document.querySelector('.btn_5.col-6');
+  goSPButton.addEventListener('click', function () {
+    addToCart(); 
+    window.location.href = 'shopping.html'; 
+  });
+
+  // 在初始化時，從 localStorage 中讀取 cartData 並轉換為陣列
+  const storedCartData = localStorage.getItem('cartData');
+  if (storedCartData) {
+    cartData = JSON.parse(storedCartData);
+  }
+});
