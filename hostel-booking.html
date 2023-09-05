@@ -9,6 +9,9 @@
     @@include('layout/meta.html')
     <link rel="stylesheet" href="./css/style.css" />
     <title>GO旅宿 | PetpaGo</title>
+    <script>
+      // 要寫一個判斷,當local 無資料踢到P1?
+    </script>
   </head>
 
   <body>
@@ -33,7 +36,7 @@
           <h2 class="hostel_title">最貼心的寵物住宿</h2>
           <form
             class="search_hotel mb_100"
-            action="./hostel-booking_detail.html"
+            action="./hostel-booking.html"
             method="get"
           >
             <div class="threeInput" id="select_pet">
@@ -559,7 +562,7 @@
             numCat: 1,
             numDog: 1,
             date: null,
-            format: `MM月 dd日`,
+            format: `MM月dd日`,
             start: false,
             location: ''
           };
@@ -589,8 +592,15 @@
         },
         mounted() {
           // console.log("sss");
-          this.getLocalStorage();
           this.start = true;
+          const today = new Date()
+          const startDate = today.setDate(today.getDate()+ 1)
+          const endDate = today.setDate(today.getDate()+1)
+
+          this.date = [startDate, endDate]   
+          // 接資料
+          this.getLocalStorage();
+          
 
           //抓旅館資料
           // this.search();
@@ -604,19 +614,20 @@
             this.numCat = saveData.petnum[0];
             this.numDog = saveData.petnum[1];
 
-            localStorage.removeItem("hoteldata");
+            // 清空localStorage資料
+            // localStorage.removeItem("hoteldata");
             },
           //抓旅館資料
-          search(){
-            const search_target = this.location;
-            const dog = this.numDog > 0 ? 1 : 0;
-            const cat = this.numCat > 0 ? 1 : 0;
-            fetch(`/PHP/your_api_location/search.php?HOTELADD=${search_target}&DOGROOM=${dog}&CATROOM=${cat}`,{
-              method: "GET"
-            }).then(res => res.json()).then(data => {
-              console.log(data);
-            })
-          },
+          // search(){
+          //   const search_target = this.location;
+          //   const dog = this.numDog > 0 ? 1 : 0;
+          //   const cat = this.numCat > 0 ? 1 : 0;
+          //   fetch(`/PHP/your_api_location/search.php?HOTELADD=${search_target}&DOGROOM=${dog}&CATROOM=${cat}`,{
+          //     method: "GET"
+          //   }).then(res => res.json()).then(data => {
+          //     console.log(data);
+          //   })
+          // },
 
           toChange(property, value) {
             if (
@@ -632,11 +643,11 @@
 
       const vm233 = select_pet.mount("#select_pet");
 
-      document
-        .getElementById("searchButton")
-        .addEventListener("click", function () {
-          window.location.href = "hostel-booking_detail.html";
-        });
+      // document
+      //   .getElementById("searchButton")
+      //   .addEventListener("click", function () {
+      //     window.location.href = "hostel-booking_detail.html";
+      //   });
     </script>
   </body>
 </html>
