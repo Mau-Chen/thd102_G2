@@ -1,5 +1,38 @@
+#index-box {
+  overflow: hidden;
+  height: 100vh;
+  #preloader {
+    height: 95vh;
+    // width: 100%;
+    // z-index: 666;
+    // .hidden {
+    //   visibility: hidden;
+    // }
+  }
+
+  #myHeading {
+    position: absolute;
+    white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+  }
+}
+
+.dot {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #fff;
+  z-index: -1;
+}
+
 //首頁
 .index {
+  display: none;
   .banner {
     padding-top: 20px;
     overflow: hidden;
