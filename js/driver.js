@@ -205,3 +205,71 @@ window.vue_app = Vue.createApp({
 window.vue_app.component("Datepicker", VueDatePicker);
 // app.component("DriverSelector", DriverSelector);
 window.vue_app.mount("#driver_app");
+
+
+
+//將資料放在localStorage
+document.addEventListener('DOMContentLoaded', function () {
+  const addToCartButton = document.querySelector('.btn_5_border.addCart');
+  const msgStartInput = document.querySelector('#start_place_input');
+  const msgEndInput = document.querySelector('#end_place_input');
+  const datePickerInput = document.querySelector('input[name="date-picker"]');
+  const carMenuInput = document.querySelector('.car_menu_input');
+  const listDistanceSpan = document.querySelector('#distanceDisplay');
+
+  // 存資料用
+  let cartData = [];
+
+  function addToCart() {
+    // 取msg_start和msg_end
+    const msgStartValue = msgStartInput.value;
+    const msgEndValue = msgEndInput.value;
+
+    // 取日期
+    const listDateValue = datePickerInput.value;
+    
+    // 分別取得日期和時間
+    const dateParts = listDateValue.split('｜');
+    const listDateD = dateParts[0]; // 日期
+    const listDateT = dateParts[1]; // 時間
+
+    // 取車種
+    const listTypeValue = carMenuInput.value;
+
+    // 取距離數字(含小數)
+    const listDistanceText = listDistanceSpan.textContent;
+    const listDistanceValue = parseFloat(listDistanceText.match(/\d+\.\d+/)[0]);
+
+    // 創物件拿來放資料組
+    const data = {
+      startadd: msgStartValue,
+      endadd: msgEndValue,
+      listDate_S: listDateD, // 存日期
+      listDate_E: listDateD,
+      listDate_T: listDateT, // 存時間
+      listType: listTypeValue,
+      listDistance: listDistanceValue,
+      product: '寵物接送',
+    };
+
+    cartData.push(data);
+
+    // 更新 localStorage
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }
+
+  // 綁按鈕點擊
+  addToCartButton.addEventListener('click', addToCart);
+
+  const goSPButton = document.querySelector('.btn_5.col-6');
+  goSPButton.addEventListener('click', function () {
+    addToCart(); 
+    window.location.href = 'shopping.html'; 
+  });
+
+  // 在初始化時，從 localStorage 中讀取 cartData 並轉換為陣列
+  const storedCartData = localStorage.getItem('cartData');
+  if (storedCartData) {
+    cartData = JSON.parse(storedCartData);
+  }
+});
