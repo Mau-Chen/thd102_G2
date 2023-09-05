@@ -1,5 +1,6 @@
 .ad_section {
-  padding: 0 32px;
+  // margin-left: 32px;
+  // margin-right: 32px;
 }
 .ad_box {
   @include flex();
@@ -39,6 +40,9 @@
   }
   .ad_box_white {
     background: $white;
+    // .shop-ad-button {
+    //   cursor: pointer;
+    // }
   }
   @media (max-width: 434px) {
     flex-direction: column;
