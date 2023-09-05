@@ -78,6 +78,14 @@
         &:focus-within {
           background: $searchColor;
         }
+        .dp__cell_disabled,
+        .dp__range_start,
+        .dp__range_between,
+        .dp__range_end {
+          border-radius: 50%;
+        }
+        }
+        
       }
     }
 
