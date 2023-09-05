@@ -586,8 +586,13 @@
         },
         mounted() {
           // console.log("sss");
-          this.getLocalStorage();
           this.start = true;
+          // 預設選擇日期
+          const today = new Date()
+          const startDate = today.setDate(today.getDate()+ 1)
+          const endDate = today.setDate(today.getDate()+1)
+          this.date = [startDate, endDate]
+          this.getLocalStorage();
         },
         methods: {
           toChange(property, value) {
@@ -600,7 +605,7 @@
           },
           getLocalStorage(){
             const saveData = JSON.parse(localStorage.getItem("hoteldata"));
-            console.log(saveData);
+            // console.log(saveData);
             this.location = saveData.location;
             this.date = saveData.date;
             this.numCat = saveData.petnum[0];
@@ -609,7 +614,6 @@
             // 清空localStorage資料
             // localStorage.removeItem("hoteldata");
             },
-          
         },
       });
       select_pet.component("Datepicker", VueDatePicker);
