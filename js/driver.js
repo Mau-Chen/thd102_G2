@@ -17,10 +17,12 @@ const app = Vue.createApp({
         轎車: {
           limit: 3,
           cars_text: "乘客＋毛孩最多3位",
+          cost: 40,
         },
         休旅車: {
           limit: 4,
           cars_text: "乘客＋毛孩最多4位",
+          cost: 50,
         },
       },
     };
@@ -37,6 +39,7 @@ const app = Vue.createApp({
     disabledDates() {
       let today = new Date();
       let disabledtoday = new Date(today);
+      console.log(today);
       disabledtoday.setHours(today.getHours() + 3);
 
       return disabledtoday;
@@ -121,7 +124,6 @@ const app = Vue.createApp({
     }
 
     if (date_picker) {
-      // console.log(date_picker);
       let driver_date_picker = date_picker
         .replace("年", "/")
         .replace("月", "/")

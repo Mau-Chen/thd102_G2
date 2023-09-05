@@ -44,6 +44,7 @@
                     type="text"
                     placeholder="城市／地區／住宿名稱"
                     name="city"
+                    v-model="location"
                   />
                 </label>
               </div>
@@ -68,7 +69,10 @@
                 </label>
               </div>
               <!--  -->
-              <div class="search-box dropDownParent col-4" :class="{'-show' : start === true}">
+              <div
+                class="search-box dropDownParent col-4"
+                :class="{'-show' : start === true}"
+              >
                 <div @click="isPop = !isPop">
                   <label for="">
                     <span>寵物類型</span>
@@ -557,6 +561,7 @@
             date: null,
             format: `MM月 dd日`,
             start: false,
+            location: ''
           };
         },
         computed: {
@@ -584,9 +589,35 @@
         },
         mounted() {
           // console.log("sss");
+          this.getLocalStorage();
           this.start = true;
+
+          //抓旅館資料
+          // this.search();
         },
         methods: {
+          getLocalStorage(){
+            const saveData = JSON.parse(localStorage.getItem("hoteldata"));
+            console.log(saveData);
+            this.location = saveData.location;
+            this.date = saveData.date;
+            this.numCat = saveData.petnum[0];
+            this.numDog = saveData.petnum[1];
+
+            localStorage.removeItem("hoteldata");
+            },
+          //抓旅館資料
+          search(){
+            const search_target = this.location;
+            const dog = this.numDog > 0 ? 1 : 0;
+            const cat = this.numCat > 0 ? 1 : 0;
+            fetch(`/PHP/your_api_location/search.php?HOTELADD=${search_target}&DOGROOM=${dog}&CATROOM=${cat}`,{
+              method: "GET"
+            }).then(res => res.json()).then(data => {
+              console.log(data);
+            })
+          },
+
           toChange(property, value) {
             if (
               (value > 0 && this[property] < 9) ||

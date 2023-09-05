@@ -91,27 +91,8 @@
     </li>
   </ul>
 
-  <button class="btn_4_border">登出</button>
+  <button class="btn_4_border" id="MemberlogOut">登出</button>
 </div>
-
-<!-- <script> //初始切換tab
-  document.addEventListener("DOMContentLoaded", function () {
-
-    let currentUrl = window.location.href.split('/').pop();
-
-    let links = document.querySelectorAll('.slide-bar a');
-
-    links.forEach(link => {
-      // console.log(link);
-        // 當 <a> 標籤的 href 屬性與當前頁面 URL 相同
-        if (link.getAttribute('href') === currentUrl) {
-            // 更改 icon 和文字的顏色
-            link.querySelector('svg').setAttribute('id', 'on_page');
-            link.setAttribute('id', 'on_page');
-        }
-    });
-});
-</script> -->
 
 <script>
 
@@ -144,5 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+const MemberlogOut_el = document.getElementById('MemberlogOut');
+MemberlogOut_el.addEventListener("click",function(){
+  vm.logout();
+})
 
 </script>
