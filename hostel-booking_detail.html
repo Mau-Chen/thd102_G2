@@ -30,6 +30,7 @@
                 <input
                   type="text"
                   placeholder="城市／地區／住宿名稱"
+                  v-model="location"
                   name="city"
                 />
               </label>
@@ -50,6 +51,7 @@
                   :min-date="disabledDates"
                   :auto-position="false"
                   :enable-time-picker="false"
+                  name="getDate"
                 >
                 </DatePicker>
               </label>
@@ -77,6 +79,7 @@
                       type="button"
                       class="minus"
                       @click="toChange('numDog', -1)"
+                      :class="{'limit': numDog === 0}"
                     >
                       -
                     </button>
@@ -85,6 +88,7 @@
                       type="button"
                       class="plus"
                       @click="toChange('numDog', 1)"
+                      :class="{'limit': numDog === 9}"
                     >
                       +
                     </button>
@@ -98,6 +102,7 @@
                       type="button"
                       class="minus"
                       @click="toChange('numCat', -1)"
+                      :class="{'limit': numCat === 0}"
                     >
                       -
                     </button>
@@ -106,6 +111,7 @@
                       type="button"
                       class="plus"
                       @click="toChange('numCat', +1)"
+                      :class="{'limit': numCat === 9}"
                     >
                       +
                     </button>
@@ -114,7 +120,7 @@
               </div>
             </div>
           </div>
-          <button class="btn_7 onDis768" type="submit" id="searchButton">
+          <button class="btn_7 onDis768" type="button" id="searchButton">
             更新
           </button>
         </form>
@@ -552,6 +558,7 @@
             date: null,
             format: `MM月 dd日`,
             start: false,
+            location: "",
           };
         },
         computed: {
@@ -579,14 +586,30 @@
         },
         mounted() {
           // console.log("sss");
+          this.getLocalStorage();
           this.start = true;
         },
         methods: {
           toChange(property, value) {
-            if (value > 0 || (value < 0 && this[property] > 0)) {
+            if (
+              (value > 0 && this[property] < 9) ||
+              (value < 0 && this[property] > 0)
+            ) {
               this[property] += value;
             }
           },
+          getLocalStorage(){
+            const saveData = JSON.parse(localStorage.getItem("hoteldata"));
+            console.log(saveData);
+            this.location = saveData.location;
+            this.date = saveData.date;
+            this.numCat = saveData.petnum[0];
+            this.numDog = saveData.petnum[1];
+
+            // 清空localStorage資料
+            // localStorage.removeItem("hoteldata");
+            },
+          
         },
       });
       select_pet.component("Datepicker", VueDatePicker);
