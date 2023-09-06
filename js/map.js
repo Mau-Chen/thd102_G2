@@ -38,21 +38,27 @@ async function calculateDistance() {
 
     directionsService.route(request, (response, status) => {
       if (status === "OK") {
-        console.log(window.vue_app);
+        // console.log(window.vue_app);
 
         const vm = window.vue_app._instance.data;
-        console.log(vm.car_menu);
-        console.log(vm.cars_data[vm.car_menu].cost);
-        const car_menu_cost = vm.cars_data[vm.car_menu].cost;
-        console.log(car_menu_cost);
+        // console.log(vm.car_menu);
+        // console.log(vm.cars_data[vm.car_menu].cost);
         directionsRenderer.setDirections(response);
         const distance = response.routes[0].legs[0].distance.text;
-        console.log(response.routes[0].legs[0].distance);
-        console.log(response.routes[0].legs[0].distance.value);
+        // console.log(response.routes[0].legs[0].distance);
+        // console.log(response.routes[0].legs[0].distance.value);
+        let distance_value = response.routes[0].legs[0].distance.value / 1000;
+        let roundedDistance = parseFloat(distance_value.toFixed(1));
+        // console.log(roundedDistance);
+        const car_menu_cost = roundedDistance * vm.cars_data[vm.car_menu].cost;
+        // console.log(car_menu_cost);
         const duration = response.routes[0].legs[0].duration.text; // 取得旅程所需時間
         document.getElementById("distanceDisplay").textContent = `${distance}`;
         document.getElementById("durationDisplay").textContent = `${duration}`; // 顯示旅程所需時間
-        const costDisplay = document.getElementById("costDisplay");
+        document.getElementById(
+          "costDisplay"
+        ).textContent = `NT$ ${car_menu_cost}`;
+
         // console.log(costDisplay);
       } else {
         alert("Directions request failed due to " + status);
@@ -94,6 +100,72 @@ window.onload = async function () {
   // 網頁加載完畢後，立即進行地圖搜尋
   calculateDistance();
 };
+
+//將資料放在localStorage
+document.addEventListener("DOMContentLoaded", function () {
+  const addToCartButton = document.querySelector(".btn_5_border.addCart");
+  const msgStartInput = document.querySelector("#start_place_input");
+  const msgEndInput = document.querySelector("#end_place_input");
+  const datePickerInput = document.querySelector('input[name="date-picker"]');
+  const carMenuInput = document.querySelector(".car_menu_input");
+  const listDistanceSpan = document.querySelector("#distanceDisplay");
+
+  // 存資料用
+  let cartData = [];
+
+  function addToCart() {
+    // 取msg_start和msg_end
+    const msgStartValue = msgStartInput.value;
+    const msgEndValue = msgEndInput.value;
+
+    // 取日期
+    const listDateValue = datePickerInput.value;
+
+    // 分別取得日期和時間
+    const dateParts = listDateValue.split("｜");
+    const listDateD = dateParts[0]; // 日期
+    const listDateT = dateParts[1]; // 時間
+
+    // 取車種
+    const listTypeValue = carMenuInput.value;
+
+    // 取距離數字(含小數)
+    const listDistanceText = listDistanceSpan.textContent;
+    const listDistanceValue = parseFloat(listDistanceText.match(/\d+\.\d+/)[0]);
+
+    // 創物件拿來放資料組
+    const data = {
+      startadd: msgStartValue,
+      endadd: msgEndValue,
+      listDate_S: listDateD, // 存日期
+      listDate_E: listDateD,
+      listDate_T: listDateT, // 存時間
+      listType: listTypeValue,
+      listDistance: listDistanceValue,
+      product: "寵物接送",
+    };
+
+    cartData.push(data);
+
+    // 更新 localStorage
+    localStorage.setItem("cartData", JSON.stringify(cartData));
+  }
+
+  // 綁按鈕點擊
+  addToCartButton.addEventListener("click", addToCart);
+
+  const goSPButton = document.querySelector(".btn_5.col-6");
+  goSPButton.addEventListener("click", function () {
+    addToCart();
+    window.location.href = "shopping.html";
+  });
+
+  // 在初始化時，從 localStorage 中讀取 cartData 並轉換為陣列
+  const storedCartData = localStorage.getItem("cartData");
+  if (storedCartData) {
+    cartData = JSON.parse(storedCartData);
+  }
+});
 
 //顯示已加入購物車
 
