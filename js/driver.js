@@ -142,7 +142,7 @@ window.vue_app = Vue.createApp({
       // console.log(driver_date_picker);
 
       // 23/09/01/｜20 ：46
-      // console.log(date_picker);
+      console.log(date_picker);
       // 23年 08月 31日 ｜19 ：32
       // this.date = Date.parse("2023/08/31 19:09");
       this.date = Date.parse(driver_date_picker);
