@@ -9,9 +9,6 @@
     @@include('layout/meta.html')
     <link rel="stylesheet" href="./css/style.css" />
     <title>GO旅宿 | PetpaGo</title>
-    <script>
-      // 要寫一個判斷,當local 無資料踢到P1?
-    </script>
   </head>
 
   <body>
@@ -76,8 +73,8 @@
                 class="search-box dropDownParent col-4"
                 :class="{'-show' : start === true}"
               >
-                <div @click="isPop = !isPop">
-                  <label for="">
+                <div class="pet_menu_open" >
+                  <label>
                     <span>寵物類型</span>
                     <!-- <input type="text" placeholder="請選擇" /> -->
                   </label>
