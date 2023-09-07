@@ -116,12 +116,57 @@ const app = Vue.createApp({
             },
           ],
         },
-
-      ],
-    };
+      ]
+    }
   },
+  mounted() {
+    this.Initial();
+  },
+  methods: {
+    Initial(){
+      const MEMBER_ID = JSON.parse(localStorage.getItem('member'));
+      const account = MEMBER_ID.account;
+      // fixme: path need fix
+      axios.get(`/thd102/g2/php/Member/select.php?MEMBER_ID=${account}`)
+      .then(response => {
+        const data = response.data;
+        
+        const result = data.map((item)=>({
+          OrderId: item.OrderId,
+          OrderDate: item.OrderDate,
+          reduce: item.reduce,
+          OrderList: item.OrderList.map((list)=>({
+            name: list.display_hotelname,
+            image: this.selectPicture(list.PRODUCTNAME),
+            price: list.NOWPRICE,
+            date: list.display_date,
+            product: list.PRODUCTNAME
+          }))
+        }))
+        this.tasks = result;    
+      })
+      .catch(error => {
+        console.error('An error occurred while fetching data:', error);
+      })
+      
+    },
+    selectPicture(string){
+      switch (string){
+        case '小轎車' :
+          return './images/pic/shop/goShop01.png';
+        case '休旅車' :
+          return './images/pic/shop/goShop01.png';
+        case '狗套房' :
+          return './images/pic/shop/goShop02.png';
+        case '貓套房' :
+          return './images/pic/shop/goShop03.png'
+        default:
+          return './images/pic/shop/goShop02.png';
+      }
+    }
+  }
 });
 
 app.component("list", list);
 
-const vm = app.mount("#order");
+const orderlist = app.mount("#order");
