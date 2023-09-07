@@ -53,6 +53,18 @@
           this[property] += value;
         }
       },
+      saveToLocalstorage(){
+        // console.log("111");
+        const saveData = {
+          location: this.location,
+          date: this.date,
+          petnum:[this.numCat, this.numDog]
+        }
+        if(saveData.location !== '' && saveData.location !== saveData.date !== ''){
+          localStorage.setItem("hoteldata", JSON.stringify(saveData));
+          window.location.href = "hostel-booking.html";
+        }
+      },
       getLocalStorage(){
         const saveData = JSON.parse(localStorage.getItem("hoteldata"));
         if(saveData){
@@ -72,11 +84,11 @@
   select_pet.component("Datepicker", VueDatePicker);
 
   const vm233 = select_pet.mount("#select_pet");
-//   if(document.getElementById('searchButton')){
-//     const searchButton_el = document.getElementById('searchButton');
-//   searchButton_el.addEventListener("click",function(){
-//     vm233.saveToLocalstorage();
-//   })
-//   }
+  if(document.getElementById('searchButton')){
+    const searchButton_el = document.getElementById('searchButton');
+  searchButton_el.addEventListener("click",function(){
+    vm233.saveToLocalstorage();
+  })
+  }
 
 //   const vm233 = select_pet.mount("#select_pet");
