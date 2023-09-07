@@ -23,7 +23,7 @@
                 <h5>尚無訂單</h5>
               </div>
           </div>
-
+          
 
           <!------------ 訂單紀錄 listBody ------------>
           <ul id="order" style="display:block;">
@@ -208,10 +208,15 @@
                       <button class="btn_5">更新資訊</button>
                       <!-- </div> -->
           </div>
+          <p>
+            結果: <br />
+            <span id="result"></span>
+          </p>
         </div>
       </main>
       @@include('layout/footer.html')
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="./js/memberOrder.js"></script>
     <script src="./js/member_page.js"></script>
   </body>
