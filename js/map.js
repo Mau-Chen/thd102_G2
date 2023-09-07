@@ -29,6 +29,7 @@ async function calculateDistance() {
   //     calculateDistance();
   //   }
   // });
+
   if (originCoordinates && destinationCoordinates) {
     const request = {
       origin: originCoordinates,
@@ -70,6 +71,19 @@ async function calculateDistance() {
 }
 
 async function getCoordinates(geocoder, location) {
+  // await geocoder.geocode({ address: location }, (results, status) => {
+  //   console.log("rr");
+  //   console.log(results);
+  //   if (status === "OK") {
+  //     return results[0].geometry.location;
+  //     //resolve(results[0].geometry.location);
+  //   } else {
+  //     //reject(null);
+  //     return null;
+  //   }
+  // });
+  // console.log("tt");
+
   return new Promise((resolve, reject) => {
     geocoder.geocode({ address: location }, (results, status) => {
       if (status === "OK") {
@@ -98,7 +112,7 @@ window.onload = async function () {
   searchButton.addEventListener("click", calculateDistance);
 
   // 網頁加載完畢後，立即進行地圖搜尋
-  calculateDistance();
+  let a = calculateDistance();
 };
 
 //將資料放在localStorage
