@@ -156,6 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 更新 localStorage
     localStorage.setItem("cartData", JSON.stringify(cartData));
+    // 更新購物車數量
+    updateCartItemCount();
   }
 
   // 綁按鈕點擊

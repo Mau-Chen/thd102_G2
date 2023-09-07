@@ -45,6 +45,9 @@ document.getElementById('addDogToCart').addEventListener('click', function () {
   // 更新 cartData 
   cartData.push(dogInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+
+  // 更新購物車數量
+  updateCartItemCount();
 });
 
 // 點立即預定(狗)
@@ -70,6 +73,8 @@ document.getElementById('reserveDog').addEventListener('click', function () {
   // 更新 cartData 
   cartData.push(dogInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+  // 更新購物車數量
+  updateCartItemCount();
 
   // 跳到 shopping.html
   window.location.href = 'shopping.html';
@@ -96,6 +101,8 @@ document.getElementById('addCatToCart').addEventListener('click', function () {
   // 更新 cartData 
   cartData.push(catInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+  // 更新購物車數量
+  updateCartItemCount();
 });
 
 // 點立即預定(貓)
@@ -119,6 +126,8 @@ document.getElementById('reserveCat').addEventListener('click', function () {
   // 更新 cartData 
   cartData.push(catInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+  // 更新購物車數量
+  updateCartItemCount();
 
   // 跳到 shopping.html
   window.location.href = 'shopping.html';
