@@ -1,0 +1,57 @@
+[04-Sep-2023 13:17:04 Asia/Taipei] PHP Fatal error:  Uncaught Error: Call to undefined function formateBit() in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:17:09 Asia/Taipei] PHP Fatal error:  Uncaught Error: Call to undefined function formateBit() in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:17:11 Asia/Taipei] PHP Fatal error:  Uncaught Error: Call to undefined function formateBit() in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:17:13 Asia/Taipei] PHP Fatal error:  Uncaught Error: Call to undefined function formateBit() in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:17:15 Asia/Taipei] PHP Fatal error:  Uncaught Error: Call to undefined function formateBit() in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:18:31 Asia/Taipei] PHP Fatal error:  Uncaught Error: Call to undefined function formateBit() in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:42:56 Asia/Taipei] PHP Fatal error:  Uncaught TypeError: json_decode(): Argument #1 ($json) must be of type string, array given in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php:15
+Stack trace:
+#0 /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php(15): json_decode()
+#1 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 13:56:30 Asia/Taipei] PHP Warning:  Array to string conversion in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 41
+[04-Sep-2023 14:29:39 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 14:29:39 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 14:31:00 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 14:31:00 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 22:58:38 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 22:58:38 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[04-Sep-2023 22:58:38 Asia/Taipei] PHP Warning:  Undefined array key "mode" in /home3/tibamefe/public_html/thd102/g2/php/TourTable/select.php on line 15
+[07-Sep-2023 13:21:26 Asia/Taipei] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 INSERT command denied to user 'tibamefe_since2021'@'localhost' for table 'HOTELINFO' in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php:102
+Stack trace:
+#0 /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php(102): PDO->exec()
+#1 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php on line 102
+[07-Sep-2023 13:22:17 Asia/Taipei] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 INSERT command denied to user 'tibamefe_since2021'@'localhost' for table 'HOTELINFO' in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php:102
+Stack trace:
+#0 /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php(102): PDO->exec()
+#1 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php on line 102
+[07-Sep-2023 13:43:29 Asia/Taipei] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 INSERT command denied to user 'tibamefe_since2021'@'localhost' for table 'HOTELINFO' in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php:102
+Stack trace:
+#0 /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php(102): PDO->exec()
+#1 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php on line 102
+[07-Sep-2023 13:47:45 Asia/Taipei] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 INSERT command denied to user 'tibamefe_since2021'@'localhost' for table 'HOTELINFO' in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php:102
+Stack trace:
+#0 /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php(102): PDO->exec()
+#1 {main}
+  thrown in /home3/tibamefe/public_html/thd102/g2/php/TourTable/alter.php on line 102

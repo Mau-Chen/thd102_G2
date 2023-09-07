@@ -36,7 +36,6 @@ const ModalPage = Vue.createApp({
             this.success = true;
           }
         })
-        
       }
     },
     logout() {
@@ -54,14 +53,12 @@ const ModalPage = Vue.createApp({
         })
         
       }
-
     },
     changePage(newIndex) {
       this.index = newIndex;
     },
 
     login() {
-
       const res = {
         account: this.account,
         password: this.password
@@ -87,11 +84,7 @@ const ModalPage = Vue.createApp({
           console.log("poor!")
         }
       })
-
-
     }
-
-
   },
 });
 
