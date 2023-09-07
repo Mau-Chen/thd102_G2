@@ -154,3 +154,29 @@ document.addEventListener("DOMContentLoaded", () => {
     shoppingCartElement.style.display = "none";
   });
 });
+
+
+//更新 .SPcartNum
+function updateCartItemCount() {
+  // localStorage取cartData轉陣列
+  const storedCartData = localStorage.getItem("cartData");
+  let cartData = [];
+  if (storedCartData) {
+    cartData = JSON.parse(storedCartData);
+  }
+
+  // 取購物車數
+  const numberOfItems = cartData.length;
+  // 購物車數放所有.SPcartNum上
+  const SPcartNumElements = document.querySelectorAll(".SPcartNum");
+  if (SPcartNumElements) {
+    SPcartNumElements.forEach(function (element) {
+      element.textContent = numberOfItems;
+    });
+  }
+}
+
+// 初始時更新購物車數
+document.addEventListener("DOMContentLoaded", function () {
+  updateCartItemCount();
+});
