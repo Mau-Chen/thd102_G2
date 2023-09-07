@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     @@include('layout/meta.html')
-    <link rel="stylesheet" href="sass/plugin/_SwiperCarousel.scss" />
+    <!-- <link rel="stylesheet" href="sass/plugin/_SwiperCarousel.scss" /> -->
     <link rel="stylesheet" href="./css/style.css" />
     <title>GO旅宿 | PetpaGo</title>
   </head>
@@ -287,6 +287,7 @@
                             class="radio-input"
                             id="sm"
                             name="dog"
+                            value="小"
                             checked
                           />
                           <label for="sm" class="radio-label"
@@ -300,6 +301,7 @@
                             class="radio-input"
                             id="md"
                             name="dog"
+                            value="中"
                           />
                           <label for="md" class="radio-label"
                             ><span class="radio-button"></span>中型犬
@@ -312,6 +314,7 @@
                             class="radio-input"
                             id="lg"
                             name="dog"
+                            value="大"
                           />
                           <label for="lg" class="radio-label"
                             ><span class="radio-button"></span>大型犬
@@ -350,6 +353,7 @@
                             type="number"
                             v-model="P1.BuyNum"
                             @input="handleInput(P1)"
+                            id="DogroomNum"
                           />
                           <!-- <div class="spSubtotal_icon"> -->
                           <div
@@ -381,11 +385,13 @@
                           class="btn_5_border col-6 addCart"
                           type="submit"
                           value="加入購物車"
+                          id="addDogToCart" 
                         />
                         <input
                           class="btn_5 col-6"
                           type="submit"
                           value="立即預定"
+                          id="reserveDog" 
                         />
                       </div>
                     </div>
@@ -448,6 +454,7 @@
                             type="number"
                             v-model="P2.BuyNum"
                             @input="handleInput(P2)"
+                            id="CatroomNum"
                           />
 
                           <!-- <div class="spSubtotal_icon"> -->
@@ -480,11 +487,13 @@
                           class="btn_5_border col-6 addCart"
                           type="submit"
                           value="加入購物車"
+                          id="addCatToCart" 
                         />
                         <input
                           class="btn_5 col-6"
                           type="submit"
                           value="立即預定"
+                          id="reserveCat" 
                         />
                       </div>
                     </div>

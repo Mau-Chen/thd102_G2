@@ -145,6 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
       product: "寵物接送",
     };
 
+    // 根據 listTypeValue 設置 spPrice
+    if (listTypeValue === "轎車") {
+      data.spPrice = 40;
+    } else if (listTypeValue === "休旅車") {
+      data.spPrice = 50;
+    }
+
     cartData.push(data);
 
     // 更新 localStorage
