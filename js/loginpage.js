@@ -86,8 +86,24 @@ const ModalPage = Vue.createApp({
           localStorage.setItem('member', JSON.stringify(member));
           this.success = true;
           this.ispop = false;
+
+          Swal.fire({
+            icon: 'success',
+            title: '登入成功!',
+            text: `${this.account} ,歡迎回到PetpaGo!`,
+            showConfirmButton: false,
+            timer: 3000,
+            backdrop: `rgba(0,0,0,0)`
+          });
         } else {
-          console.log("poor!")
+          this.ispop = false;
+          Swal.fire({
+            icon: 'question',
+            title: '我的網路呢?',
+            text: '看起來我們的網路好像出了點小問題...',
+            timer: 3000,
+            backdrop: `rgba(0,0,0,0)`
+          })
         }
       })
     },
