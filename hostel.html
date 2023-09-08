@@ -75,8 +75,8 @@
                 class="search-box dropDownParent col-4"
                 :class="{'-show' : start === true}"
               >
-                <div @click="isPop = !isPop">
-                  <label for="">
+                <div class="pet_menu_open">
+                  <label>
                     <span>寵物類型</span>
                     <!-- <input type="hidden" name="genre"  />
                     <input type="hidden" name="numDog"  v-model="numDog"/>
@@ -238,6 +238,8 @@
     <script src="./js/vue-datepicker.iife.js"></script>
     <script src="./js/hostel_search.js"></script>
     <script>
+        localStorage.removeItem("hoteldata");
+
       // const select_pet = Vue.createApp({
       //   data() {
       //     return {

@@ -63,6 +63,22 @@ header {
   }
   .shoop {
     margin-right: 36px;
+    position: relative;
+
+    .SPcartNum {
+      position: absolute;
+      right: -9px;
+      top: 5px;
+      border-radius: 50%;
+      background-color: $black;
+      color: $white;
+      font-weight: 400;
+      font-size: 8px;
+      width: 15px;
+      height: 15px;
+      text-align: center;
+      line-height: 15px;
+    }
   }
   .btn_4 {
     // padding: 0 40px;
@@ -80,6 +96,23 @@ header {
       display: flex;
       justify-content: flex-end;
       gap: 60px;
+      >a{
+        position: relative;
+        .SPcartNum {
+          position: absolute;
+          right: -9px;
+          top: -5px;
+          border-radius: 50%;
+          background-color: $black;
+          color: $white;
+          font-weight: 400;
+          font-size: 8px;
+          width: 15px;
+          height: 15px;
+          text-align: center;
+          line-height: 15px;
+        }
+      }
     }
     .l-header {
       .l-header__hambuger {

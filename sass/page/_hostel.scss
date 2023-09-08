@@ -121,7 +121,15 @@
     .dropDownParent {
       position: relative;
       display: none;
-
+      label {
+        pointer-events: none;
+      }
+      p {
+        pointer-events: none;
+      }
+      span {
+        pointer-events: none;
+      }
       &.-show {
         display: block;
       }
@@ -139,7 +147,7 @@
         background-color: white;
         border-radius: 8px;
         animation: slide-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-        z-index: 9999;
+        z-index: 99;
         &.none {
           display: none;
         }
@@ -148,6 +156,7 @@
           justify-content: space-between;
           align-items: center;
           padding: 8px 0;
+
           .minus,
           .plus {
             width: 32px;
