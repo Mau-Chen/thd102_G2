@@ -33,25 +33,65 @@ tl.to("#myHeading", {
   scaleX: 1,
 });
 
-tl.fromTo(
-  "#myHeading",
-  // 起始狀態
-  {
-    xPercent: -50, // 開始位置
-    yPercent: -50, // 開始位置
-  },
-  // 結束狀態
-  {
+// 預設情況（視窗寬度大於等於1000px時）
+if (window.innerWidth >= 1000) {
+  tl.to("#myHeading", {
     xPercent: 0,
     yPercent: 0,
-    left: "2.35em",
-    top: 22.5,
-    ease: "power1.out",
+    left: 120,
+    top: 24,
+    ease: "power2.out",
     duration: 1,
     color: "#fff",
     delay: 0.1,
-  }
-);
+  });
+}
+// 當視窗寬度小於1000px且大於等於434px時
+else if (window.innerWidth < 1000 && window.innerWidth >= 434) {
+  tl.to("#myHeading", {
+    scaleY: 0.93,
+    scaleX: 0.93,
+    left: "2.35em",
+    top: 40,
+    ease: "power2.out",
+    duration: 1,
+    color: "#fff",
+    delay: 0.1,
+  });
+}
+// 當視窗寬度小於434px時
+else if (window.innerWidth < 434) {
+  tl.to("#myHeading", {
+    scaleY: 0.75,
+    scaleX: 0.75,
+    left: "1.8em",
+    top: 35,
+    ease: "power2.out",
+    duration: 1,
+    color: "#fff",
+    delay: 0.1,
+  });
+}
+
+// tl.fromTo(
+//   "#myHeading",
+//   // 起始狀態
+//   {
+//     xPercent: -50, // 開始位置
+//     yPercent: -50, // 開始位置
+//   },
+//   // 結束狀態
+//   {
+//     xPercent: 0,
+//     yPercent: 0,
+//     left: "2.35em",
+//     top: 22.5,
+//     ease: "power1.out",
+//     duration: 1,
+//     color: "#fff",
+//     delay: 0.1,
+//   }
+// );
 
 tl.from(
   ".dot",
@@ -80,16 +120,11 @@ tl.to(".wrapper.index", {
 tl.to(
   "#index-box",
   {
-    // display: "none",
+    display: "none",
     // height: 0, // 取消高度
-    // duration: 0.1, // 縮短持續時間
-    // ease: "power1.easeOut",
+    duration: 0.1, // 縮短持續時間
+    ease: "power4.easeOut",
   },
   "<"
 );
-tl.set("#index-box", {
-  display: "none",
-  duration: 0.1, // 縮短持續時間
-  ease: "power1.easeOut",
-});
 // ----------------------- 進場動畫 ----------------------------
