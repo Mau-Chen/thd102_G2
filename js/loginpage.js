@@ -18,6 +18,12 @@ const ModalPage = Vue.createApp({
       account: "",
       password: "",
       success: false,
+      createNew: {
+        account: '',
+        email: '',
+        password: '',
+        check: ''
+      }
     };
   },
   mounted() {
@@ -51,7 +57,7 @@ const ModalPage = Vue.createApp({
             window.location.href = 'index.html';
           }
         })
-        
+
       }
     },
     changePage(newIndex) {
@@ -80,10 +86,77 @@ const ModalPage = Vue.createApp({
           localStorage.setItem('member', JSON.stringify(member));
           this.success = true;
           this.ispop = false;
+
+          Swal.fire({
+            icon: 'success',
+            title: '登入成功!',
+            text: `${this.account} ,歡迎回到PetpaGo!`,
+            showConfirmButton: false,
+            timer: 3000,
+            backdrop: `rgba(0,0,0,0)`
+          });
         } else {
-          console.log("poor!")
+          this.ispop = false;
+          Swal.fire({
+            icon: 'question',
+            title: '我的網路呢?',
+            text: '看起來我們的網路好像出了點小問題...',
+            timer: 3000,
+            backdrop: `rgba(0,0,0,0)`
+          })
         }
       })
+    },
+
+    createMember() {
+      if (
+        this.createNew.account !== '' &&
+        this.createNew.email !== '' &&
+        this.createNew.password !== '' &&
+        this.createNew.password === this.createNew.check
+      ) {
+        const res = {
+          account: this.createNew.account,
+          email: this.createNew.email,
+          password: this.createNew.password
+        }
+
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        fetch("/thd102/g2/php/BackgroundLogin/insert.php", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(res)
+        }).then((response) => response.json()).then((data) => {
+          if (data.message === 'success') {
+            this.changePage(0);
+            this.ispop = false;
+            Swal.fire({
+              title: '註冊成功!',
+              text: '歡迎加入PetpaGo',
+              icon: 'success',
+              customClass: {
+                popup: 'my-custom-popup-class', // 自定义弹窗容器的类名
+                backdrop: 'my-custom-backdrop-class' // 自定义背景遮罩的类名
+              }
+            });
+          } else if (data.error) {
+            alert(data.error);
+          }
+        })
+      } else {
+        this.ispop = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '請填寫所有必填欄位並確保密碼匹配!',
+          customClass: {
+            popup: 'my-custom-popup-class', // 自定义弹窗容器的类名
+            backdrop: 'my-custom-backdrop-class' // 自定义背景遮罩的类名
+          }
+        })
+      }
     }
   },
 });

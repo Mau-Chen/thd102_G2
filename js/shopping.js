@@ -34,65 +34,84 @@ const app = Vue.createApp({
             cardCVC: "",
             isStepTwoValid: false,
             validationErrors: [],
-            shoppingItems: [
-                {
-                    id: "Car",
-                    type: "spDriver",
-                    pictureSrc_m: "./images/pic/shop/goShop01_m.png",
-                    pictureSrc: "./images/pic/shop/goShop01.png",
-                    product: "寵物接送",
-                    listType: "轎車",
-                    spStepper: false,
-                    spPrice: 300,
-                    BuyNum: 1,
-                    // listDate_S: "8/17/2023",
-                    // listDate_E: "8/17/2023",
-                    listDate_S: "2023/8/17",
-                    listDate_E: "2023/8/17",
-                    listDate_T: "16:00",
-                    startadd: "台北市中山區南京東路三段219號5樓",
-                    endadd: "台北市信義區福德街86號9樓"
-                },
-                {
-                    id: "Hostel1",
-                    type: "spHostel",
-                    pictureSrc_m: "./images/pic/shop/goShop02_m.png",
-                    pictureSrc: "./images/pic/shop/goShop02.png",
-                    product: "快樂寵物旅館",
-                    listType: "狗套房",
-                    dogSize: "小型犬",
-                    spStepper: true,
-                    spPrice: 800,
-                    BuyNum: 1,
-                    // listDate_S: "8/17/2023",
-                    // listDate_E: "8/20/2023",
-                    listDate_S: "2023/8/17",
-                    listDate_E: "2023/8/20",
-                    listDate_T: "16:00",
-                },
-                {
-                    id: "Hostel2",
-                    type: "spHostel",
-                    pictureSrc_m: "./images/pic/shop/goShop03_m.png",
-                    pictureSrc: "./images/pic/shop/goShop03.png",
-                    product: "快樂寵物旅館",
-                    listType: "貓套房",
-                    spStepper: true,
-                    spPrice: 800,
-                    BuyNum: 1,
-                    // listDate_S: "8/17/2023",
-                    // listDate_E: "8/20/2023",
-                    listDate_S: "2023/8/17",
-                    listDate_E: "2023/8/20",
-                    listDate_T: "16:00",
-                },
-            ],
+            // shoppingItems: [
+            //     {
+            //         id: "Car",
+            //         type: "spDriver",
+            //         pictureSrc_m: "./images/pic/shop/goShop01_m.png",
+            //         pictureSrc: "./images/pic/shop/goShop01.png",
+            //         product: "寵物接送",
+            //         listType: "轎車",
+            //         spStepper: false,
+            //         spPrice: 300,
+            //         BuyNum: 1,
+            //         listDate_S: "2023/8/17",
+            //         listDate_E: "2023/8/17",
+            //         listDate_T: "16:00",
+            //         startadd: "台北市中山區南京東路三段219號5樓",
+            //         endadd: "台北市信義區福德街86號9樓"
+            //     },
+            //     {
+            //         id: "Hostel1",
+            //         type: "spHostel",
+            //         pictureSrc_m: "./images/pic/shop/goShop02_m.png",
+            //         pictureSrc: "./images/pic/shop/goShop02.png",
+            //         product: "快樂寵物旅館",
+            //         listType: "狗套房",
+            //         dogSize: "小型犬",
+            //         spStepper: true,
+            //         spPrice: 800,
+            //         BuyNum: 1,
+            //         listDate_S: "2023/8/17",
+            //         listDate_E: "2023/8/20",
+            //         listDate_T: "16:00",
+            //     },
+            //     {
+            //         id: "Hostel2",
+            //         type: "spHostel",
+            //         pictureSrc_m: "./images/pic/shop/goShop03_m.png",
+            //         pictureSrc: "./images/pic/shop/goShop03.png",
+            //         product: "快樂寵物旅館",
+            //         listType: "貓套房",
+            //         spStepper: true,
+            //         spPrice: 800,
+            //         BuyNum: 1,
+            //         listDate_S: "2023/8/17",
+            //         listDate_E: "2023/8/20",
+            //         listDate_T: "16:00",
+            //     },
+            // ],
+            shoppingItems: [],
         };
     },
+    created() {
+        //從localStorage取新項目
+        const newItemsFromLocalStorage = JSON.parse(localStorage.getItem('newItems'));
+
+        //更新購物車
+        if (Array.isArray(newItemsFromLocalStorage)) {
+            // 更新 this.shoppingItems
+            this.shoppingItems = newItemsFromLocalStorage.map((item, index) => ({
+                ...item,
+                id: index + 1,
+            }));
+
+            // 重新設定 this.checkedNames 為所有項目的 id
+            this.checkedNames = this.shoppingItems.map((item) => item.id);
+            this.checked = true;
+        }
+
+        // 獲取最大可使用的點數
+        const maxUsePoints = this.caculate_point();
+
+        // 將 usePoints 初始化為最大可使用的點數
+        this.usePoints = maxUsePoints;
+    },
+
     // 預設全選。
     mounted() {
         this.checked = true;
-        this.checkedNames = this.shoppingItems.map((item) => item.id);
+        // this.checkedNames = this.shoppingItems.map((item) => item.id);
 
         let nextButton = document.getElementById("Go_index");
         nextButton.addEventListener("click", () => {
@@ -107,8 +126,39 @@ const app = Vue.createApp({
 
         // 將 usePoints 初始化為最大可使用的點數
         this.usePoints = maxUsePoints;
+
+
+        //從localStorage抓cartData
+        const cartData = JSON.parse(localStorage.getItem('cartData'));
+        // 檢查 cartData 是否存在並且是一個陣列
+        if (Array.isArray(cartData)) {
+            // 更新 shoppingItems，設 id
+            this.shoppingItems = cartData.map((item, index) => ({
+                ...item,
+                id: (index + 1).toString(),
+            }));
+            // 重新設定 this.checkedNames 為所有項目的 id
+            this.checkedNames = this.shoppingItems.map((item) => item.id);
+            this.checked = true;
+        };
+
+
+
     },
     methods: {
+        // 更新localStorage的資料
+        updateLocalStorage() {
+            const updatedCartData = this.shoppingItems.map((item, index) => ({
+                ...item,
+                id: index + 1,
+            }));
+            localStorage.setItem('cartData', JSON.stringify(updatedCartData));
+
+            // 更新購物車
+            updateCartItemCount();
+        },
+
+        //同會員料
         sameMember() {
             if (this.sameMemberChecked === true) {
                 this.spOrderName = this.member_data.name;
@@ -125,6 +175,7 @@ const app = Vue.createApp({
         },
         // 切換全選狀態。如果checked為true，則將checkedNames設置為所有購物項目的ID，否則將其清空。
         allChecked() {
+
             if (this.checked) {
                 this.checkedNames = this.shoppingItems.map((item) => item.id);
             } else {
@@ -155,7 +206,7 @@ const app = Vue.createApp({
                 item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D;
             } else {
                 item.listDate_D = 1;
-                item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D;
+                item.spSubtotal = item.spPrice * item.BuyNum * item.listDate_D * item.listDistance;
             }
         },
         // 計算小計(單價、數量和天數)
@@ -172,11 +223,12 @@ const app = Vue.createApp({
                 return item.spPrice * item.BuyNum * item.listDate_D;
             } else {
                 item.listDate_D = 1;
-                return item.spPrice * item.BuyNum * item.listDate_D;
+                return item.spPrice * item.BuyNum * item.listDate_D * item.listDistance;
             }
         },
         // 更新數量，更新小計。
         updateAmount(item, change) {
+            item.BuyNum = parseInt(item.BuyNum);
             if (item.BuyNum < 9) {
                 item.BuyNum = Math.max(1, item.BuyNum + change);
             } else if (item.BuyNum >= 9) {
@@ -184,22 +236,22 @@ const app = Vue.createApp({
                 item.BuyNum = Math.max(1, item.BuyNum + change);
             }
             this.updateSubtotal(item);
+            this.updateLocalStorage();
         },
         // 限制輸入在1～9之間
         handleInput(item) {
+            item.BuyNum = parseInt(item.BuyNum);
             if (item.BuyNum < 1) {
                 item.BuyNum = 1;
             } else if (item.BuyNum > 9) {
                 item.BuyNum = 9;
             }
             this.updateSubtotal(item);
+            this.updateLocalStorage();
         },
         // 格式化日期
         formatDate(dateStr) {
-            // const [month, day] = dateStr.split("/");
-            // return `${Number(month)}月${Number(day)}日`;
-            const [year, month, day] = dateStr.split("/");
-            // return `${Number(year)}年${Number(month)}月${Number(day)}日`;
+            const [year, month, day] = dateStr.split("-");
             return `${Number(month)}月${Number(day)}日`;
         },
         // 確認是否移除
@@ -210,6 +262,7 @@ const app = Vue.createApp({
                 this.shoppingItems.splice(index, 1);
                 // 引用整理索引
                 this.updateIndex();
+                this.updateLocalStorage();
             }
         },
         // 重新整理索引值
@@ -350,95 +403,95 @@ const app = Vue.createApp({
         resetSameMemberChecked() {
             this.sameMemberChecked = false;
         },
-        async saveFormDataToDatabase() {
-            try {
-                // 構建要保存到ORDER表中的數據
-                const orderData = {
-                    ORDERSTATUS: "無異動", // 從前端獲取
-                    ORDERDATE: this.nowDate, // 當前日期和時間
-                    BEFORETOTAL: this.totalPrice, // 總價格
-                    USEPOINTS: this.usePoints, // 使用的積分
-                    MEMBER_ID: this.member_data.id, // 會員ID
-                };
+        // async saveFormDataToDatabase() {
+        //     try {
+        //         // 構建要保存到ORDER表中的數據
+        //         const orderData = {
+        //             ORDERSTATUS: "無異動", // 從前端獲取
+        //             ORDERDATE: this.nowDate, // 當前日期和時間
+        //             BEFORETOTAL: this.totalPrice, // 總價格
+        //             USEPOINTS: this.usePoints, // 使用的積分
+        //             MEMBER_ID: this.member_data.id, // 會員ID
+        //         };
 
-                // 向伺服器發送POST請求保存訂單數據，並獲取生成的ORDER_ID
-                const orderResponse = await fetch('../php/shopping/shopping.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ orderData }),
-                });
+        //         // 向伺服器發送POST請求保存訂單數據，並獲取生成的ORDER_ID
+        //         const orderResponse = await fetch('../php/shopping/shopping.php', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             },
+        //             body: JSON.stringify({ orderData }),
+        //         });
 
-                if (!orderResponse.ok) {
-                    console.error('保存ORDER數據到數據庫時出錯');
-                    return;
-                }
+        //         if (!orderResponse.ok) {
+        //             console.error('保存ORDER數據到數據庫時出錯');
+        //             return;
+        //         }
 
-                // 解析ORDER_RESPONSE以獲取生成的ORDER_ID
-                const { ORDER_ID } = await orderResponse.json();
+        //         // 解析ORDER_RESPONSE以獲取生成的ORDER_ID
+        //         const { ORDER_ID } = await orderResponse.json();
 
-                // 將每個購物項的相關數據添加到ORDERDETAILS表中
-                const orderDetailsData = this.shoppingItems.map((item) => {
-                    return {
-                        NOWPRICE: item.spPrice, // 商品價格
-                        QUANTITY: item.listDate_D, // 數量
-                        AMOUNT: item.BuyNum, // 金額
-                        SIZE: item.listType === "狗套房" ? item.dogSize : null, // 僅當listType為狗套房時傳遞
-                        START: item.spStepper ? item.startadd : null, // 僅當spStepper為true時傳遞
-                        END: item.spStepper ? item.endadd : null, // 僅當spStepper為true時傳遞
-                        STARTDATE: item.listDate_S, // 開始日期
-                        ENDDATE: item.listDate_E, // 結束日期
-                        ORDER_ID, // 使用從ORDER表獲取的ORDER_ID
-                        PRODUCT_ID: item.listType === "轎車" ? 1 : item.listType === "休旅車" ? 2 : item.listType === "貓套房" ? 3 : item.listType === "狗套房" ? 4 : null, // 根據不同的listType傳遞不同的值
-                        HOTELINFO_ID: !item.spStepper ? item.product : null, // 僅當spStepper為false時傳遞
-                    };
-                });
+        //         // 將每個購物項的相關數據添加到ORDERDETAILS表中
+        //         const orderDetailsData = this.shoppingItems.map((item) => {
+        //             return {
+        //                 NOWPRICE: item.spPrice, // 商品價格
+        //                 QUANTITY: item.listDate_D, // 數量
+        //                 AMOUNT: item.BuyNum, // 金額
+        //                 SIZE: item.listType === "狗套房" ? item.dogSize : null, // 僅當listType為狗套房時傳遞
+        //                 START: item.spStepper ? item.startadd : null, // 僅當spStepper為true時傳遞
+        //                 END: item.spStepper ? item.endadd : null, // 僅當spStepper為true時傳遞
+        //                 STARTDATE: item.listDate_S, // 開始日期
+        //                 ENDDATE: item.listDate_E, // 結束日期
+        //                 ORDER_ID, // 使用從ORDER表獲取的ORDER_ID
+        //                 PRODUCT_ID: item.listType === "轎車" ? 1 : item.listType === "休旅車" ? 2 : item.listType === "貓套房" ? 3 : item.listType === "狗套房" ? 4 : null, // 根據不同的listType傳遞不同的值
+        //                 HOTELINFO_ID: !item.spStepper ? item.product : null, // 僅當spStepper為false時傳遞
+        //             };
+        //         });
 
-                // 向伺服器發送POST請求保存ORDERDETAILS數據
-                const orderDetailsResponse = await fetch('../php/shopping/shopping.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ orderDetailsData }),
-                });
+        //         // 向伺服器發送POST請求保存ORDERDETAILS數據
+        //         const orderDetailsResponse = await fetch('../php/shopping/shopping.php', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             },
+        //             body: JSON.stringify({ orderDetailsData }),
+        //         });
 
-                if (orderDetailsResponse.ok) {
-                    console.log('訂單數據已成功保存到數據庫');
+        //         if (orderDetailsResponse.ok) {
+        //             console.log('訂單數據已成功保存到數據庫');
 
-                    // 在此處執行currentStep++
-                    this.currentStep++;
-                } else {
-                    console.error('保存訂單詳細數據到數據庫時出錯');
-                }
-            } catch (error) {
-                console.error('保存訂單數據時發生錯誤:', error);
-            }
-            // try {
-            //     const response = await fetch('../php/shopping/shopping.php', {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify(dataToSave),
-            //     });
+        //             // 在此處執行currentStep++
+        //             this.currentStep++;
+        //         } else {
+        //             console.error('保存訂單詳細數據到數據庫時出錯');
+        //         }
+        //     } catch (error) {
+        //         console.error('保存訂單數據時發生錯誤:', error);
+        //     }
+        //     // try {
+        //     //     const response = await fetch('../php/shopping/shopping.php', {
+        //     //         method: 'POST',
+        //     //         headers: {
+        //     //             'Content-Type': 'application/json',
+        //     //         },
+        //     //         body: JSON.stringify(dataToSave),
+        //     //     });
 
-            //     if (response.ok) {
-            //         const responseData = await response.json();
-            //         if (responseData.success) {
-            //             console.log('订单数据已成功保存到数据库');
-            //         } else {
-            //             console.error('保存订单数据时出现问题：', responseData);
-            //         }
-            //     } else {
-            //         console.error('请求出现问题，状态码：', response.status);
-            //     }
-            // } catch (error) {
-            //     console.error('保存订单数据时出现错误：', error);
-            // }
+        //     //     if (response.ok) {
+        //     //         const responseData = await response.json();
+        //     //         if (responseData.success) {
+        //     //             console.log('订单数据已成功保存到数据库');
+        //     //         } else {
+        //     //             console.error('保存订单数据时出现问题：', responseData);
+        //     //         }
+        //     //     } else {
+        //     //         console.error('请求出现问题，状态码：', response.status);
+        //     //     }
+        //     // } catch (error) {
+        //     //     console.error('保存订单数据时出现错误：', error);
+        //     // }
 
-        },
+        // },
 
 
 

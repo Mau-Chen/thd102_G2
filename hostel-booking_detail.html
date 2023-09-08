@@ -60,8 +60,8 @@
               class="search-box dropDownParent col-4 onFat768"
               :class="{'-show' : start === true}"
             >
-              <div @click="isPop = !isPop">
-                <label for="">
+              <div class="pet_menu_open" >
+                <label>
                   <span>寵物類型</span>
                   <!-- <input type="text" placeholder="請選擇" /> -->
                 </label>
@@ -287,7 +287,7 @@
                             class="radio-input"
                             id="sm"
                             name="dog"
-                            value="小"
+                            value="小型犬"
                             checked
                           />
                           <label for="sm" class="radio-label"
@@ -301,7 +301,7 @@
                             class="radio-input"
                             id="md"
                             name="dog"
-                            value="中"
+                            value="中型犬"
                           />
                           <label for="md" class="radio-label"
                             ><span class="radio-button"></span>中型犬
@@ -314,7 +314,7 @@
                             class="radio-input"
                             id="lg"
                             name="dog"
-                            value="大"
+                            value="大型犬"
                           />
                           <label for="lg" class="radio-label"
                             ><span class="radio-button"></span>大型犬

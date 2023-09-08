@@ -26,8 +26,8 @@ document.getElementById('addDogToCart').addEventListener('click', function () {
   const dogSize = document.querySelector('input[name="dog"]:checked').value;
   const dogBuyNum = document.querySelector('#DogroomNum').value;
   const product = document.querySelector('.hostel-info h3').textContent;
-  const listType = '狗套房';
-  const spPrice = 800;
+  // const listType = '狗套房';
+  // const spPrice = 800;
 
   // 日期格式改 年/月/日
   const [formattedStartDate, formattedEndDate] = hoteldata.date.map(date => date.split('T')[0]);
@@ -36,15 +36,24 @@ document.getElementById('addDogToCart').addEventListener('click', function () {
     dogSize,
     BuyNum: dogBuyNum,
     product,
-    listType,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    spPrice,
+    // listType,
+    // spPrice,
+    listType: "狗套房",
+    spPrice: 800,
+    type: "spHostel",
+    spStepper: true,
+    pictureSrc_m: "./images/pic/shop/goShop02_m.png",
+    pictureSrc: "./images/pic/shop/goShop02.png",
   };
 
   // 更新 cartData 
   cartData.push(dogInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+
+  // 更新購物車數量
+  updateCartItemCount();
 });
 
 // 點立即預定(狗)
@@ -61,15 +70,23 @@ document.getElementById('reserveDog').addEventListener('click', function () {
     dogSize,
     BuyNum: dogBuyNum,
     product,
-    listType,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    spPrice,
+    // listType,
+    // spPrice,
+    listType: "狗套房",
+    spPrice: 800,
+    type: "spHostel",
+    spStepper: true,
+    pictureSrc_m: "./images/pic/shop/goShop02_m.png",
+    pictureSrc: "./images/pic/shop/goShop02.png",
   };
 
   // 更新 cartData 
   cartData.push(dogInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+  // 更新購物車數量
+  updateCartItemCount();
 
   // 跳到 shopping.html
   window.location.href = 'shopping.html';
@@ -79,46 +96,62 @@ document.getElementById('reserveDog').addEventListener('click', function () {
 document.getElementById('addCatToCart').addEventListener('click', function () {
   const catBuyNum = document.querySelector('#CatroomNum').value;
   const product = document.querySelector('.hostel-info h3').textContent;
-  const listType = '貓套房';
-  const spPrice = 800;
+  // const listType = '貓套房';
+  // const spPrice = 800;
 
   const [formattedStartDate, formattedEndDate] = hoteldata.date.map(date => date.split('T')[0]);
 
   const catInfo = {
     BuyNum: catBuyNum,
     product,
-    listType,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    spPrice,
+    // listType,
+    // spPrice,
+    listType: "貓套房",
+    spPrice: 800,
+    type: "spHostel",
+    spStepper: true,
+    pictureSrc_m: "./images/pic/shop/goShop03_m.png",
+    pictureSrc: "./images/pic/shop/goShop03.png",
   };
 
   // 更新 cartData 
   cartData.push(catInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+  // 更新購物車數量
+  updateCartItemCount();
 });
 
 // 點立即預定(貓)
 document.getElementById('reserveCat').addEventListener('click', function () {
   const catBuyNum = document.querySelector('#CatroomNum').value;
   const product = document.querySelector('.hostel-info h3').textContent;
-  const listType = '貓套房';
-  const spPrice = 800;
+  // const listType = '貓套房';
+  // const spPrice = 800;
 
   const [formattedStartDate, formattedEndDate] = hoteldata.date.map(date => date.split('T')[0]);
 
   const catInfo = {
     BuyNum: catBuyNum,
     product,
-    listType,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    spPrice,
+    // listType,
+    // spPrice,
+    listType: "貓套房",
+    spPrice: 800,
+    type: "spHostel",
+    spStepper: true,
+    pictureSrc_m: "./images/pic/shop/goShop03_m.png",
+    pictureSrc: "./images/pic/shop/goShop03.png",
   };
 
   // 更新 cartData 
   cartData.push(catInfo);
   localStorage.setItem('cartData', JSON.stringify(cartData));
+  // 更新購物車數量
+  updateCartItemCount();
 
   // 跳到 shopping.html
   window.location.href = 'shopping.html';
