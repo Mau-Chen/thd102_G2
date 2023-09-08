@@ -37,6 +37,7 @@
     border-radius: $br_12;
     padding: 40px;
     color: $black;
+    position: absolute;
     .pageIsideContainer {
       @include flex(column);
       gap: 24px;
@@ -175,5 +176,40 @@
   transform: translateY(200px);
   opacity: 0;
 }
+
+/* 定義彈窗進入動畫 */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 定義彈窗離開動畫 */
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* 在進入時應用彈窗進入動畫 */
+.modal-enter-active {
+  animation: slideIn 0.3s ease-out both;
+}
+
+/* 在離開時應用彈窗離開動畫 */
+.modal-leave-active {
+  animation: slideOut 0.3s ease-out both;
+}
+
 
 
