@@ -115,12 +115,31 @@ const ModalPage = Vue.createApp({
         }).then((response) => response.json()).then((data) => {
           if (data.message === 'success') {
             this.changePage(0);
+            this.ispop = false;
+            Swal.fire({
+              title: '註冊成功!',
+              text: '歡迎加入PetpaGo',
+              icon: 'success',
+              customClass: {
+                popup: 'my-custom-popup-class', // 自定义弹窗容器的类名
+                backdrop: 'my-custom-backdrop-class' // 自定义背景遮罩的类名
+              }
+            });
           } else if (data.error) {
             alert(data.error);
           }
         })
       } else {
-        confirm("請填寫所有必填欄位並確保密碼匹配。");
+        this.ispop = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '請填寫所有必填欄位並確保密碼匹配!',
+          customClass: {
+            popup: 'my-custom-popup-class', // 自定义弹窗容器的类名
+            backdrop: 'my-custom-backdrop-class' // 自定义背景遮罩的类名
+          }
+        })
       }
     }
   },

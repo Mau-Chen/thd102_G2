@@ -5,10 +5,18 @@
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
-  z-index: 9999 !important; //別拿掉 driver會爆
+  z-index: 9990 !important; //別拿掉 driver會爆
   @include flex();
   font-weight: normal;
   font-family: "Noto Sans TC", "poppins";
+}
+// SweetAlert2 彈窗設定
+.my-custom-popup-class {
+  z-index: 9999; 
+}
+
+.my-custom-backdrop-class {
+  z-index: 9998; 
 }
 
 .loginpage_base {
@@ -210,6 +218,8 @@
 .modal-leave-active {
   animation: slideOut 0.3s ease-out both;
 }
+
+
 
 
 
