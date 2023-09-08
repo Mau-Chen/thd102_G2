@@ -22,20 +22,19 @@
           </h1>
         </div>
       </div>
+      <div class="dot"></div>
     </div>
-    <div class="dot"></div>
     <!-- gsap -->
 
     <div class="wrapper index">
       @@include('layout/header.html')
 
-      <div class="banner mb_100">
+      <!-- <div class="banner mb_100">
         <div class="banner_text">
           <h1>
             PetpaGO <br />
             安心出門GO
           </h1>
-          <!-- <h6>專為寵物打造的Ｕ質網站</h6> -->
           <h6>Pet體驗｜Pa預訂｜Go冒險</h6>
         </div>
         <img
@@ -43,7 +42,58 @@
           src="./images/banner/index_banner.svg"
           alt="happyBanner"
         />
-      </div>
+      </div> -->
+
+      <!-------------- new banner -------------->
+      <section class="new-banner mb_100">
+        <div class="banner_bg">
+          <picture>
+            <source
+              media="(max-width: 434px)"
+              srcset="./images/banner/index/m375-index.svg"
+            />
+            <source
+              media="(max-width: 1000px)"
+              srcset="./images/banner/index/m768-index.svg"
+            />
+            <img src="./images/banner/index/big_index_banner.svg" alt="" />
+          </picture>
+        </div>
+
+        <div class="banner_wrap">
+          <div class="blink g01 g_arrow">
+            <img src="./images/banner/index/g-arrow.svg" alt="greenArrow" />
+          </div>
+
+          <div class="banner_txt">
+            <div class="blink g02 g_arrow">
+              <img src="./images/banner/index/g-arrow.svg" alt="greenArrow" />
+            </div>
+            <div class="top_txt">
+              <span>安心出門</span>
+            </div>
+
+            <div class="big_txt">
+              <img
+                class="white-paGo"
+                src="./images/banner/index/petpago.svg"
+                alt="petpago"
+              />
+              <div class="small_text">
+                <span>Pet體驗｜Pa預訂｜Go冒險</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="start_svg blink">
+            <img src="./images/banner/index/in-start.svg" alt="start" />
+          </div>
+          <div class="circle_svg blink">
+            <img src="./images/banner/index/in-circle.svg" alt="circle" />
+          </div>
+        </div>
+      </section>
+      <!-------------- new banner -------------->
 
       <section class="section_1 mb_100 section_p120">
         <div class="entrance container">
@@ -270,91 +320,11 @@
           </div>
         </div>
       </section>
+
       @@include('layout/ad.html') @@include('layout/footer.html')
     </div>
 
-    <script src="./js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script>
-      console.clear();
-
-      gsap.set("#myHeading", {
-        xPercent: -50,
-        yPercent: -50,
-        scaleY: 0,
-        scaleX: 0.5,
-        opacity: 1,
-      });
-
-      const tl = gsap.timeline({});
-      tl.to("#myHeading", {
-        scaleY: 0.5,
-        scaleX: 0.5,
-      });
-      tl.to("#myHeading", {
-        scaleY: 1,
-        scaleX: 1,
-      });
-
-      tl.fromTo(
-        "#myHeading",
-        // 起始狀態
-        {
-          xPercent: -50, // 開始位置
-          yPercent: -50, // 開始位置
-        },
-        // 結束狀態
-        {
-          xPercent: 0,
-          yPercent: 0,
-          left: "2.35em",
-          top: 22.5,
-          ease: "power1.out",
-          duration: 1,
-          color: "#fff",
-          delay: 0.1,
-        }
-      );
-
-      tl.from(
-        ".dot",
-        {
-          background: "#fff",
-        },
-        "<"
-      );
-
-      tl.to(
-        ".dot",
-        {
-          duration: 0.8,
-          background: "#6E60F6",
-          scale: 100,
-          display: "none",
-          ease: "power2.easeOut",
-        },
-        "<"
-      );
-
-      // 在動畫完成後顯示 wrapper 內容
-      tl.to(".wrapper.index", {
-        display: "block",
-      });
-      tl.to(
-        "#index-box",
-        {
-          // display: "none",
-          height: 0, // 取消高度
-          duration: 0.1, // 縮短持續時間
-          ease: "power1.easeOut",
-        },
-        "<"
-      );
-      tl.set("#index-box", {
-        // display: "none",
-        // duration: 0.1, // 縮短持續時間
-        // ease: "power0.easeOut",
-      });
-    </script>
+    <script src="./js/index.js"></script>
   </body>
 </html>
