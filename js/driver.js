@@ -1,7 +1,7 @@
 window.vue_app = Vue.createApp({
   data() {
     return {
-      year: new Date().getFullYear(),
+      // year: new Date().getFullYear(),
       date: "",
       msg_start: "",
       msg_end: "",
@@ -56,7 +56,7 @@ window.vue_app = Vue.createApp({
       let minute =
         (startDate.getMinutes() < 10 ? "0" : "") + startDate.getMinutes();
 
-      return `${month}月${day}日｜${hour}:${minute}`;
+      return `${year}年${month}月${day}日｜${hour}:${minute}`;
     },
 
     change() {
@@ -135,7 +135,7 @@ window.vue_app = Vue.createApp({
 
     if (date_picker) {
       let driver_date_picker = date_picker
-        // .replace("年", "/")
+        .replace("年", "/")
         .replace("月", "/")
         .replace("日", "")
         .replace(" ", "")
@@ -146,8 +146,8 @@ window.vue_app = Vue.createApp({
       // console.log(date_picker);
       // 23年 08月 31日 ｜19 ：32
       // this.date = Date.parse("2023/08/31 19:09");
-      driver_date_picker = this.year + "/" + driver_date_picker;
-      console.log(driver_date_picker);
+      // driver_date_picker = this.year + "/" + driver_date_picker;
+      // console.log(driver_date_picker);
       this.date = Date.parse(driver_date_picker);
       // urlParams.delete("date-picker");
     } else {

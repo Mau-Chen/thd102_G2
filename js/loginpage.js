@@ -88,75 +88,156 @@ const ModalPage = Vue.createApp({
           this.ispop = false;
 
           Swal.fire({
+            toast: true,
+            position:'top',
             icon: 'success',
             title: '登入成功!',
             text: `${this.account} ,歡迎回到PetpaGo!`,
             showConfirmButton: false,
             timer: 3000,
-            backdrop: `rgba(0,0,0,0)`
+            backdrop: `rgba(0,0,0,0)`,
+            customClass:{
+              container: 'swal2'
+            }
           });
         } else {
           this.ispop = false;
           Swal.fire({
             icon: 'question',
-            title: '我的網路呢?',
-            text: '看起來我們的網路好像出了點小問題...',
+            title: '查無此人?',
+            text: '要不要試著註冊會員?',
+            showConfirmButton: false,
             timer: 3000,
-            backdrop: `rgba(0,0,0,0)`
+            backdrop: `rgba(0,0,0,0)`,
+            customClass:{
+              container: 'swal2'
+            }
           })
         }
       })
     },
 
     createMember() {
-      if (
-        this.createNew.account !== '' &&
-        this.createNew.email !== '' &&
-        this.createNew.password !== '' &&
-        this.createNew.password === this.createNew.check
-      ) {
-        const res = {
-          account: this.createNew.account,
-          email: this.createNew.email,
-          password: this.createNew.password
-        }
-
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
-
-        fetch("/thd102/g2/php/BackgroundLogin/insert.php", {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(res)
-        }).then((response) => response.json()).then((data) => {
-          if (data.message === 'success') {
-            this.changePage(0);
-            this.ispop = false;
-            Swal.fire({
-              title: '註冊成功!',
-              text: '歡迎加入PetpaGo',
-              icon: 'success',
-              customClass: {
-                popup: 'my-custom-popup-class', // 自定义弹窗容器的类名
-                backdrop: 'my-custom-backdrop-class' // 自定义背景遮罩的类名
-              }
-            });
-          } else if (data.error) {
-            alert(data.error);
-          }
-        })
-      } else {
-        this.ispop = false;
+      // 检查帐户长度不超过15个字符
+      if (this.createNew.account.length === 0) {
         Swal.fire({
+          toast: true,
+          position:'top',
           icon: 'error',
           title: 'Oops...',
-          text: '請填寫所有必填欄位並確保密碼匹配!',
-          customClass: {
-            popup: 'my-custom-popup-class', // 自定义弹窗容器的类名
-            backdrop: 'my-custom-backdrop-class' // 自定义背景遮罩的类名
+          showConfirmButton: false,
+          timer: 3000,
+          text: '名稱不可為空!',
+          backdrop: `rgba(0,0,0,0)`,
+          customClass:{
+            container: 'swal2'
           }
-        })
+        });
+        return;
+      }else if(this.createNew.account.length > 20){
+        Swal.fire({
+          toast: true,
+          position:'top',
+          icon: 'error',
+          title: 'Oops...',
+          showConfirmButton: false,
+          timer: 3000,
+          text: '名稱字數限制最高20字!',
+          backdrop: `rgba(0,0,0,0)`,
+          customClass:{
+            container: 'swal2'
+          }
+        });
       }
+    
+      // 检查邮箱格式
+      const emailPattern = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+      if (!emailPattern.test(this.createNew.email)) {
+        Swal.fire({
+          toast: true,
+          position:'top',
+          icon: 'error',
+          title: 'Oops...',
+          showConfirmButton: false,
+          timer: 3000,
+          text: '請輸入正確的電子郵箱!',
+          backdrop: `rgba(0,0,0,0)`,
+          customClass:{
+            container: 'swal2'
+          }
+        });
+        return;
+      }
+    
+      // 检查密码长度至少为8个字符
+      if (this.createNew.password.length < 8) {
+        Swal.fire({
+          toast: true,
+          position:'top',
+          icon: 'error',
+          title: 'Oops...',
+          showConfirmButton: false,
+          timer: 3000,
+          text: '密碼長度至少8位!',
+          backdrop: `rgba(0,0,0,0)`,
+          customClass:{
+            container: 'swal2'
+          }
+        });
+        return;
+      }
+    
+      // 检查密码和确认密码是否一致
+      if (this.createNew.password !== this.createNew.check) {
+        Swal.fire({
+          toast: true,
+          position:'top',
+          icon: 'error',
+          title: 'Oops...',
+          showConfirmButton: false,
+          timer: 3000,
+          text: '兩次密碼輸入不一致!',
+          backdrop: `rgba(0,0,0,0)`,
+          customClass:{
+            container: 'swal2'
+          }
+        });
+        return;
+      }
+    
+      // 如果所有验证都通过，执行注册逻辑
+      const res = {
+        account: this.createNew.account,
+        email: this.createNew.email,
+        password: this.createNew.password
+      };
+    
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+    
+      fetch("/thd102/g2/php/BackgroundLogin/insert.php", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(res)
+      }).then((response) => response.json()).then((data) => {
+        if (data.message === 'success') {
+          this.changePage(0);
+          Swal.fire({
+            position: "top-end",
+            title: '註冊成功!',
+            text: '歡迎加入PetpaGo',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+            backdrop: `rgba(0,0,0,0)`,
+            customClass: {
+              container: 'swal2'
+            }
+          });
+        } else if (data.error) {
+          alert(data.error);
+        }
+      });
     }
   },
 });
