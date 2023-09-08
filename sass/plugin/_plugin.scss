@@ -1,2 +1,6 @@
 @import "./Vuedatepicker";
 @import "./SwiperCarousel";
+
+.swal2{
+    z-index: 10000 !important;
+}
