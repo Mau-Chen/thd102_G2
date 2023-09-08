@@ -168,44 +168,46 @@
                       <h5 class="">個人資料</h5>
           
                       <!-- 個人資料帶入 -->
-                      <form action="" class="personal-info">
+                      <form action="./thd102/g2/php/Member/setting.php" method="post" class="personal-info" id="memberForm">
                         <div class="pi-box">
                           <div class="pi-box-half">
                             <label for="">姓名</label>
-                            <input type="text" placeholder="請輸入姓名" />
+                            <input type="text" name="name" v-model="userData.NAME" placeholder="請輸入姓名" id="name"/>
                           </div>
                           <div class="pi-box-half">
                             <label for="">行動電話</label>
-                            <input type="text" placeholder="請輸入行動電話" />
+                            <input type="text" name="phone" v-model="userData.PHONE" placeholder="請輸入行動電話" id="phone"/>
                           </div>
                         </div>
-            
                         <div class="pi-box">
                           <div class="pi-box-half">
                             <label for="">電子信箱</label>
                             <input
                               class="email-bg"
                               type="text"
+                              v-model="token"
                               placeholder="service@tibame.com"
                               disabled
+                              id="email"
                             />
                           </div>
                           <div class="pi-box-half">
                             <label for="">出生日期</label>
-                            <input type="date" placeholder="請選擇" id="myDateInput"/>
+                            <input type="date" name="brd" v-model="userData.BRD" placeholder="請選擇" id="myDateInput"/>
                           </div>
                         </div>
             
                         <div class="pi-box">
                           <div class="pi-box-half col-12">
                             <label for="">地址</label>
-                            <input type="text" placeholder="請輸入地址"/>
+                            <input type="text" name="add" v-model="userData.ADDRESS" placeholder="請輸入地址" id="add"/>
                           </div>
                         </div>
+
+                        <button type="button" class="btn_5" @click="updateData">更新資訊</button>
+
+
                       </form>
-            
-                      <!-- <div class="udate-info"> -->
-                      <button class="btn_5">更新資訊</button>
                       <!-- </div> -->
           </div>
         </div>
@@ -215,5 +217,70 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="./js/memberOrder.js"></script>
     <script src="./js/member_page.js"></script>
+
+    <script>
+      const memberForm = Vue.createApp({
+        data(){
+          return{
+            token: '如果你有成功，你應該看不到我',
+            userData:{
+              NAME: '',
+              PHONE: '',
+              ADDRESS: '',
+              BRD:''
+            }
+          }
+        },
+        mounted(){
+          this.initial()
+        },
+        methods:{
+          initial(){
+            const setdata = localStorage.getItem('member');
+            if (setdata) {
+                const parsedData = JSON.parse(setdata);
+                this.token = parsedData['account'];
+
+                this.nextStep(this.token);
+            }
+          },
+          nextStep(value){
+            if(value){
+              axios.get(`/thd102/g2/php/Member/setting.php?account=${value}`)
+              .then(res => {
+                const data = res.data;
+
+                const result = data.map((item)=>({
+                  NAME: item.NAME,
+                  PHONE: item.PHONE,
+                  ADDRESS: item.ADDRESS,
+                  BRD: item.BRD
+                }))
+
+                Object.assign(this.userData, ...result);
+              })
+            }
+          },
+          updateData(){
+          const updateObj = {
+            account: this.token,
+            userData: this.userData
+          };
+          axios.post(`/thd102/g2/php/Member/settingUpdate.php`, updateObj)
+          .then(res => {
+            if(res.data.message === "更新成功"){
+              alert("資料已更新");
+            }
+          })
+          .catch(err => {
+            console.error("更新失敗：", err);
+          });
+        }
+        }
+      });
+
+      memberForm.mount('#memberForm');
+
+    </script>
   </body>
 </html>
