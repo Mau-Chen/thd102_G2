@@ -18,6 +18,12 @@ const ModalPage = Vue.createApp({
       account: "",
       password: "",
       success: false,
+      createNew: {
+        account: '',
+        email: '',
+        password: '',
+        check: ''
+      }
     };
   },
   mounted() {
@@ -51,7 +57,7 @@ const ModalPage = Vue.createApp({
             window.location.href = 'index.html';
           }
         })
-        
+
       }
     },
     changePage(newIndex) {
@@ -84,6 +90,38 @@ const ModalPage = Vue.createApp({
           console.log("poor!")
         }
       })
+    },
+
+    createMember() {
+      if (
+        this.createNew.account !== '' &&
+        this.createNew.email !== '' &&
+        this.createNew.password !== '' &&
+        this.createNew.password === this.createNew.check
+      ) {
+        const res = {
+          account: this.createNew.account,
+          email: this.createNew.email,
+          password: this.createNew.password
+        }
+
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        fetch("/thd102/g2/php/BackgroundLogin/insert.php", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(res)
+        }).then((response) => response.json()).then((data) => {
+          if (data.message === 'success') {
+            this.changePage(0);
+          } else if (data.error) {
+            alert(data.error);
+          }
+        })
+      } else {
+        confirm("請填寫所有必填欄位並確保密碼匹配。");
+      }
     }
   },
 });
