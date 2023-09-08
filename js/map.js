@@ -95,9 +95,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const datePickerInput = document.querySelector('input[name="date-picker"]');
   const carMenuInput = document.querySelector(".car_menu_input");
   const listDistanceSpan = document.querySelector("#distanceDisplay");
+  // console.log(datePickerInput.value);
 
   // 存資料用
   let cartData = [];
+
+  //改日期格式YYYY-MM-DD
+  function changeYMD(dateString) {
+    // 用正則式取年、月、日
+    const match = dateString.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (match) {
+      const year = match[1];
+      const month = match[2].padStart(2, '0');
+      const day = match[3].padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    return dateString;
+  }
 
   function addToCart() {
     // 取msg_start和msg_end
@@ -106,10 +120,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 取日期
     const listDateValue = datePickerInput.value;
+    console.log(listDateValue);
 
     // 分別取得日期和時間
     const dateParts = listDateValue.split("｜");
-    const listDateD = dateParts[0]; // 日期
+    const listDateD = changeYMD(dateParts[0]); // 日期
     const listDateT = dateParts[1]; // 時間
 
     // 取車種
@@ -129,6 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
       listType: listTypeValue,
       listDistance: listDistanceValue,
       product: "寵物接送",
+      type: "spDriver",
+      spStepper: false,
+      BuyNum: 1,
+      pictureSrc_m: "./images/pic/shop/goShop01_m.png",
+      pictureSrc: "./images/pic/shop/goShop01.png",
     };
 
     // 根據 listTypeValue 設置 spPrice
