@@ -1,28 +1,88 @@
 const mapStyles = [
   {
-    featureType: "administrative.locality",
-    elementType: "labels.text.fill",
+    featureType: "all",
+    elementType: "geometry.fill",
     stylers: [
       {
-        color: "#666666",
+        visibility: "on",
       },
     ],
   },
   {
-    featureType: "landscape.man_made",
-    elementType: "geometry.fill",
+    featureType: "administrative",
+    elementType: "all",
     stylers: [
       {
-        color: "#f8f6f4",
+        color: "#f2f2f2",
+      },
+    ],
+  },
+  {
+    featureType: "administrative",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#686868",
+      },
+      {
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "landscape",
+    elementType: "all",
+    stylers: [
+      {
+        color: "#f2f2f2",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "poi.park",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off",
       },
     ],
   },
   {
     featureType: "road",
-    elementType: "labels.icon",
+    elementType: "all",
     stylers: [
       {
-        saturation: "-100",
+        saturation: -100,
+      },
+      {
+        lightness: 45,
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "simplified",
       },
     ],
   },
@@ -31,7 +91,13 @@ const mapStyles = [
     elementType: "geometry.fill",
     stylers: [
       {
-        color: "#afaba4",
+        lightness: "-22",
+      },
+      {
+        visibility: "on",
+      },
+      {
+        color: "#b4b4b4",
       },
     ],
   },
@@ -40,16 +106,70 @@ const mapStyles = [
     elementType: "geometry.stroke",
     stylers: [
       {
-        color: "#e6e6e6",
+        saturation: "-51",
+      },
+      {
+        lightness: "11",
       },
     ],
   },
   {
     featureType: "road.highway",
-    elementType: "labels",
+    elementType: "labels.text",
     stylers: [
       {
+        saturation: "3",
+      },
+      {
+        lightness: "-56",
+      },
+      {
+        visibility: "simplified",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        lightness: "-52",
+      },
+      {
+        color: "#9094a0",
+      },
+      {
+        visibility: "simplified",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        weight: "6.13",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        weight: "1.24",
+      },
+      {
         saturation: "-100",
+      },
+      {
+        lightness: "-10",
+      },
+      {
+        gamma: "0.94",
+      },
+      {
+        visibility: "off",
       },
     ],
   },
@@ -58,46 +178,181 @@ const mapStyles = [
     elementType: "geometry.fill",
     stylers: [
       {
-        color: "#afaba4",
+        visibility: "on",
+      },
+      {
+        color: "#b4b4b4",
+      },
+      {
+        weight: "5.40",
+      },
+      {
+        lightness: "7",
       },
     ],
   },
   {
-    featureType: "road.local",
+    featureType: "road.highway.controlled_access",
+    elementType: "labels.text",
+    stylers: [
+      {
+        visibility: "simplified",
+      },
+      {
+        color: "#231f1f",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway.controlled_access",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        visibility: "simplified",
+      },
+      {
+        color: "#595151",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "geometry",
+    stylers: [
+      {
+        lightness: "-16",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
     elementType: "geometry.fill",
     stylers: [
+      {
+        visibility: "on",
+      },
+      {
+        color: "#d7d7d7",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "labels.text",
+    stylers: [
+      {
+        color: "#282626",
+      },
+      {
+        visibility: "simplified",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        saturation: "-41",
+      },
+      {
+        lightness: "-41",
+      },
+      {
+        color: "#2a4592",
+      },
+      {
+        visibility: "simplified",
+      },
+    ],
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "labels.text.stroke",
+    stylers: [
+      {
+        weight: "1.10",
+      },
       {
         color: "#ffffff",
       },
     ],
   },
   {
-    featureType: "road.local",
+    featureType: "road.arterial",
     elementType: "labels.icon",
     stylers: [
       {
-        saturation: "77",
+        visibility: "on",
+      },
+    ],
+  },
+  {
+    featureType: "road.local",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        lightness: "-16",
+      },
+      {
+        weight: "0.72",
+      },
+    ],
+  },
+  {
+    featureType: "road.local",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        lightness: "-37",
+      },
+      {
+        color: "#2a4592",
       },
     ],
   },
   {
     featureType: "transit",
-    elementType: "labels.icon",
+    elementType: "all",
     stylers: [
       {
-        saturation: "-100",
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "transit.line",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        visibility: "off",
+      },
+      {
+        color: "#eeed6a",
+      },
+    ],
+  },
+  {
+    featureType: "transit.line",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        visibility: "off",
+      },
+      {
+        color: "#0a0808",
       },
     ],
   },
   {
     featureType: "water",
-    elementType: "geometry.fill",
+    elementType: "all",
     stylers: [
       {
-        lightness: -9,
+        color: "#b7e4f4",
       },
       {
-        color: "#aaddf3",
+        visibility: "on",
       },
     ],
   },
@@ -112,6 +367,11 @@ let map, directionsService, directionsRenderer;
 
 async function calculateDistance() {
   try {
+    // 移除先前的路線
+    if (directionsRenderer) {
+      directionsRenderer.setMap(null);
+    }
+
     const originInput = document.getElementById("start_place_input");
     const originInput_value = originInput.value;
     const destinationInput = document.getElementById("end_place_input");
@@ -137,7 +397,9 @@ async function calculateDistance() {
           // 自訂路徑顏色
           directionsRenderer = new google.maps.DirectionsRenderer({
             polylineOptions: {
-              strokeColor: "#6e60f6", // 自訂線條顏色
+              strokeColor: "#66d5c0", // 自訂線條顏色
+              strokeWeight: 10, // 路線的粗度，可以根據需要調整
+              strokeOpacity: 0.9, // 自訂路線透明度
             },
           });
           directionsRenderer.setMap(map);
@@ -157,6 +419,12 @@ async function calculateDistance() {
           document.getElementById(
             "costDisplay"
           ).textContent = `NT$ ${car_menu_cost}`;
+
+          // 計算路線後，調整地圖的可視範圍
+          const bounds = new google.maps.LatLngBounds();
+          bounds.extend(originCoordinates);
+          bounds.extend(destinationCoordinates);
+          map.fitBounds(bounds);
         } else {
           alert("Directions request failed due to " + status);
         }
@@ -186,7 +454,7 @@ window.onload = async function () {
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 25.05214, lng: 121.54325 },
-    zoom: 15,
+    zoom: 12,
     styles: mapStyles, // 將自訂地圖樣式應用到地圖中
   });
 
