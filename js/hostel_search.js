@@ -3,7 +3,6 @@ const select_pet = Vue.createApp({
   data() {
     return {
       isPop: false,
-      // pet_menu_open: false,
       numCat: 1,
       numDog: 1,
       date: "",
@@ -13,105 +12,114 @@ const select_pet = Vue.createApp({
       cardItems: [
         {
           id: 1,
-          link: './hostel-booking_detail.html',
-          imageSrc: '../images/pic/hostel/hostel page2/hostel-pic1.png',
-          imageAlt: '快樂寵物旅館',
-          name: '快樂寵物旅館',
-          location: '板橋區',
-          price: '1,750',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic1.png",
+          imageAlt: "快樂寵物旅館",
+          name: "快樂寵物旅館",
+          location: "板橋區",
+          price: "1,750",
           starCount: 5,
-          reviewCount: 10
+          reviewCount: 10,
         },
         {
           id: 2,
-          link: './hostel-booking_detail.html',
-          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic2.png',
-          imageAlt: '毛起來住',
-          name: '毛起來住',
-          location: '中山區',
-          price: '650',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic2.png",
+          imageAlt: "毛起來住",
+          name: "毛起來住",
+          location: "中山區",
+          price: "650",
           starCount: 3,
-          reviewCount: 5
+          reviewCount: 5,
         },
         {
           id: 3,
-          link: './hostel-booking_detail.html',
-          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic3.png',
-          imageAlt: '汪堡',
-          name: '毛起來住',
-          location: '信義區',
-          price: '1,250',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic3.png",
+          imageAlt: "汪堡",
+          name: "汪堡",
+          location: "信義區",
+          price: "1,250",
           starCount: 5,
-          reviewCount: 10
+          reviewCount: 10,
         },
         {
           id: 4,
-          link: './hostel-booking_detail.html',
-          imageSrc: '../images/pic/hostel/hostel page2/hostel-pic4.png',
-          imageAlt: '快樂寵物旅館',
-          name: '快樂寵物旅館',
-          location: '板橋區',
-          price: '1,750',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic4.png",
+          imageAlt: "快樂寵物旅館",
+          name: "快樂寵物旅館",
+          location: "板橋區",
+          price: "1,750",
           starCount: 5,
-          reviewCount: 10
+          reviewCount: 10,
         },
         {
           id: 5,
-          link: './hostel-booking_detail.html',
-          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic5.png',
-          imageAlt: '毛起來住',
-          name: '毛起來住',
-          location: '中山區',
-          price: '650',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic5.png",
+          imageAlt: "毛起來住",
+          name: "毛起來住",
+          location: "中山區",
+          price: "650",
           starCount: 3,
-          reviewCount: 5
+          reviewCount: 5,
         },
         {
           id: 6,
-          link: './hostel-booking_detail.html',
-          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic6.png',
-          imageAlt: '汪堡',
-          name: '毛起來住',
-          location: '信義區',
-          price: '1,250',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic6.png",
+          imageAlt: "汪堡",
+          name: "汪堡",
+          location: "信義區",
+          price: "1,250",
           starCount: 5,
-          reviewCount: 10
+          reviewCount: 10,
         },
         {
           id: 7,
-          link: './hostel-booking_detail.html',
-          imageSrc: '../images/pic/hostel/hostel page2/hostel-pic7.png',
-          imageAlt: '快樂寵物旅館',
-          name: '快樂寵物旅館',
-          location: '板橋區',
-          price: '1,750',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic7.png",
+          imageAlt: "快樂寵物旅館",
+          name: "快樂寵物旅館",
+          location: "板橋區",
+          price: "1,750",
           starCount: 5,
-          reviewCount: 10
+          reviewCount: 10,
         },
         {
           id: 8,
-          link: './hostel-booking_detail.html',
-          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic8.png',
-          imageAlt: '毛起來住',
-          name: '毛起來住',
-          location: '中山區',
-          price: '650',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic8.png",
+          imageAlt: "毛起來住",
+          name: "毛起來住",
+          location: "中山區",
+          price: "650",
           starCount: 3,
-          reviewCount: 5
+          reviewCount: 5,
         },
         {
           id: 9,
-          link: './hostel-booking_detail.html',
-          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic9.png',
-          imageAlt: '汪堡',
-          name: '毛起來住',
-          location: '信義區',
-          price: '1,250',
+          link: "./hostel-booking_detail.html",
+          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic9.png",
+          imageAlt: "汪堡",
+          name: "汪堡",
+          location: "信義區",
+          price: "1,250",
           starCount: 5,
-          reviewCount: 10
+          reviewCount: 10,
         },
-        
-      ]
+      ],
+      cities: [
+        { name: "台北", accommodations: 30 },
+        { name: "台中", accommodations: 20 },
+        { name: "台南", accommodations: 8 },
+        { name: "高雄", accommodations: 15 },
+        { name: "新竹", accommodations: 8 },
+        { name: "花蓮", accommodations: 10 },
+        { name: "嘉義", accommodations: 6 },
+        { name: "外島", accommodations: 3 },
+      ],
     };
   },
   computed: {
@@ -138,7 +146,6 @@ const select_pet = Vue.createApp({
     },
   },
   mounted() {
-    // console.log("sss");
     this.start = true;
     // 預設選擇日期
     const today = new Date();
@@ -148,15 +155,11 @@ const select_pet = Vue.createApp({
     this.getLocalStorage();
 
     document.addEventListener("click", (e) => {
-      console.log("ttt");
-      // console.log(e.target)
-      // console.log(this)
       if (
         e.target.classList.contains("dropDownParent") ||
         e.target.classList.contains("pet_menu_open") ||
         e.target.classList.contains("dropDownItem")
       ) {
-        console.log("aaa");
         return (this.isPop = !this.isPop);
       }
       if (
@@ -166,7 +169,6 @@ const select_pet = Vue.createApp({
         return (this.isPop = true);
       }
       if (this.isPop == true) {
-        console.log("abc");
         this.isPop = false;
       }
       // this.isPop = false
@@ -183,7 +185,6 @@ const select_pet = Vue.createApp({
       }
     },
     saveToLocalstorage() {
-      // console.log("111");
       const saveData = {
         location: this.location,
         date: this.date,
