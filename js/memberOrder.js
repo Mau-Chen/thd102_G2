@@ -127,7 +127,7 @@ const app = Vue.createApp({
       const MEMBER_ID = JSON.parse(localStorage.getItem('member'));
       const account = MEMBER_ID.account;
       // fixme: path need fix
-      axios.get(`/thd102/g2/php/Member/select.php?MEMBER_ID=${account}`)
+      axios.get(`/thd102/g2/php/Member/orderlist.php?MEMBER_ID=${account}`)
       .then(response => {
         const data = response.data;
         

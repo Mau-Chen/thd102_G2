@@ -92,10 +92,10 @@
                 <form action="#" method="post">
                   <div class="sectionHead">
                     <label for="checkEmail">電子信箱</label>
-                    <input type="email" placeholder="請輸入Email" id="checkEmail" class="loginType" />
+                    <input type="email" placeholder="請輸入Email" v-model="forgetKey" class="loginType" />
                   </div>
                   <div class="submit">
-                    <input type="button" class="btn_5" value="確認" @click="changePage(2)" />
+                    <input type="button" class="btn_5" value="確認" @click="indexTwoCheck()" />
                   </div>
                 </form>
               </div>
@@ -111,14 +111,14 @@
                   <form action="#" method="post">
                     <div class="sectionHead">
                       <label for="passwordCheck">新密碼</label>
-                      <input type="password" id="passwordCheck" name="password" placeholder="請輸入" class="loginType" />
+                      <input type="password" id="passwordCheck" v-model="forgetPassword.set" placeholder="請輸入" class="loginType" />
                     </div>
                     <!-- <div class="sectionBody"> -->
                     <label for="passwordCheck1">請再次輸入新密碼</label>
-                    <input type="password" id="passwordCheck1" name="password" placeholder="請輸入" class="loginType" />
+                    <input type="password" id="passwordCheck1" v-model="forgetPassword.check" placeholder="請輸入" class="loginType" />
                     <!-- </div> -->
                     <div class="submit">
-                      <input type="button" class="btn_5" value="確認重設" @click="changePage(3)" />
+                      <input type="button" class="btn_5" value="確認重設" @click="indexThreeCheck" />
                     </div>
                   </form>
                 </div>
@@ -170,6 +170,21 @@
                       <input type="button" class="btn_5" value="立即加入" @click="createMember()" />
                     </div>
                   </form>
+                </div>
+              </div>
+            </template>
+          </transition>
+
+          <!-- index 5 忘記密碼/設定成功 -->
+          <transition name="slide-fade">
+            <template v-if="index === 5">
+              <div class="loginPage succPag">
+                <div class="pageIsideContainer">
+                  <img src="./images/icon/components-icon/success.svg" alt="" />
+                  <h5 class="mb_24">註冊成功!</h5>
+                  <button type="button" class="btn_5" @click="changePage(0), reset()">
+                    確認
+                  </button>
                 </div>
               </div>
             </template>
