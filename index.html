@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <!-- gsap -->
+    <!--- opening --->
     <div id="index-box">
       <div id="preloader" class="index-btn">
         <div class="wrap" id="wrap">
@@ -24,7 +24,7 @@
       </div>
       <div class="dot"></div>
     </div>
-    <!-- gsap -->
+    <!--- opening --->
 
     <div class="wrapper index">
       @@include('layout/header.html')
@@ -308,8 +308,9 @@
 
       @@include('layout/ad.html') @@include('layout/footer.html')
     </div>
-    @@include('layout/metaJs.html')
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
     <script src="./js/index.js"></script>
     <script>
       AOS.init();
