@@ -150,8 +150,11 @@ const select_pet = Vue.createApp({
     // 預設選擇日期
     const today = new Date();
     const startDate = today.setDate(today.getDate() + 1);
+    console.log(new Date(startDate))
     const endDate = today.setDate(today.getDate() + 1);
-    this.date = [startDate, endDate];
+    console.log(new Date(endDate))
+    this.date = [new Date(startDate), new Date(endDate)];
+    console.log(this.date);
     this.getLocalStorage();
 
     document.addEventListener("click", (e) => {
@@ -184,8 +187,10 @@ const select_pet = Vue.createApp({
         this[property] += value;
       }
     },
+    //點擊卡片將地點帶入欄位
     updateLocation(value) {
       this.location = value.toString(); 
+      this.saveToLocalstorage()
     },
     saveToLocalstorage() {
       const saveData = {
