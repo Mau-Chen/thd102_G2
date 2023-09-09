@@ -36,12 +36,12 @@
   <!-- 用v-if來渲染出燈箱畫面，此處的v-if渲染內容為燈箱主體，不可更動。 -->
   <transition name="modal">
     <template v-if="ispop === true">
-      <div class="lightbox" @click="ispop = false, changePage(0)">
+      <div class="lightbox" @click="ispop = false, changePage(0), reset()">
         <!-- loginpage_base為燈箱主版面，未RWD前寬度已經寫死為500px。 -->
         <div class="loginpage_base" @click.stop>
           <!-- close中存在關閉燈箱渲染的控件，為燈箱主體，不可更改 -->
           <div class="close">
-            <div class="icon" @click="ispop = false, changePage(0)">
+            <div class="icon" @click="ispop = false, changePage(0), reset()">
               <img
                 src="./images/icon/components-icon/close-line.svg"
                 alt="close"
