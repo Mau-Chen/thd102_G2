@@ -386,12 +386,14 @@
                           type="submit"
                           value="加入購物車"
                           id="addDogToCart"
+                          :disabled="P1.BuyNum === 0"
                         />
                         <input
                           class="btn_5 col-6"
                           type="submit"
                           value="立即預定"
                           id="reserveDog"
+                          :disabled="P1.BuyNum === 0"
                         />
                       </div>
                     </div>
@@ -488,12 +490,14 @@
                           type="submit"
                           value="加入購物車"
                           id="addCatToCart"
+                          :disabled="P2.BuyNum === 0"
                         />
                         <input
                           class="btn_5 col-6"
                           type="submit"
                           value="立即預定"
                           id="reserveCat"
+                          :disabled="P2.BuyNum === 0"
                         />
                       </div>
                     </div>

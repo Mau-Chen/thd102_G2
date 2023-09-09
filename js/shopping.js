@@ -300,7 +300,7 @@ const app = Vue.createApp({
             // 驗證姓名
             if (this.spOrderName.trim() === "") {
                 isValid = false;
-                alert("姓名欄位不可為空值");
+                alert("請確認姓名欄位是否正確");
             }
 
             // 驗證 Email

@@ -26,8 +26,6 @@ document.getElementById('addDogToCart').addEventListener('click', function () {
   const dogSize = document.querySelector('input[name="dog"]:checked').value;
   const dogBuyNum = document.querySelector('#DogroomNum').value;
   const product = document.querySelector('.hostel-info h3').textContent;
-  // const listType = '狗套房';
-  // const spPrice = 800;
 
   // 日期格式改 年/月/日
   const [formattedStartDate, formattedEndDate] = hoteldata.date.map(date => date.split('T')[0]);
@@ -38,8 +36,6 @@ document.getElementById('addDogToCart').addEventListener('click', function () {
     product,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    // listType,
-    // spPrice,
     listType: "狗套房",
     spPrice: 800,
     type: "spHostel",
@@ -72,8 +68,6 @@ document.getElementById('reserveDog').addEventListener('click', function () {
     product,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    // listType,
-    // spPrice,
     listType: "狗套房",
     spPrice: 800,
     type: "spHostel",
@@ -96,8 +90,6 @@ document.getElementById('reserveDog').addEventListener('click', function () {
 document.getElementById('addCatToCart').addEventListener('click', function () {
   const catBuyNum = document.querySelector('#CatroomNum').value;
   const product = document.querySelector('.hostel-info h3').textContent;
-  // const listType = '貓套房';
-  // const spPrice = 800;
 
   const [formattedStartDate, formattedEndDate] = hoteldata.date.map(date => date.split('T')[0]);
 
@@ -106,8 +98,6 @@ document.getElementById('addCatToCart').addEventListener('click', function () {
     product,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    // listType,
-    // spPrice,
     listType: "貓套房",
     spPrice: 800,
     type: "spHostel",
@@ -127,8 +117,6 @@ document.getElementById('addCatToCart').addEventListener('click', function () {
 document.getElementById('reserveCat').addEventListener('click', function () {
   const catBuyNum = document.querySelector('#CatroomNum').value;
   const product = document.querySelector('.hostel-info h3').textContent;
-  // const listType = '貓套房';
-  // const spPrice = 800;
 
   const [formattedStartDate, formattedEndDate] = hoteldata.date.map(date => date.split('T')[0]);
 
@@ -137,8 +125,6 @@ document.getElementById('reserveCat').addEventListener('click', function () {
     product,
     listDate_S: formattedStartDate,
     listDate_E: formattedEndDate,
-    // listType,
-    // spPrice,
     listType: "貓套房",
     spPrice: 800,
     type: "spHostel",
