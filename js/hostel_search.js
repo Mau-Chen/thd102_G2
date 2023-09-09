@@ -184,19 +184,23 @@ const select_pet = Vue.createApp({
         this[property] += value;
       }
     },
+    updateLocation(value) {
+      this.location = value.toString(); 
+    },
     saveToLocalstorage() {
       const saveData = {
         location: this.location,
         date: this.date,
         petnum: [this.numCat, this.numDog],
       };
-      if (
-        saveData.location !== "" &&
-        (saveData.location !== saveData.date) !== ""
-      ) {
+      // 地點欄位不可為空值
+      // if (
+      //   saveData.location !== "" &&
+      //   (saveData.location !== saveData.date) !== ""
+      // ) {
         localStorage.setItem("hoteldata", JSON.stringify(saveData));
         window.location.href = "hostel-booking.html";
-      }
+      // }
     },
     getLocalStorage() {
       const saveData = JSON.parse(localStorage.getItem("hoteldata"));
