@@ -60,7 +60,7 @@
               class="search-box dropDownParent col-4 onFat768"
               :class="{'-show' : start === true}"
             >
-              <div class="pet_menu_open" >
+              <div class="pet_menu_open">
                 <label>
                   <span>寵物類型</span>
                   <!-- <input type="text" placeholder="請選擇" /> -->
@@ -385,13 +385,13 @@
                           class="btn_5_border col-6 addCart"
                           type="submit"
                           value="加入購物車"
-                          id="addDogToCart" 
+                          id="addDogToCart"
                         />
                         <input
                           class="btn_5 col-6"
                           type="submit"
                           value="立即預定"
-                          id="reserveDog" 
+                          id="reserveDog"
                         />
                       </div>
                     </div>
@@ -487,13 +487,13 @@
                           class="btn_5_border col-6 addCart"
                           type="submit"
                           value="加入購物車"
-                          id="addCatToCart" 
+                          id="addCatToCart"
                         />
                         <input
                           class="btn_5 col-6"
                           type="submit"
                           value="立即預定"
-                          id="reserveCat" 
+                          id="reserveCat"
                         />
                       </div>
                     </div>
@@ -536,7 +536,7 @@
       <!---------------- main 旅宿資訊 end ---------------->
       @@include('layout/footer.html')
     </div>
-
+    @@include('layout/metaJs.html')
     <!-- Swiper JS -->
     <script src="./js/vue-datepicker.iife.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -679,8 +679,7 @@ var swiper = new Swiper(".mySwiper", {
     </script> -->
   </body>
 
-
-<!-- media.js -->
+  <!-- media.js -->
   <!-- <script>
     //768選單
     document.addEventListener("DOMContentLoaded", function () {
@@ -721,7 +720,7 @@ var swiper = new Swiper(".mySwiper", {
     });
   </script> -->
 
-<!-- cart.js -->
+  <!-- cart.js -->
   <!-- <script>
     //顯示已加入購物車
     let addCart = document.querySelectorAll(".addCart");

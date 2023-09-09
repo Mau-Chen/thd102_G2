@@ -1,53 +1,84 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    @@include('layout/meta.html')
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>GO有料 | PetpaGo</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  @@include('layout/meta.html')
-  <link rel="stylesheet" href="./css/style.css" />
-  <title>GO有料 | PetpaGo</title>
-</head>
+  <body>
+    <div class="wrapper photowall">
+      @@include('layout/header.html')
+      <div class="container photoWallMain" id="photofall">
+        <!-- 瀑布流組件 Please 別碰 這是magic -->
+        <photo-fall :items="items"></photo-fall>
+        <!-- 瀑布流元件 Please 別碰 這是magic -->
 
-<body>
-  <div class="wrapper photowall">
-    @@include('layout/header.html')
-    <div class="container photoWallMain" id="photofall">
-      <!-- 瀑布流組件 Please 別碰 這是magic -->
-      <photo-fall :items="items"></photo-fall>
-      <!-- 瀑布流元件 Please 別碰 這是magic -->
-
-      <div class="postYourImage" @click="show = true">
-        <img src="./images/icon/photowall-icon/plus.svg" alt="">
-      </div>
-      <div v-if="show === true" class="lightbox" @click="show = false">
-        <div class="loginpage_base" @click.stop>
-          <div class="close">
-            <div class="icon" @click="show = false">
-              <img src="./images/icon/components-icon/close-line.svg" alt="close" />
-            </div>
-          </div>
-          <div class="loginPage">
-            <div class="photoTitle">
-              <h5>建立新貼文</h5>
-            </div>
-            <form action="#">
-              <div class="dragArea" @dragover.prevent @drop="handleDrop" @click="triggerFileInput">
-                <div class="preViewSide">
-                  <img v-if="previewImage" :src="previewImage" alt="Preview">
-                </div>
-                <input ref="fileInput" type="file" style="display: none" @change="handleFileSelect" />
+        <div class="postYourImage" @click="show = true">
+          <img src="./images/icon/photowall-icon/plus.svg" alt="" />
+        </div>
+        <div v-if="show === true" class="lightbox" @click="show = false">
+          <div class="loginpage_base" @click.stop>
+            <div class="close">
+              <div class="icon" @click="show = false">
+                <img
+                  src="./images/icon/components-icon/close-line.svg"
+                  alt="close"
+                />
               </div>
-              <button type="button" class="btn_5" @click="uploadImage" :disabled="!previewImage">發布</button>
-            </form>
+            </div>
+            <div class="loginPage">
+              <div class="photoTitle">
+                <h5>建立新貼文</h5>
+              </div>
+              <form action="#">
+                <div
+                  class="dragArea"
+                  @dragover.prevent
+                  @drop="handleDrop"
+                  @click="triggerFileInput"
+                >
+                  <div class="preViewSide">
+                    <img
+                      v-if="previewImage"
+                      :src="previewImage"
+                      alt="Preview"
+                    />
+                  </div>
+                  <input
+                    ref="fileInput"
+                    type="file"
+                    style="display: none"
+                    @change="handleFileSelect"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="btn_5"
+                  @click="uploadImage"
+                  :disabled="!previewImage"
+                >
+                  發布
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+      @@include('layout/footer.html')
     </div>
-    @@include('layout/footer.html')
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./js/photofall.js" type="module"></script>
-</body>
-
+    @@include('layout/metaJs.html')
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/photofall.js" type="module"></script>
+  </body>
 </html>
