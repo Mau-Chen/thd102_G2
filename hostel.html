@@ -141,8 +141,24 @@
               立即搜尋
             </button>
           </form>
+                    <!---------------- main 精選寵物旅宿 star ---------------->
+                    <main class="top_area_hotels mb_60">
+                      <div class="container">
+                        <h5 class="mb_40">精選寵物旅宿</h5>
+                        <div class="cards-wrapper">
+                          <a class="card" v-for="city in cities" :key="city.name" :href="'./hostel-booking.html?city=' + city.name">
+                            <img :src="'./images/pic/hostel/hostel page1/hostel-city-0' + (cities.indexOf(city) + 1) + '.png'" :alt="city.name" />
+                            <div class="card_text">
+                              <p>{{ city.name }}</p>
+                              <p>{{ city.accommodations }}間住宿</p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </main>
+          
           <!---------------- main 精選寵物旅宿 star ---------------->
-          <main class="top_area_hotels mb_60">
+          <!-- <main class="top_area_hotels mb_60">
             <div class="container">
               <h5 class="mb_40">精選寵物旅宿</h5>
               <div class="cards-wrapper">
@@ -228,7 +244,7 @@
                 </a>
               </div>
             </div>
-          </main>
+          </main> -->
         </div>
       </div>
 
