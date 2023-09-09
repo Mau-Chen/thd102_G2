@@ -129,9 +129,28 @@ const app2 = Vue.createApp({
           reader.readAsDataURL(file);
         }
       },
-      uploadImage(){
-        console.log("上傳圖片:",this.previewImage);
-      }
+      uploadImage() {
+        let formData = new FormData();
+        let fileInput = this.$refs.fileInput;
+        formData.append('profile', fileInput.files[0]);
+    
+        // 獲取LocalStorage中的memberData
+        const memberData = localStorage.getItem("member");
+        formData.append('memberData', memberData); // 添加到FormData中
+    
+        axios.post('./thd102/g2/php/photowall.php', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }).then(response => {
+            // 處理成功的情況
+            alert("Success: " + response.data);
+        }).catch(error => {
+            // 處理錯誤的情況
+            alert("Error: " + error);
+        });
+    },
+    
     }
 });
 app2.component("PhotoFall", photofall);

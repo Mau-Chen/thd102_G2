@@ -36,7 +36,7 @@
               <div class="photoTitle">
                 <h5>建立新貼文</h5>
               </div>
-              <form action="#">
+              <form method="post" action="./thd102/g2/php/photowall.php" enctype="multipart/form-data">
                 <div
                   class="dragArea"
                   @dragover.prevent
@@ -53,6 +53,7 @@
                   <input
                     ref="fileInput"
                     type="file"
+                    name="profile"
                     style="display: none"
                     @change="handleFileSelect"
                   />
@@ -60,8 +61,8 @@
                 <button
                   type="button"
                   class="btn_5"
-                  @click="uploadImage"
                   :disabled="!previewImage"
+                  @click="uploadImage"
                 >
                   發布
                 </button>
