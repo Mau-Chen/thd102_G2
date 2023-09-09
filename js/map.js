@@ -1,3 +1,108 @@
+const mapStyles = [
+  {
+    featureType: "administrative.locality",
+    elementType: "labels.text.fill",
+    stylers: [
+      {
+        color: "#666666",
+      },
+    ],
+  },
+  {
+    featureType: "landscape.man_made",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#f8f6f4",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        saturation: "-100",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#afaba4",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        color: "#e6e6e6",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "labels",
+    stylers: [
+      {
+        saturation: "-100",
+      },
+    ],
+  },
+  {
+    featureType: "road.highway.controlled_access",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#afaba4",
+      },
+    ],
+  },
+  {
+    featureType: "road.local",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        color: "#ffffff",
+      },
+    ],
+  },
+  {
+    featureType: "road.local",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        saturation: "77",
+      },
+    ],
+  },
+  {
+    featureType: "transit",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        saturation: "-100",
+      },
+    ],
+  },
+  {
+    featureType: "water",
+    elementType: "geometry.fill",
+    stylers: [
+      {
+        lightness: -9,
+      },
+      {
+        color: "#aaddf3",
+      },
+    ],
+  },
+];
+
 // google map route
 
 // import DriverSelector from "./js/components/DriverSelector.js";
@@ -29,6 +134,13 @@ async function calculateDistance() {
       directionsService.route(request, (response, status) => {
         if (status === "OK") {
           const vm = window.vue_app._instance.data;
+          // 自訂路徑顏色
+          directionsRenderer = new google.maps.DirectionsRenderer({
+            polylineOptions: {
+              strokeColor: "#6e60f6", // 自訂線條顏色
+            },
+          });
+          directionsRenderer.setMap(map);
           directionsRenderer.setDirections(response);
           const distance = response.routes[0].legs[0].distance.text;
           let distance_value = response.routes[0].legs[0].distance.value / 1000;
@@ -75,6 +187,7 @@ window.onload = async function () {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 25.05214, lng: 121.54325 },
     zoom: 15,
+    styles: mapStyles, // 將自訂地圖樣式應用到地圖中
   });
 
   directionsService = new google.maps.DirectionsService();
@@ -106,8 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const match = dateString.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
     if (match) {
       const year = match[1];
-      const month = match[2].padStart(2, '0');
-      const day = match[3].padStart(2, '0');
+      const month = match[2].padStart(2, "0");
+      const day = match[3].padStart(2, "0");
       return `${year}-${month}-${day}`;
     }
     return dateString;
