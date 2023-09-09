@@ -27,7 +27,7 @@ const ModalPage = Vue.createApp({
       forgetKey: '',
       forgetPassword: {
         set: '',
-        check:''
+        check: ''
       }
     };
   },
@@ -129,10 +129,10 @@ const ModalPage = Vue.createApp({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '姓名不可為空!',
+          text: '姓名不可為空',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -144,10 +144,10 @@ const ModalPage = Vue.createApp({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '名稱字數限制最高20字!',
+          text: '名稱字數限制最高20字',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -163,10 +163,10 @@ const ModalPage = Vue.createApp({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '請輸入正確的電子郵箱!',
+          text: '請輸入正確的電子郵箱',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -181,10 +181,10 @@ const ModalPage = Vue.createApp({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '密碼長度至少8位!',
+          text: '密碼長度至少8位',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -199,10 +199,10 @@ const ModalPage = Vue.createApp({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '兩次密碼輸入不一致!',
+          text: '兩次密碼輸入不一致',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -221,7 +221,7 @@ const ModalPage = Vue.createApp({
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
 
-      fetch("/thd102/g2/php/BackgroundLogin/insert.php", {
+      fetch("/thd102/g2/php/FrontendLogin/insert.php", {
         method: "POST",
         headers: headers,
         body: JSON.stringify(res)
@@ -270,28 +270,49 @@ const ModalPage = Vue.createApp({
             toast: true,
             position: 'top',
             icon: 'error',
-            title: 'Oops...',
+            // title: 'Oops...',
             showConfirmButton: false,
             timer: 3000,
-            text: '請輸入正確的電子郵箱!',
+            text: '請輸入正確的電子信箱',
             backdrop: `rgba(0,0,0,0)`,
             customClass: {
               container: 'swal2'
             }
           });
           return;
-        }else{
-          this.index = 2;
+        } else {
+          const res = this.forgetKey;
+          fetch(`/thd102/g2/php/FrontendLogin/forgetselect.php?account=${res}`, {
+            method: "GET"
+          }).then((res) => res.json()).then((data) => {
+            if (data.status === 'success') {
+              this.index = 2;
+            } else {
+              Swal.fire({
+                toast: true,
+                position: 'top',
+                icon: 'question',
+                // title: '查無此人?',
+                text: '請檢查您輸入的電子信箱',
+                showConfirmButton: false,
+                timer: 3000,
+                backdrop: `rgba(0,0,0,0)`,
+                customClass: {
+                  container: 'swal2'
+                }
+              })
+            }
+          })
         }
       } else {
         Swal.fire({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '電子郵箱不可為空!',
+          text: '電子信箱不可為空',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -300,16 +321,16 @@ const ModalPage = Vue.createApp({
       }
     },
 
-    indexThreeCheck(){
+    indexThreeCheck() {
       if (this.forgetPassword.set.length < 8) {
         Swal.fire({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '密碼長度至少8位!',
+          text: '密碼長度至少8位',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -324,10 +345,10 @@ const ModalPage = Vue.createApp({
           toast: true,
           position: 'top',
           icon: 'error',
-          title: 'Oops...',
+          // title: 'Oops...',
           showConfirmButton: false,
           timer: 3000,
-          text: '兩次密碼輸入不一致!',
+          text: '兩次密碼輸入不一致',
           backdrop: `rgba(0,0,0,0)`,
           customClass: {
             container: 'swal2'
@@ -336,7 +357,38 @@ const ModalPage = Vue.createApp({
         return;
       }
 
-      this.changePage(3);
+      const res = {
+        email: this.forgetKey,
+        psd: this.forgetPassword.set
+      };
+
+      const headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
+      fetch('/thd102/g2/php/FrontendLogin/forgetalter.php', {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(res)
+      }).then(res => res.json()).then((data) => {
+        if(data.status === 'success'){
+          this.changePage(3);
+        }else{
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'error',
+            title: 'Oops...',
+            showConfirmButton: false,
+            timer: 3000,
+            text: '修改失敗，請稍後再嘗試!',
+            backdrop: `rgba(0,0,0,0)`,
+            customClass: {
+              container: 'swal2'
+            }
+          });
+          return;
+        }
+      }) 
     }
   },
 });
