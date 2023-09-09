@@ -10,6 +10,108 @@ const select_pet = Vue.createApp({
       format: `MM月dd日`,
       start: false,
       location: "",
+      cardItems: [
+        {
+          id: 1,
+          link: './hostel-booking_detail.html',
+          imageSrc: '../images/pic/hostel/hostel page2/hostel-pic1.png',
+          imageAlt: '快樂寵物旅館',
+          name: '快樂寵物旅館',
+          location: '板橋區',
+          price: '1,750',
+          starCount: 5,
+          reviewCount: 10
+        },
+        {
+          id: 2,
+          link: './hostel-booking_detail.html',
+          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic2.png',
+          imageAlt: '毛起來住',
+          name: '毛起來住',
+          location: '中山區',
+          price: '650',
+          starCount: 3,
+          reviewCount: 5
+        },
+        {
+          id: 3,
+          link: './hostel-booking_detail.html',
+          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic3.png',
+          imageAlt: '汪堡',
+          name: '毛起來住',
+          location: '信義區',
+          price: '1,250',
+          starCount: 5,
+          reviewCount: 10
+        },
+        {
+          id: 4,
+          link: './hostel-booking_detail.html',
+          imageSrc: '../images/pic/hostel/hostel page2/hostel-pic4.png',
+          imageAlt: '快樂寵物旅館',
+          name: '快樂寵物旅館',
+          location: '板橋區',
+          price: '1,750',
+          starCount: 5,
+          reviewCount: 10
+        },
+        {
+          id: 5,
+          link: './hostel-booking_detail.html',
+          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic5.png',
+          imageAlt: '毛起來住',
+          name: '毛起來住',
+          location: '中山區',
+          price: '650',
+          starCount: 3,
+          reviewCount: 5
+        },
+        {
+          id: 6,
+          link: './hostel-booking_detail.html',
+          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic6.png',
+          imageAlt: '汪堡',
+          name: '毛起來住',
+          location: '信義區',
+          price: '1,250',
+          starCount: 5,
+          reviewCount: 10
+        },
+        {
+          id: 7,
+          link: './hostel-booking_detail.html',
+          imageSrc: '../images/pic/hostel/hostel page2/hostel-pic7.png',
+          imageAlt: '快樂寵物旅館',
+          name: '快樂寵物旅館',
+          location: '板橋區',
+          price: '1,750',
+          starCount: 5,
+          reviewCount: 10
+        },
+        {
+          id: 8,
+          link: './hostel-booking_detail.html',
+          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic8.png',
+          imageAlt: '毛起來住',
+          name: '毛起來住',
+          location: '中山區',
+          price: '650',
+          starCount: 3,
+          reviewCount: 5
+        },
+        {
+          id: 9,
+          link: './hostel-booking_detail.html',
+          imageSrc:'../images/pic/hostel/hostel page2/hostel-pic9.png',
+          imageAlt: '汪堡',
+          name: '毛起來住',
+          location: '信義區',
+          price: '1,250',
+          starCount: 5,
+          reviewCount: 10
+        },
+        
+      ]
     };
   },
   computed: {

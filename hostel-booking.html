@@ -29,14 +29,14 @@
 
       <!---------------- search bar star ---------------->
       <div class="hostel_headBox">
-        <div class="container">
+        <div class="container" id="select_pet">
           <h2 class="hostel_title">最貼心的寵物住宿</h2>
           <form
             class="search_hotel mb_100"
             action="./hostel-booking.html"
             method="get"
           >
-            <div class="threeInput" id="select_pet">
+            <div class="threeInput">
               <div class="search-box col-4">
                 <label for="">
                   <span>住宿地點或住宿名稱</span>
@@ -73,7 +73,7 @@
                 class="search-box dropDownParent col-4"
                 :class="{'-show' : start === true}"
               >
-                <div class="pet_menu_open" >
+                <div class="pet_menu_open">
                   <label>
                     <span>寵物類型</span>
                     <!-- <input type="text" placeholder="請選擇" /> -->
@@ -137,416 +137,450 @@
               立即搜尋
             </button>
           </form>
+          <!-- test Vue -->
+          <main class="hotel-booking mb_100">
+            <div class="top3 container">
+              <h5>9間狗貓共住旅館在{{ location }}</h5>
+              <div class="top3_box">
+                <a
+                  class="card"
+                  v-for="item in cardItems"
+                  :key="item.id"
+                  :href="item.link"
+                >
+                  <div class="card_image">
+                    <img :src="item.imageSrc" :alt="item.imageAlt" />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>{{ item.name }}</h6>
+                    <span class="jcsb">
+                      <img src="./images/icon/hostel-icon/location.svg" alt="" />{{ item.location
+                      }}</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>{{ item.price }}</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                        v-for="n in item.starCount"
+                        :key="n"
+                      />
+                      <span>({{ item.reviewCount }})</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </main>
+
+          <!---------------- main 寵物旅宿清單 star ---------------->
+          <!-- <main class="hotel-booking mb_100">
+            <div class="top3 container">
+              <h5>9間狗貓共住旅館在{{ location }}</h5>
+              <div class="top3_box">
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic1.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>快樂寵物旅館</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />板橋區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>1,750</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic2.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>毛起來住</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />中山區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>650</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic3.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>汪堡</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />信義區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>1,250</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic4.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>快樂寵物旅館</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />板橋區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>1,750</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic5.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>毛起來住</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />中山區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>650</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic6.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>汪堡</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />信義區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>1,250</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic7.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>毛起來住</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />板橋區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>650</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic8.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>快樂寵物旅館</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />中山區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>1,250</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <a class="card" href="./hostel-booking_detail.html">
+                  <div class="card_image">
+                    <img
+                      src="./images/pic/hostel/hostel page2/hostel-pic9.png"
+                      alt="快樂寵物旅館"
+                    />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>汪堡</h6>
+                    <span class="jcsb">
+                      <img
+                        src="./images/icon/hostel-icon/location.svg"
+                        alt=""
+                      />信義區</span
+                    >
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>1,750</span>起</p>
+                    <div class="star jcsb">
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <img
+                        src="./images/icon/components-icon/star.svg"
+                        alt="star"
+                      />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </main> -->
         </div>
       </div>
-
-      <!---------------- main 精選寵物旅宿 star ---------------->
-      <main class="hotel-booking mb_100">
-        <div class="top3 container">
-          <!-- <div class="hotel-bookingRoom col-lg-11"> -->
-          <h5>9間狗貓共住旅館在台北</h5>
-          <div class="top3_box">
-            <!-- 1 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic1.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>快樂寵物旅館</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />板橋區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>1,750</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 2 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic2.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>毛起來住</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />中山區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>650</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 3 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic3.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>汪堡</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />信義區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>1,250</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 4 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic4.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>快樂寵物旅館</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />板橋區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>1,750</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 5 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic5.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>毛起來住</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />中山區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>650</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 6 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic6.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>汪堡</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />信義區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>1,250</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 7 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic7.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>毛起來住</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />板橋區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>650</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 8 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic8.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>快樂寵物旅館</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />中山區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>1,250</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-            <!-- 9 -->
-            <a class="card" href="./hostel-booking_detail.html">
-              <div class="card_image">
-                <img
-                  src="./images/pic/hostel/hostel page2/hostel-pic9.png"
-                  alt="快樂寵物旅館"
-                />
-              </div>
-              <div class="card_content jcsb">
-                <h6>汪堡</h6>
-                <span class="jcsb">
-                  <img
-                    src="./images/icon/hostel-icon/location.svg"
-                    alt=""
-                  />信義區</span
-                >
-              </div>
-              <div class="card_price jcsb">
-                <p>NT$ <span>1,750</span>起</p>
-                <div class="star jcsb">
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <img
-                    src="./images/icon/components-icon/star.svg"
-                    alt="star"
-                  />
-                  <span>(10)</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- </div> -->
-        </div>
-      </main>
-
       @@include('layout/footer.html')
     </div>
     <script src="./js/vue-datepicker.iife.js"></script>
