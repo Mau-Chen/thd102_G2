@@ -153,13 +153,20 @@
                         <p>{{ this.checkedNames.length }}件總計</p>
                         <h5>NT${{ totalPrice.toLocaleString('en-US') }}</h5>
                       </div>
-                      <button
+                      <!-- <button
                         class="spNext btn_5 jsNext"
                         type="button"
                         @click="caculate_point();currentStep ++"
                       >
                         下一步
-                      </button>
+                      </button> -->
+                      <button
+                      class="spNext btn_5 jsNext"
+                      type="button"
+                      @click="nextStepUpdate"
+                    >
+                      下一步
+                    </button>
                     </div>
                   </div>
                 </div>

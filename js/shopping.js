@@ -122,10 +122,10 @@ const app = Vue.createApp({
         this.nowDate = new Date().toLocaleDateString("zh-TW", options);
 
         // 獲取最大可使用的點數
-        const maxUsePoints = this.caculate_point();
+        // const maxUsePoints = this.caculate_point();
 
         // 將 usePoints 初始化為最大可使用的點數
-        this.usePoints = maxUsePoints;
+        // this.usePoints = maxUsePoints;
 
 
         //從localStorage抓cartData
@@ -146,6 +146,62 @@ const app = Vue.createApp({
 
     },
     methods: {
+        // //第一步驟點擊下一步後
+        // updateUsePointsAndIncrementStep() {
+        //     // 调用 caculate_point() 并将其返回的值分配给 usePoints
+        //     this.usePoints = this.caculate_point();
+
+        //     // 增加 currentStep 的值
+        //     this.currentStep++;
+        //   },
+        // updateUsePointsAndIncrementStep() {
+        //     // 檢查 localStorage 是否包含 member 的值
+        //     const memberData = JSON.parse(localStorage.getItem('member'));
+
+        //     if (memberData) {
+        //       // 調用 caculate_point() 並將其返回的值分配給 usePoints
+        //       this.usePoints = this.caculate_point();
+
+        //       // 增加 currentStep 的值
+        //       this.currentStep++;
+        //     } else {
+        //       // 如果不存在 member 值，顯示警告訊息
+        //       alert("請先登入");
+        //     }
+        //   },
+        nextStepUpdate() {
+            // 檢查 localStorage 是否包含 member 的值
+            const memberData = JSON.parse(localStorage.getItem('member'));
+
+            if (!memberData) {
+
+                vm.ispop = true;// 假設登入按鈕有一個 id 為 "loginButton"
+
+                if (loginButton) {
+                    // 執行點擊事件
+                    loginButton.click();
+                }
+                // 使用 confirm 對話框確認
+                // const confirmResult = confirm("請先登入，是否跳轉至登入頁？");
+
+                // if (confirmResult) {
+                //     // 跳轉至 login.html
+                //     // window.location.href = "member.html";
+                //     // 模擬點擊 header 的登入按鈕
+
+                // } else {
+                //     // 用戶取消操作，停留在當前頁面
+                // }
+            } else {
+                // 調用 caculate_point() 並將其返回的值分配給 usePoints
+                this.usePoints = this.caculate_point();
+
+                // 增加 currentStep 的值
+                this.currentStep++;
+            }
+        },
+
+
         // 更新localStorage的資料
         updateLocalStorage() {
             const updatedCartData = this.shoppingItems.map((item, index) => ({
@@ -167,7 +223,7 @@ const app = Vue.createApp({
             }
         },
         caculate_point() {
-            return this.havePoints < this.totalPrice * 0.2 ? this.havePoints : this.totalPrice * 0.2;
+            return this.havePoints < Math.floor(this.totalPrice * 0.2) ? this.havePoints : Math.floor(this.totalPrice * 0.2);
         },
 
         setCurrentStep(index) {
