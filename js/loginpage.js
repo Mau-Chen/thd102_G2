@@ -75,6 +75,24 @@ const ModalPage = Vue.createApp({
         password: this.password
       }
 
+      const emailPattern = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+      if(!emailPattern.test(res.account)){
+        Swal.fire({
+          toast:true,
+          position: 'top',
+          icon: 'question',
+          // title: '查無此人?',
+          text: '請確認帳號密碼',
+          showConfirmButton: false,
+          timer: 3000,
+          backdrop: `rgba(0,0,0,0)`,
+          customClass:{
+            container: 'swal2'
+          }
+        })
+        return;
+      }
+
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
 
@@ -106,18 +124,20 @@ const ModalPage = Vue.createApp({
           //   }
           // });
         } else {
-          this.ispop = false;
-          // Swal.fire({
-          //   icon: 'question',
-          //   title: '查無此人?',
-          //   text: '要不要試著註冊會員?',
-          //   showConfirmButton: false,
-          //   timer: 3000,
-          //   backdrop: `rgba(0,0,0,0)`,
-          //   customClass:{
-          //     container: 'swal2'
-          //   }
-          // })
+          // this.ispop = false;
+          Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: 'question',
+            // title: '查無此人?',
+            text: '請確認帳號密碼',
+            showConfirmButton: false,
+            timer: 3000,
+            backdrop: `rgba(0,0,0,0)`,
+            customClass:{
+              container: 'swal2'
+            }
+          })
         }
       })
     },
