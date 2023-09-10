@@ -171,7 +171,14 @@ function updateCartItemCount() {
   const SPcartNumElements = document.querySelectorAll(".SPcartNum");
   if (SPcartNumElements) {
     SPcartNumElements.forEach(function (element) {
-      element.textContent = numberOfItems;
+      if (numberOfItems > 0) {
+        // 如果購物車數大於0，顯示.SPcartNum
+        element.textContent = numberOfItems;
+        element.style.display = "block"; // 顯示.SPcartNum
+      } else {
+        // 否則隱藏.SPcartNum
+        element.style.display = "none";
+      }
     });
   }
 }
