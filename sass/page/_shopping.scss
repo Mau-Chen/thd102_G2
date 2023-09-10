@@ -20,7 +20,7 @@
 
   //步驟區塊
   .spStep_bg {
-    height: 170px;
+    padding: 70px 16px 50px;
     background-color: $white;
     @include flex();
 
@@ -28,6 +28,7 @@
       background-color: $white;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+      margin: 0 16px;
 
       > button.spStep {
         cursor: default;
@@ -50,6 +51,8 @@
     background-color: transparent;
     text-indent: 0;
     cursor: auto;
+    font-weight: 500;
+    font-size: 18px;
 
     &::before {
       content: "";
@@ -757,10 +760,11 @@
 
   @media screen and (max-width: 768px) {
     .spStep_bg {
-      height: 93px;
+      // height: 100px;
 
       .spStep {
         padding-top: 40px;
+        font-size: 16px;
 
         &::before {
           width: 32px;

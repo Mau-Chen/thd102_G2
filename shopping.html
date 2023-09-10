@@ -141,7 +141,7 @@
                         </div>
                         <!-- 小計的金額用函數 countSubtotal(item) 計算 -->
                         <p>
-                          NT${{ countSubtotal(item).toLocaleString('en-US') }}
+                          NT$ {{ countSubtotal(item).toLocaleString('en-US') }}
                         </p>
                       </div>
                     </div>
@@ -151,7 +151,7 @@
                       <div class="spTotal mb_32">
                         <!-- totalItems 和 totalPrice 分別計算總件數和總＄。 -->
                         <p>{{ this.checkedNames.length }}件總計</p>
-                        <h5>NT${{ totalPrice.toLocaleString('en-US') }}</h5>
+                        <h5>NT$ {{ totalPrice.toLocaleString('en-US') }}</h5>
                       </div>
                       <!-- <button
                         class="spNext btn_5 jsNext"
@@ -161,12 +161,12 @@
                         下一步
                       </button> -->
                       <button
-                      class="spNext btn_5 jsNext"
-                      type="button"
-                      @click="nextStepUpdate"
-                    >
-                      下一步
-                    </button>
+                        class="spNext btn_5 jsNext"
+                        type="button"
+                        @click="nextStepUpdate"
+                      >
+                        下一步
+                      </button>
                     </div>
                   </div>
                 </div>

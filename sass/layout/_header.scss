@@ -98,12 +98,12 @@ header {
     @media (max-width: 768px) {
       display: flex;
       justify-content: flex-end;
-      gap: 60px;
+      gap: 70px;
       > a {
         position: relative;
         .SPcartNum {
           position: absolute;
-          right: -10px;
+          right: -6px;
           top: -8px;
           border-radius: 50%;
           background-color: $purple;
