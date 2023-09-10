@@ -1,3 +1,4 @@
+AOS.init();
 // ----------------------- 選擇pago理由亮點追逐 ----------------------------
 const handleOnMounseMove = (e) => {
   const { currentTarget: target } = e;

@@ -1,6 +1,11 @@
 .ad_section {
-  // margin-left: 32px;
-  // margin-right: 32px;
+  padding: 0 120px;
+  @media (max-width: 1000px) {
+    padding: 0 32px;
+  }
+}
+.ad_white_shop {
+  margin-top: 48px;
 }
 .ad_box {
   @include flex();

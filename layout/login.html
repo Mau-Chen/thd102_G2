@@ -124,16 +124,24 @@
             <div v-if="index === 1" class="loginPage">
               <div class="pageIsideContainer">
                 <h5>重設密碼</h5>
-                <p class="textColor_m-font">
-                  輸入你註冊PetpaGo帳號的電子信箱，我們會發送重設密碼的連結
-                </p>
+                <p class="textColor_m-font">請輸入於PetpaGo註冊的電子信箱</p>
                 <form action="#" method="post">
                   <div class="sectionHead">
                     <label for="checkEmail">電子信箱</label>
-                    <input type="email" placeholder="請輸入Email" v-model="forgetKey" class="loginType" />
+                    <input
+                      type="email"
+                      placeholder="請輸入Email"
+                      v-model="forgetKey"
+                      class="loginType"
+                    />
                   </div>
                   <div class="submit">
-                    <input type="button" class="btn_5" value="確認" @click="indexTwoCheck()" />
+                    <input
+                      type="button"
+                      class="btn_5"
+                      value="確認"
+                      @click="indexTwoCheck()"
+                    />
                   </div>
                 </form>
               </div>
@@ -149,14 +157,31 @@
                   <form action="#" method="post">
                     <div class="sectionHead">
                       <label for="passwordCheck">新密碼</label>
-                      <input type="password" id="passwordCheck" v-model="forgetPassword.set" placeholder="請輸入" class="loginType" />
+                      <input
+                        type="password"
+                        id="passwordCheck"
+                        v-model="forgetPassword.set"
+                        placeholder="請輸入"
+                        class="loginType"
+                      />
                     </div>
                     <!-- <div class="sectionBody"> -->
                     <label for="passwordCheck1">請再次輸入新密碼</label>
-                    <input type="password" id="passwordCheck1" v-model="forgetPassword.check" placeholder="請輸入" class="loginType" />
+                    <input
+                      type="password"
+                      id="passwordCheck1"
+                      v-model="forgetPassword.check"
+                      placeholder="請輸入"
+                      class="loginType"
+                    />
                     <!-- </div> -->
                     <div class="submit">
-                      <input type="button" class="btn_5" value="確認重設" @click="indexThreeCheck" />
+                      <input
+                        type="button"
+                        class="btn_5"
+                        value="確認重設"
+                        @click="indexThreeCheck"
+                      />
                     </div>
                   </form>
                 </div>
@@ -244,7 +269,11 @@
                 <div class="pageIsideContainer">
                   <img src="./images/icon/components-icon/success.svg" alt="" />
                   <h5 class="mb_24">註冊成功!</h5>
-                  <button type="button" class="btn_5" @click="changePage(0), reset()">
+                  <button
+                    type="button"
+                    class="btn_5"
+                    @click="changePage(0), reset()"
+                  >
                     確認
                   </button>
                 </div>

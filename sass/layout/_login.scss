@@ -9,6 +9,7 @@
   @include flex();
   font-weight: normal;
   font-family: "Noto Sans TC", "poppins";
+  font-size: 16px;
 }
 
 .loginpage_base {
@@ -17,9 +18,9 @@
   top: 90px;
   z-index: 11;
   // transform: translateY(-20%);
-  @media screen and (max-width: 500px) {
+  padding: 0 20px;
+  @media (max-width: 500px) {
     width: 100%;
-    padding: 0 10px;
   }
 
   .close {
@@ -35,9 +36,9 @@
     width: 100%;
     background-color: $white;
     border-radius: $br_12;
-    padding: 40px;
+    padding: 30px;
     color: $black;
-    position: absolute;
+    position: relative;
     .pageIsideContainer {
       @include flex(column);
       gap: 24px;
@@ -78,6 +79,19 @@
       width: 100%;
       border: 0;
     }
+
+    @media (max-width: 500px) {
+      padding: 20px;
+      .pageIsideContainer {
+        gap: 20px;
+        .loginType {
+          margin-bottom: 20px;
+        }
+        form a {
+          margin-bottom: 20px;
+        }
+      }
+    }
   }
   .register {
     @include flex();
@@ -112,6 +126,14 @@
         top: 50%;
         margin-left: 10px;
       }
+      @media (max-width: 500px) {
+        &::before {
+          width: 110%;
+        }
+        &::after {
+          width: 110%;
+        }
+      }
     }
   }
   .otherIcon {
@@ -145,7 +167,6 @@
 .login123 {
   display: none;
 }
-
 
 // Vue 動畫部分
 //X軸滑動
@@ -210,8 +231,3 @@
 .modal-leave-active {
   animation: slideOut 0.2s ease-out both;
 }
-
-
-
-
-
