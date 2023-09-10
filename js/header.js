@@ -188,28 +188,28 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ------- 確認是否會員 ----------------------------
-const app = Vue.createApp({
-  methods: {
-    nextStepUpdate() {
-      // 檢查 localStorage 是否包含 member 的值
-      const memberData = JSON.parse(localStorage.getItem("member"));
+// const app = Vue.createApp({
+//   methods: {
+//     nextStepUpdate() {
+//       // 檢查 localStorage 是否包含 member 的值
+//       const memberData = JSON.parse(localStorage.getItem("member"));
 
-      if (!memberData) {
-        vm.ispop = true; // 假設登入按鈕有一個 id 為 "loginButton"
+//       if (!memberData) {
+//         vm.ispop = true; // 假設登入按鈕有一個 id 為 "loginButton"
 
-        if (loginButton) {
-          // 執行點擊事件
-          loginButton.click();
-        }
-      } else {
-        // 調用 caculate_point() 並將其返回的值分配給 usePoints
-        this.usePoints = this.caculate_point();
+//         if (loginButton) {
+//           // 執行點擊事件
+//           loginButton.click();
+//         }
+//       } else {
+//         // 調用 caculate_point() 並將其返回的值分配給 usePoints
+//         this.usePoints = this.caculate_point();
 
-        // 增加 currentStep 的值
-        this.currentStep++;
-      }
-    },
-  },
-});
+//         // 增加 currentStep 的值
+//         this.currentStep++;
+//       }
+//     },
+//   },
+// });
 
-app.mount("#spApp");
+// app.mount("#spApp");
