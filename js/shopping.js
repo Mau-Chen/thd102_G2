@@ -1,24 +1,45 @@
 const app = Vue.createApp({
     data() {
         return {
+            //步驟數據
             currentStep: 0,
             steps: ["查看購物車", "填寫資料", "完成付款"],
+
+            //步驟1:全選
             checked: false,
             checkedNames: [],
 
-            member_data: {
-                id: 1,
-                name: "王緯育",
-                email: "service@tibame.com",
-                phone: "0912345678",
-            },
+            //步驟一：LocalStorage抓下來的訂單資訊
+            shoppingItems: [],
 
+            //步驟2:同會員資料
+            // member_data: {
+            //     // id: 1,
+            //     // name: "王緯育",
+            //     // email: "service@tibame.com",
+            //     // phone: "0912345678",
+            //     // havePoints: 100,
+            //     // status: "正常",
+            // },
+            // member_data: {
+            //     id: '',
+            //     name: '',
+            //     email: '',
+            //     phone: '',
+            //     havePoints: '',
+            //     status: '',
+            // },
+            member_data: {},
+            // member_data: [
 
+            // ],
+
+            // havePoints: 100,
+            //步驟2:訂購資訊
             spOrderName: "",
             spOrderEmail: "",
             spOrderPhone: "",
             sameMemberChecked: false,
-            havePoints: 100,
             usePoints: 0,
             usePointsCheck: true,
 
@@ -34,54 +55,8 @@ const app = Vue.createApp({
             cardCVC: "",
             isStepTwoValid: false,
             validationErrors: [],
-            // shoppingItems: [
-            //     {
-            //         id: "Car",
-            //         type: "spDriver",
-            //         pictureSrc_m: "./images/pic/shop/goShop01_m.png",
-            //         pictureSrc: "./images/pic/shop/goShop01.png",
-            //         product: "寵物接送",
-            //         listType: "轎車",
-            //         spStepper: false,
-            //         spPrice: 300,
-            //         BuyNum: 1,
-            //         listDate_S: "2023/8/17",
-            //         listDate_E: "2023/8/17",
-            //         listDate_T: "16:00",
-            //         startadd: "台北市中山區南京東路三段219號5樓",
-            //         endadd: "台北市信義區福德街86號9樓"
-            //     },
-            //     {
-            //         id: "Hostel1",
-            //         type: "spHostel",
-            //         pictureSrc_m: "./images/pic/shop/goShop02_m.png",
-            //         pictureSrc: "./images/pic/shop/goShop02.png",
-            //         product: "快樂寵物旅館",
-            //         listType: "狗套房",
-            //         dogSize: "小型犬",
-            //         spStepper: true,
-            //         spPrice: 800,
-            //         BuyNum: 1,
-            //         listDate_S: "2023/8/17",
-            //         listDate_E: "2023/8/20",
-            //         listDate_T: "16:00",
-            //     },
-            //     {
-            //         id: "Hostel2",
-            //         type: "spHostel",
-            //         pictureSrc_m: "./images/pic/shop/goShop03_m.png",
-            //         pictureSrc: "./images/pic/shop/goShop03.png",
-            //         product: "快樂寵物旅館",
-            //         listType: "貓套房",
-            //         spStepper: true,
-            //         spPrice: 800,
-            //         BuyNum: 1,
-            //         listDate_S: "2023/8/17",
-            //         listDate_E: "2023/8/20",
-            //         listDate_T: "16:00",
-            //     },
-            // ],
-            shoppingItems: [],
+
+
         };
     },
     created() {
@@ -98,7 +73,7 @@ const app = Vue.createApp({
 
             // 重新設定 this.checkedNames 為所有項目的 id
             this.checkedNames = this.shoppingItems.map((item) => item.id);
-            this.checked = true;
+            // this.checked = true;
         }
 
         // 獲取最大可使用的點數
@@ -110,7 +85,13 @@ const app = Vue.createApp({
 
     // 預設全選。
     mounted() {
-        this.checked = true;
+        if (this.shoppingItems.length > 0) {
+            this.checkedNames = this.shoppingItems.map((item) => item.id);
+            this.checked = true;
+        } else {
+            this.checked = false;
+        }
+        // // this.checked = true;
         // this.checkedNames = this.shoppingItems.map((item) => item.id);
 
         let nextButton = document.getElementById("Go_index");
@@ -120,13 +101,6 @@ const app = Vue.createApp({
 
         const options = { year: "numeric", month: "long", day: "numeric" };
         this.nowDate = new Date().toLocaleDateString("zh-TW", options);
-
-        // 獲取最大可使用的點數
-        // const maxUsePoints = this.caculate_point();
-
-        // 將 usePoints 初始化為最大可使用的點數
-        // this.usePoints = maxUsePoints;
-
 
         //從localStorage抓cartData
         const cartData = JSON.parse(localStorage.getItem('cartData'));
@@ -146,60 +120,62 @@ const app = Vue.createApp({
 
     },
     methods: {
-        // //第一步驟點擊下一步後
-        // updateUsePointsAndIncrementStep() {
-        //     // 调用 caculate_point() 并将其返回的值分配给 usePoints
-        //     this.usePoints = this.caculate_point();
 
-        //     // 增加 currentStep 的值
-        //     this.currentStep++;
-        //   },
-        // updateUsePointsAndIncrementStep() {
-        //     // 檢查 localStorage 是否包含 member 的值
-        //     const memberData = JSON.parse(localStorage.getItem('member'));
-
-        //     if (memberData) {
-        //       // 調用 caculate_point() 並將其返回的值分配給 usePoints
-        //       this.usePoints = this.caculate_point();
-
-        //       // 增加 currentStep 的值
-        //       this.currentStep++;
-        //     } else {
-        //       // 如果不存在 member 值，顯示警告訊息
-        //       alert("請先登入");
-        //     }
-        //   },
         nextStepUpdate() {
             // 檢查 localStorage 是否包含 member 的值
             const memberData = JSON.parse(localStorage.getItem('member'));
 
             if (!memberData) {
-
-                vm.ispop = true;// 假設登入按鈕有一個 id 為 "loginButton"
-
-                if (loginButton) {
-                    // 執行點擊事件
-                    loginButton.click();
-                }
-                // 使用 confirm 對話框確認
-                // const confirmResult = confirm("請先登入，是否跳轉至登入頁？");
-
-                // if (confirmResult) {
-                //     // 跳轉至 login.html
-                //     // window.location.href = "member.html";
-                //     // 模擬點擊 header 的登入按鈕
-
-                // } else {
-                //     // 用戶取消操作，停留在當前頁面
-                // }
+                vm.ispop = true;
             } else {
-                // 調用 caculate_point() 並將其返回的值分配給 usePoints
-                this.usePoints = this.caculate_point();
-
-                // 增加 currentStep 的值
-                this.currentStep++;
+                const { account } = memberData; // 取帳號
+                fetch(`/thd102/g2/php/FrontendLogin/check.php?account=${account}`, {
+                    method: 'GET'
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.login === "success") {
+                            // 登入成功，取會員資料
+                            this.fetchMemberData(account);
+                        } else {
+                            // 登入失敗，進行適當處理
+                            swal("發生錯誤", "請聯繫管理員", "info");
+                        }
+                    })
+                    .catch((error1) => {
+                        console.error('從伺服器取數據出錯：', error1);
+                    });
             }
         },
+
+        fetchMemberData(account) {
+            // 發送 GET 請求以檢索會員數據
+            fetch(`/thd102/g2/php/shopping/spMember.php?account=${account}`, {
+                method: 'GET'
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.login === "success") {
+                        // 更新 Vue 組件中的 member_data
+                        this.member_data = {
+                            id: data.id,
+                            name: data.name,
+                            email: data.email,
+                            phone: data.phone,
+                            havePoints: data.havePoints,
+                            status: data.status
+                        };
+
+                        // 更新 usePoints 和 currentStep
+                        this.usePoints = this.caculate_point();
+                        this.currentStep++;
+                    }
+                })
+                .catch((error2) => {
+                    console.error('從伺服器獲取會員數據時出錯：', error2);
+                });
+        },
+
 
 
         // 更新localStorage的資料
@@ -222,8 +198,81 @@ const app = Vue.createApp({
                 this.spOrderPhone = this.member_data.phone;
             }
         },
+        // 在你的Vue组件中
+        // sameMember() {
+        //     if (this.sameMemberChecked === true) {
+        //         // 向 spMember.php 发送请求
+        //         fetch('/path/to/spMember.php', {
+        //             method: 'GET', // 或其他请求方法，根据你的需要
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         })
+        //             .then((response) => response.json())
+        //             .then((data) => {
+        //                 // 在这里处理从数据库返回的数据
+        //                 if (data.success) {
+        //                     // 更新Vue组件中的数据
+        //                     this.spOrderName = data.name;
+        //                     this.spOrderEmail = data.email;
+        //                     this.spOrderPhone = data.phone;
+        //                 } else {
+        //                     // 数据库中未找到匹配的数据，进行适当的处理
+        //                 }
+        //             })
+        //             .catch((error) => {
+        //                 console.error('Error fetching data from server:', error);
+        //             });
+        //     }
+        // },
+        // sameMember() {
+        //     if (this.sameMemberChecked === true) {
+        //         // 向 spMember.php 發送請求
+        //         fetch('/thd102/g2/php/shopping/spMember.php', {
+        //             method: 'GET', // 或其他請求方法，根據你的需要
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         })
+        //             .then((response) => {
+        //                 if (!response.ok) {
+        //                     throw new Error('網絡響應不正確');
+        //                 }
+        //                 return response.json();
+        //             })
+        //             .then((data) => {
+        //                 // 在這裡處理從資料庫返回的數據
+        //                 if (data.login === "success") {
+        //                     // 更新 Vue 組件中的 member_data
+        //                     this.member_data = {
+        //                         id: data.id,
+        //                         name: data.name,
+        //                         email: data.email,
+        //                         phone: data.phone,
+        //                         havePoints: data.havePoints,
+        //                         status: data.status
+        //                     };
+
+        //                     // 其他需要的數據處理
+        //                     // ...
+        //                 } else {
+        //                     // 資料庫中未找到匹配的數據，進行適當的處理
+        //                 }
+        //             })
+        //             .catch((error) => {
+        //                 console.error('從伺服器獲取數據時出錯：', error);
+        //             });
+        //     }
+        // },
+
+
         caculate_point() {
-            return this.havePoints < Math.floor(this.totalPrice * 0.2) ? this.havePoints : Math.floor(this.totalPrice * 0.2);
+            return this.member_data.havePoints < Math.floor(this.totalPrice * 0.2) ? this.member_data.havePoints : Math.floor(this.totalPrice * 0.2);
+            // if (this.member_data.havePoints) {
+            //     return this.member_data.havePoints < Math.floor(this.totalPrice * 0.2) ? this.member_data.havePoints : Math.floor(this.totalPrice * 0.2);
+            // }else{
+            //     return this.member_data.havePoints = 0;
+            // } 
         },
 
         setCurrentStep(index) {
@@ -311,16 +360,60 @@ const app = Vue.createApp({
             return `${Number(month)}月${Number(day)}日`;
         },
         // 確認是否移除
+        // confirmDelete(index) {
+        //     const isConfirmed = confirm("確認移除嗎？");
+        //     if (isConfirmed) {
+        //         // 點擊後刪除當前.spCard
+        //         this.shoppingItems.splice(index, 1);
+        //         // 引用整理索引
+        //         this.updateIndex();
+        //         this.updateLocalStorage();
+
+        //         // 更新 checkedNames，移除對應的項目 ID
+        //         this.checkedNames = this.checkedNames.filter(id => id !== (index + 1).toString());
+
+        //         // 输出调试信息
+        //         console.log("shoppingItems:", this.shoppingItems);
+        //         console.log("checkedNames:", this.checkedNames);
+
+        //         // 更新全選状态
+        //         this.checked = this.checkedNames.length === this.shoppingItems.length;
+        //     }
+        // },
         confirmDelete(index) {
             const isConfirmed = confirm("確認移除嗎？");
             if (isConfirmed) {
-                // 點擊後刪除當前.spCard
+                // 获取要删除的项目的 ID
+                const itemIdToDelete = (index + 1).toString();
+
+                // 从 shoppingItems 中删除项目
                 this.shoppingItems.splice(index, 1);
-                // 引用整理索引
+                // 更新索引
                 this.updateIndex();
+
+                // 更新 checkedNames，移除对应的项 ID
+                this.checkedNames = this.checkedNames.filter(id => id !== itemIdToDelete);
+
+                // 更新本地存储
                 this.updateLocalStorage();
+                // 更新全选状态
+                // this.checked = this.checkedNames.length > 0;
+                //         // 输出调试信息
+                console.log("shoppingItems:", this.shoppingItems);
+                console.log("checkedNames:", this.checkedNames);
+
+                // 更新全选状态
+                // this.checked = this.checkedNames.length === this.shoppingItems.length;
+                // 强制更新全选状态
+                // this.$forceUpdate();
+                this.$nextTick(() => {
+                    this.checked = this.checkedNames.length === this.shoppingItems.length;
+                });
             }
         },
+
+
+
         // 重新整理索引值
         updateIndex() {
             this.shoppingItems.forEach((item, index) => {
@@ -349,54 +442,111 @@ const app = Vue.createApp({
                 this.$refs["input" + index].value = inputValue.replace(/\D/g, ''); // 删除非数字字符
             }
         },
+        // checkform() {
+        //     let isValid = true;
+        //     let cardFieldErrorShown = false;
+
+        //     // 驗證姓名
+        //     if (this.spOrderName.trim() === "") {
+        //         isValid = false;
+        //         alert("請確認姓名欄位是否正確");
+        //     }
+
+        //     // 驗證 Email
+        //     if (!this.validateEmail(this.spOrderEmail)) {
+        //         isValid = false;
+        //         alert("請輸入正確的E-mail格式，例:XXX@XXX.XXX");
+        //     }
+
+        //     // 驗證行動電話
+        //     if (!this.validatePhone(this.spOrderPhone)) {
+        //         isValid = false;
+        //         alert("請輸入正確的行動電話格式，例:09XXXXXXXX");
+        //     }
+
+        //     // 驗證信用卡號的每一個部分是否填寫錯誤
+        //     for (let i = 0; i < this.cardNumber.length; i++) {
+        //         if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4) {
+        //             isValid = false;
+        //             if (!cardFieldErrorShown) {
+        //                 alert("請確認信用卡『欄位填寫』是否正確");
+        //                 cardFieldErrorShown = true; // 標記為已經顯示警告
+        //             }
+        //         }
+        //     }
+
+        //     // 驗證有效期限
+        //     if (!this.validateCardDate()) {
+        //         isValid = false;
+        //         alert("請確認信用卡有效期限是否正確");
+        //     }
+
+        //     // 驗證 CVC/CVV
+        //     if (this.cardCVC.length !== 3) {
+        //         isValid = false;
+        //     }
+
+        //     // 驗證信用卡號是否合法
+        //     // if (!this.validateCreditCard(this.cardNumber)) {
+        //     //     isValid = false;
+        //     //     alert("請確認信用卡『卡號』是否正確");
+        //     // }
+
+        //     // 如果通過驗證，執行下一步操作
+        //     if (isValid) {
+        //         this.saveFormDataToDatabase();
+        //         // 執行下一步操作
+        //         // this.currentStep++;
+        //     }
+        // },
+
         checkform() {
             let isValid = true;
-            let cardFieldErrorShown = false;
+            const errorText = []; // 用于收集错误消息的数组
 
             // 驗證姓名
             if (this.spOrderName.trim() === "") {
                 isValid = false;
-                alert("請確認姓名欄位是否正確");
+                errorText.push("姓名");
             }
 
             // 驗證 Email
             if (!this.validateEmail(this.spOrderEmail)) {
                 isValid = false;
-                alert("請輸入正確的E-mail格式，例:XXX@XXX.XXX");
+                errorText.push("E-mail");
             }
 
             // 驗證行動電話
             if (!this.validatePhone(this.spOrderPhone)) {
                 isValid = false;
-                alert("請輸入正確的行動電話格式，例:09XXXXXXXX");
+                errorText.push("行動電話");
             }
 
             // 驗證信用卡號的每一個部分是否填寫錯誤
             for (let i = 0; i < this.cardNumber.length; i++) {
                 if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4) {
                     isValid = false;
-                    if (!cardFieldErrorShown) {
-                        alert("請確認信用卡『欄位填寫』是否正確");
-                        cardFieldErrorShown = true; // 標記為已經顯示警告
-                    }
+                    errorText.push("信用卡卡號");
+                    break; // 如果发现问题，立即中断循环
                 }
             }
 
             // 驗證有效期限
             if (!this.validateCardDate()) {
                 isValid = false;
-                alert("請確認信用卡有效期限是否正確");
+                errorText.push("信用卡有效期限");
             }
 
             // 驗證 CVC/CVV
             if (this.cardCVC.length !== 3) {
                 isValid = false;
+                errorText.push("CVC/CVV");
             }
 
             // 驗證信用卡號是否合法
             // if (!this.validateCreditCard(this.cardNumber)) {
             //     isValid = false;
-            //     alert("請確認信用卡『卡號』是否正確");
+            //     errorMessages.push("請確認信用卡『卡號』是否正確");
             // }
 
             // 如果通過驗證，執行下一步操作
@@ -404,6 +554,11 @@ const app = Vue.createApp({
                 this.saveFormDataToDatabase();
                 // 執行下一步操作
                 // this.currentStep++;
+            } else {
+                // 显示错误消息
+                //   alert(errorMessages.join("\n"));
+                // alert("請確認以下欄位是否正確：\n" + errorText.join("\n"));
+                swal("請確認以下欄位是否正確:\n", errorText.join("\n"), "warning");
             }
         },
 
@@ -425,14 +580,12 @@ const app = Vue.createApp({
 
             for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
                 let digit = parseInt(cleanedCardNumber.charAt(i), 10);
-
                 if (doubleUp) {
                     digit *= 2;
                     if (digit > 9) {
                         digit -= 9;
                     }
                 }
-
                 sum += digit;
                 doubleUp = !doubleUp;
             }
@@ -440,18 +593,25 @@ const app = Vue.createApp({
             return sum % 10 === 0;
         },
         validateCardDate() {
-            // 獲取當前年份new Date().getFullYear()的後兩位數toString().slice(-2)
-            const currentYear = new Date().getFullYear().toString().slice(-2);
+            // 取現在年份new Date().getFullYear()的後兩位數toString().slice(-2)
+            const thisYear = new Date().getFullYear().toString().slice(-2);
 
-            // 驗證第一個input是否為01、02、03、04、05、06、07、08、09、10、11、12
+            // 取現在月份，月份是從0開始的，所以要加1
+            const thisMonth = new Date().getMonth() + 1;
+
+            // 第一個input是否為01、02、03、04、05、06、07、08、09、10、11、12
             const monthInput = this.cardDate[0];
             if (!/^(0[1-9]|1[0-2])$/.test(monthInput)) {
                 return false;
             }
 
-            // 驗證第二個input是否大於等於今年的後兩碼
+            // 第二個input是否>=今年的後兩碼，且!<當前月份
             const yearInput = this.cardDate[1];
-            if (!/^\d{2}$/.test(yearInput) || parseInt(yearInput) < parseInt(currentYear)) {
+            if (
+                !/^\d{2}$/.test(yearInput) ||
+                (parseInt(yearInput) < parseInt(thisYear) ||
+                (parseInt(yearInput) === parseInt(thisYear) && parseInt(monthInput) < thisMonth))
+            ) {
                 return false;
             }
             return true;
@@ -459,119 +619,24 @@ const app = Vue.createApp({
         resetSameMemberChecked() {
             this.sameMemberChecked = false;
         },
-        // async saveFormDataToDatabase() {
-        //     try {
-        //         // 構建要保存到ORDER表中的數據
-        //         const orderData = {
-        //             ORDERSTATUS: "無異動", // 從前端獲取
-        //             ORDERDATE: this.nowDate, // 當前日期和時間
-        //             BEFORETOTAL: this.totalPrice, // 總價格
-        //             USEPOINTS: this.usePoints, // 使用的積分
-        //             MEMBER_ID: this.member_data.id, // 會員ID
-        //         };
-
-        //         // 向伺服器發送POST請求保存訂單數據，並獲取生成的ORDER_ID
-        //         const orderResponse = await fetch('../php/shopping/shopping.php', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //             },
-        //             body: JSON.stringify({ orderData }),
-        //         });
-
-        //         if (!orderResponse.ok) {
-        //             console.error('保存ORDER數據到數據庫時出錯');
-        //             return;
-        //         }
-
-        //         // 解析ORDER_RESPONSE以獲取生成的ORDER_ID
-        //         const { ORDER_ID } = await orderResponse.json();
-
-        //         // 將每個購物項的相關數據添加到ORDERDETAILS表中
-        //         const orderDetailsData = this.shoppingItems.map((item) => {
-        //             return {
-        //                 NOWPRICE: item.spPrice, // 商品價格
-        //                 QUANTITY: item.listDate_D, // 數量
-        //                 AMOUNT: item.BuyNum, // 金額
-        //                 SIZE: item.listType === "狗套房" ? item.dogSize : null, // 僅當listType為狗套房時傳遞
-        //                 START: item.spStepper ? item.startadd : null, // 僅當spStepper為true時傳遞
-        //                 END: item.spStepper ? item.endadd : null, // 僅當spStepper為true時傳遞
-        //                 STARTDATE: item.listDate_S, // 開始日期
-        //                 ENDDATE: item.listDate_E, // 結束日期
-        //                 ORDER_ID, // 使用從ORDER表獲取的ORDER_ID
-        //                 PRODUCT_ID: item.listType === "轎車" ? 1 : item.listType === "休旅車" ? 2 : item.listType === "貓套房" ? 3 : item.listType === "狗套房" ? 4 : null, // 根據不同的listType傳遞不同的值
-        //                 HOTELINFO_ID: !item.spStepper ? item.product : null, // 僅當spStepper為false時傳遞
-        //             };
-        //         });
-
-        //         // 向伺服器發送POST請求保存ORDERDETAILS數據
-        //         const orderDetailsResponse = await fetch('../php/shopping/shopping.php', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //             },
-        //             body: JSON.stringify({ orderDetailsData }),
-        //         });
-
-        //         if (orderDetailsResponse.ok) {
-        //             console.log('訂單數據已成功保存到數據庫');
-
-        //             // 在此處執行currentStep++
-        //             this.currentStep++;
-        //         } else {
-        //             console.error('保存訂單詳細數據到數據庫時出錯');
-        //         }
-        //     } catch (error) {
-        //         console.error('保存訂單數據時發生錯誤:', error);
-        //     }
-        //     // try {
-        //     //     const response = await fetch('../php/shopping/shopping.php', {
-        //     //         method: 'POST',
-        //     //         headers: {
-        //     //             'Content-Type': 'application/json',
-        //     //         },
-        //     //         body: JSON.stringify(dataToSave),
-        //     //     });
-
-        //     //     if (response.ok) {
-        //     //         const responseData = await response.json();
-        //     //         if (responseData.success) {
-        //     //             console.log('订单数据已成功保存到数据库');
-        //     //         } else {
-        //     //             console.error('保存订单数据时出现问题：', responseData);
-        //     //         }
-        //     //     } else {
-        //     //         console.error('请求出现问题，状态码：', response.status);
-        //     //     }
-        //     // } catch (error) {
-        //     //     console.error('保存订单数据时出现错误：', error);
-        //     // }
-
-        // },
-
-
-
-
 
         handlePoints(event) {
             const maxUsePoints = this.caculate_point();
             let inputValue = event.target.value;
 
-            // 使用正則表達式檢查輸入是否為有效數字或刪除鍵
+            // 使用檢查輸入是否為數字或刪除鍵
             const validInputRegex = /^[0-9\b]+$/;
 
             if (validInputRegex.test(inputValue)) {
-                // 如果輸入有效，將 usePoints 轉換為數值
                 const usePointsValue = parseInt(inputValue);
 
-                // 檢查 usePoints 是否大於 maxUsePoints
+                // usePoints 是否大於 maxUsePoints
                 if (usePointsValue > maxUsePoints) {
                     this.usePoints = maxUsePoints.toString();
                 } else {
                     this.usePoints = inputValue;
                 }
             } else {
-                // 如果輸入無效，將其修正為合法的值 (只能是數字或空)
                 this.usePoints = "";
             }
         }

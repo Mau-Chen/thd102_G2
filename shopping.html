@@ -153,13 +153,6 @@
                         <p>{{ this.checkedNames.length }}件總計</p>
                         <h5>NT${{ totalPrice.toLocaleString('en-US') }}</h5>
                       </div>
-                      <!-- <button
-                        class="spNext btn_5 jsNext"
-                        type="button"
-                        @click="caculate_point();currentStep ++"
-                      >
-                        下一步
-                      </button> -->
                       <button
                       class="spNext btn_5 jsNext"
                       type="button"
@@ -221,7 +214,7 @@
                     </div>
                     <p>
                       可用 Pet Points
-                      <span>{{ havePoints }}</span> 點，最多使用<input
+                      <span>{{ member_data.havePoints }}</span> 點，最多使用<input
                         type="number"
                         id="usePoint"
                         v-model="usePoints"
@@ -507,6 +500,7 @@
       @@include('layout/footer.html')
     </div>
     @@include('layout/metaJs.html')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./js/shopping.js"></script>
   </body>
 </html>
