@@ -124,15 +124,22 @@ new Hambuger();
 //頁面停留字的變色
 document.addEventListener("DOMContentLoaded", function () {
   var currentPath = window.location.pathname; // 獲取當前頁面的路徑
-  console.log(currentPath);
+  // console.log(currentPath);
   var hostelLink = document.getElementById("hostelLink");
   var driverLink = document.getElementById("driverLink");
   var photoLink = document.getElementById("photoLink");
   var shoppLink = document.getElementById("shoppLink");
 
-  if (currentPath.includes("hostel.html")) {
-    hostelLink.classList.add("active"); // 添加 .active 類別
-  } else if (currentPath.includes("driver.html")) {
+  if (
+    currentPath.includes("hostel.html") ||
+    currentPath.includes("hostel-booking.html") ||
+    currentPath.includes("hostel-booking_detail.html")
+  ) {
+    hostelLink.classList.add("active");
+  } else if (
+    currentPath.includes("driver.html") ||
+    currentPath.includes("driversecond.html")
+  ) {
     driverLink.classList.add("active");
   } else if (currentPath.includes("photowall.html")) {
     photoLink.classList.add("active");
@@ -154,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     shoppingCartElement.style.display = "none";
   });
 });
-
 
 //更新 .SPcartNum
 function updateCartItemCount() {

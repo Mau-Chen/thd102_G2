@@ -14,7 +14,7 @@ for (const card of document.querySelectorAll(".section_2")) {
 }
 
 // ----------------------- 進場動畫 ----------------------------
-console.clear();
+// console.clear();
 
 gsap.set("#myHeading", {
   xPercent: -50,
@@ -73,26 +73,6 @@ else if (window.innerWidth < 434) {
     delay: 0.1,
   });
 }
-
-// tl.fromTo(
-//   "#myHeading",
-//   // 起始狀態
-//   {
-//     xPercent: -50, // 開始位置
-//     yPercent: -50, // 開始位置
-//   },
-//   // 結束狀態
-//   {
-//     xPercent: 0,
-//     yPercent: 0,
-//     left: "2.35em",
-//     top: 22.5,
-//     ease: "power1.out",
-//     duration: 1,
-//     color: "#fff",
-//     delay: 0.1,
-//   }
-// );
 
 tl.from(
   ".dot",

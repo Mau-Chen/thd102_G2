@@ -2,15 +2,17 @@
 #index-box {
   overflow: hidden;
   height: 100vh;
-  #preloader {
-    height: 95vh;
-  }
+  width: 100%;
+  // #preloader {
+  //   height: 100vh;
+  // }
 
   #myHeading {
     position: absolute;
     white-space: nowrap;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 50px;
   }
 }
@@ -18,8 +20,8 @@
 .dot {
   position: absolute;
   left: 50%;
-  // bottom: 0;
   top: 50%;
+  transform: translate(-50%, -50%);
   width: 35px;
   height: 35px;
   border-radius: 50%;
