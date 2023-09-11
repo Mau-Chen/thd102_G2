@@ -72,14 +72,15 @@ const ModalPage = Vue.createApp({
             method: "GET",
           }
         )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.logout === "success") {
-              this.success = false;
-              btn_log_el.classList.remove('login123');
-              window.location.href = "index.html";
-            }
-          });
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.logout === "success") {
+            localStorage.removeItem("member");  // 刪除 localStorage 裡的 'member' 鍵
+            this.success = false;
+            btn_log_el.classList.remove('login123');
+            window.location.href = "index.html";
+          }
+        });
       }
     },
     changePage(newIndex) {

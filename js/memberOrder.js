@@ -163,7 +163,7 @@ const app = Vue.createApp({
         default:
           return './images/pic/shop/goShop02.png';
       }
-    }
+    },
   }
 });
 
