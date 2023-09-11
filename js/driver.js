@@ -102,6 +102,7 @@ window.vue_app = Vue.createApp({
       }
     },
     a() {
+      let addCart = document.querySelector(".addCart");
       if (addCart) {
         axios
           .get(`/thd102/g2/php/driver/driver.php`)
