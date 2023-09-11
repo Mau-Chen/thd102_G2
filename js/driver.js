@@ -101,8 +101,21 @@ window.vue_app = Vue.createApp({
         driver_second_Date.textContent = `${driver_month}月${driver_date}日｜${driver_hour}：${driver_minutes}`;
       }
     },
+    a() {
+      axios
+        .get(`/thd102/g2/php/driver/driver.php`)
+        .then((response) => {
+          const data = response.data;
+          this.cars_data.轎車.cost = data[0].PRICE;
+          this.cars_data.休旅車.cost = data[1].PRICE;
+        })
+        .catch((error) => {
+          console.error("An error occurred while fetching data:", error);
+        });
+    },
   },
   mounted() {
+    this.a();
     // this.date = [startDate];
 
     // JavaScript 取得 Url 的 Query String
