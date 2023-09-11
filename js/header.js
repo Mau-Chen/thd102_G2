@@ -157,9 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
     shoppingCartElement.style.display = "block";
   });
 
-  shoopElement.addEventListener("mouseleave", () => {
-    shoppingCartElement.style.display = "none";
-  });
+  // shoopElement.addEventListener("mouseleave", () => {
+  //   shoppingCartElement.style.display = "none";
+  // });
 });
 
 //更新 .SPcartNum
@@ -194,29 +194,51 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCartItemCount();
 });
 
-// ------- 確認是否會員 ----------------------------
-// const app = Vue.createApp({
+// ------- 購物車清單 ----------------------------
+// const App = Vue.createApp({
+//   data() {
+//     return {
+//       shoppingItems: [],
+//     };
+//   },
+//   mounted() {
+//     //從localStorage抓cartData
+//     const cartData = JSON.parse(localStorage.getItem("cartData"));
+//     // 檢查 cartData 是否存在並且是一個陣列
+//     if (Array.isArray(cartData)) {
+//       // 更新 shoppingItems，設 id
+//       this.shoppingItems = cartData.map((item, index) => ({
+//         ...item,
+//         id: (index + 1).toString(),
+//       }));
+//     }
+//   },
 //   methods: {
-//     nextStepUpdate() {
-//       // 檢查 localStorage 是否包含 member 的值
-//       const memberData = JSON.parse(localStorage.getItem("member"));
-
-//       if (!memberData) {
-//         vm.ispop = true; // 假設登入按鈕有一個 id 為 "loginButton"
-
-//         if (loginButton) {
-//           // 執行點擊事件
-//           loginButton.click();
-//         }
+//     // 計算小計(單價、數量和天數)
+//     countSubtotal(item) {
+//       // console.log(item);
+//       if (item.spStepper) {
+//         item.listDate_D = Math.round(
+//           (new Date(item.listDate_E) - new Date(item.listDate_S)) /
+//             (1000 * 60 * 60 * 24)
+//         );
+//         return item.spPrice * item.BuyNum * item.listDate_D;
 //       } else {
-//         // 調用 caculate_point() 並將其返回的值分配給 usePoints
-//         this.usePoints = this.caculate_point();
-
-//         // 增加 currentStep 的值
-//         this.currentStep++;
+//         item.listDate_D = 1;
+//         return item.spPrice * item.BuyNum * item.listDate_D * item.listDistance;
 //       }
 //     },
 //   },
 // });
 
-// app.mount("#spApp");
+// App.mount("#headerShopCar");
+// ------- 確認是否會員 ----------------------------
+
+const rwdLogin_el = document.getElementById("rwdLogin");
+rwdLogin_el.addEventListener("click", () => {
+  if (vm.success === true) {
+    window.location.href = "/member.html";
+  } else {
+    vm.ispop = true;
+  }
+});

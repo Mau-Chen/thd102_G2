@@ -55,7 +55,7 @@ export default {
                     <p>總計</p>
                     <span>NT$ {{ (task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce).toLocaleString('en-US') }}</span>
                 </div>
-                <p><img src="./images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points <span>50</span> 點</p>  
+                <p><img src="./images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points <span>{{ points(task) }}</span> 點</p>  
                 <button v-if="index === 0" class="btn_4_border cancel-btn">取消預約</button>
             </div>
         </div>
@@ -76,12 +76,10 @@ export default {
       },
       calculateTotal(orderList, reduction) {
         return this.getTotalPrice(orderList) - reduction;
+      },
+      points(task) {
+        const totalAmount = this.getTotalPrice(task.OrderList) - task.reduce;
+        return Math.round(totalAmount * 0.1); 
       }
     },
   };
-  
-  
-  
-  
-  
-  
