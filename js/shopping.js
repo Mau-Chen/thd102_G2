@@ -598,16 +598,12 @@ const app = Vue.createApp({
                         item.dogSizeValue = null;
                 }
 
-                // if (item.spStepper) {
-                //     item.startadd = null;
-                //     item.endadd = null;
-                // }
             });
 
             // 準備要傳遞的資料
             const dataToSend = {
                 orderDate: nowDateTime,
-                totalPrice: this.totalPrice,
+                totalPrice: totalPrice,
                 usePoints: this.usePoints,
                 memberId: this.member_data.id,
                 shoppingItems: this.shoppingItems
