@@ -232,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // });
 
 // App.mount("#headerShopCar");
+
 // ------- 確認是否會員 ----------------------------
 
 const rwdLogin_el = document.getElementById("rwdLogin");
