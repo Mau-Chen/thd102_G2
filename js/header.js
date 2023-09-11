@@ -149,18 +149,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //滑鼠移到購物車上面的展示效果
-document.addEventListener("DOMContentLoaded", () => {
-  const shoopElement = document.querySelector(".shoop");
-  const shoppingCartElement = document.querySelector(".shopping-cart");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const shoopElement = document.querySelector(".shoop");
+//   const shoppingCartElement = document.querySelector(".shopping-cart");
 
-  shoopElement.addEventListener("mouseenter", () => {
-    shoppingCartElement.style.display = "block";
-  });
+//   shoopElement.addEventListener("mouseenter", () => {
+//     shoppingCartElement.style.display = "block";
+//   });
 
-  // shoopElement.addEventListener("mouseleave", () => {
-  //   shoppingCartElement.style.display = "none";
-  // });
-});
+//   // shoopElement.addEventListener("mouseleave", () => {
+//   //   shoppingCartElement.style.display = "none";
+//   // });
+// });
 
 //更新 .SPcartNum
 function updateCartItemCount() {

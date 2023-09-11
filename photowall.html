@@ -16,7 +16,7 @@
       @@include('layout/header.html')
       <div class="container photoWallMain" id="photofall">
         <!-- 瀑布流組件 Please 別碰 這是magic -->
-        <photo-fall :items="items"></photo-fall>
+        <photo-fall :items="items" ref="photoFall"></photo-fall>
         <!-- 瀑布流元件 Please 別碰 這是magic -->
 
         <div class="postYourImage" @click="show = true">
