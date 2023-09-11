@@ -115,10 +115,10 @@ export default {
     };
   },
   mounted() {
-    this.updateColumns(); 
-    setTimeout(() => {
-      this.updateColumns();
-  }, 150);
+  //   this.updateColumns(); 
+  //   setTimeout(() => {
+  //     this.updateColumns();
+  // }, 150);
     
     //RWD監聽
     const self = this;

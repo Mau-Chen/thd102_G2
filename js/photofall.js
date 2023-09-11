@@ -133,14 +133,17 @@ const app2 = Vue.createApp({
           }))
 
           Object.assign(this.items, result);
+          this.$refs.photoFall.updateColumns();
 
         } else {
           Object.assign(this.items, this.db_items);
+          this.$refs.photoFall.updateColumns();
         }
 
 
       } catch (error) {
         Object.assign(this.items, this.db_items);
+        this.$refs.photoFall.updateColumns();
       }
     },
 
