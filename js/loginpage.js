@@ -8,6 +8,12 @@ function removeLogin123Class() {
 }
 removeLogin123Class();
 
+const btn_log_el = document.getElementById('btn_log');
+btn_log_el.addEventListener('click',function(){
+  vm.ispop = true;
+});
+
+
 const ModalPage = Vue.createApp({
   data() {
     return {
@@ -49,6 +55,7 @@ const ModalPage = Vue.createApp({
           .then((response) => response.json())
           .then((data) => {
             if (data.login === "success") {
+              btn_log_el.classList.add('login123');
               this.success = true;
             }
           });
@@ -69,6 +76,7 @@ const ModalPage = Vue.createApp({
           .then((data) => {
             if (data.logout === "success") {
               this.success = false;
+              btn_log_el.classList.remove('login123');
               window.location.href = "index.html";
             }
           });
@@ -118,6 +126,7 @@ const ModalPage = Vue.createApp({
               account: this.account,
             };
             localStorage.setItem("member", JSON.stringify(member));
+            btn_log_el.classList.add("login123");
             this.success = true;
             this.ispop = false;
 

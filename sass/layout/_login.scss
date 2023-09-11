@@ -231,3 +231,9 @@
 .modal-leave-active {
   animation: slideOut 0.2s ease-out both;
 }
+
+.memberIcon {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

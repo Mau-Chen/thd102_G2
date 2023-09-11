@@ -1,21 +1,18 @@
 <!-- #ModalPage為Vue掛載的位置，不管用什麼裝置觸發，都必須要有這個ID -->
-<!-- <div type="button" id="btn_log" class="btn_4">
-  登入
-</div> -->
 
 <div id="ModalPage" class="login123">
   <!-- 此處為用@click綁定事件，用data中的"ispop"資料，來控制燈箱跳出
         如果要綁定在其它物件上，只要打上@click這條即可觸發。 -->
-  <div
+  <!-- <div
     type="button"
     @click="ispop = true"
     class="btn_4"
     v-show="success === false"
   >
     登入
-  </div>
+  </div> -->
   <transition name="slide-fade">
-    <div v-if="success === true">
+    <div v-if="success === true" class="memberIcon">
       <a href="./member.html">
         <svg
           width="25"

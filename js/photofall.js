@@ -129,6 +129,10 @@ const app2 = Vue.createApp({
           reader.readAsDataURL(file);
         }
       },
+      Initial(){
+        
+      },
+
       uploadImage() {
         let formData = new FormData();
         let fileInput = this.$refs.fileInput;
