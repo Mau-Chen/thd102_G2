@@ -202,11 +202,11 @@ const app2 = Vue.createApp({
         return
       };
 
+      const memberObject = JSON.parse(memberData);
+
       const formData = new FormData();
       formData.append('profile', fileInput.files[0]);
-      formData.append('name', memberData);
-
-      formData.append('memberData', memberData); // 添加到FormData中
+      formData.append('name', memberObject.account);
       //todo
       try {
         const res = await fetch('/thd102/g2/php/Photowall/photowall.php', {
