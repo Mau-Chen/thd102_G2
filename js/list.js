@@ -56,7 +56,8 @@ export default {
                     <span>NT$ {{ (task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce).toLocaleString('en-US') }}</span>
                 </div>
                 <p><img src="./images/icon/member-icon/black-points.svg" alt="points-icon">已獲得 Pet Points <span>{{ points(task) }}</span> 點</p>  
-                <button v-if="index === 0" class="btn_4_border cancel-btn">取消預約</button>
+                <button v-if="canCancel(task.OrderDate)" class="btn_4_border cancel-btn">取消預約</button>
+                
             </div>
         </div>
     </div>
@@ -80,6 +81,15 @@ export default {
       points(task) {
         const totalAmount = this.getTotalPrice(task.OrderList) - task.reduce;
         return Math.round(totalAmount * 0.1); 
-      }
+      },
+      canCancel(orderDateStr) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // 將今天的時間設為 00:00:00  
+        const [year, month, day] = orderDateStr.replace("年", "-").replace("月", "-").replace("日", "").split("-").map(Number);
+        const orderDate = new Date(year, month - 1, day); // 注意：JavaScript 中月份是從 0 開始的，所以需要減 1
+        orderDate.setHours(0, 0, 0, 0); // 將訂單日期的時間設為 00:00:00
+
+        return orderDate > today; // 如果訂單日期在今天之後，返回 true
+      },
     },
   };

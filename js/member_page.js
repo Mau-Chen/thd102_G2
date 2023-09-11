@@ -77,26 +77,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
-
-// //串後台資料庫
-// document.addEventListener("DOMContentLoaded",function(str){
-//   var fd = new FormData();
-//         fd.append("display_date", str);
-//         //POST請求
-//         axios
-//           .post("../thd102/g2/php/Member/orderlist.php", fd)
-//           .then(function (response) {
-//             //更新html內容(跑迴圈解析json)
-//             var msg = "";
-//             response.data.forEach((row, index) => {
-//               msg +=
-//                 row.display_date + "/" + row.ORDER_ID + "/" + row.display_hotelname + "/" + row.display_date + "/" + row.PRODUCTNAME + "/" + row.NOWPRICE;
-//             });
-//             //更新html內容
-//             document.getElementById("result").innerHTML = msg;
-//           })
-//           .catch(function (error) {
-//             console.log(error);
-//           });
-// })
