@@ -11,7 +11,7 @@ export default {
         </div>
         <div class="ol-button">
             <div v-if="!isOpen[index]">
-              <span>NT$ {{ task.OrderList.map(o => +o.price).reduce((p, c) => p + c).toLocaleString('en-US') }}</span>
+              <span>NT$ {{ (task.OrderList.map(o => +o.price).reduce((p, c) => p + c) - task.reduce).toLocaleString('en-US') }}</span>
             </div>
             <div class="arrowIcon" @click="open(index)" :class="{ active_arrow: isOpen[index] }">
               <img src="./images/icon/components-icon/faqbt-circle.svg" alt="button">
@@ -80,7 +80,7 @@ export default {
       },
       points(task) {
         const totalAmount = this.getTotalPrice(task.OrderList) - task.reduce;
-        return Math.round(totalAmount * 0.1); 
+        return Math.floor(totalAmount * 0.01); 
       },
       canCancel(orderDateStr) {
         const today = new Date();
