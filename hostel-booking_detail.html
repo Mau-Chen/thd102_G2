@@ -169,12 +169,12 @@
       </div>
 
       <!---------------- main 旅宿資訊 star ---------------->
-      <main class="hostel_content">
+      <main class="hostel_content"  id="htApp">
         <div class="container">
           <!-- 旅宿名 section -->
           <section class="hostel-info">
             <div class="name">
-              <h3>快樂寵物旅館</h3>
+              <h3>{{ hostelName }}</h3>
               <div class="star">
                 <img src="./images/icon/components-icon/star.svg" alt="star" />
                 <img src="./images/icon/components-icon/star.svg" alt="star" />
@@ -188,11 +188,11 @@
                 src="./images/icon/hostel-icon/location.svg"
                 alt="location"
               />
-              <p>台北市中山區南京東路三段219號5樓</p>
+              <p>{{ hostelAddress }}</p>
             </div>
             <div class="info">
               <p>
-                入住完美住宿，是給每個外出毛寶貝的必備要素。採用「單一放風」制度，讓每個毛小孩都能安全、盡興地玩耍，開開心心地回家。
+                {{ hostelDescription }}
               </p>
             </div>
           </section>
@@ -204,16 +204,18 @@
             </div>
             <div class="system_outline">
               <div class="icon_box">
-                <div class="system_icon">
+                <div class="system_icon" v-for="(facility, index) in facilities" :key="index">
                   <div class="icon">
                     <img
+                      :src="facility.iconSrc" :alt="facility.iconAlt"
                       src="./images/icon/hostel-icon/room-clean.svg"
                       alt="room-clean"
                     />
                   </div>
-                  <p>優良衛生</p>
+                  <p>{{ facility.name }}</p>
+                  <!-- <p>優良衛生</p> -->
                 </div>
-                <div class="system_icon">
+                <!-- <div class="system_icon">
                   <div class="icon">
                     <img
                       src="./images/icon/hostel-icon/room-air.svg"
@@ -245,13 +247,14 @@
                     <img src="./images/icon/hostel-icon/room-3m.svg" alt="" />
                   </div>
                   <p>3M濾水器</p>
-                </div>
+                </div> -->
               </div>
             </div>
           </section>
 
           <!--  住宿選擇 section -->
-          <section class="hostel-list" id="htApp">
+          <!-- <section class="hostel-list" id="htApp"> -->
+          <section class="hostel-list">
             <h4>住宿選擇</h4>
             <!-- dog room -->
             <div class="allRoom mb_32">
