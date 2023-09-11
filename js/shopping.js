@@ -137,7 +137,20 @@ const app = Vue.createApp({
                                 this.fetchMemberData(account);
                             } else {
                                 // 登入失敗，進行適當處理
-                                swal("發生錯誤", "請聯繫管理員", "info");
+                                // swal("發生錯誤", "請聯繫管理員", "info");
+                                Swal.fire({
+                                    toast: true,
+                                    position: "top",
+                                    icon: "warning",
+                                    title: '發生錯誤',
+                                    text: "請聯繫管理員",
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    backdrop: `rgba(0,0,0,0)`,
+                                    customClass: {
+                                        container: "swal2",
+                                    },
+                                });
                             }
                         })
                         .catch((error1) => {
@@ -582,26 +595,55 @@ const app = Vue.createApp({
 
             try {
                 // 使用 Axios 發送 POST 請求到您的 PHP 檔案
-                const response = await axios.post('/thd102/g2/php/shopping/shopping.php', dataToSend);
+                // const response = await axios.post('/thd102/g2/php/shopping/shopping.php', dataToSend);
+                // const response = await axios.post('/thd102/g2/php/shopping/shopping.php', jsonData, {
+                //     headers: {
+                //         'Content-Type': 'application/json', // 指定请求正文为 JSON 格式
+                //     },
+                // });
+                const response = await axios.post('/thd102/g2/php/shopping/shopping.php', jsonData);
+
+
 
                 // 輸出完整的響應資料以進行調試
                 console.log('完整的響應資料:', response);
+                // const responseData = JSON.parse(response.data);
+                // const successMessage = responseData.message;
+                const responseData = response.data;
+
+                // 输出响应数据的结构，以确保可以正确访问
+                console.log('响应数据结构:', responseData);
+
+                const successMessage = responseData.message;
 
                 // 在此處處理 AJAX 響應
-                if (response.data.success) {
+                // if (response.data.success) {
+                if (responseData.success) {
                     // 處理成功的情況
                     console.log('資料已成功插入資料庫');
-                    console.log('response.data.success 的数据类型:', typeof response.data.success);
+                    // console.log('response.data.success 的数据类型:', typeof response.data.success);
+                    console.log('成功消息:', successMessage);
 
                     this.currentStep++;
                     console.log('currentStep 的值:', this.currentStep); // 添加此行
                 } else {
                     // 處理失敗的情況
                     console.error('資料插入資料庫時出錯');
+                    console.error('后端错误消息:', responseData.error);
                 }
             } catch (error) {
                 // 處理錯誤
                 console.error('發送 AJAX 請求時出錯：', error);
+                // console.error('响应数据:', error.response.data); // 添加此行
+
+                if (error.response && error.response.data && error.response.data.error) {
+                    // 处理后端返回的错误消息
+                    const errorMessage = error.response.data.error;
+                    console.error('后端错误消息:', errorMessage);
+                } else {
+                    // 处理其他类型的错误
+                    console.error('未知错误:', error);
+                }
             }
         },
 
