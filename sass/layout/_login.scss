@@ -28,9 +28,11 @@
     height: 40px;
     color: $white;
     cursor: pointer;
-    .icon {
-      float: right;
-    }
+    display: flex;
+    justify-content: end;
+    // .icon {
+    //   float: right;
+    // }
   }
   .loginPage {
     width: 100%;
