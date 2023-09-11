@@ -132,10 +132,10 @@ const app = Vue.createApp({
         const data = response.data;
         
         const result = data.map((item)=>({
-          OrderId: item.OrderId,
-          OrderDate: item.OrderDate,
-          reduce: item.reduce,
-          OrderList: item.OrderList.map((list)=>({
+            OrderId: item.OrderId,
+            OrderDate: item.OrderDate,
+            reduce: item.reduce,
+            OrderList: item.OrderList.map((list)=>({
             name: list.display_hotelname,
             image: this.selectPicture(list.PRODUCTNAME),
             price: list.NOWPRICE,
