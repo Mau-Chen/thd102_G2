@@ -130,6 +130,7 @@ async function calculateDistance() {
           let roundedDistance = parseFloat(distance_value.toFixed(1));
           const car_menu_cost =
             roundedDistance * vm.cars_data[vm.car_menu].cost;
+          const car_menu_cost_fixed = parseFloat(car_menu_cost.toFixed(2));
           const duration = response.routes[0].legs[0].duration.text;
           document.getElementById(
             "distanceDisplay"
@@ -139,7 +140,7 @@ async function calculateDistance() {
           ).textContent = `${duration}`;
           document.getElementById(
             "costDisplay"
-          ).textContent = `NT$ ${car_menu_cost}`;
+          ).textContent = `NT$ ${car_menu_cost_fixed}`;
 
           // 計算路線後，調整地圖的可視範圍
           const bounds = new google.maps.LatLngBounds();
