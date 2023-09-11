@@ -23,6 +23,7 @@ const app = Vue.createApp({
             sameMemberChecked: false,
             usePoints: 0,
             usePointsCheck: true,
+            USEpoint: "",
 
             nowDate: null,
             orderID: "PT0004",
@@ -369,19 +370,6 @@ const app = Vue.createApp({
                         errorText.push(`商品 ${item.id} ${item.product} 需要在24小時前下單`);
                     }
                 }
-
-                // const listDateT = item.listDate_T ? item.listDate_T : '00:00';
-                // const itemDateTime = new Date(`${item.listDate_S} ${listDateT}`);
-                // const timeDifference = itemDateTime - setTime;
-                // const hoursDifference = timeDifference / (1000 * 60 * 60);
-
-                // if (item.spStepper === false && hoursDifference <= 3) {
-                //     isValid = false;
-                //     errorText.push(`${item.product} 需要在3小時前下單`);
-                // } else if (item.spStepper === true && hoursDifference <= 24) {
-                //     isValid = false;
-                //     errorText.push(`商品 ${item.id} ${item.product} 需要在24小時前下單`);
-                // }
             }
 
             // 如果通過購物項目驗證，繼續驗證其他表單欄位
@@ -519,49 +507,26 @@ const app = Vue.createApp({
             } else {
                 this.usePoints = "";
             }
+
+            this.USEpoint = this.usePoints;
         },
-        // saveFormDataToDatabase() {
-        //     // 獲取當前日期時間
-        //     const currentDateTime = new Date().toISOString();
 
-        //     // 準備要傳遞的資料
-        //     const dataToSend = {
-        //         orderDate: currentDateTime,
-        //         totalPrice: totalPrice,
-        //         usePoints: this.usePoints,
-        //         memberId: this.member_data.id,
-        //         shoppingItems: this.shoppingItems
-        //     };
-
-        //     // 使用 fetch 發送 POST 請求到您的 PHP 檔案
-        //     fetch('/thd102/g2/php/shopping/shopping.php', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(dataToSend)
-        //     })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // 在此處處理 AJAX 響應
-        //             if (data.success) {
-        //                 // 處理成功的情況
-        //                 console.log('資料已成功插入資料庫');
-        //                 this.currentStep++;
-
-        //             } else {
-        //                 // 處理失敗的情況
-        //                 console.error('資料插入資料庫時出錯');
-        //             }
-        //         })
-        //         .catch(error => {
-        //             console.error('發送 AJAX 請求時出錯：', error);
-        //         });
-        // },
         async saveFormDataToDatabase() {
-            // 獲取當前日期時間
             // console.log("ttt");
-            const nowDateTime = new Date().toISOString();
+            // 取當前日期時間
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            const day = String(currentDate.getDate()).padStart(2, '0');
+            const hours = String(currentDate.getHours()).padStart(2, '0');
+            const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+            const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+
+            const nowDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+            const usePoints = this.USEpoint;
+
+            console.log(usePoints);
 
             this.shoppingItems.forEach((item) => {
                 switch (item.listType) {
@@ -597,21 +562,29 @@ const app = Vue.createApp({
                         item.listTypeValue = null;
                         item.dogSizeValue = null;
                 }
-
             });
+
 
             // 準備要傳遞的資料
             const dataToSend = {
                 orderDate: nowDateTime,
-                totalPrice: totalPrice,
-                usePoints: this.usePoints,
+                // usePoints: UsePoints,
+                usePoints: usePoints,
                 memberId: this.member_data.id,
+                totalPrice: this.totalPrice,
                 shoppingItems: this.shoppingItems
             };
+
+            // console.log(JSON.stringify(dataToSend));
+            console.log('要傳送的資料:', dataToSend);
+
 
             try {
                 // 使用 Axios 發送 POST 請求到您的 PHP 檔案
                 const response = await axios.post('/thd102/g2/php/shopping/shopping.php', dataToSend);
+
+                // 輸出完整的響應資料以進行調試
+                console.log('完整的響應資料:', response);
 
                 // 在此處處理 AJAX 響應
                 if (response.data.success) {
