@@ -102,16 +102,18 @@ window.vue_app = Vue.createApp({
       }
     },
     a() {
-      axios
-        .get(`/thd102/g2/php/driver/driver.php`)
-        .then((response) => {
-          const data = response.data;
-          this.cars_data.轎車.cost = data[0].PRICE;
-          this.cars_data.休旅車.cost = data[1].PRICE;
-        })
-        .catch((error) => {
-          console.error("An error occurred while fetching data:", error);
-        });
+      if (addCart) {
+        axios
+          .get(`/thd102/g2/php/driver/driver.php`)
+          .then((response) => {
+            const data = response.data;
+            this.cars_data.轎車.cost = data[0].PRICE;
+            this.cars_data.休旅車.cost = data[1].PRICE;
+          })
+          .catch((error) => {
+            console.error("An error occurred while fetching data:", error);
+          });
+      }
     },
   },
   mounted() {
