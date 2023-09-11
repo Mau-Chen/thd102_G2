@@ -1,31 +1,10 @@
 const mapStyles = [
   {
-    featureType: "all",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "administrative",
-    elementType: "all",
-    stylers: [
-      {
-        color: "#f2f2f2",
-      },
-    ],
-  },
-  {
     featureType: "administrative",
     elementType: "labels.text.fill",
     stylers: [
       {
-        color: "#686868",
-      },
-      {
-        visibility: "on",
+        color: "#444444",
       },
     ],
   },
@@ -41,24 +20,6 @@ const mapStyles = [
   {
     featureType: "poi",
     elementType: "all",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "poi.park",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "poi.park",
-    elementType: "labels.icon",
     stylers: [
       {
         visibility: "off",
@@ -87,227 +48,11 @@ const mapStyles = [
     ],
   },
   {
-    featureType: "road.highway",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        lightness: "-22",
-      },
-      {
-        visibility: "on",
-      },
-      {
-        color: "#b4b4b4",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry.stroke",
-    stylers: [
-      {
-        saturation: "-51",
-      },
-      {
-        lightness: "11",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "labels.text",
-    stylers: [
-      {
-        saturation: "3",
-      },
-      {
-        lightness: "-56",
-      },
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        lightness: "-52",
-      },
-      {
-        color: "#9094a0",
-      },
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        weight: "6.13",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
+    featureType: "road.arterial",
     elementType: "labels.icon",
     stylers: [
-      {
-        weight: "1.24",
-      },
-      {
-        saturation: "-100",
-      },
-      {
-        lightness: "-10",
-      },
-      {
-        gamma: "0.94",
-      },
       {
         visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway.controlled_access",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        visibility: "on",
-      },
-      {
-        color: "#b4b4b4",
-      },
-      {
-        weight: "5.40",
-      },
-      {
-        lightness: "7",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway.controlled_access",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-      {
-        color: "#231f1f",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway.controlled_access",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-      {
-        color: "#595151",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "geometry",
-    stylers: [
-      {
-        lightness: "-16",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        visibility: "on",
-      },
-      {
-        color: "#d7d7d7",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "labels.text",
-    stylers: [
-      {
-        color: "#282626",
-      },
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        saturation: "-41",
-      },
-      {
-        lightness: "-41",
-      },
-      {
-        color: "#2a4592",
-      },
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        weight: "1.10",
-      },
-      {
-        color: "#ffffff",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "labels.icon",
-    stylers: [
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "road.local",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        lightness: "-16",
-      },
-      {
-        weight: "0.72",
-      },
-    ],
-  },
-  {
-    featureType: "road.local",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        lightness: "-37",
-      },
-      {
-        color: "#2a4592",
       },
     ],
   },
@@ -321,35 +66,11 @@ const mapStyles = [
     ],
   },
   {
-    featureType: "transit.line",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        visibility: "off",
-      },
-      {
-        color: "#eeed6a",
-      },
-    ],
-  },
-  {
-    featureType: "transit.line",
-    elementType: "geometry.stroke",
-    stylers: [
-      {
-        visibility: "off",
-      },
-      {
-        color: "#0a0808",
-      },
-    ],
-  },
-  {
     featureType: "water",
     elementType: "all",
     stylers: [
       {
-        color: "#b7e4f4",
+        color: "#e3e3fb",
       },
       {
         visibility: "on",
@@ -397,7 +118,7 @@ async function calculateDistance() {
           // 自訂路徑顏色
           directionsRenderer = new google.maps.DirectionsRenderer({
             polylineOptions: {
-              strokeColor: "#66d5c0", // 自訂線條顏色
+              strokeColor: "#6e60f6", // 自訂線條顏色
               strokeWeight: 10, // 路線的粗度，可以根據需要調整
               strokeOpacity: 0.9, // 自訂路線透明度
             },
@@ -533,11 +254,17 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // 根據 listTypeValue 設置 spPrice
-    if (listTypeValue === "轎車") {
-      data.spPrice = 40;
-    } else if (listTypeValue === "休旅車") {
-      data.spPrice = 50;
-    }
+    const driver_data = window.vue_app._instance.data;
+    // console.log(driver_data);
+    let car_cost = driver_data.cars_data[driver_data.car_menu];
+    // console.log(car_cost);
+
+    data.spPrice = car_cost.cost;
+    // if (listTypeValue === "轎車") {
+    //   data.spPrice = 40;
+    // } else if (listTypeValue === "休旅車") {
+    //   data.spPrice = 50;
+    // }
 
     cartData.push(data);
 
@@ -548,12 +275,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 綁按鈕點擊
-  addToCartButton.addEventListener("click", addToCart);
+  addToCartButton.addEventListener("click", () => {
+    const originInput = document.getElementById("start_place_input");
+    const originInput_value = originInput.value;
+    const destinationInput = document.getElementById("end_place_input");
+    const destinationInput_value = destinationInput.value;
+    if (originInput_value != "" && destinationInput_value != "") {
+      addToCart();
+    }
+  });
 
   const goSPButton = document.querySelector(".btn_5.col-6");
   goSPButton.addEventListener("click", function () {
-    addToCart();
-    window.location.href = "shopping.html";
+    const originInput = document.getElementById("start_place_input");
+    const originInput_value = originInput.value;
+    const destinationInput = document.getElementById("end_place_input");
+    const destinationInput_value = destinationInput.value;
+
+    if (originInput_value != "" && destinationInput_value != "") {
+      addToCart();
+      window.location.href = "shopping.html";
+    }
   });
 
   // 在初始化時，從 localStorage 中讀取 cartData 並轉換為陣列
