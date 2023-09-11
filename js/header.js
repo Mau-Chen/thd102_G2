@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const rwdLogin_el = document.getElementById("rwdLogin");
 rwdLogin_el.addEventListener("click", () => {
   if (vm.success === true) {
-    window.location.href = "/member.html";
+    window.location.href = "./member.html";
   } else {
     vm.ispop = true;
   }
