@@ -146,6 +146,7 @@ const select_pet = Vue.createApp({
     },
   },
   mounted() {
+    this.initial();
     this.start = true;
     // 預設選擇日期
     const today = new Date();
@@ -179,6 +180,24 @@ const select_pet = Vue.createApp({
     });
   },
   methods: {
+    async initial() {
+      try {
+        const response = await fetch('/thd102/g2/php/hostel/selectone.php');
+    
+        if (!response.ok) {
+          throw new Error('數據錯誤');
+        }
+    
+        const res = await response.json();
+    
+        if (res) {
+          Object.assign(this.cities, res);
+        }
+      } catch (error) {
+        console.error('發生錯誤：', error);
+      }
+    }
+    ,
     toChange(property, value) {
       if (
         (value > 0 && this[property] < 9) ||
