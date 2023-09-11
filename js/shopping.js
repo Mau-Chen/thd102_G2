@@ -295,13 +295,13 @@ const app = Vue.createApp({
             return `${Number(month)}月${Number(day)}日`;
         },
         confirmDelete(index) {
-            // const isConfirmed = confirm("確認移除嗎？");
-            const isConfirmed = swal({
-                title: "確認移除嗎？",
-                icon: "warning",
-                buttons: true,
-                // dangerMode: true,
-            })
+            const isConfirmed = confirm("確認移除嗎？");
+            // const isConfirmed = swal({
+            //     title: "確認移除嗎？",
+            //     icon: "warning",
+            //     buttons: true,
+            //     // dangerMode: true,
+            // })
             if (isConfirmed) {
 
                 // 从 shoppingItems 中删除项目
@@ -419,7 +419,7 @@ const app = Vue.createApp({
                     title: '請確認以下是否正確:',
                     text: errorText.join("、"),
                     showConfirmButton: false,
-                    timer: 10000,
+                    timer: 5000,
                     backdrop: `rgba(0,0,0,0)`,
                     customClass: {
                         container: "swal2",
@@ -577,6 +577,7 @@ const app = Vue.createApp({
 
             // console.log(JSON.stringify(dataToSend));
             console.log('要傳送的資料:', dataToSend);
+            const jsonData = JSON.stringify(dataToSend);
 
 
             try {
@@ -590,7 +591,10 @@ const app = Vue.createApp({
                 if (response.data.success) {
                     // 處理成功的情況
                     console.log('資料已成功插入資料庫');
+                    console.log('response.data.success 的数据类型:', typeof response.data.success);
+
                     this.currentStep++;
+                    console.log('currentStep 的值:', this.currentStep); // 添加此行
                 } else {
                     // 處理失敗的情況
                     console.error('資料插入資料庫時出錯');
