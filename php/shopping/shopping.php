@@ -1,45 +1,80 @@
 <?php
-include("./Conn.php");
+include("../Conn.php");
 
-// 處理前端發送的訂單數據（orderData 和 orderDetailsData）
-$orderData = json_decode(file_get_contents("php://input"), true);
+try {
+    // 開啟交易
+    $pdo->beginTransaction();
 
-// 執行資料庫操作
-// 假設 $db 是你的資料庫連接對象
-// 假設 ORDER 表和 ORDERDETAILS 表是你的資料庫表
+    if (isset($_POST['totalPrice'])) {
+        // 在這裡使用 $_POST['totalPrice'] 來執行操作
+        $totalPrice = $_POST['totalPrice'];
+        // 其他操作...
+    } else {
+        // 如果 'totalPrice' 未定義，可以處理錯誤或執行其他操作
+        echo json_encode(['error' => 'totalPrice 未定義']);
+    }
 
-// 首先插入訂單數據到 ORDER 表，獲取自動生成的訂單ID
-$sql = "INSERT INTO `ORDER` (ORDERSTATUS, ORDERDATE, BEFORETOTAL, USEPOINTS, MEMBER_ID)
-        VALUES (?, ?, ?, ?, ?)";
-$stmt = $pdo->prepare($sql);
-// $stmt->bind_param("ssdii", $orderData['ORDERSTATUS'], $orderData['ORDERDATE'], $orderData['BEFORETOTAL'], $orderData['USEPOINTS'], $orderData['MEMBER_ID']);
-$stmt -> bindParam(1, $orderData['ORDERSTAUS']);
-$stmt -> bindParam(2, $orderData['ORDERDATE']);
-$stmt -> bindParam(3, $orderData['BEFORETOTAL']);
-$stmt -> bindParam(4, $orderData['USEPOINTS']);
-$stmt -> bindParam(5, $orderData['MEMBER_ID']);
-$stmt->execute();
+    // $totalPrice = $_POST['totalPrice']; 
+    $usePoints = $_POST['usePoints']; 
+    $member_data = $_POST['member_data'];
+    $items = $_POST['items'];
 
-if ($stmt->affected_rows > 0) {
-    // 獲取剛插入的訂單ID
-    $orderId = $stmt->insert_id;
+    // 插入資料到 ORDER 表格
+    $orderStatus = "無異動";
+    $orderDate = date("Y-m-d H:i:s");
+    $beforeTotal = $totalPrice;
+    $usePoints = $usePoints;
+    $memberId = $member_data['id'];
 
-    // 然後插入訂單詳情數據到 ORDERDETAILS 表
-    foreach ($orderData['orderDetailsData'] as $orderDetail) {
-        $sql = "INSERT INTO ORDERDETAILS (NOWPRICE, QUANTITY, AMOUNT, SIZE, START, END, STARTDATE, ENDDATE, ORDER_ID, PRODUCT_ID, HOTELINFO_ID)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param("dddsdssssss", $orderDetail['NOWPRICE'], $orderDetail['QUANTITY'], $orderDetail['AMOUNT'], $orderDetail['SIZE'], $orderDetail['START'], $orderDetail['END'], $orderDetail['STARTDATE'], $orderDetail['ENDDATE'], $orderId, $orderDetail['PRODUCT_ID'], $orderDetail['HOTELINFO_ID']);
+    $insertOrderSql = "INSERT INTO `ORDER` (ORDERSTATUS, ORDERDATE, BEFORETOTAL, USEPOINTS, MEMBER_ID) VALUES (:orderStatus, :orderDate, :beforeTotal, :usePoints, :memberId)";
+    $stmt = $pdo->prepare($insertOrderSql);
+    $stmt->bindParam(':orderStatus', $orderStatus, PDO::PARAM_STR);
+    $stmt->bindParam(':orderDate', $orderDate, PDO::PARAM_STR);
+    $stmt->bindParam(':beforeTotal', $beforeTotal, PDO::PARAM_INT);
+    $stmt->bindParam(':usePoints', $usePoints, PDO::PARAM_INT);
+    $stmt->bindParam(':memberId', $memberId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 獲取剛插入的訂單的 ID
+    $orderId = $pdo->lastInsertId();
+
+    // 插入資料到 ORDERDETAILS 表格
+    foreach ($items as $item) {
+        $nowPrice = $item['spPrice'];
+        $quantity = isset($item['listDistance']) ? $item['listDistance'] : $item['listDate_D'];
+        $amount = $item['BuyNum'];
+        $size = $item['dogSize'];
+        $start = $item['startadd'];
+        $end = $item['endadd'];
+        $startDate = $item['listDate_S'];
+        $endDate = $item['listDate_E'];
+        $productId = $item['listType'];
+        $hotelInfoId = $item['product'];
+
+        $insertOrderDetailsSql = "INSERT INTO ORDERDETAILS (NOWPRICE, QUANTITY, AMOUNT, SIZE, START, END, STARTDATE, ENDDATE, ORDER_ID, PRODUCT_ID, HOTELINFO_ID) VALUES (:nowPrice, :quantity, :amount, :size, :start, :end, :startDate, :endDate, :orderId, :productId, :hotelInfoId)";
+        $stmt = $pdo->prepare($insertOrderDetailsSql);
+        $stmt->bindParam(':nowPrice', $nowPrice, PDO::PARAM_INT);
+        $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+        $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
+        $stmt->bindParam(':size', $size, PDO::PARAM_STR);
+        $stmt->bindParam(':start', $start, PDO::PARAM_STR);
+        $stmt->bindParam(':end', $end, PDO::PARAM_STR);
+        $stmt->bindParam(':startDate', $startDate, PDO::PARAM_STR);
+        $stmt->bindParam(':endDate', $endDate, PDO::PARAM_STR);
+        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+        $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
+        $stmt->bindParam(':hotelInfoId', $hotelInfoId, PDO::PARAM_INT);
         $stmt->execute();
     }
 
-    // 如果訂單詳情也插入成功，向前端發送成功響應
-    echo json_encode(array("success" => true));
-} else {
-    // 如果訂單插入失敗，向前端發送失敗響應
-    echo json_encode(array("success" => false));
-}
+    // 提交交易
+    $pdo->commit();
 
-// 确保PHP文件没有其他输出或HTML内容
-exit;
+    echo json_encode(['message' => '訂單建立成功']);
+} catch (PDOException $e) {
+    // 回滾交易
+    $pdo->rollback();
+
+    echo json_encode(['error' => '訂單建立失敗：' . $e->getMessage()]);
+}
 ?>

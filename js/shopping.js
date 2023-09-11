@@ -103,32 +103,47 @@ const app = Vue.createApp({
 
         nextStepUpdate() {
             if (this.shoppingItems.length === 0) {
-                swal("購物車中沒有商品", "", "warning", {button: "去逛逛！"});
+                // swal("購物車中沒有商品", "", "warning", {button: "去逛逛！"});
+                Swal.fire({
+                    toast: true,
+                    position: "top",
+                    icon: "warning",
+                    // title: '查無此人?',
+                    text: "購物車中沒有商品",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    backdrop: `rgba(0,0,0,0)`,
+                    customClass: {
+                        container: "swal2",
+                    },
+                });
                 // swal("購物車中沒有商品", "warning");
-            }
-            // 檢查 localStorage 是否包含 member 的值
-            const memberData = JSON.parse(localStorage.getItem('member'));
-
-            if (!memberData) {
-                vm.ispop = true;
             } else {
-                const { account } = memberData; // 取帳號
-                fetch(`/thd102/g2/php/FrontendLogin/check.php?account=${account}`, {
-                    method: 'GET'
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data.login === "success") {
-                            // 登入成功，取會員資料
-                            this.fetchMemberData(account);
-                        } else {
-                            // 登入失敗，進行適當處理
-                            swal("發生錯誤", "請聯繫管理員", "info");
-                        }
+                // 檢查 localStorage 是否包含 member 的值
+                const memberData = JSON.parse(localStorage.getItem('member'));
+
+                if (!memberData) {
+                    vm.ispop = true;
+                } else {
+                    const { account } = memberData; // 取帳號
+                    fetch(`/thd102/g2/php/FrontendLogin/check.php?account=${account}`, {
+                        method: 'GET'
                     })
-                    .catch((error1) => {
-                        console.error('從伺服器取數據出錯：', error1);
-                    });
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.login === "success") {
+                                // 登入成功，取會員資料
+                                this.fetchMemberData(account);
+                            } else {
+                                // 登入失敗，進行適當處理
+                                swal("發生錯誤", "請聯繫管理員", "info");
+                            }
+                        })
+                        .catch((error1) => {
+                            console.error('從伺服器取數據出錯：', error1);
+                        });
+                }
+
             }
         },
 
@@ -339,18 +354,34 @@ const app = Vue.createApp({
 
             // 驗證購物項目
             for (const item of this.shoppingItems) {
-                const listDateT = item.listDate_T ? item.listDate_T : '00:00';
-                const itemDateTime = new Date(`${item.listDate_S} ${listDateT}`);
-                const timeDifference = itemDateTime - setTime;
-                const hoursDifference = timeDifference / (1000 * 60 * 60);
 
-                if (item.spStepper === false && hoursDifference <= 3) {
-                    isValid = false;
-                    errorText.push(`${item.product} 需要在3小時前下單`);
-                } else if (item.spStepper === true && hoursDifference <= 24) {
-                    isValid = false;
-                    errorText.push(`商品 ${item.id} ${item.product} 需要在24小時前下單`);
+                if (this.checkedNames.includes(item.id)) {
+                    const listDateT = item.listDate_T ? item.listDate_T : '00:00';
+                    const itemDateTime = new Date(`${item.listDate_S} ${listDateT}`);
+                    const timeDifference = itemDateTime - setTime;
+                    const hoursDifference = timeDifference / (1000 * 60 * 60);
+
+                    if (item.spStepper === false && hoursDifference <= 3) {
+                        isValid = false;
+                        errorText.push(`${item.product} 需要在3小時前下單`);
+                    } else if (item.spStepper === true && hoursDifference <= 24) {
+                        isValid = false;
+                        errorText.push(`商品 ${item.id} ${item.product} 需要在24小時前下單`);
+                    }
                 }
+
+                // const listDateT = item.listDate_T ? item.listDate_T : '00:00';
+                // const itemDateTime = new Date(`${item.listDate_S} ${listDateT}`);
+                // const timeDifference = itemDateTime - setTime;
+                // const hoursDifference = timeDifference / (1000 * 60 * 60);
+
+                // if (item.spStepper === false && hoursDifference <= 3) {
+                //     isValid = false;
+                //     errorText.push(`${item.product} 需要在3小時前下單`);
+                // } else if (item.spStepper === true && hoursDifference <= 24) {
+                //     isValid = false;
+                //     errorText.push(`商品 ${item.id} ${item.product} 需要在24小時前下單`);
+                // }
             }
 
             // 如果通過購物項目驗證，繼續驗證其他表單欄位
@@ -387,10 +418,27 @@ const app = Vue.createApp({
 
             // 如果通過所有驗證，執行下一步操作，否則顯示錯誤消息
             if (isValid) {
-                // this.saveFormDataToDatabase();
-                this.currentStep++;
+                console.log("startstep");
+                this.saveFormDataToDatabase();
+                // this.currentStep++;
             } else {
-                swal("請確認以下項目是否正確:\n", errorText.join("\n"), "warning");
+                // alert("請確認以下項目是否正確:\n", errorText.join("\n"));
+                // swal("請確認以下項目是否正確:\n", errorText.join("\n"), "warning");
+                Swal.fire({
+                    toast: true,
+                    position: "top",
+                    icon: "warning",
+                    title: '請確認以下是否正確:',
+                    text: errorText.join("、"),
+                    showConfirmButton: false,
+                    timer: 10000,
+                    backdrop: `rgba(0,0,0,0)`,
+                    customClass: {
+                        container: "swal2",
+                    },
+                });
+
+
             }
         },
 
@@ -512,11 +560,53 @@ const app = Vue.createApp({
         // },
         async saveFormDataToDatabase() {
             // 獲取當前日期時間
-            const currentDateTime = new Date().toISOString();
+            // console.log("ttt");
+            const nowDateTime = new Date().toISOString();
+
+            this.shoppingItems.forEach((item) => {
+                switch (item.listType) {
+                    case "轎車":
+                        item.listTypeValue = 1;
+                        item.dogSizeValue = null;
+                        break;
+                    case "休旅車":
+                        item.listTypeValue = 2;
+                        item.dogSizeValue = null;
+                        break;
+                    case "貓套房":
+                        item.listTypeValue = 3;
+                        item.dogSizeValue = null;
+                        item.startadd = null;
+                        item.endadd = null;
+                        break;
+                    case "狗套房":
+                        item.listTypeValue = 4;
+                        item.startadd = null;
+                        item.endadd = null;
+                        if (item.dogSize === "小型犬") {
+                            item.dogSizeValue = "小";
+                        } else if (item.dogSize === "中型犬") {
+                            item.dogSizeValue = "中";
+                        } else if (item.dogSize === "大型犬") {
+                            item.dogSizeValue = "大";
+                        } else {
+                            item.dogSizeValue = null;
+                        }
+                        break;
+                    default:
+                        item.listTypeValue = null;
+                        item.dogSizeValue = null;
+                }
+
+                // if (item.spStepper) {
+                //     item.startadd = null;
+                //     item.endadd = null;
+                // }
+            });
 
             // 準備要傳遞的資料
             const dataToSend = {
-                orderDate: currentDateTime,
+                orderDate: nowDateTime,
                 totalPrice: this.totalPrice,
                 usePoints: this.usePoints,
                 memberId: this.member_data.id,
