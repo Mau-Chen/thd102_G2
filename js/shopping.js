@@ -399,11 +399,16 @@ const app = Vue.createApp({
                     errorText.push("行動電話");
                 }
                 // 信用卡號的每一個部分是否填寫錯誤以及驗證信用卡號是否合法
-                for (let i = 0; i < this.cardNumber.length; i++) {
-                    if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4 || !this.validateCreditCard(this.cardNumber)) {
-                        isValid = false;
-                        errorText.push("信用卡卡號");
-                        break;
+                if (this.cardNumber.some(part => part.trim() === "")) {
+                    isValid = false;
+                    errorText.push("信用卡卡號");
+                } else {
+                    for (let i = 0; i < this.cardNumber.length; i++) {
+                        if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4 || !this.validateCreditCard(this.cardNumber)) {
+                            isValid = false;
+                            errorText.push("信用卡卡號");
+                            break;
+                        }
                     }
                 }
                 if (!this.validateCardDate()) {
@@ -457,6 +462,38 @@ const app = Vue.createApp({
         // 使用 Luhn 算法檢查信用卡號是否有效
         validateCreditCard(cardNumberArray) {
             // 將陣列轉換為單個字串，並清除空格和破折號
+            // const cleanedCardNumber = cardNumberArray.join('').replace(/[-\s]/g, '');
+            // let sum = 0;
+            // let doubleUp = false;
+
+            // for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
+            //     let digit = parseInt(cleanedCardNumber.charAt(i), 10);
+            //     if (doubleUp) {
+            //         digit *= 2;
+            //         if (digit > 9) {
+            //             digit -= 9;
+            //         }
+            //     }
+            //     sum += digit;
+            //     doubleUp = !doubleUp;
+            // }
+            // return sum % 10 === 0;
+            // const cleanedCardNumber = cardNumber.replace(/[-\s]/g, '');
+            // let sum = 0;
+            // let doubleUp = false;
+
+            // for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
+            //     let digit = parseInt(cleanedCardNumber.charAt(i), 10);
+            //     if (doubleUp) {
+            //         digit *= 2;
+            //         if (digit > 9) {
+            //             digit -= 9;
+            //         }
+            //     }
+            //     sum += digit;
+            //     doubleUp = !doubleUp;
+            // }
+            // return sum % 10 === 0;
             const cleanedCardNumber = cardNumberArray.join('').replace(/[-\s]/g, '');
             let sum = 0;
             let doubleUp = false;
@@ -656,7 +693,7 @@ const app = Vue.createApp({
                     // console.log('成功消息:', successMessage);
                     this.currentStep++;
                     console.log('資料已成功插入資料庫');
-                    
+
                     // console.log('currentStep 的值:', this.currentStep);
                 } else {
                     // 處理失敗的情況
