@@ -13,7 +13,7 @@ const select_pet = Vue.createApp({
         {
           id: 1,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic1.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic1.png",
           imageAlt: "快樂寵物旅館",
           name: "快樂寵物旅館",
           location: "板橋區",
@@ -24,7 +24,7 @@ const select_pet = Vue.createApp({
         {
           id: 2,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic2.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic2.png",
           imageAlt: "毛起來住",
           name: "毛起來住",
           location: "中山區",
@@ -35,7 +35,7 @@ const select_pet = Vue.createApp({
         {
           id: 3,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic3.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic3.png",
           imageAlt: "汪堡",
           name: "汪堡",
           location: "信義區",
@@ -46,7 +46,7 @@ const select_pet = Vue.createApp({
         {
           id: 4,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic4.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic4.png",
           imageAlt: "快樂寵物旅館",
           name: "快樂寵物旅館",
           location: "板橋區",
@@ -57,7 +57,7 @@ const select_pet = Vue.createApp({
         {
           id: 5,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic5.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic5.png",
           imageAlt: "毛起來住",
           name: "毛起來住",
           location: "中山區",
@@ -68,7 +68,7 @@ const select_pet = Vue.createApp({
         {
           id: 6,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic6.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic6.png",
           imageAlt: "汪堡",
           name: "汪堡",
           location: "信義區",
@@ -79,7 +79,7 @@ const select_pet = Vue.createApp({
         {
           id: 7,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic7.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic7.png",
           imageAlt: "快樂寵物旅館",
           name: "快樂寵物旅館",
           location: "板橋區",
@@ -90,7 +90,7 @@ const select_pet = Vue.createApp({
         {
           id: 8,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic8.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic8.png",
           imageAlt: "毛起來住",
           name: "毛起來住",
           location: "中山區",
@@ -101,7 +101,7 @@ const select_pet = Vue.createApp({
         {
           id: 9,
           link: "./hostel-booking_detail.html",
-          imageSrc: "../images/pic/hostel/hostel page2/hostel-pic9.png",
+          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic9.png",
           imageAlt: "汪堡",
           name: "汪堡",
           location: "信義區",
