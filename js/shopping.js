@@ -399,13 +399,13 @@ const app = Vue.createApp({
                     errorText.push("行動電話");
                 }
                 // 信用卡號的每一個部分是否填寫錯誤以及驗證信用卡號是否合法
-                // for (let i = 0; i < this.cardNumber.length; i++) {
-                //     if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4 || !this.validateCreditCard(this.cardNumber)) {
-                //         isValid = false;
-                //         errorText.push("信用卡卡號");
-                //         break;
-                //     }
-                // }
+                for (let i = 0; i < this.cardNumber.length; i++) {
+                    if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4 || !this.validateCreditCard(this.cardNumber)) {
+                        isValid = false;
+                        errorText.push("信用卡卡號");
+                        break;
+                    }
+                }
                 if (!this.validateCardDate()) {
                     isValid = false;
                     errorText.push("信用卡有效期限");
