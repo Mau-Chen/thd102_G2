@@ -174,7 +174,7 @@ const app = Vue.createApp({
                             id: data.id,
                             name: data.name,
                             email: data.email,
-                            phone: data.phone,
+                            // phone: data.phone,
                             havePoints: data.havePoints,
                             status: data.status
                         };
@@ -309,14 +309,7 @@ const app = Vue.createApp({
         },
         confirmDelete(index) {
             const isConfirmed = confirm("確認移除嗎？");
-            // const isConfirmed = swal({
-            //     title: "確認移除嗎？",
-            //     icon: "warning",
-            //     buttons: true,
-            //     // dangerMode: true,
-            // })
             if (isConfirmed) {
-
                 // 從 shoppingItems 中删除项目
                 this.shoppingItems.splice(index, 1);
                 // 更新索引
@@ -364,11 +357,6 @@ const app = Vue.createApp({
             let isValid = true;
             const errorText = [];
             const setTime = new Date();
-            // 創建一個代表+8時區的 Date 物件
-            // 取得當前時間
-            const currentHour = setTime.getUTCHours();
-            // 設定時間偏移
-            setTime.setHours(currentHour + 8);
 
             // 驗證購物項目
             for (const item of this.shoppingItems) {
@@ -383,10 +371,11 @@ const app = Vue.createApp({
                     if (item.spStepper === false && hoursDifference <= 2.5) {
                         isValid = false;
                         errorText.push(`${item.product} 需要在3小時前下單`);
-                        // } else if (item.spStepper === true && hoursDifference <= 24) {
-                    } else if (item.spStepper === true && hoursDifference <= 12) {
+                    // } else if (item.spStepper === true && hoursDifference <= 24) {
+                    } 
+                    else if (item.spStepper === true && hoursDifference <= 0) {
                         isValid = false;
-                        errorText.push(`商品 ${item.id} ${item.product} 需要在24小時前下單`);
+                        errorText.push(`${item.product} 需要在一天前下單`);
                     }
                 }
             }
@@ -406,18 +395,18 @@ const app = Vue.createApp({
                     errorText.push("行動電話");
                 }
                 // 信用卡號的每一個部分是否填寫錯誤以及驗證信用卡號是否合法
-                // if (this.cardNumber.some(part => part.trim() === "")) {
-                //     isValid = false;
-                //     errorText.push("信用卡卡號");
-                // } else {
-                //     for (let i = 0; i < this.cardNumber.length; i++) {
-                //         if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4 || !this.validateCreditCard(this.cardNumber)) {
-                //             isValid = false;
-                //             errorText.push("信用卡卡號");
-                //             break;
-                //         }
-                //     }
-                // }
+                if (this.cardNumber.some(part => part.trim() === "")) {
+                    isValid = false;
+                    errorText.push("信用卡卡號");
+                } else {
+                    for (let i = 0; i < this.cardNumber.length; i++) {
+                        if (this.cardNumber[i].trim() === "" || this.cardNumber[i].length !== 4 || !this.validateCreditCard(this.cardNumber)) {
+                            isValid = false;
+                            errorText.push("信用卡卡號");
+                            break;
+                        }
+                    }
+                }
                 if (!this.validateCardDate()) {
                     isValid = false;
                     errorText.push("信用卡有效期限");
@@ -430,7 +419,7 @@ const app = Vue.createApp({
 
             // 如果通過所有驗證，執行下一步操作，否則顯示錯誤消息
             if (isValid) {
-                console.log("startstep");
+                // console.log("startstep");
                 this.saveFormDataToDatabase();
                 // this.currentStep++;
             } else {
@@ -469,38 +458,6 @@ const app = Vue.createApp({
         // 使用 Luhn 算法檢查信用卡號是否有效
         validateCreditCard(cardNumberArray) {
             // 將陣列轉換為單個字串，並清除空格和破折號
-            // const cleanedCardNumber = cardNumberArray.join('').replace(/[-\s]/g, '');
-            // let sum = 0;
-            // let doubleUp = false;
-
-            // for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
-            //     let digit = parseInt(cleanedCardNumber.charAt(i), 10);
-            //     if (doubleUp) {
-            //         digit *= 2;
-            //         if (digit > 9) {
-            //             digit -= 9;
-            //         }
-            //     }
-            //     sum += digit;
-            //     doubleUp = !doubleUp;
-            // }
-            // return sum % 10 === 0;
-            // const cleanedCardNumber = cardNumber.replace(/[-\s]/g, '');
-            // let sum = 0;
-            // let doubleUp = false;
-
-            // for (let i = cleanedCardNumber.length - 1; i >= 0; i--) {
-            //     let digit = parseInt(cleanedCardNumber.charAt(i), 10);
-            //     if (doubleUp) {
-            //         digit *= 2;
-            //         if (digit > 9) {
-            //             digit -= 9;
-            //         }
-            //     }
-            //     sum += digit;
-            //     doubleUp = !doubleUp;
-            // }
-            // return sum % 10 === 0;
             const cleanedCardNumber = cardNumberArray.join('').replace(/[-\s]/g, '');
             let sum = 0;
             let doubleUp = false;
