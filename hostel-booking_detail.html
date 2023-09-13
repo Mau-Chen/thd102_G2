@@ -174,7 +174,7 @@
           <!-- 旅宿名 section -->
           <section class="hostel-info">
             <div class="name">
-              <h3>{{ hostelName }}</h3>
+              <h3>{{ hotelDetail.hostelName }}</h3>
               <div class="star">
                 <img src="./images/icon/components-icon/star.svg" alt="star" />
                 <img src="./images/icon/components-icon/star.svg" alt="star" />
@@ -188,11 +188,11 @@
                 src="./images/icon/hostel-icon/location.svg"
                 alt="location"
               />
-              <p>{{ hostelAddress }}</p>
+              <p>{{ hotelDetail.hostelAddress }}</p>
             </div>
             <div class="info">
               <p>
-                {{ hostelDescription }}
+                {{ hotelDetail.hostelDescription }}
               </p>
             </div>
           </section>
@@ -215,39 +215,6 @@
                   <p>{{ facility.name }}</p>
                   <!-- <p>優良衛生</p> -->
                 </div>
-                <!-- <div class="system_icon">
-                  <div class="icon">
-                    <img
-                      src="./images/icon/hostel-icon/room-air.svg"
-                      alt="room-air"
-                    />
-                  </div>
-                  <p>全室空調</p>
-                </div>
-                <div class="system_icon">
-                  <div class="icon">
-                    <img
-                      src="./images/icon/hostel-icon/room-video.svg"
-                      alt="room-video"
-                    />
-                  </div>
-                  <p>互動攝影機</p>
-                </div>
-                <div class="system_icon">
-                  <div class="icon">
-                    <img
-                      src="./images/icon/hostel-icon/room-wet.svg"
-                      alt="room-wet"
-                    />
-                  </div>
-                  <p>溼度控制</p>
-                </div>
-                <div class="system_icon">
-                  <div class="icon">
-                    <img src="./images/icon/hostel-icon/room-3m.svg" alt="" />
-                  </div>
-                  <p>3M濾水器</p>
-                </div> -->
               </div>
             </div>
           </section>
@@ -551,198 +518,4 @@
     <script src="./js/booking_detail.js"></script>
     <script src="./js/media.js"></script>
     <script src="./js/cart.js"></script>
-    <!-- search.js -->
-    <!-- <script>
-      // Datepicker & 寵物類型
-      const select_pet = Vue.createApp({
-        data() {
-          return {
-            isPop: false,
-            numCat: 1,
-            numDog: 1,
-            date: "",
-            format: `MM月dd日`,
-            start: false,
-            location: "",
-          };
-        },
-        computed: {
-          disabledDates() {
-            let today = new Date();
-            let disabledtoday = new Date(today);
-            disabledtoday.setDate(disabledtoday.getDate() + 1);
-
-            return disabledtoday;
-          },
-          hoursArray() {
-            const arr = [];
-            for (let i = 0; i < 24; i++) {
-              arr.push({ text: i < 10 ? `0${i}` : i, value: i });
-            }
-            return arr;
-          },
-          minutesArray() {
-            const arr = [];
-            for (let i = 0; i < 60; i++) {
-              arr.push({ text: i < 10 ? `0${i}` : i, value: i });
-            }
-            return arr;
-          },
-        },
-        mounted() {
-          // console.log("sss");
-          this.start = true;
-          // 預設選擇日期
-          const today = new Date()
-          const startDate = today.setDate(today.getDate()+ 1)
-          const endDate = today.setDate(today.getDate()+1)
-          this.date = [startDate, endDate]
-          this.getLocalStorage();
-        },
-        methods: {
-          toChange(property, value) {
-            if (
-              (value > 0 && this[property] < 9) ||
-              (value < 0 && this[property] > 0)
-            ) {
-              this[property] += value;
-            }
-          },
-          getLocalStorage(){
-            const saveData = JSON.parse(localStorage.getItem("hoteldata"));
-            if(saveData){
-            this.location = saveData.location;
-            this.date = saveData.date;
-            this.numCat = saveData.petnum[0];
-            this.numDog = saveData.petnum[1];
-            }
-            // console.log(saveData);
-      
-
-            // 清空localStorage資料
-            // localStorage.removeItem("hoteldata");
-            },
-        },
-      });
-      select_pet.component("Datepicker", VueDatePicker);
-
-      const vm233 = select_pet.mount("#select_pet");
-    </script> -->
-
-    <!-- booking_detail.js -->
-    <!-- <script>
-
-var swiper = new Swiper(".mySwiper", {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        // spaceBetween: 16,
-        loop: true,
-        // cssMode: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-        },
-      });
-      const app2 = Vue.createApp({
-        data() {
-          return {
-            P1: {
-              spPrice: 800,
-              BuyNum: 1,
-            },
-            P2: {
-              spPrice: 800,
-              BuyNum: 1,
-            },
-          };
-        },
-        methods: {
-          updateSubtotal(product) {
-            return product.spPrice * product.BuyNum;
-          },
-          updateAmount(product, change) {
-            if (product.BuyNum < 9) {
-              product.BuyNum = Math.max(0, product.BuyNum + change);
-            } else if (product.BuyNum >= 9) {
-              product.BuyNum = 8;
-              product.BuyNum = Math.max(0, product.BuyNum + change);
-            }
-            this.updateSubtotal(product);
-          },
-          handleInput(product) {
-            if ((product.BuyNum = 1)) {
-              product.BuyNum = 1;
-            } else if (product.BuyNum > 9) {
-              product.BuyNum = 9;
-            }
-            this.updateSubtotal(product);
-          },
-        },
-      });
-      app2.mount("#htApp");
-    </script> -->
-  </body>
-
-  <!-- media.js -->
-  <!-- <script>
-    //768選單
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchOut = document.querySelector(".d_search-out");
-      const onDis768Elements = document.querySelectorAll(".onDis768");
-
-      function handleMouseEnter() {
-        onDis768Elements.forEach(function (element) {
-          element.style.display = "block";
-        });
-      }
-
-      function handleMouseLeave() {
-        onDis768Elements.forEach(function (element) {
-          element.style.display = "none";
-        });
-      }
-
-      function checkWidth() {
-        const windowSize = window.innerWidth;
-
-        if (windowSize <= 768) {
-          searchOut.addEventListener("mouseenter", handleMouseEnter);
-          searchOut.addEventListener("mouseleave", handleMouseLeave);
-        } else {
-          onDis768Elements.forEach(function (element) {
-            element.style.display = "";
-          });
-          searchOut.removeEventListener("mouseenter", handleMouseEnter);
-          searchOut.removeEventListener("mouseleave", handleMouseLeave);
-        }
-      }
-
-      //初始檢查
-      checkWidth();
-      // 當視窗大小改變時重新檢查
-      window.addEventListener("resize", checkWidth);
-    });
-  </script> -->
-
-  <!-- cart.js -->
-  <!-- <script>
-    //顯示已加入購物車
-    let addCart = document.querySelectorAll(".addCart");
-    let popup = document.querySelector(".ol-contentShop");
-
-    for (let index = 0; index < addCart.length; index++) {
-      const element = addCart[index];
-
-      element.addEventListener("click", function () {
-        popup.style.opacity = "1";
-
-        setTimeout(function () {
-          popup.style.opacity = "0";
-        }, 3000);
-      });
-    }
-  </script> -->
 </html>

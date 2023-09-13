@@ -15,9 +15,9 @@ const select_pet = Vue.createApp({
       searchEvents: false,
       searchTarget: {
         searchName: '',
-        number:''
+        number: ''
       },
-      fakeHotelImage:[
+      fakeHotelImage: [
         "./images/pic/hostel/hostel page2/hostel-pic1.png",
         "./images/pic/hostel/hostel page2/hostel-pic2.png",
         "./images/pic/hostel/hostel page2/hostel-pic3.png",
@@ -28,7 +28,8 @@ const select_pet = Vue.createApp({
         "./images/pic/hostel/hostel page2/hostel-pic8.png",
         "./images/pic/hostel/hostel page2/hostel-pic9.png",
       ],
-      cardItems: [
+      cardItems:[],
+      fakeItems: [
         {
           id: 1,
           name: "快樂寵物旅館",
@@ -107,8 +108,8 @@ const select_pet = Vue.createApp({
       if (this.isPop == true) {
         this.isPop = false;
       }
-    this.isPop = false
-    console.log(this.isPop);
+      this.isPop = false
+      console.log(this.isPop);
     });
   },
   methods: {
@@ -171,17 +172,38 @@ const select_pet = Vue.createApp({
       // 清空localStorage資料
       // localStorage.removeItem("hoteldata");
     },
-    search(name, value) {
+    async search(name) {
       this.searchTarget.searchName = name;
-      this.searchTarget.number = value;
+      // this.searchTarget.number = value;
+      const slicedName = name.slice(0, 2);
       this.location = name;
       this.searchEvents = true;
+      try {
+        const response = await fetch(`/thd102/g2/php/hostel/searchArea.php?key=${slicedName}`, {
+          method: 'GET'
+        });
+
+        const result = await response.json();
+
+        if(result.status === 'success'){
+          if(result.data.length > 0){
+            this.cardItems = [];
+            Object.assign(this.cardItems,result.data);
+            this.searchTarget.number = result.count;
+          }else{
+            this.searchEvents = false;
+          }
+        }
+      }catch(error){
+        console.log(error);
+      }      
     }
   },
 });
 select_pet.component("Datepicker", VueDatePicker);
 
 const vm233 = select_pet.mount("#select_pet");
+
 if (document.getElementById("searchButton")) {
   const searchButton_el = document.getElementById("searchButton");
   searchButton_el.addEventListener("click", function () {
