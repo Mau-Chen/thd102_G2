@@ -1,355 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    @@include('layout/meta.html')
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>GO旅宿 | PetpaGo</title>
-  </head>
 
-  <body>
-    <div class="wrapper hostel">
-      @@include('layout/header.html')
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  @@include('layout/meta.html')
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>GO旅宿 | PetpaGo</title>
+</head>
 
-      <!-- Banner -->
-      <picture>
-        <source
-          media="(max-width:414px )"
-          srcset="./images/banner/hostel/m375-hostel.svg"
-        />
-        <source
-          media="(max-width:768px )"
-          srcset="./images/banner/hostel/p768-hostel.svg"
-        />
-        <img src="./images/banner/hostel/big_hostel_banner.svg" alt="" />
-        <!-- <img src="./images/banner/hostel/hostel_cat.svg" alt="banner"> -->
-      </picture>
-      <!---------------- search bar star ---------------->
-      <div class="hostel_headBox">
-        <div class="container" id="select_pet">
-          <h2 class="hostel_title">最貼心的寵物住宿</h2>
-          <form
-            class="search_hotel mb_100"
-            action="./hostel-booking.html"
-            method="get"
-          >
-            <div class="threeInput" id="select_pet">
-              <div class="search-box col-4">
-                <label for="">
-                  <span>住宿地點或住宿名稱</span>
-                  <input
-                    type="text"
-                    placeholder="城市／地區／住宿名稱"
-                    v-model="location"
-                    name="city"
-                  />
-                </label>
-              </div>
-              <div class="search-box col-4">
-                <label for="">
-                  <span>入住＆退房日期</span>
-                  <!-- <input type="date" /> -->
-                  <DatePicker
-                    v-model="date"
-                    range
-                    max-range="7"
-                    :format="format"
-                    calendar-cell-class-name="dp-custom-cell"
-                    time-picker-inline
-                    week-start="0"
-                    :is-24="true"
-                    :min-date="disabledDates"
-                    :auto-position="false"
-                    :enable-time-picker="false"
-                    name="getDate"
-                  >
-                  </DatePicker>
-                </label>
-              </div>
-              <!--  -->
-              <div
-                class="search-box dropDownParent col-4"
-                :class="{'-show' : start === true}"
-              >
-                <div class="pet_menu_open">
-                  <label>
-                    <span>寵物類型</span>
-                    <!-- <input type="hidden" name="genre"  />
+<body>
+  <div class="wrapper hostel">
+    @@include('layout/header.html')
+
+    <!-- Banner -->
+    <picture>
+      <source media="(max-width:414px )" srcset="./images/banner/hostel/m375-hostel.svg" />
+      <source media="(max-width:768px )" srcset="./images/banner/hostel/p768-hostel.svg" />
+      <img src="./images/banner/hostel/big_hostel_banner.svg" alt="" />
+      <!-- <img src="./images/banner/hostel/hostel_cat.svg" alt="banner"> -->
+    </picture>
+    <!---------------- search bar star ---------------->
+    <div class="hostel_headBox">
+      <div class="container" id="select_pet">
+        <h2 class="hostel_title">最貼心的寵物住宿</h2>
+        <form class="search_hotel mb_100" action="./hostel-booking.html" method="get">
+          <div class="threeInput">
+            <div class="search-box col-4">
+              <label for="">
+                <span>住宿地點或住宿名稱</span>
+                <input type="text" placeholder="城市／地區／住宿名稱" v-model="location" name="city" />
+              </label>
+            </div>
+            <div class="search-box col-4">
+              <label for="">
+                <span>入住＆退房日期</span>
+                <!-- <input type="date" /> -->
+                <DatePicker v-model="date" range max-range="7" :format="format"
+                  calendar-cell-class-name="dp-custom-cell" time-picker-inline week-start="0" :is-24="true"
+                  :min-date="disabledDates" :auto-position="false" :enable-time-picker="false" name="getDate">
+                </DatePicker>
+              </label>
+            </div>
+            <!--  -->
+            <div class="search-box dropDownParent col-4" :class="{'-show' : start === true}">
+              <div class="pet_menu_open">
+                <label>
+                  <span>寵物類型</span>
+                  <!-- <input type="hidden" name="genre"  />
                     <input type="hidden" name="numDog"  v-model="numDog"/>
                     <input type="hidden" name="numCat"  v-model="numCat"/> -->
-                  </label>
-                  <p>
-                    <span v-show="numDog > 0">{{ numDog }}隻狗</span>
-                    <span v-show="numDog > 0 && numCat > 0">，</span>
-                    <span v-show="numCat > 0">{{ numCat}}隻貓</span>
-                  </p>
-                </div>
-                <div class="dropDown" v-show="isPop === true">
-                  <div class="dropDownItem">
-                    <p>狗</p>
-                    <div class="dropDownItem col-5">
-                      <button
-                        type="button"
-                        class="minus"
-                        @click="toChange('numDog', -1)"
-                        :class="{'limit': numDog === 0}"
-                      >
-                        -
-                      </button>
-                      <span>{{ numDog }}</span>
-                      <button
-                        type="button"
-                        class="plus"
-                        @click="toChange('numDog', 1)"
-                        :class="{'limit': numDog === 9}"
-                      >
-                        +
-                      </button>
-                    </div>
+                </label>
+                <p>
+                  <span v-show="numDog > 0">{{ numDog }}隻狗</span>
+                  <span v-show="numDog > 0 && numCat > 0">，</span>
+                  <span v-show="numCat > 0">{{ numCat}}隻貓</span>
+                </p>
+              </div>
+              <div class="dropDown" v-show="isPop === true">
+                <div class="dropDownItem">
+                  <p>狗</p>
+                  <div class="dropDownItem col-5">
+                    <button type="button" class="minus" @click="toChange('numDog', -1)"
+                      :class="{'limit': numDog === 0}">
+                      -
+                    </button>
+                    <span>{{ numDog }}</span>
+                    <button type="button" class="plus" @click="toChange('numDog', 1)" :class="{'limit': numDog === 9}">
+                      +
+                    </button>
                   </div>
-                  <div class="line"></div>
-                  <div class="dropDownItem">
-                    <p>貓</p>
-                    <div class="dropDownItem col-5">
-                      <button
-                        type="button"
-                        class="minus"
-                        @click="toChange('numCat', -1)"
-                        :class="{'limit': numCat === 0}"
-                      >
-                        -
-                      </button>
-                      <span>{{ numCat }}</span>
-                      <button
-                        type="button"
-                        class="plus"
-                        @click="toChange('numCat', +1)"
-                        :class="{'limit': numCat === 9}"
-                      >
-                        +
-                      </button>
-                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="dropDownItem">
+                  <p>貓</p>
+                  <div class="dropDownItem col-5">
+                    <button type="button" class="minus" @click="toChange('numCat', -1)"
+                      :class="{'limit': numCat === 0}">
+                      -
+                    </button>
+                    <span>{{ numCat }}</span>
+                    <button type="button" class="plus" @click="toChange('numCat', +1)" :class="{'limit': numCat === 9}">
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <button class="btn_7" type="submit" id="searchButton">
-              立即搜尋
-            </button>
-          </form>
-                    <!---------------- main 精選寵物旅宿 star ---------------->
-                    <main class="top_area_hotels mb_60">
-                      <div class="container">
-                        <h5 class="mb_40">精選寵物旅宿</h5>
-                        <div class="cards-wrapper">
-                          <a class="card" v-for="city in cities" :key="city.name" :href="'./hostel-booking.html?city=' + city.name" @click="updateLocation(city.name)">
-                            <img :src="'./images/pic/hostel/hostel page1/hostel-city-0' + (cities.indexOf(city) + 1) + '.png'" :alt="city.name" />
-                            <div class="card_text">
-                              <p>{{ city.name }}</p>
-                              <p>{{ city.accommodations }}間住宿</p>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </main>
-          
-          <!---------------- main 精選寵物旅宿 star ---------------->
-          <!-- <main class="top_area_hotels mb_60">
+          </div>
+          <button class="btn_7" type="button" @click="search(location)">
+            立即搜尋
+          </button>
+        </form>
+        <!---------------- main 精選寵物旅宿 star ---------------->
+        <div v-if="searchEvents === false">
+          <main class="top_area_hotels mb_60">
             <div class="container">
               <h5 class="mb_40">精選寵物旅宿</h5>
               <div class="cards-wrapper">
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-01.png"
-                    alt="台北"
-                  />
+                <a class="card" v-for="city in cities" :key="city.name"
+                   @click="search(city.name , city.accommodations)">
+                  <img :src="'./images/pic/hostel/hostel page1/hostel-city-0' + (cities.indexOf(city) + 1) + '.png'"
+                    :alt="city.name" />
                   <div class="card_text">
-                    <p>台北</p>
-                    <p>30間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-02.png"
-                    alt="台中"
-                  />
-                  <div class="card_text">
-                    <p>台中</p>
-                    <p>20間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-03.png"
-                    alt="台南"
-                  />
-                  <div class="card_text">
-                    <p>台南</p>
-                    <p>8間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-04.png"
-                    alt="高雄"
-                  />
-                  <div class="card_text">
-                    <p>高雄</p>
-                    <p>15間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-05.png"
-                    alt="新竹"
-                  />
-                  <div class="card_text">
-                    <p>新竹</p>
-                    <p>8間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-06.png"
-                    alt="花蓮"
-                  />
-                  <div class="card_text">
-                    <p>花蓮</p>
-                    <p>10間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-07.png"
-                    alt="嘉義"
-                  />
-                  <div class="card_text">
-                    <p>嘉義</p>
-                    <p>6間住宿</p>
-                  </div>
-                </a>
-                <a class="card" href="./hostel-booking.html">
-                  <img
-                    src="./images/pic/hostel/hostel page1/hostel-city-08.png"
-                    alt="外島"
-                  />
-                  <div class="card_text">
-                    <p>外島</p>
-                    <p>3間住宿</p>
+                    <p>{{ city.name }}</p>
+                    <p>{{ city.accommodations }}間住宿</p>
                   </div>
                 </a>
               </div>
             </div>
-          </main> -->
+          </main>
+        </div>
+
+
+        <!---------------- main 精選寵物旅宿 star ---------------->
+        <div v-else>
+          <main class="hotel-booking mb_100">
+            <div class="top3 container">
+              <h5>{{ searchTarget.number }}間狗貓共住旅館在{{ searchTarget.searchName }}</h5>
+              <div class="top3_box">
+                <a class="card" v-for="(item, index) in cardItems" :key="item.id" :href="'./hostel-booking_detail.html?hotelid=' + item.id">
+                  <div class="card_image">
+                    <img :src="fakeHotelImage[index]" :alt="item.name" />
+                  </div>
+                  <div class="card_content jcsb">
+                    <h6>{{ item.name }}</h6>
+                  </div>
+                  <div class="card_price jcsb">
+                    <p>NT$ <span>800</span>起</p>
+                    <div class="star jcsb">
+                      <img src="./images/icon/components-icon/star.svg" alt="star" v-for="n in 5"
+                        :key="n" />
+                      <span>(10)</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </main>
         </div>
       </div>
-
-      @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
-      @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
     </div>
-    @@include('layout/metaJs.html')
-    <script src="./js/vue-datepicker.iife.js"></script>
-    <script src="./js/hostel_search.js"></script>
-    <script>
-      localStorage.removeItem("hoteldata");
 
-      // const select_pet = Vue.createApp({
-      //   data() {
-      //     return {
-      //       isPop: false,
-      //       numCat: 1,
-      //       numDog: 1,
-      //       date: "",
-      //       format: `MM月dd日`,
-      //       start: false,
-      //       location: ""
-      //     };
-      //   },
-      //   computed: {
-      //     disabledDates() {
-      //       let today = new Date();
-      //       let disabledtoday = new Date(today);
-      //       disabledtoday.setDate(disabledtoday.getDate() + 1);
+    @@include('layout/ad.html') @@include('layout/ad_carousel_hostel.html')
+    @@include('layout/drive-FAQ.html') @@include('layout/footer.html')
+  </div>
+  @@include('layout/metaJs.html')
+  <script src="./js/vue-datepicker.iife.js"></script>
+  <script src="./js/hostel_search.js"></script>
+  <script>
+    localStorage.removeItem("hoteldata");
 
-      //       return disabledtoday;
-      //     },
-      //     hoursArray() {
-      //       const arr = [];
-      //       for (let i = 0; i < 24; i++) {
-      //         arr.push({ text: i < 10 ? `0${i}` : i, value: i });
-      //       }
-      //       return arr;
-      //     },
-      //     minutesArray() {
-      //       const arr = [];
-      //       for (let i = 0; i < 60; i++) {
-      //         arr.push({ text: i < 10 ? `0${i}` : i, value: i });
-      //       }
-      //       return arr;
-      //     },
-      //   },
-      //   mounted() {
-      //     // console.log("sss");
-      //     this.start = true;
-      //     // 預設選擇日期
-      //     const today = new Date()
-      //     const startDate = today.setDate(today.getDate()+ 1)
-      //     const endDate = today.setDate(today.getDate()+1)
-      //     this.date = [startDate, endDate]
-      //     // 點擊外面視窗跳開
-      //     document.addEventListener(
-      //       "click",
-      //       (e) => {
-      //         if(
-      //           e.target.classList.contains("dropDownParent")
-      //         ){
-      //           return false;
-      //         }
-      //       }
-      //     );
-      //   },
-      //   methods: {
-      //     toChange(property, value) {
-      //       if (
-      //         (value > 0 && this[property] < 9) ||
-      //         (value < 0 && this[property] > 0)
-      //       ) {
-      //         this[property] += value;
-      //       }
-      //     },
-      //  saveToLocalstorage(){
-      //   // console.log("111");
-      //   const saveData = {
-      //     location: this.location,
-      //     date: this.date,
-      //     petnum:[this.numCat, this.numDog]
-      //   }
-      //   if(saveData.location !== '' && saveData.location !== saveData.date !== ''){
-      //     localStorage.setItem("hoteldata", JSON.stringify(saveData));
-      //     window.location.href = "hostel-booking.html";
-      //   }
-      // }
-      //   },
-      // });
-      // select_pet.component("Datepicker", VueDatePicker);
+  </script>
+</body>
 
-      // const vm233 = select_pet.mount("#select_pet");
-      // if(document.getElementById('searchButton')){
-      //   const searchButton_el = document.getElementById('searchButton');
-      //   searchButton_el.addEventListener("click",function(){
-      //   vm233.saveToLocalstorage();
-      // })
-      // }
-
-      // document
-      //   .getElementById("searchButton")
-      //   .addEventListener("click", function () {
-      //     window.location.href = "hostel-booking_detail.html";
-      //   });
-    </script>
-  </body>
 </html>

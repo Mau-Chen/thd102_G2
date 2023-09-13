@@ -1,114 +1,49 @@
 // Datepicker & 寵物類型
 const select_pet = Vue.createApp({
   data() {
+    const currentDate = new Date();
+    const startDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
+    const endDate = new Date(currentDate.getTime() + 2 * 24 * 60 * 60 * 1000);
     return {
       isPop: false,
       numCat: 1,
       numDog: 1,
-      date: "",
+      date: [startDate, endDate],
       format: `MM月dd日`,
       start: false,
       location: "",
+      searchEvents: false,
+      searchTarget: {
+        searchName: '',
+        number:''
+      },
+      fakeHotelImage:[
+        "./images/pic/hostel/hostel page2/hostel-pic1.png",
+        "./images/pic/hostel/hostel page2/hostel-pic2.png",
+        "./images/pic/hostel/hostel page2/hostel-pic3.png",
+        "./images/pic/hostel/hostel page2/hostel-pic4.png",
+        "./images/pic/hostel/hostel page2/hostel-pic5.png",
+        "./images/pic/hostel/hostel page2/hostel-pic6.png",
+        "./images/pic/hostel/hostel page2/hostel-pic7.png",
+        "./images/pic/hostel/hostel page2/hostel-pic8.png",
+        "./images/pic/hostel/hostel page2/hostel-pic9.png",
+      ],
       cardItems: [
         {
           id: 1,
           link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic1.png",
-          imageAlt: "快樂寵物旅館",
           name: "快樂寵物旅館",
-          location: "板橋區",
-          price: "1,750",
-          starCount: 5,
-          reviewCount: 10,
         },
         {
           id: 2,
           link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic2.png",
-          imageAlt: "毛起來住",
           name: "毛起來住",
-          location: "中山區",
-          price: "650",
-          starCount: 3,
-          reviewCount: 5,
         },
         {
           id: 3,
           link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic3.png",
-          imageAlt: "汪堡",
           name: "汪堡",
-          location: "信義區",
-          price: "1,250",
-          starCount: 5,
-          reviewCount: 10,
-        },
-        {
-          id: 4,
-          link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic4.png",
-          imageAlt: "快樂寵物旅館",
-          name: "快樂寵物旅館",
-          location: "板橋區",
-          price: "1,750",
-          starCount: 5,
-          reviewCount: 10,
-        },
-        {
-          id: 5,
-          link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic5.png",
-          imageAlt: "毛起來住",
-          name: "毛起來住",
-          location: "中山區",
-          price: "650",
-          starCount: 3,
-          reviewCount: 5,
-        },
-        {
-          id: 6,
-          link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic6.png",
-          imageAlt: "汪堡",
-          name: "汪堡",
-          location: "信義區",
-          price: "1,250",
-          starCount: 5,
-          reviewCount: 10,
-        },
-        {
-          id: 7,
-          link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic7.png",
-          imageAlt: "快樂寵物旅館",
-          name: "快樂寵物旅館",
-          location: "板橋區",
-          price: "1,750",
-          starCount: 5,
-          reviewCount: 10,
-        },
-        {
-          id: 8,
-          link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic8.png",
-          imageAlt: "毛起來住",
-          name: "毛起來住",
-          location: "中山區",
-          price: "650",
-          starCount: 3,
-          reviewCount: 5,
-        },
-        {
-          id: 9,
-          link: "./hostel-booking_detail.html",
-          imageSrc: "./images/pic/hostel/hostel page2/hostel-pic9.png",
-          imageAlt: "汪堡",
-          name: "汪堡",
-          location: "信義區",
-          price: "1,250",
-          starCount: 5,
-          reviewCount: 10,
-        },
+        }
       ],
       cities: [
         { name: "台北", accommodations: 30 },
@@ -149,14 +84,14 @@ const select_pet = Vue.createApp({
     this.initial();
     this.start = true;
     // 預設選擇日期
-    const today = new Date();
-    const startDate = today.setDate(today.getDate() + 1);
-    console.log(new Date(startDate))
-    const endDate = today.setDate(today.getDate() + 1);
-    console.log(new Date(endDate))
-    this.date = [new Date(startDate), new Date(endDate)];
-    console.log(this.date);
-    this.getLocalStorage();
+    // const today = new Date();
+    // const startDate = today.setDate(today.getDate() + 1);
+    // console.log(new Date(startDate))
+    // const endDate = today.setDate(today.getDate() + 1);
+    // console.log(new Date(endDate))
+    // this.date = [new Date(startDate), new Date(endDate)];
+    // console.log(this.date);
+    // this.getLocalStorage();
 
     document.addEventListener("click", (e) => {
       if (
@@ -175,21 +110,21 @@ const select_pet = Vue.createApp({
       if (this.isPop == true) {
         this.isPop = false;
       }
-      // this.isPop = false
-      // console.log(this.isPop);
+    this.isPop = false
+    console.log(this.isPop);
     });
   },
   methods: {
     async initial() {
       try {
         const response = await fetch('/thd102/g2/php/hostel/selectone.php');
-    
+
         if (!response.ok) {
           throw new Error('數據錯誤');
         }
-    
+
         const res = await response.json();
-    
+
         if (res) {
           Object.assign(this.cities, res);
         }
@@ -208,7 +143,7 @@ const select_pet = Vue.createApp({
     },
     //點擊卡片將地點帶入欄位
     updateLocation(value) {
-      this.location = value.toString(); 
+      this.location = value.toString();
       this.saveToLocalstorage()
     },
     saveToLocalstorage() {
@@ -222,8 +157,8 @@ const select_pet = Vue.createApp({
       //   saveData.location !== "" &&
       //   (saveData.location !== saveData.date) !== ""
       // ) {
-        localStorage.setItem("hoteldata", JSON.stringify(saveData));
-        window.location.href = "hostel-booking.html";
+      localStorage.setItem("hoteldata", JSON.stringify(saveData));
+      window.location.href = "hostel-booking.html";
       // }
     },
     getLocalStorage() {
@@ -239,6 +174,12 @@ const select_pet = Vue.createApp({
       // 清空localStorage資料
       // localStorage.removeItem("hoteldata");
     },
+    search(name, value) {
+      this.searchTarget.searchName = name;
+      this.searchTarget.number = value;
+      this.location = name;
+      this.searchEvents = true;
+    }
   },
 });
 select_pet.component("Datepicker", VueDatePicker);
