@@ -171,7 +171,7 @@ window.vue_app = Vue.createApp({
       // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
       // this.date = [startDate, endDate];
       // console.log(startDate);
-      this.date = new Date(startDate).setHours(startDate.getHours() + 2);
+      this.date = new Date(startDate).setHours(startDate.getHours() + 4);
       // urlParams.delete("date-picker");
     }
 
