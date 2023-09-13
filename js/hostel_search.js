@@ -31,17 +31,14 @@ const select_pet = Vue.createApp({
       cardItems: [
         {
           id: 1,
-          link: "./hostel-booking_detail.html",
           name: "快樂寵物旅館",
         },
         {
           id: 2,
-          link: "./hostel-booking_detail.html",
           name: "毛起來住",
         },
         {
           id: 3,
-          link: "./hostel-booking_detail.html",
           name: "汪堡",
         }
       ],
