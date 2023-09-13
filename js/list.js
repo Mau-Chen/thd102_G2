@@ -1,5 +1,7 @@
 export default {
-  props: ["tasks"],
+  props: {
+    tasks: Array
+  },
   template: `
 <li class="accordion" v-for="(task, index) in tasks" :key="index">
 
