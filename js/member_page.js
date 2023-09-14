@@ -48,32 +48,32 @@ let yyyy = today.getFullYear();
 today = yyyy + "-" + mm + "-" + dd;
 document.getElementById("myDateInput").setAttribute("max", today);
 
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.getElementById("order"); // 假設父元素的ID為 "order"
-  const emptyMessage = document.getElementById("order5"); // 假設無訂單訊息的ID為 "order5"
+// document.addEventListener("DOMContentLoaded", function () {
+//   const container = document.getElementById("order"); // 假設父元素的ID為 "order"
+//   const emptyMessage = document.getElementById("order5"); // 假設無訂單訊息的ID為 "order5"
 
-  function checkIfEmpty() {
-    if (container.children.length === 0) {
-      emptyMessage.style.display = "block";
-    }
-  }
+//   function checkIfEmpty() {
+//     if (container.children.length === 0) {
+//       emptyMessage.style.display = "block";
+//     }
+//   }
 
-  // 初始檢查
-  checkIfEmpty();
+//   // 初始檢查
+//   checkIfEmpty();
 
-  if (container) {
-    container.addEventListener("click", function (event) {
-      if (event.target.classList.contains("cancel-btn")) {
-        const isConfirmed = confirm("確定要取消此預約嗎？");
-        if (isConfirmed) {
-          const liElement = event.target.closest("li.accordion");
-          if (liElement) {
-            liElement.parentNode.removeChild(liElement);
-          }
-          // 再次檢查是否為空
-          checkIfEmpty();
-        }
-      }
-    });
-  }
-});
+//   if (container) {
+//     container.addEventListener("click", function (event) {
+//       if (event.target.classList.contains("cancel-btn")) {
+//         const isConfirmed = confirm("確定要取消此預約嗎？");
+//         if (isConfirmed) {
+//           const liElement = event.target.closest("li.accordion");
+//           if (liElement) {
+//             liElement.parentNode.removeChild(liElement);
+//           }
+//           // 再次檢查是否為空
+//           checkIfEmpty();
+//         }
+//       }
+//     });
+//   }
+// });
