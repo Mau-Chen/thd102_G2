@@ -15,29 +15,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //切換tab
-document.addEventListener("DOMContentLoaded", function () {
-  const sideBarLinks = document.querySelectorAll("[data-target]");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const sideBarLinks = document.querySelectorAll("[data-target]");
 
-  sideBarLinks.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      // 防止默認事件（不導航）
-      event.preventDefault();
+//   sideBarLinks.forEach((link) => {
+//     link.addEventListener("click", function (event) {
+//       // 防止默認事件（不導航）
+//       event.preventDefault();
 
-      // 隱藏所有頁面
-      const orders = document.querySelectorAll('[id^="order"]');
-      orders.forEach((order) => {
-        order.style.display = "none";
-      });
+//       // 隱藏所有頁面
+//       const orders = document.querySelectorAll('[id^="order"]');
+//       orders.forEach((order) => {
+//         order.style.display = "none";
+//       });
 
-      // 顯示被點擊的連結對應的頁面
-      const targetId = event.currentTarget.getAttribute("data-target");
-      const targetOrder = document.getElementById(targetId);
-      if (targetOrder) {
-        targetOrder.style.display = "block";
-      }
-    });
-  });
-});
+//       // 顯示被點擊的連結對應的頁面
+//       const targetId = event.currentTarget.getAttribute("data-target");
+//       const targetOrder = document.getElementById(targetId);
+//       if (targetOrder) {
+//         targetOrder.style.display = "block";
+//       }
+//     });
+//   });
+// });
 
 //讓出生日期只能選今天以前
 let today = new Date();
@@ -47,6 +47,12 @@ let yyyy = today.getFullYear();
 
 today = yyyy + "-" + mm + "-" + dd;
 document.getElementById("myDateInput").setAttribute("max", today);
+
+// const MemberlogOut_el = document.getElementById('MemberlogOut');
+// MemberlogOut_el.addEventListener("click",function(){
+//   vm.logout();
+// });
+
 
 // document.addEventListener("DOMContentLoaded", function () {
 //   const container = document.getElementById("order"); // 假設父元素的ID為 "order"

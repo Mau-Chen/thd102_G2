@@ -110,6 +110,9 @@ const app = Vue.createApp({
           return './images/pic/shop/goShop02.png';
       }
     },
+    logout(){
+      vm.logout();
+    }
   }
 });
 
