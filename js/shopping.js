@@ -26,7 +26,8 @@ const app = Vue.createApp({
             USEpoint: "",
 
             nowDate: null,
-            orderID: "PT0004",
+            // orderID: "PT0004",
+            orderID: "",
 
             spReadyName: "",
             spReadyEmail: "",
@@ -371,8 +372,8 @@ const app = Vue.createApp({
                     if (item.spStepper === false && hoursDifference <= 2.5) {
                         isValid = false;
                         errorText.push(`${item.product} 需要在3小時前下單`);
-                    // } else if (item.spStepper === true && hoursDifference <= 24) {
-                    } 
+                        // } else if (item.spStepper === true && hoursDifference <= 24) {
+                    }
                     else if (item.spStepper === true && hoursDifference <= 0) {
                         isValid = false;
                         errorText.push(`${item.product} 需要在一天前下單`);
@@ -542,42 +543,6 @@ const app = Vue.createApp({
             // console.log(usePoints);
             // 創建一個新陣列，用於存儲選中的購物項數據
             const selectedShoppingItems = [];
-
-            // this.shoppingItems.forEach((item) => {
-            //     switch (item.listType) {
-            //         case "轎車":
-            //             item.listTypeValue = 1;
-            //             item.dogSizeValue = null;
-            //             break;
-            //         case "休旅車":
-            //             item.listTypeValue = 2;
-            //             item.dogSizeValue = null;
-            //             break;
-            //         case "貓套房":
-            //             item.listTypeValue = 3;
-            //             item.dogSizeValue = null;
-            //             item.startadd = null;
-            //             item.endadd = null;
-            //             break;
-            //         case "狗套房":
-            //             item.listTypeValue = 4;
-            //             item.startadd = null;
-            //             item.endadd = null;
-            //             if (item.dogSize === "小型犬") {
-            //                 item.dogSizeValue = "小";
-            //             } else if (item.dogSize === "中型犬") {
-            //                 item.dogSizeValue = "中";
-            //             } else if (item.dogSize === "大型犬") {
-            //                 item.dogSizeValue = "大";
-            //             } else {
-            //                 item.dogSizeValue = null;
-            //             }
-            //             break;
-            //         default:
-            //             item.listTypeValue = null;
-            //             item.dogSizeValue = null;
-            //     }
-            // });
             this.shoppingItems.forEach((item) => {
                 // 檢查購物項的 id 是否在 checkedNames 陣列中
                 if (this.checkedNames.includes(item.id)) {
@@ -619,7 +584,6 @@ const app = Vue.createApp({
                 }
             });
 
-
             // 準備要傳遞的資料
             const dataToSend = {
                 orderDate: nowDateTime,
@@ -627,6 +591,7 @@ const app = Vue.createApp({
                 usePoints: usePoints,
                 memberId: this.member_data.id,
                 totalPrice: this.totalPrice,
+                payPoints: this.payPoints,
                 // shoppingItems: this.shoppingItems
                 shoppingItems: selectedShoppingItems // 使用新陣列中的數據
             };
@@ -657,6 +622,9 @@ const app = Vue.createApp({
                     // console.log('成功消息:', successMessage);
                     this.currentStep++;
                     console.log('資料已成功插入資料庫');
+                    // 將後端傳來的ORDER ID存儲在data中
+                    this.orderID = responseData.order_id; // 請確保您的Vue實例有名為orderID的數據屬性
+                    console.log('取得的ORDER ID:', this.orderID);
 
                     // console.log('currentStep 的值:', this.currentStep);
                 } else {
@@ -698,6 +666,9 @@ const app = Vue.createApp({
             return this.shoppingItems.filter((item) =>
                 this.checkedNames.includes(item.id)
             );
+        },
+        payPoints(){
+            return Math.floor((this.payPrice) / 100);
         },
     },
     watch: {
