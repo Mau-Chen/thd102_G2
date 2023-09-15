@@ -28,6 +28,7 @@ const app = Vue.createApp({
             nowDate: null,
             // orderID: "PT0004",
             orderID: "",
+            orderEMAIL: "",
 
             spReadyName: "",
             spReadyEmail: "",
@@ -614,7 +615,8 @@ const app = Vue.createApp({
                     this.currentStep++;
                     console.log('資料已成功插入資料庫');
                     // 將後端傳來的ORDER ID存儲在data中
-                    this.orderID = responseData.order_id; // 請確保您的Vue實例有名為orderID的數據屬性
+                    this.orderID = responseData.order_id; 
+                    this.orderEMAIL = responseData.memberMail; 
                     // console.log('取得的ORDER ID:', this.orderID);
 
                     // console.log('currentStep 的值:', this.currentStep);

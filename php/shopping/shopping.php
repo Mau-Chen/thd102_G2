@@ -20,7 +20,7 @@ try {
     $orderStatus = "無異動";
     $orderDate = $data['orderDate'];
 
-    // 在这里添加检查 'totalPrice' 是否已定义和不为空的代码
+    // 在这里添加检查 'totalPrice' 是否已定義
     if (!isset($data['totalPrice']) || empty($data['totalPrice'])) {
         echo json_encode(['error' => 'totalPrice 未定義或為空']);
         exit;
@@ -46,6 +46,19 @@ try {
     if ($stmt->execute()) {
         // 插入成功
         $orderId = $pdo->lastInsertId();
+
+        $getMemberEmailSql = "SELECT EMAIL FROM MEMBER WHERE ID = :memberId";
+        $stmt5 = $pdo->prepare($getMemberEmailSql);
+        $stmt5->bindParam(':memberId', $memberId, PDO::PARAM_INT);
+        $stmt5->execute();
+        $memberEmailData = $stmt5->fetch(PDO::FETCH_ASSOC);
+
+        if ($memberEmailData) {
+            $memberEmail = $memberEmailData['EMAIL'];
+        } else {
+            echo json_encode(['error' => '未找到該會員的EMAIL']);
+            exit;
+        }
 
 
         foreach ($items as $item) {
@@ -95,7 +108,6 @@ try {
             $stmt1->execute();
 
             // 更新會員點數
-
             $getPointsSql = "SELECT POINTS FROM MEMBER WHERE ID = :memberId";
             $stmt4 = $pdo->prepare($getPointsSql);
             $stmt4->bindParam(':memberId', $memberId, PDO::PARAM_INT);
@@ -105,7 +117,7 @@ try {
             if ($memberData) {
                 $currentPoints = intval($memberData['POINTS']);
             } else {
-                echo json_encode(['error' => '未找到該会員']);
+                echo json_encode(['error' => '未找到該會員']);
                 exit;
             }
 
@@ -135,7 +147,17 @@ try {
        // echo json_encode(['message' => '訂單建立成功']);
     http_response_code(200);
     // echo json_encode(['success' => true, 'message' => '訂單建立成功']);
-    echo json_encode(['success' => true, 'message' => '訂單建立成功', 'order_id' => $orderId]);
+    // echo json_encode(['success' => true, 'message' => '訂單建立成功', 'order_id' => $orderId]);
+    // 設置要返回給前端的數據，包括EMAIL
+    $responseData = [
+        'success' => true,
+        'message' => '訂單建立成功',
+        'order_id' => $orderId,
+        'member_email' => $memberEmail
+    ];
+
+    // 使用json_encode將數據轉換為JSON格式並輸出
+    echo json_encode($responseData);
 
 } catch (PDOException $e) {
     // 回溯交易
