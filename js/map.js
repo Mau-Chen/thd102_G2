@@ -126,15 +126,20 @@ async function calculateDistance() {
           directionsRenderer.setMap(map);
           directionsRenderer.setDirections(response);
           const distance = response.routes[0].legs[0].distance.text;
+          // console.log(response.routes[0].legs[0]);
           let distance_value = response.routes[0].legs[0].distance.value / 1000;
-          let roundedDistance = parseFloat(distance_value.toFixed(1));
+          // console.log(distance_value);
+          let distance_value_fix = distance_value.toFixed(1);
+          console.log(distance_value_fix);
+          // let roundedDistance = parseFloat(distance_value);
+          // console.log(roundedDistance);
           const car_menu_cost =
-            roundedDistance * vm.cars_data[vm.car_menu].cost;
+            distance_value_fix * vm.cars_data[vm.car_menu].cost;
           const car_menu_cost_fixed = parseFloat(car_menu_cost.toFixed(2));
           const duration = response.routes[0].legs[0].duration.text;
           document.getElementById(
             "distanceDisplay"
-          ).textContent = `${distance}`;
+          ).textContent = `${distance_value_fix} 公里`;
           document.getElementById(
             "durationDisplay"
           ).textContent = `${duration}`;
@@ -235,7 +240,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 取距離數字(含小數)
     const listDistanceText = listDistanceSpan.textContent;
-    const listDistanceValue = parseFloat(listDistanceText.match(/\d+\.\d+/)[0]);
+    // console.log(listDistanceText);
+    const listDistanceReplace = Number(
+      listDistanceText.replace(" ", "").replace("公里", "")
+    );
+    console.log(listDistanceReplace);
+    // const listDistanceValue = parseFloat(listDistanceText.match(/\d+\.\d+/)[0]);
+    // console.log(listDateValue);
+
+    // 將距離四捨五入到小數點後一位
+    // const listDistanceValueRounded = Math.round(listDistanceValue * 10) / 10;
 
     // 創物件拿來放資料組
     const data = {
@@ -245,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
       listDate_E: listDateD,
       listDate_T: listDateT, // 存時間
       listType: listTypeValue,
-      listDistance: listDistanceValue,
+      listDistance: listDistanceReplace,
       product: "寵物接送",
       type: "spDriver",
       spStepper: false,
