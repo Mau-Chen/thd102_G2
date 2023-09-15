@@ -188,7 +188,7 @@ const app2 = Vue.createApp({
           position: "top",
           icon: "error",
           // title: '查無此人?',
-          text: "您還未登入，三秒後將開啟登入頁面",
+          text: "您還未登入，即將開啟登入頁面",
           showConfirmButton: false,
           timer: 3000,
           backdrop: `rgba(0,0,0,0)`,
@@ -197,8 +197,11 @@ const app2 = Vue.createApp({
           },
         });
         setTimeout(() => {
+          this.show = false;
+        }, 500);
+        setTimeout(() => {
           vm.ispop = true;
-        }, 3000);
+        }, 1000);
         return
       };
 
