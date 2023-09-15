@@ -98,8 +98,6 @@ const app = Vue.createApp({
             this.checkedNames = this.shoppingItems.map((item) => item.id);
             this.checked = true;
         };
-
-
     },
     methods: {
 
@@ -114,7 +112,6 @@ const app = Vue.createApp({
                     text: "購物車中沒有商品",
                     showConfirmButton: false,
                     timer: 3000,
-                    backdrop: `rgba(0,0,0,0)`,
                     customClass: {
                         container: "swal2",
                     },
@@ -147,7 +144,6 @@ const app = Vue.createApp({
                                     text: "請聯繫管理員",
                                     showConfirmButton: false,
                                     timer: 3000,
-                                    backdrop: `rgba(0,0,0,0)`,
                                     customClass: {
                                         container: "swal2",
                                     },
@@ -158,7 +154,6 @@ const app = Vue.createApp({
                             console.error('從伺服器取數據出錯：', error1);
                         });
                 }
-
             }
         },
 
@@ -267,13 +262,10 @@ const app = Vue.createApp({
         countSubtotal(item) {
             // console.log(item);
             if (item.spStepper) {
-
                 item.listDate_D = Math.round(
                     (new Date(item.listDate_E) - new Date(item.listDate_S)) /
                     (1000 * 60 * 60 * 24)
                 );
-
-
                 return item.spPrice * item.BuyNum * item.listDate_D;
             } else {
                 item.listDate_D = 1;
@@ -316,9 +308,7 @@ const app = Vue.createApp({
                 // 更新索引
                 this.updateIndex();
                 // console.log("shoppingItems:", this.shoppingItems);
-
                 this.checkedNames = this.shoppingItems.map(item => item.id.toString());
-
                 this.updateLocalStorage();
                 // console.log("checkedNames:", this.checkedNames);
             }
@@ -361,7 +351,6 @@ const app = Vue.createApp({
 
             // 驗證購物項目
             for (const item of this.shoppingItems) {
-
                 if (this.checkedNames.includes(item.id)) {
                     const listDateT = item.listDate_T ? item.listDate_T : '00:00';
                     const itemDateTime = new Date(`${item.listDate_S} ${listDateT}`);
@@ -380,6 +369,9 @@ const app = Vue.createApp({
                     }
                 }
             }
+
+            // console.log("Debugging this.cardNumber:", this.cardNumber);
+            // console.log("Debugging validateCreditCard result:", this.validateCreditCard(this.cardNumber));
 
             // 如果通過購物項目驗證，繼續驗證其他表單欄位
             if (isValid) {
@@ -434,7 +426,6 @@ const app = Vue.createApp({
                     text: errorText.join("、"),
                     showConfirmButton: false,
                     timer: 5000,
-                    backdrop: `rgba(0,0,0,0)`,
                     customClass: {
                         container: "swal2",
                     },
@@ -624,7 +615,7 @@ const app = Vue.createApp({
                     console.log('資料已成功插入資料庫');
                     // 將後端傳來的ORDER ID存儲在data中
                     this.orderID = responseData.order_id; // 請確保您的Vue實例有名為orderID的數據屬性
-                    console.log('取得的ORDER ID:', this.orderID);
+                    // console.log('取得的ORDER ID:', this.orderID);
 
                     // console.log('currentStep 的值:', this.currentStep);
                 } else {
@@ -640,7 +631,7 @@ const app = Vue.createApp({
                     const errorMessage = error.response.data.error;
                     console.error('後端錯誤消息:', errorMessage);
                 } else {
-                    console.error('未知错误:', error);
+                    console.error('未知錯誤:', error);
                 }
             }
         },
@@ -667,7 +658,7 @@ const app = Vue.createApp({
                 this.checkedNames.includes(item.id)
             );
         },
-        payPoints(){
+        payPoints() {
             return Math.floor((this.payPrice) / 100);
         },
     },
@@ -681,6 +672,14 @@ const app = Vue.createApp({
                 cartData = JSON.parse(storedCartData);
             }
             this.checked = val.length === cartData.length && val.length > 0;
+        },
+        currentStep(newStep) {
+            const spCartNumElements = document.querySelectorAll(".SPcartNum");
+
+            spCartNumElements.forEach((element) => {
+                // 如果當前步驟是步驟三，將元素的display屬性設置為"none"，否則設置為"block"
+                element.style.display = newStep === 2 ? "none" : "block";
+            });
         },
     },
 });
